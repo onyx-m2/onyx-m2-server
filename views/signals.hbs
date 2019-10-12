@@ -1,0 +1,38 @@
+<div class="canview">
+
+  {{! Category menu }}
+  <div class="ui vertical menu" id="canmenu">
+    {{#categories}}
+    <a class="{{active}} item" href="{{path}}">
+      <h4 class="ui header">{{label}}</h4>{{name}}</a>
+    {{/categories}}
+  </div>
+
+  {{! Message menu }}
+  <div class="ui vertical menu" id="canmenu">
+    {{#messages}}
+    <a class="{{active}} item" href="{{path}}">{{name}}</a>
+    {{/messages}}
+  </div>
+
+  {{! Signal display }}
+  <div class="ui signal segment">
+    <div class="ui signal list">
+      {{#signals}}
+      <div class="item">
+        <div class="right floated signal value content">
+          <div class="ui small statistic">
+            <div class="value">{{value}}</div>
+            <div class="label">{{units}}</div>
+          </div>
+        </div>
+        <div class="signal name content">
+          {{name}}
+        </div>
+      </div>
+    {{/signals}}
+  </div>
+
+</div>
+
+<script src="/javascripts/signals.js"></script>

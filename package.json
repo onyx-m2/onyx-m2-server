@@ -1,0 +1,24 @@
+{
+  "name": "tesla-ONYX",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "bit-buffer": "^0.2.4",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "express-ws": "^4.0.0",
+    "hbs": "~4.0.1",
+    "http-errors": "~1.6.2",
+    "line-reader": "^0.4.0",
+    "morgan": "~1.9.0",
+    "node-serial": "^0.1.1",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.7",
+    "serialport": "^7.1.5",
+    "ws": "^7.1.2"
+  }
+}

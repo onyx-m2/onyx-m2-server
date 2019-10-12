@@ -1,0 +1,26 @@
+#!/usr/bin/env node
+
+const WebSocket = require('ws');
+
+const messages = [
+  '231980441 - 242 S 0 2 0 5',
+  '231980696 - 423 S 0 6 1 0 10 0 0 0',
+  '231980984 - 2d1 S 0 2 5f 1',
+  '231981273 - 428 S 0 6 1 0 0 10 0 0',
+  '231981560 - 201 S 0 8 86 7 0 0 16 c0 e5 2',
+  '231981850 - 282 S 0 8 10 0 0 0 e8 23 f3 24',
+  '231982137 - 39a S 0 8 1 aa 7f 7f 7f 7f 0 0',
+  '231982424 - 132 S 0 8 f1 93 0 80 0 80 ff f'
+]
+var index = 0
+
+const ws = new WebSocket('wss://onyx.ngrok.io/m2?pin=1379');
+ws.on('open', () => {
+  console.log(`Server connected, sending a message per second`)
+  setInterval(() => {
+    var msg = messages[index]
+    index = (index + 1) % messages.length
+    ws.send(Buffer.from(msg))
+    console.log(msg)
+  }, 1000)
+})

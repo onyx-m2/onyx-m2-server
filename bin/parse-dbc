@@ -1,0 +1,122 @@
+#!/usr/bin/env node
+
+const fs = require('fs')
+const lineReader = require('line-reader')
+
+const filename = process.argv[2]
+const warnings = []
+const errors = []
+const messages = []
+
+function toPath(mnemonic) {
+  return [...mnemonic]
+    .map(c => (c != c.toLowerCase()) ? '-' + c.toLowerCase() : c)
+    .join('')
+}
+
+function toName(mnemonic) {
+  return [...mnemonic]
+    .map((c, i) => {
+      if (i == 0) {
+        return c.toUpperCase()
+      } else if (c != c.toLowerCase()) {
+        return ' ' + c.toLowerCase()
+      }
+      return c
+    })
+    .join('')
+}
+
+lineReader.eachLine(filename, function(line, last) {
+
+  // message
+  if (line.startsWith('BO_')) {
+    const parts = /BO_ (\d+) (\w+)_(\w+): (\d+)/.exec(line)
+    if (!parts) {
+      console.warn(`Failed to parse message: "${line}"`)
+      warnings.push(line)
+      return
+    }
+    const id = Number(parts[1])
+    const category = parts[2]
+    const mnemonic = parts[3]
+    const length = Number(parts[4])
+    const path = toPath(mnemonic)
+    const name = toName(mnemonic)
+    messages.push({ id,
+      mnemonic: `${category}_${mnemonic}`,
+      category: category.toLowerCase(),
+      path, name, length,
+      signals: []
+    })
+  }
+
+  // signal
+  if (line.startsWith(' SG_')) {
+    const parts = /\sSG_ (\w+)_(\S+)\s?(M?)m?(\d*): (\d+)\|(\d+)@\d(\+|-) \((.+),(.+)\) \[.+\] "(.*)"/.exec(line)
+    if (!parts) {
+      console.warn(`Failed to parse signal: "${line}"`)
+      warnings.push(line)
+      return
+    }
+    var category = parts[1]
+    var mnemonic = parts[2]
+    var multiplex = parts[3] == 'M' // ignoring for now
+    var multiplexId = parts[4]      // ignoring for now
+    const start = Number(parts[5])
+    const length = Number(parts[6])
+    const signed = parts[7] == '-'
+    const scale = Number(parts[8])
+    const offset = Number(parts[9])
+    const units = parts[10]
+    const path = toPath(mnemonic)
+    const name = toName(mnemonic)
+    messages[messages.length - 1].signals.push({ mnemonic: `${category}_${mnemonic}`, path, name, start, length, signed, scale, offset, units })
+  }
+
+  // value
+  if (line.startsWith('VAL_')) {
+    var parts = /VAL_ (\d+) (\S+) (.*);/.exec(line)
+    if (!parts) {
+      console.warn(`Failed to parse value: "${line}"`)
+      warnings.push(line)
+      return
+    }
+    const id = Number(parts[1])
+    const mnemonic = parts[2]
+    const valueList = parts[3]
+    const values = {}
+    const re = /(\d+) "([^\"]+)"/g
+    while (parts = re.exec(valueList)) {
+      values[Number(parts[1])] = parts[2]
+    }
+    const message = messages.find(m => m.id == id)
+    if (!message) {
+      console.error(`Failed to find message for value: "${id}"`)
+      errors.push(line)
+      return
+    }
+    const signal = message.signals.find(s => s.mnemonic == mnemonic)
+    if (!signal) {
+    console.error(`Failed to find signal for value: "${mnemonic}"`)
+      errors.push(line)
+      return
+    }
+    signal.values = values
+  }
+
+  if (last) {
+    const date = new Date()
+    const categories = messages.reduce((acc, cur) => {
+      acc[cur.category] = ''
+      return acc
+    }, {})
+
+    messages.forEach(m => {
+      m.signals.sort((f, s) => f.start - s.start)
+    })
+
+    const dbc = { date, categories, messages, warnings, errors }
+    fs.writeFileSync(`${filename}.json`, JSON.stringify(dbc, null, 2))
+  }
+})
