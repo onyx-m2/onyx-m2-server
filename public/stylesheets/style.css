@@ -1,0 +1,203 @@
+@font-face {
+  font-family: 'teslaregular';
+  src: url('tesla-webfont.woff2') format('woff2'),
+       url('tesla-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  /* font: 24px "Lucida Grande", Helvetica, Arial, sans-serif; */
+  background-color: grey;
+}
+
+body ::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
+}
+
+a {
+  color: #00B7FF;
+}
+
+.ui.list, .ui.menu, .ui.segment, .ui.segments .segment {
+  font-size: inherit;
+}
+
+
+
+
+
+.ui[class*="right floated"].segment {
+  margin-right: 0;
+}
+
+.ui.button {
+  font-size: 18px;
+}
+
+#log {
+  font-size: 20px;
+}
+
+.tesla.font {
+  font-family: 'teslaregular';
+  font-size: 50px;
+}
+
+.tesla.screen {
+  background-color: #fafafa;
+  width: 1260px;
+  height: 924px;
+  padding: 20px;
+  font-size: 28px;
+}
+
+.tesla.panel {
+  grid-gap: 20px;
+  width: 1220px;
+  height: 884px;
+  display: grid;
+  /* overflow: auto; */
+}
+
+.tesla.message {
+  z-index: 1;
+  margin: auto;
+  position: absolute;
+  /* top: 0; left: 0; bottom: 0; right: 0; */
+  width: fit-content !important;
+  height: fit-content;
+}
+
+.can.log.segment {
+  /* max-height: 804px; */
+  font-family: monospace;
+}
+
+.signals.grid {
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.signal.list > .item {
+  padding-bottom: 40px;
+}
+
+.signal.list > .item > .name.content {
+  /* line-height: 58px; */
+}
+
+.signal.list .statistic > .value {
+  text-align: right;
+}
+
+.signal.list .statistic > .label {
+  text-align: right;
+}
+
+.signal.segment {
+  margin: 0;
+  /* font-size: 24px; */
+  overflow-y: auto;
+}
+
+.ui.vertical.menu {
+  width: 400px;
+  /* font-size: 24px; */
+  margin: 0;
+  overflow-y: auto;
+  /* max-height: 884px; */
+}
+
+/* #canmenu {
+
+} */
+
+#dials {
+    margin-top: 0;
+}
+
+.dash {
+  background-color: #fafafa;
+  padding: 10px;
+  grid-gap: 20px;
+  width: 1260px;
+  height: 924px;
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+  grid-template-columns: repeat(7, 1fr);
+  align-items: stretch;
+}
+
+.ui.huge.statistic .label {
+  font-size: 24px;
+  color: grey;
+}
+
+
+.ui.tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  border: none;
+  /* margin: 0;
+  padding: auto; */
+  /* align-items: center;
+  justify-items: center; */
+
+}
+
+.ui.tesla.segment, .ui.tesla.menu {
+  /* font-family: 'teslaregular'; */
+  font-variant: all-small-caps;
+  position: relative;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 2px 4px 0 rgba(34,36,38,.12), 0 2px 10px 0 rgba(34,36,38,.15)
+}
+
+/* This is for inset box shadow, doesn't work yet
+.ui.tesla.menu::after {
+  position: absolute;
+  background-image: linear-gradient(to bottom, transparent 0%, white 100%);
+  top: 0px;
+  left: 0px;
+  height: 40px;
+  z-index: 1;
+  content: '';
+} */
+
+.ui.tile.segment {
+  font-family: 'teslaregular';
+  border-radius: 10px;
+  box-shadow: 0 2px 4px 0 rgba(34,36,38,.12), 0 2px 10px 0 rgba(34,36,38,.15)
+}
+
+.ui.double.wide.tile {
+  grid-column: 2 / 4;
+  border-radius: 10px;
+}
+
+.ui.double.tall.tile {
+  grid-row: 1 / 3;
+  grid-column: 7 / 7;
+  border-radius: 8px;
+}
+
+.ui.xxxxmain.tile {
+  grid-row: 2 / 6 ;
+  grid-column: 2 / 7;
+  border-radius: 6px;
+}
+
+.battery.tile {
+  grid-row: 2 / 3;
+  grid-column: 1 / 2;
+
+}
+
+.battery.tile .ui.statistic .value {
+  font-family: 'teslaregular';
+}
