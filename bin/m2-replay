@@ -1,0 +1,64 @@
+#!/usr/bin/env node
+
+const fs = require('fs')
+const lineReader = require('line-reader')
+const WebSocket = require('ws');
+
+// const messages = [
+//   '231980441 - 242 S 0 2 0 5',
+//   '231980696 - 423 S 0 6 1 0 10 0 0 0',
+//   '231980984 - 2d1 S 0 2 5f 1',
+//   '231981273 - 428 S 0 6 1 0 0 10 0 0',
+//   '231981560 - 201 S 0 8 86 7 0 0 16 c0 e5 2',
+//   '231981850 - 282 S 0 8 10 0 0 0 e8 23 f3 24',
+//   '231982137 - 39a S 0 8 1 aa 7f 7f 7f 7f 0 0',
+//   '231982424 - 132 S 0 8 f1 93 0 80 0 80 ff f'
+// ]
+// var index = 0
+
+const filename = process.argv[2]
+const stepMode = process.argv[3]
+var lastTs = 0
+
+function usleep(micros) {
+  if (stepMode) {
+    console.log('Press enter to continue');
+    return new Promise(resolve => process.stdin.once('data', function () {
+      resolve();
+    }))
+  }
+  return new Promise(resolve => setTimeout(resolve, micros / 1000));
+}
+
+const ws = new WebSocket('wss://onyx.ngrok.io/m2?pin=1379');
+ws.on('open', () => {
+  console.log(`Server connected, starting replay of ${filename}`)
+
+  lineReader.eachLine(filename, async (line, last, cb) => {
+    // 258 | 0x102 @ 313168976 len 8 | 77 00 00 00 01 00 20 0c
+    // 231980441 - 242 S 0 2 0 5
+    var parts = /\d+ \| 0x(\w+) @ (\d+) len (\d+)/.exec(line)
+    const id = parts[1]
+    const ts = parts[2]
+    const len = parts[3]
+    const data = line.substr(line.lastIndexOf('|') + 2)
+
+    if (lastTs) {
+      await usleep(ts - lastTs)
+    }
+    lastTs = ts
+
+    var msg = `${ts} - ${id} S 0 ${len} ${data}`
+    ws.send(Buffer.from(msg))
+    console.log(msg)
+    if (last) {
+      console.log('Done replaying the log')
+      ws.close()
+      cb(false)
+    } else {
+      cb()
+    }
+  })
+})
+
+

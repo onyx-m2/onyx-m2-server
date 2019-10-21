@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const url = require('url');
 
 router.get('/', function(req, res, next) {
   if (req.pin) {
@@ -18,7 +19,13 @@ router.get('/', function(req, res, next) {
 
 router.post('/', (req, res, next) => {
   res.cookie('pin', req.pin, { maxAge: 31536000, httpOnly: true })
-  res.redirect('/')
+  const referer = req.headers.referer
+  var redirect = '/'
+  if (referer) {
+    const refererUrl = new URL(referer)
+    redirect = refererUrl.searchParams.get('redirect') || redirect
+  }
+  res.redirect(redirect)
 })
 
 module.exports = router;

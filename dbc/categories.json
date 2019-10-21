@@ -1,16 +1,16 @@
 [
   {
     "path": "apb",
-    "name": ""
+    "name": "Autopilot \"B\""
   }, {
     "path": "app",
-    "name": "Autopilot"
+    "name": "Autopilot \"P\""
   }, {
     "path": "bms",
     "name": "Battery management system"
   }, {
     "path": "cc",
-    "name": ""
+    "name": "Charge current"
   }, {
     "path": "cmp",
     "name": "Compressor"
@@ -40,7 +40,7 @@
     "name": "Right electric parking brake"
   }, {
     "path": "esp",
-    "name": ""
+    "name": "Electronic stability program"
   }, {
     "path": "fc",
     "name": "Fast charge"
@@ -73,7 +73,7 @@
     "name": "Pedal monitor"
   }, {
     "path": "ptc",
-    "name": ""
+    "name": "Heater"
   }, {
     "path": "radc",
     "name": "Radar"
@@ -86,6 +86,9 @@
   }, {
     "path": "scm",
     "name": ""
+  }, {
+    "path": "sdt",
+    "name": "System Date & Time"
   }, {
     "path": "scs",
     "name": ""
