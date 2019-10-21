@@ -41,16 +41,54 @@ app.use((req, res, next) => {
 
 // canbus broadcast service; simply echos input to other connected clients;
 // webrtc might be faster, but it needs TURN anyway, so not much difference
-app.ws('/m2', (ws, req) => {
+var m2DeviceWs
+app.ws('/m2device', (ws, req) => {
+  m2DeviceWs = ws
+  broadcastToM2Clients('m2:connect')
   ws.on('message', (msg) => {
-    m2SocketServer.clients.forEach((client) => {
-      if (client !== ws && client.readyState == 1) {
-        client.send(msg)
-      }
-    })
+    broadcastToM2Clients(msg)
+  })
+  ws.on('close', () => {
+    broadcastToM2Clients('m2:disconnect')
+    m2DeviceWs = null
   })
 })
-var m2SocketServer = expressWs.getWss('/m2');
+
+var m2ControlledWs
+app.ws('/m2', (ws, req) => {
+  // upon connecting a new m2 client, send the m2 connect message immediatly
+  // if the m2 device is connected
+  if (m2DeviceWs) {
+    ws.send("m2:connect")
+  }
+  // any message received from a m2 client is forwarded to the device as a command
+  // and is set as the "in charge" client (if that client disconnects, we'll reset
+  // the m2 "cleanly")
+  ws.on('message', (msg) => {
+    m2ControlledWs = ws
+    if (m2DeviceWs) {
+      m2DeviceWs.send(msg)
+    }
+  })
+  ws.on('close', () => {
+    if (ws === m2ControlledWs) {
+      m2ControlledWs = null
+      if (m2DeviceWs) {
+        m2DeviceWs.send(Uint8Array.of(0, 0, 0))
+      }
+    }
+  })
+})
+
+const m2SocketServer = expressWs.getWss()
+
+function broadcastToM2Clients(msg) {
+  m2SocketServer.clients.forEach((client) => {
+    if (client !== m2DeviceWs && client.readyState == 1) {
+      client.send(msg)
+    }
+  })
+}
 
 app.use('/', require('./routes/index'))
 app.use('/data', require('./routes/data'))

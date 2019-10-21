@@ -73,9 +73,11 @@ a {
 .can.log.segment {
   /* max-height: 804px; */
   font-family: monospace;
+  align-content: start;
 }
 
 .signals.grid {
+  font-variant: all-small-caps;
   grid-template-rows: 1fr;
   grid-template-columns: repeat(3, 1fr);
 }
@@ -151,7 +153,6 @@ a {
 
 .ui.tesla.segment, .ui.tesla.menu {
   /* font-family: 'teslaregular'; */
-  font-variant: all-small-caps;
   position: relative;
   border-radius: 10px;
   border: none;
