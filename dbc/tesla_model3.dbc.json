@@ -1,6 +1,7 @@
 {
-  "date": "2019-10-12T00:12:47.356Z",
+  "date": "2019-10-17T03:06:43.829Z",
   "categories": {
+    "utc": "",
     "apb": "",
     "app": "",
     "aps": "",
@@ -43,6 +44,103 @@
     "vcsec": ""
   },
   "messages": [
+    {
+      "id": 792,
+      "mnemonic": "UTC_systemTime",
+      "category": "utc",
+      "path": "system-time",
+      "name": "System time",
+      "length": 6,
+      "signals": [
+        {
+          "mnemonic": "UTC_year",
+          "path": "year",
+          "name": "Year",
+          "start": 0,
+          "length": 8,
+          "signed": false,
+          "scale": 1,
+          "offset": 0,
+          "units": ""
+        },
+        {
+          "mnemonic": "UTC_month",
+          "path": "month",
+          "name": "Month",
+          "start": 8,
+          "length": 8,
+          "signed": false,
+          "scale": 1,
+          "offset": 0,
+          "units": ""
+        },
+        {
+          "mnemonic": "UTC_seconds",
+          "path": "seconds",
+          "name": "Seconds",
+          "start": 16,
+          "length": 8,
+          "signed": false,
+          "scale": 1,
+          "offset": 0,
+          "units": ""
+        },
+        {
+          "mnemonic": "UTC_hour",
+          "path": "hour",
+          "name": "Hour",
+          "start": 24,
+          "length": 8,
+          "signed": false,
+          "scale": 1,
+          "offset": 0,
+          "units": ""
+        },
+        {
+          "mnemonic": "UTC_day",
+          "path": "day",
+          "name": "Day",
+          "start": 32,
+          "length": 8,
+          "signed": false,
+          "scale": 1,
+          "offset": 0,
+          "units": ""
+        },
+        {
+          "mnemonic": "UTC_minutes",
+          "path": "minutes",
+          "name": "Minutes",
+          "start": 40,
+          "length": 8,
+          "signed": false,
+          "scale": 1,
+          "offset": 0,
+          "units": ""
+        }
+      ]
+    },
+    {
+      "id": 1320,
+      "mnemonic": "UTC_unixTime",
+      "category": "utc",
+      "path": "unix-time",
+      "name": "Unix time",
+      "length": 4,
+      "signals": [
+        {
+          "mnemonic": "UTC_unixTime",
+          "path": "unix-time",
+          "name": "Unix time",
+          "start": 0,
+          "length": 32,
+          "signed": false,
+          "scale": 1,
+          "offset": 0,
+          "units": "sec"
+        }
+      ]
+    },
     {
       "id": 600,
       "mnemonic": "APB_status",
@@ -7125,7 +7223,7 @@
           "start": 16,
           "length": 15,
           "signed": true,
-          "scale": 0.1,
+          "scale": -0.1,
           "offset": 0,
           "units": "A",
           "values": {
@@ -7139,8 +7237,8 @@
           "start": 32,
           "length": 16,
           "signed": true,
-          "scale": 0.05,
-          "offset": 0,
+          "scale": -0.05,
+          "offset": 500,
           "units": "A",
           "values": {
             "16384": "SNA"

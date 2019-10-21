@@ -2,6 +2,19 @@ VERSION ""
 BS_:
 BU_:
 
+CM_ "Added unix and system time signals";
+
+BO_ 792 UTC_systemTime: 6 ETH
+ SG_ UTC_year: 0|8@1+ (1,0) [0|0] "" X
+ SG_ UTC_month: 8|8@1+ (1,0) [0|0] "" X
+ SG_ UTC_seconds: 16|8@1+ (1,0) [0|0] "" X
+ SG_ UTC_hour: 24|8@1+ (1,0) [0|0] "" X
+ SG_ UTC_day: 32|8@1+ (1,0) [0|0] "" X
+ SG_ UTC_minutes: 40|8@1+ (1,0) [0|0] "" X
+
+BO_ 1320 UTC_unixTime: 4 ETH
+ SG_ UTC_unixTime : 0|32@0+ (1,0) [0|0] "sec" X
+
 BO_ 600 APB_status: 8 ETH
  SG_ APB_statusChecksum: 56|8@1+ (1,0) [0|0] "" X
  SG_ APB_statusCounter: 52|4@1+ (1,0) [0|0] "" X
@@ -650,8 +663,8 @@ CM_ SG_ 390 BMS_packCurrent  "changed offset from -1000 to 0";
 
 BO_ 306 BMS_hvBusStatus: 8 ETH
  SG_ BMS_chgTimeToFull: 48|12@1+ (0.0166667,0) [0|0] "Hours" X
- SG_ BMS_currentUnfiltered: 32|16@1- (0.05,0) [0|0] "A" X
- SG_ BMS_packCurrent: 16|15@1- (0.1,0) [0|0] "A" X
+ SG_ BMS_currentUnfiltered: 32|16@1- (-0.05,500) [0|0] "A" X
+ SG_ BMS_packCurrent: 16|15@1- (-0.1,0) [0|0] "A" X
  SG_ BMS_packVoltage: 0|16@1+ (0.01,0) [0|0] "V" X
 
 BO_ 768 BMS_info: 8 ETH

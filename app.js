@@ -34,7 +34,7 @@ app.use((req, res, next) => {
     req.pin = pin
   }
   if (req.path != '/' && !req.pin) {
-    return res.redirect('/')
+    return res.redirect(`/?redirect=${req.path}`)
   }
   next();
 })

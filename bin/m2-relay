@@ -12,7 +12,7 @@ const port = new SerialPort(path, { baudRate: 115200 }, (err) => {
   const ws = new WebSocket('wss://onyx.ngrok.io/m2?pin=1379');
   ws.on('open', () => {
     console.log(`Server connected, starting relay`)
-    const outbound = createWebSocketStream(ws)
+    const outbound = WebSocket.reateWebSocketStream(ws)
     port.pipe(outbound)
   })
 })

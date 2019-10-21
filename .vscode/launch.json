@@ -4,7 +4,16 @@
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
-
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Replay M2",
+      "program": "${workspaceFolder}\\bin\\m2-replay",
+      "args": [
+        "${workspaceFolder}/logs/m2-1570902555464.log",
+        "-step"
+      ]
+    },
     {
       "type": "node",
       "request": "launch",
@@ -24,8 +33,8 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Monitor M2",
-      "program": "${workspaceFolder}\\m2-monitor.js"
+      "name": "Monitor Onyx M2",
+      "program": "${workspaceFolder}\\bin\\onyx-m2-monitor"
     }
 
   ]
