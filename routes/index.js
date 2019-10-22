@@ -5,11 +5,6 @@ const url = require('url');
 router.get('/', function(req, res, next) {
   if (req.pin) {
     return res.render('index', {
-      ip: req.ip,
-      headers: Object.keys(req.headers).map((k) => ({
-        key: k,
-        value: req.headers[k]
-      }))
     })
   }
   res.render('pin', {

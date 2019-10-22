@@ -1,10 +1,25 @@
 $(() => {
 
-  var dbc
-  var categories
+  const m2 = new M2()
+
+  m2.addEventListener('connect', () => {
+    $('#disconnected').addClass('hidden')
+    initSignals()
+  })
+
+  m2.addEventListener('message', (event) => {
+    const { message } = event
+    if (message.path == selectedMessagePath) {
+      updateSignalValues(event.message)
+    }
+  })
+
+  m2.addEventListener('disconnect', (event) => {
+    $('#disconnected').removeClass('hidden')
+  })
 
   function getSelectedMessage() {
-    return dbc.messages.find(m => m.category == selectedCategoryPath && m.path == selectedMessagePath)
+    return DBC.messages.find(m => m.category == selectedCategoryPath && m.path == selectedMessagePath)
   }
 
   function signalDisplayUnits(signal) {
@@ -19,7 +34,7 @@ $(() => {
 
   function initCategories() {
     $categories.empty()
-    categories.forEach(c => {
+    DBC.categories.forEach(c => {
       $categories.append(categoryTemplate({
         tag: c.path.toUpperCase(),
         name: c.name,
@@ -34,7 +49,7 @@ $(() => {
   }
 
   function initMessages() {
-    const messages = dbc.messages.filter(m => m.category == selectedCategoryPath)
+    const messages = DBC.messages.filter(m => m.category == selectedCategoryPath)
     $messages.empty()
     messages.forEach((m, i) => {
       $messages.append(messageTemplate({
@@ -55,23 +70,35 @@ $(() => {
   function initSignals() {
     $signals.empty()
     var message = getSelectedMessage()
-    message.signals.forEach(s => {
-      $signals.append(signalTemplate({
-        name: s.name,
-        value: s.value || '--',
-        mnemonic: s.mnemonic,
-        units: signalDisplayUnits(s)
-      }))
-    })
-    M2.clearAllMessageFlags()
-    M2.setMessageFlags(message.id, 0x01)
+    if (message.multiplexor) {
+      addSignal(message.multiplexor)
+    }
+    if (message.signals) {
+      message.signals.forEach(s => addSignal(s))
+    }
+    if (message.multiplexed) {
+      Object.values(message.multiplexed).forEach(signals => {
+        signals.forEach(s => addSignal(s))
+      })
+    }
+    m2.clearAllMessageFlags()
+    m2.setMessageFlags(message.id, 0x01)
+  }
+
+  function addSignal(signal) {
+    $signals.append(signalTemplate({
+      name: signal.name,
+      value: signal.value || '--',
+      mnemonic: signal.mnemonic,
+      units: signalDisplayUnits(signal)
+    }))
   }
 
   function selectCategory(newCategoryPath) {
     $('#' + selectedCategoryPath).removeClass('active')
     $('#' + newCategoryPath).addClass('active')
     selectedCategoryPath = newCategoryPath
-    selectedMessagePath = dbc.messages.find(m => m.category == newCategoryPath).path
+    selectedMessagePath = DBC.messages.find(m => m.category == newCategoryPath).path
     initMessages()
     window.history.pushState(null, '', `/signals/${selectedCategoryPath}/${selectedMessagePath}`)
   }
@@ -84,11 +111,19 @@ $(() => {
     window.history.pushState(null, '', `/signals/${selectedCategoryPath}/${selectedMessagePath}`)
   }
 
-  function updateMessageSignalValues(message) {
-    message.signals.forEach(s => {
-      $(`#${s.mnemonic} .value`).text(s.value)
-      $(`#${s.mnemonic} .label`).text(signalDisplayUnits(s))
-    })
+  function updateSignalValues(message) {
+    if (message.multiplexor) {
+      updateSignalValue(message.multiplexor)
+      message.multiplexed[message.multiplexor.value].forEach(s => updateSignalValue(s))
+    }
+    if (message.signals) {
+      message.signals.forEach(s => updateSignalValue(s))
+    }
+  }
+
+  function updateSignalValue(signal) {
+    $(`#${signal.mnemonic} .value`).text(signal.value)
+    $(`#${signal.mnemonic} .label`).text(signalDisplayUnits(signal))
   }
 
   var { category: selectedCategoryPath, message: selectedMessagePath } = onyx.signal
@@ -101,24 +136,7 @@ $(() => {
   $messages = $('#messages')
   $signals = $('#signals')
 
-  M2.addEventListener('connect', (event) => {
-    dbc = event.dbc
-    categories = event.categories
-    initCategories()
-    initMessages()
-
-    $('#disconnected').addClass('hidden')
-  })
-
-  M2.addEventListener('message', (event) => {
-    const { message } = event
-    if (message.path == selectedMessagePath) {
-      updateMessageSignalValues(event.message)
-    }
-  })
-
-  M2.addEventListener('disconnect', (event) => {
-    $('#disconnected').removeClass('hidden')
-  })
+  initCategories()
+  initMessages()
 
 })
