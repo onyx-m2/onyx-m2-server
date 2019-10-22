@@ -1,10 +1,12 @@
 $(() => {
 
-  M2.addEventListener('connect', () => {
+  const m2 = new M2()
+
+  m2.addEventListener('connect', () => {
     $('#disconnected').addClass('hidden')
   })
 
-  M2.addEventListener('message', (event) => {
+  m2.addEventListener('message', (event) => {
     const { message } = event
     const { id, mnemonic, ts, value } = message
     const output = `${id} ${mnemonic} @ ${ts} => ${value}`
@@ -16,7 +18,7 @@ $(() => {
     }
   })
 
-  M2.addEventListener('disconnect', (event) => {
+  m2.addEventListener('disconnect', (event) => {
     $('#disconnected').removeClass('hidden')
   })
 

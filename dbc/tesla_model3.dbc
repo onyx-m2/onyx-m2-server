@@ -11,6 +11,8 @@ BO_ 792 UTC_systemTime: 6 ETH
  SG_ UTC_hour: 24|8@1+ (1,0) [0|0] "" X
  SG_ UTC_day: 32|8@1+ (1,0) [0|0] "" X
  SG_ UTC_minutes: 40|8@1+ (1,0) [0|0] "" X
+ SG_ UTC_statusCounter: 52|4@1+ (1,0) [0|0] "" X
+ SG_ UTC_statusChecksum: 56|8@1+ (1,0) [0|0] "" X
 
 BO_ 1320 UTC_unixTime: 4 ETH
  SG_ UTC_unixTime : 0|32@0+ (1,0) [0|0] "sec" X

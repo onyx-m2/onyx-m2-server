@@ -46,8 +46,7 @@ lineReader.eachLine(filename, function(line, last) {
     messages.push({ id,
       mnemonic: `${category}_${mnemonic}`,
       category: category.toLowerCase(),
-      path, name, length,
-      signals: []
+      path, name, length
     })
   }
 
@@ -61,8 +60,8 @@ lineReader.eachLine(filename, function(line, last) {
     }
     var category = parts[1]
     var mnemonic = parts[2]
-    var multiplex = parts[3] == 'M' // ignoring for now
-    var multiplexId = parts[4]      // ignoring for now
+    var multiplexor = parts[3] == 'M' // ignoring for now
+    var multiplexed = parts[4]      // ignoring for now
     const start = Number(parts[5])
     const length = Number(parts[6])
     const signed = parts[7] == '-'
@@ -71,7 +70,28 @@ lineReader.eachLine(filename, function(line, last) {
     const units = parts[10]
     const path = toPath(mnemonic)
     const name = toName(mnemonic)
-    messages[messages.length - 1].signals.push({ mnemonic: `${category}_${mnemonic}`, path, name, start, length, signed, scale, offset, units })
+
+    const message = messages[messages.length - 1]
+    const signal = {
+      mnemonic: `${category}_${mnemonic}`,
+      path, name, start, length, signed, scale, offset, units
+    }
+    if (multiplexor) {
+      message.multiplexor = signal
+      message.multiplexed = {}
+    }
+    else if (multiplexed) {
+      if (!message.multiplexed[multiplexed]) {
+        message.multiplexed[multiplexed] = []
+      }
+      message.multiplexed[multiplexed].push(signal)
+    }
+    else {
+      if (!message.signals) {
+        message.signals = []
+      }
+      message.signals.push(signal)
+    }
   }
 
   // value
@@ -82,6 +102,7 @@ lineReader.eachLine(filename, function(line, last) {
       warnings.push(line)
       return
     }
+
     const id = Number(parts[1])
     const mnemonic = parts[2]
     const valueList = parts[3]
@@ -90,15 +111,33 @@ lineReader.eachLine(filename, function(line, last) {
     while (parts = re.exec(valueList)) {
       values[Number(parts[1])] = parts[2]
     }
+
     const message = messages.find(m => m.id == id)
     if (!message) {
       console.error(`Failed to find message for value: "${id}"`)
       errors.push(line)
       return
     }
-    const signal = message.signals.find(s => s.mnemonic == mnemonic)
+
+    var signal
+    if (message.signals) {
+      signal = message.signals.find(s => s.mnemonic == mnemonic)
+    }
     if (!signal) {
-    console.error(`Failed to find signal for value: "${mnemonic}"`)
+      if (message.multiplexor.mnemonic == mnemonic) {
+        signal = message.multiplexor
+      }
+    }
+    if (!signal) {
+      Object.values(message.multiplexed).forEach(signals => {
+        if (!signal) {
+          signal = signals.find(s => s.mnemonic == mnemonic)
+        }
+      })
+    }
+
+    if (!signal) {
+      console.error(`Failed to find signal for value: "${mnemonic}"`)
       errors.push(line)
       return
     }
@@ -113,7 +152,14 @@ lineReader.eachLine(filename, function(line, last) {
     }, {})
 
     messages.forEach(m => {
-      m.signals.sort((f, s) => f.start - s.start)
+      if (m.signals) {
+        m.signals.sort((f, s) => f.start - s.start)
+      }
+      if (m.multiplexed) {
+        Object.values(m.multiplexed).forEach(signals => {
+          signals.sort((f, s) => f.start - s.start)
+        })
+      }
     })
 
     const dbc = { date, categories, messages, warnings, errors }

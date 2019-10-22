@@ -7,20 +7,13 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js" integrity="sha256-t8GepnyPmw9t+foMh3mKNvcorqNHamSKtKRxxpUEgFI=" crossorigin="anonymous"></script>
-    {{!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.0/knockout-min.js" integrity="sha256-Tjl7WVgF1hgGMgUKZZfzmxOrtoSf8qltZ9wMujjGNQk=" crossorigin="anonymous"></script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.4.2/handlebars.min.js" integrity="sha256-oh7N5nthuhldTk8/34Za7FXv3BkeVN9vAnYk/pLfC78=" crossorigin="anonymous"></script>
+    <script src="/dbc/tesla_model3.js"></script>
+    <script src="/javascripts/bit-buffer.js"></script>
+    <script src="/javascripts/m2.js"></script>
   </head>
   <body>
-    {{!-- {{#unless skipHeader}}
-
-      <div class="ui left floated large red tesla font header">TESLA ONYX</div>
-      <div class="ui small right floated red header">
-        <i class="red wifi icon" id="connection"></i>
-      </div>
-      {{{body}}}
-    </div>
-    {{/unless}}
-    {{#skipHeader}} --}}
+    {{!-- Connection status message --}}
     <div class="ui hidden negative icon tesla message" id="disconnected">
       <i class="car icon"></i>
       <div class="content">
@@ -30,11 +23,9 @@
       </div>
     </div>
 
-    <div class="tesla screen">
+    {{!-- Main page --}}
+    <div class="tesla night screen">
       {{{body}}}
     </div>
-
-    {{!-- {{/skipHeader}} --}}
   </body>
-  {{!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.js" integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI=" crossorigin="anonymous"></script> --}}
 </html>

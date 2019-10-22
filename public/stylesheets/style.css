@@ -24,10 +24,6 @@ a {
   font-size: inherit;
 }
 
-
-
-
-
 .ui[class*="right floated"].segment {
   margin-right: 0;
 }
@@ -53,6 +49,15 @@ a {
   font-size: 28px;
 }
 
+.tesla.screen.night {
+  background-color: black;
+}
+
+/* .tesla.screen.night .ui.vertical.menu {
+  background-color: rgb(30, 30, 30);
+  color: white !important;
+} */
+
 .tesla.panel {
   grid-gap: 20px;
   width: 1220px;
@@ -68,6 +73,12 @@ a {
   /* top: 0; left: 0; bottom: 0; right: 0; */
   width: fit-content !important;
   height: fit-content;
+}
+
+.index.grid {
+  grid-template-rows: repeat(5, 1fr);
+  grid-template-columns: repeat(7, 1fr);
+  align-items: stretch;
 }
 
 .can.log.segment {
@@ -201,4 +212,9 @@ a {
 
 .battery.tile .ui.statistic .value {
   font-family: 'teslaregular';
+}
+
+.ui.icon.header .caption {
+  color: grey;
+  font-variant-caps: all-petite-caps;
 }

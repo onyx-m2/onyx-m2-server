@@ -27,8 +27,8 @@
       "type": "node",
       "request": "launch",
       "name": "Parse DBC",
-      "program": "${workspaceFolder}\\parse-dbc.js",
-      "args": ["tesla_model3.dbc"]
+      "program": "${workspaceFolder}\\bin\\parse-dbc",
+      "args": [".\\dbc\\tesla_model3.dbc"]
     },
     {
       "type": "node",

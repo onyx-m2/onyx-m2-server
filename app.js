@@ -91,6 +91,7 @@ function broadcastToM2Clients(msg) {
 }
 
 app.use('/', require('./routes/index'))
+app.use('/browsertests', require('./routes/browsertests'))
 app.use('/data', require('./routes/data'))
 app.use('/grid', require('./routes/grid'))
 app.use('/can', require('./routes/can'))

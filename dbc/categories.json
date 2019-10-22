@@ -87,9 +87,6 @@
     "path": "scm",
     "name": ""
   }, {
-    "path": "sdt",
-    "name": "System Date & Time"
-  }, {
     "path": "scs",
     "name": ""
   }, {
@@ -104,6 +101,9 @@
   }, {
     "path": "ui",
     "name": "User interface"
+  }, {
+    "path": "utc",
+    "name": "Universal Time"
   }, {
     "path": "umc",
     "name": ""
