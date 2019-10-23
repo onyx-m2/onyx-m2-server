@@ -36,6 +36,7 @@ router.get('/:category/:message', (req, res, next) => {
   }
   res.render('signals', {
     pin: req.pin,
+    night: 'inverted',
     category: message.category,
     message: message.path,
   })

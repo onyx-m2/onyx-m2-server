@@ -5,6 +5,7 @@ const url = require('url');
 router.get('/', function(req, res, next) {
   if (req.pin) {
     return res.render('index', {
+      night: 'inverted'
     })
   }
   res.render('pin', {
