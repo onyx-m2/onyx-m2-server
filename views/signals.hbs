@@ -1,17 +1,17 @@
 <div class="tesla panel signals grid">
 
   {{! Category menu }}
-  <div class="ui vertical tesla inverted menu" id="categories">
+  <div class="ui vertical tesla {{night}} menu" id="categories">
     {{! Template will go here }}
   </div>
 
   {{! Message menu }}
-  <div class="ui vertical inverted tesla menu" id="messages">
+  <div class="ui vertical tesla {{night}} menu" id="messages">
     {{! Template will go here }}
   </div>
 
   {{! Signal display }}
-  <div class="ui tesla inverted signal segment">
+  <div class="ui tesla {{night}} signal segment">
     <div class="ui signal list" id="signals">
       {{! Template will go here }}
   </div>
@@ -38,7 +38,7 @@
 <script id="signal-template" type="text/x-handlebars-template">
   <div class="item">
     <div class="right floated signal value content">
-      <div class="ui small inverted statistic" id="\{{mnemonic}}">
+      <div class="ui small {{night}} statistic" id="\{{mnemonic}}">
         <div class="value">\{{value}}</div>
         <div class="label" >\{{units}}</div>
       </div>

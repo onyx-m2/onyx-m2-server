@@ -6,6 +6,30 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'seven_segmentregular';
+  src: url('seven_segment-webfont.woff2') format('woff2'),
+       url('seven_segment-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'embossing_tape_1_brkregular';
+  src: url('embosst1-webfont.woff2') format('woff2'),
+       url('embosst1-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'embossing_tape_3_brkregular';
+  src: url('embosst3-webfont.woff2') format('woff2'),
+       url('embosst3-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   /* font: 24px "Lucida Grande", Helvetica, Arial, sans-serif; */
   background-color: grey;
@@ -42,15 +66,15 @@ a {
 }
 
 .tesla.screen {
-  background-color: #fafafa;
+  background-color: #fafafa; /* found empirically */
   width: 1260px;
   height: 924px;
   padding: 20px;
   font-size: 28px;
 }
 
-.tesla.screen.night {
-  background-color: black;
+.tesla.screen.inverted {
+  background-color: rgb(9,9,9); /* found empirically */
 }
 
 /* .tesla.screen.night .ui.vertical.menu {
@@ -215,6 +239,59 @@ a {
 }
 
 .ui.icon.header .caption {
-  color: grey;
+  /* color: grey; */
   font-variant-caps: all-petite-caps;
+}
+
+.bttf.segment {
+  background-color: #232020;
+  border-radius: 0;
+}
+
+.bttf.segment > .ui.statistic > .label,
+.bttf.segment > .header {
+  font-family: 'embossing_tape_1_brkregular';
+  letter-spacing: 1ch;
+  font-size: 18px;
+  color: grey;
+  background-color: #4c0101;
+  padding: 4px 20px;
+  width: fit-content;
+  margin-bottom: 6px;
+  text-shadow: 1px 2px black;
+  box-shadow: 0px 1px black;
+}
+
+.bttf.segment > .header {
+  background-color: black;
+}
+
+.bttf > .ui.statistic > .value {
+  font-family: 'seven_segmentregular';
+  letter-spacing: 1ch;
+  color: white;
+}
+
+.bttf > .ui.orange.statistic > .value {
+  text-shadow: 0 0 5px orange, 0 0 10px orange, 0 0 20px orange, 0 0 30px orange;
+}
+
+.bttf > .ui.red.statistic > .value {
+  text-shadow: 0 0 5px red, 0 0 10px red, 0 0 20px red, 0 0 30px red;
+}
+
+.bttf > .ui.green.statistic > .value {
+  text-shadow: 0 0 5px green, 0 0 10px green, 0 0 20px green, 0 0 30px green;
+}
+
+.bttf > .ui.yellow.statistic > .value {
+  text-shadow: 0 0 5px yellow, 0 0 10px yellow;
+}
+
+.bttf > .ui.blue.statistic > .value {
+  text-shadow: 0 0 5px blue, 0 0 10px blue, 0 0 20px blue, 0 0 30px blue;
+}
+
+.bttf.segment > .header {
+
 }

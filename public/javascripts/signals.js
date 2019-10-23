@@ -16,6 +16,7 @@ $(() => {
 
   m2.addEventListener('disconnect', (event) => {
     $('#disconnected').removeClass('hidden')
+    $('#reason').text(`(${event.reason})`)
   })
 
   function getSelectedMessage() {

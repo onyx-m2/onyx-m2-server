@@ -96,6 +96,7 @@ app.use('/data', require('./routes/data'))
 app.use('/grid', require('./routes/grid'))
 app.use('/can', require('./routes/can'))
 app.use('/signals', require('./routes/signals'))
+app.use('/bttf', require('./routes/bttf'))
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

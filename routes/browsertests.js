@@ -5,6 +5,7 @@ const url = require('url');
 router.get('/', function(req, res, next) {
   if (req.pin) {
     return res.render('browsertests', {
+      night: 'inverted',
       ip: req.ip,
       headers: Object.keys(req.headers).map((k) => ({
         key: k,
