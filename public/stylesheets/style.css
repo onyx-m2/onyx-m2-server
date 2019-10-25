@@ -83,7 +83,7 @@ a {
 } */
 
 .tesla.panel {
-  grid-gap: 20px;
+  /* grid-gap: 20px; */
   width: 1220px;
   height: 884px;
   display: grid;
@@ -115,6 +115,7 @@ a {
   font-variant: all-small-caps;
   grid-template-rows: 1fr;
   grid-template-columns: repeat(3, 1fr);
+  column-gap: 20px;
 }
 
 .signal.list > .item {
@@ -136,14 +137,16 @@ a {
 .signal.segment {
   margin: 0;
   /* font-size: 24px; */
-  overflow-y: auto;
+  overflow-y: scroll;
+  will-change: scroll-position;
 }
 
 .ui.vertical.menu {
   width: 400px;
   /* font-size: 24px; */
   margin: 0;
-  overflow-y: auto;
+  overflow-y: scroll;
+  will-change: scroll-position;
   /* max-height: 884px; */
 }
 
@@ -242,38 +245,64 @@ a {
   /* color: grey; */
   font-variant-caps: all-petite-caps;
 }
+/* BTTF */
+
+.bttf.panel {
+  /* grid-gap: 10px; */
+  height: unset;
+}
 
 .bttf.segment {
   background-color: #232020;
   border-radius: 0;
+  margin-bottom: 0;
+}
+
+.bttf > .ui.statistic > .value {
+  font-size: 7rem !important;
+}
+
+.bttf > .ui.statistic + .ui.statistic {
+  margin: 0 0 0 4.8ch;
 }
 
 .bttf.segment > .ui.statistic > .label,
 .bttf.segment > .header {
   font-family: 'embossing_tape_1_brkregular';
-  letter-spacing: 1ch;
-  font-size: 18px;
   color: grey;
-  background-color: #4c0101;
-  padding: 4px 20px;
+  padding: 4px;
   width: fit-content;
-  margin-bottom: 6px;
+  margin: auto;
   text-shadow: 1px 2px black;
   box-shadow: 0px 1px black;
 }
 
 .bttf.segment > .header {
+  font-size: 20px;
+  letter-spacing: 0.3ch;
+  text-indent: 0.3ch;
   background-color: black;
 }
 
+.bttf.segment > .ui.statistic > .label {
+  font-size: 16px;
+  letter-spacing: 0.7ch;
+  text-indent: 0.7ch;
+  background-color: #4c0101;
+  margin-bottom: 1ch;
+}
+
+
+
 .bttf > .ui.statistic > .value {
   font-family: 'seven_segmentregular';
-  letter-spacing: 1ch;
+  letter-spacing: 0.7ch;
+  margin-right: -0.7ch;
   color: white;
 }
 
 .bttf > .ui.orange.statistic > .value {
-  text-shadow: 0 0 5px orange, 0 0 10px orange, 0 0 20px orange, 0 0 30px orange;
+  text-shadow: 0 0 5px #f75305, 0 0 10px #f75305, 0 0 20px #f75305;
 }
 
 .bttf > .ui.red.statistic > .value {
@@ -281,7 +310,7 @@ a {
 }
 
 .bttf > .ui.green.statistic > .value {
-  text-shadow: 0 0 5px green, 0 0 10px green, 0 0 20px green, 0 0 30px green;
+  text-shadow: 0 0 5px green, 0 0 10px green, 0 0 20px green;
 }
 
 .bttf > .ui.yellow.statistic > .value {

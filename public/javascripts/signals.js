@@ -82,7 +82,7 @@ $(() => {
         signals.forEach(s => addSignal(s))
       })
     }
-    m2.clearAllMessageFlags()
+    m2.setAllMessageFlags(0x00)
     m2.setMessageFlags(message.id, 0x01)
   }
 

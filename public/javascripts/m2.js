@@ -10,16 +10,25 @@
       this.connect()
     }
 
-    clearAllMessageFlags() {
+    setAllMessageFlags(flags) {
       if (this._wsConnected) {
-        this._ws.send(Uint8Array.from([0, 0, 0]))
+        this._ws.send(Uint8Array.from([1, 1, flags & 0xff]))
       }
     }
 
     setMessageFlags(id, flags) {
       if (this._wsConnected) {
-        this._ws.send(Uint8Array.from([id & 0xFF, id >> 8, flags]))
+        this._ws.send(Uint8Array.from([2, 3, id & 0xff, id >> 8, flags & 0xff]))
       }
+    }
+
+    enableMessages(mnemonics) {
+      mnemonics.forEach((mnemonic) => {
+        const msg = DBC.messages.find(m => m.mnemonic == mnemonic)
+        if (msg) {
+          this.setMessageFlags(msg.id, 0x01)
+        }
+      })
     }
 
     connect() {
@@ -52,7 +61,9 @@
           const eventData = new Uint8Array(event.data)
           if (eventData.length >= 7) {
             const message = this.processMessage(eventData)
-            this.dispatchEvent(new MessageEvent(message))
+            if (message) {
+              this.dispatchEvent(new MessageEvent(message))
+            }
           }
         }
       })
@@ -76,7 +87,14 @@
         const mp = message.multiplexor
         if (mp) {
           const id = message.multiplexor.value = buf.getBits(mp.start, mp.length, mp.signed)
-          this.processSignals(buf, message.multiplexed[id])
+          const multiplexed = message.multiplexed[id]
+          if (multiplexed) {
+            this.processSignals(buf, multiplexed)
+          }
+          else {
+            console.log(`Unknown multiplexed signal for ${message.mnemonic}: ${id}`)
+          }
+
         }
       }
       return message

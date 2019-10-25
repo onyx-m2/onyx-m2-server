@@ -54,7 +54,7 @@ app.ws('/m2device', (ws, req) => {
   })
 })
 
-var m2ControlledWs
+var m2ControlWs
 app.ws('/m2', (ws, req) => {
   // upon connecting a new m2 client, send the m2 connect message immediatly
   // if the m2 device is connected
@@ -65,25 +65,25 @@ app.ws('/m2', (ws, req) => {
   // and is set as the "in charge" client (if that client disconnects, we'll reset
   // the m2 "cleanly")
   ws.on('message', (msg) => {
-    m2ControlledWs = ws
+    m2ControlWs = ws
     if (m2DeviceWs) {
       m2DeviceWs.send(msg)
     }
   })
   ws.on('close', () => {
-    if (ws === m2ControlledWs) {
-      m2ControlledWs = null
+    if (ws === m2ControlWs) {
+      m2ControlWs = null
       if (m2DeviceWs) {
-        m2DeviceWs.send(Uint8Array.of(0, 0, 0))
+        m2DeviceWs.send(Uint8Array.of(1, 1, 0))
       }
     }
   })
 })
 
-const m2SocketServer = expressWs.getWss()
+const wss = expressWs.getWss()
 
 function broadcastToM2Clients(msg) {
-  m2SocketServer.clients.forEach((client) => {
+  wss.clients.forEach((client) => {
     if (client !== m2DeviceWs && client.readyState == 1) {
       client.send(msg)
     }
