@@ -1,5 +1,25 @@
 (function(root) {
+  function findMessageSignal(message, mnemonic) {
+    var signal
+    if (message.signals) {
+      signal = message.signals.find(s => s.mnemonic == mnemonic)
+    }
+    if (!signal && message.multiplexor) {
+      if (message.multiplexor.mnemonic == mnemonic) {
+        signal = message.multiplexor
+      } else {
+        Object.values(message.multiplexed).forEach(signals => {
+          if (!signal) {
+            signal = signals.find(s => s.mnemonic == mnemonic)
+          }
+        })
+      }
+    }
+    return signal
+  }
+
   root.DBC = {
+    findMessageSignal,
     "date": "2019-10-17T03:06:43.829Z",
     "categories": [
       {

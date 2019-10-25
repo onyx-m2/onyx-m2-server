@@ -1,0 +1,101 @@
+<div class="tesla {{night}} bttf panel">
+
+  <div class="ui horizontal {{night}} bttf segment">
+
+    <div class="ui orange statistic">
+      <div class="label">PWR kW</div>
+      <div class="value" data-message="DI_power" data-signal="DI_elecPower">-</div>
+    </div>
+
+    <div class="ui orange statistic">
+      <div class="label">TRQ NM</div>
+      <div class="value" data-message="DI_torque" data-signal="DI_torqueActual">-</div>
+    </div>
+
+    <div class="ui orange statistic">
+      <div class="label">RPM</div>
+      <div class="value">-</div>
+    </div>
+
+    <div class="ui orange statistic">
+      <div class="label">INV &#176;C</div>
+      <div class="value">-</div>
+    </div>
+
+    <div class="ui orange statistic">
+      <div class="label">STTR &#176;C</div>
+      <div class="value">-</div>
+    </div>
+
+    <div class="ui centeorange grey header">
+      Drive Inverter
+    </div>
+  </div>
+
+  <div class="ui horizontal {{night}} bttf segment">
+
+    <div class="ui green statistic">
+      <div class="label">VOLTS</div>
+      <div class="value" data-message="BMS_hvBusStatus" data-signal="BMS_packVoltage">-</div>
+    </div>
+
+    <div class="ui green statistic">
+      <div class="label">Amps</div>
+      <div class="value" data-message="BMS_hvBusStatus" data-signal="BMS_packCurrent">-</div>
+    </div>
+
+    <div class="ui green statistic">
+      <div class="label">Nom kW</div>
+      <div class="value" data-message="BMS_energyStatus" data-signal="BMS_nominalEnergyRemaining">-</div>
+    </div>
+
+    <div class="ui green statistic">
+      <div class="label">SOC %</div>
+      <div class="value" data-message="BMS_socStatus" data-signal="BMS_socUI">-</div>
+    </div>
+
+    <div class="ui green statistic">
+      <div class="label">TEMP &#176;C</div>
+      <div class="value" data-message="BMS_bmbMinMax" data-signal="BMS_thermistorTMax">-</div>
+    </div>
+
+    <div class="ui centered grey header">
+      BATTERY
+    </div>
+  </div>
+
+  <div class="ui horizontal {{night}} bttf segment">
+
+    <div class="ui yellow statistic">
+      <div class="label">PTCL KW </div>
+      <div class="value" data-message="PTC_sensorStatus" data-signal="PTC_leftCurrentHV">-</div>
+    </div>
+
+    <div class="ui yellow statistic">
+      <div class="label">PTCR KW</div>
+      <div class="value" data-message="PTC_sensorStatus" data-signal="PTC_rightCurrentHV">-</div>
+    </div>
+
+    <div class="ui yellow statistic">
+      <div class="label">PCS VOLTS</div>
+      <div class="value" data-message="PCS_logging" data-signal="PCS_dcdcLvBusVolt">-</div>
+    </div>
+
+    <div class="ui yellow statistic">
+      <div class="label">PCS AMPS</div>
+      <div class="value" data-message="PCS_dcdcStatus" data-signal="PCS_dcdcLvOutputCurrent">-</div>
+    </div>
+
+    <div class="ui centered grey header">
+      AUX POWER
+    </div>
+  </div>
+
+</div>
+<script>
+  window.onyx = {
+    pin: {{pin}}
+  }
+</script>
+
+<script src="/javascripts/bttf-gauges.js"></script>
