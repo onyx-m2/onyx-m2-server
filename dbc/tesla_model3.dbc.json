@@ -1,5 +1,5 @@
 {
-  "date": "2019-10-22T06:25:13.877Z",
+  "date": "2019-10-26T21:18:29.759Z",
   "categories": {
     "utc": "",
     "apb": "",
@@ -30260,35 +30260,13 @@
       "category": "di",
       "path": "power",
       "name": "Power",
-      "length": 7,
+      "length": 8,
       "signals": [
-        {
-          "mnemonic": "DI_aps12V",
-          "path": "aps12-v",
-          "name": "Aps12 v",
-          "start": 0,
-          "length": 8,
-          "signed": false,
-          "scale": 0.1,
-          "offset": 0,
-          "units": "V"
-        },
-        {
-          "mnemonic": "DI_dissipation",
-          "path": "dissipation",
-          "name": "Dissipation",
-          "start": 8,
-          "length": 8,
-          "signed": false,
-          "scale": 125,
-          "offset": 0,
-          "units": "W"
-        },
         {
           "mnemonic": "DI_elecPower",
           "path": "elec-power",
           "name": "Elec power",
-          "start": 16,
+          "start": 0,
           "length": 11,
           "signed": true,
           "scale": 0.5,
@@ -30297,6 +30275,28 @@
           "values": {
             "1024": "DI_elecPower_SNA"
           }
+        },
+        {
+          "mnemonic": "DI_dissipation",
+          "path": "dissipation",
+          "name": "Dissipation",
+          "start": 16,
+          "length": 8,
+          "signed": false,
+          "scale": 125,
+          "offset": 0,
+          "units": "W"
+        },
+        {
+          "mnemonic": "DI_heatPowerActual",
+          "path": "heat-power-actual",
+          "name": "Heat power actual",
+          "start": 24,
+          "length": 8,
+          "signed": false,
+          "scale": 0.08,
+          "offset": 0,
+          "units": "kW"
         },
         {
           "mnemonic": "DI_heatPowerOptimal",
@@ -30313,17 +30313,6 @@
           "mnemonic": "DI_heatPowerMax",
           "path": "heat-power-max",
           "name": "Heat power max",
-          "start": 40,
-          "length": 8,
-          "signed": false,
-          "scale": 0.08,
-          "offset": 0,
-          "units": "kW"
-        },
-        {
-          "mnemonic": "DI_heatPowerActual",
-          "path": "heat-power-actual",
-          "name": "Heat power actual",
           "start": 48,
           "length": 8,
           "signed": false,
@@ -30678,6 +30667,110 @@
     },
     {
       "id": 886,
+      "mnemonic": "DI_frontInverterTemperature",
+      "category": "di",
+      "path": "front-inverter-temperature",
+      "name": "Front inverter temperature",
+      "length": 8,
+      "signals": [
+        {
+          "mnemonic": "DI_frontPcbT",
+          "path": "front-pcb-t",
+          "name": "Front pcb t",
+          "start": 0,
+          "length": 8,
+          "signed": false,
+          "scale": 1,
+          "offset": -40,
+          "units": "DegC"
+        },
+        {
+          "mnemonic": "DI_frontInverterT",
+          "path": "front-inverter-t",
+          "name": "Front inverter t",
+          "start": 8,
+          "length": 8,
+          "signed": false,
+          "scale": 1,
+          "offset": -40,
+          "units": "DegC"
+        },
+        {
+          "mnemonic": "DI_frontStatorT",
+          "path": "front-stator-t",
+          "name": "Front stator t",
+          "start": 16,
+          "length": 8,
+          "signed": false,
+          "scale": 1,
+          "offset": -40,
+          "units": "DegC"
+        },
+        {
+          "mnemonic": "DI_frontDcCapT",
+          "path": "front-dc-cap-t",
+          "name": "Front dc cap t",
+          "start": 24,
+          "length": 8,
+          "signed": false,
+          "scale": 1,
+          "offset": -40,
+          "units": "DegC"
+        },
+        {
+          "mnemonic": "DI_frontHeatsinkT",
+          "path": "front-heatsink-t",
+          "name": "Front heatsink t",
+          "start": 32,
+          "length": 8,
+          "signed": false,
+          "scale": 1,
+          "offset": -40,
+          "units": "DegC"
+        },
+        {
+          "mnemonic": "DI_frontInverterTpct",
+          "path": "front-inverter-tpct",
+          "name": "Front inverter tpct",
+          "start": 40,
+          "length": 8,
+          "signed": false,
+          "scale": 0.4,
+          "offset": 0,
+          "units": "%"
+        },
+        {
+          "mnemonic": "DI_frontStatorTpct",
+          "path": "front-stator-tpct",
+          "name": "Front stator tpct",
+          "start": 48,
+          "length": 8,
+          "signed": false,
+          "scale": 0.4,
+          "offset": 0,
+          "units": "%"
+        },
+        {
+          "mnemonic": "DI_frontInverterTQF",
+          "path": "front-inverter-t-q-f",
+          "name": "Front inverter t q f",
+          "start": 56,
+          "length": 2,
+          "signed": false,
+          "scale": 1,
+          "offset": 0,
+          "units": "",
+          "values": {
+            "0": "INIT",
+            "1": "IRRATIONAL",
+            "2": "RATIONAL",
+            "3": "UNKNOWN"
+          }
+        }
+      ]
+    },
+    {
+      "id": 789,
       "mnemonic": "DI_temperature",
       "category": "di",
       "path": "temperature",
@@ -52028,225 +52121,6 @@
             "name": "Temp humidity invalid",
             "start": 25,
             "length": 1,
-            "signed": false,
-            "scale": 1,
-            "offset": 0,
-            "units": ""
-          }
-        ]
-      }
-    },
-    {
-      "id": 789,
-      "mnemonic": "OCS1P_info",
-      "category": "ocs1p",
-      "path": "info",
-      "name": "Info",
-      "length": 8,
-      "multiplexor": {
-        "mnemonic": "OCS1P_infoIndex",
-        "path": "info-index",
-        "name": "Info index",
-        "start": 0,
-        "length": 8,
-        "signed": false,
-        "scale": 1,
-        "offset": 0,
-        "units": "",
-        "values": {
-          "10": "Mux10",
-          "11": "Mux11",
-          "13": "Mux13",
-          "14": "Mux14",
-          "17": "Mux17",
-          "18": "Mux18",
-          "19": "Mux19",
-          "20": "Mux20"
-        }
-      },
-      "multiplexed": {
-        "10": [
-          {
-            "mnemonic": "OCS1P_infoBuildType",
-            "path": "info-build-type",
-            "name": "Info build type",
-            "start": 8,
-            "length": 8,
-            "signed": false,
-            "scale": 1,
-            "offset": 0,
-            "units": "",
-            "values": {
-              "0": "UNKNOWN_BUILD",
-              "1": "PLATFORM_BUILD",
-              "2": "LOCAL_BUILD",
-              "3": "TRACEABLE_CI_BUILD",
-              "4": "MFG_BUILD"
-            }
-          },
-          {
-            "mnemonic": "OCS1P_infoBuildConfigID",
-            "path": "info-build-config-i-d",
-            "name": "Info build config i d",
-            "start": 16,
-            "length": 16,
-            "signed": false,
-            "scale": 1,
-            "offset": 0,
-            "units": ""
-          },
-          {
-            "mnemonic": "OCS1P_infoHardwareID",
-            "path": "info-hardware-i-d",
-            "name": "Info hardware i d",
-            "start": 32,
-            "length": 16,
-            "signed": false,
-            "scale": 1,
-            "offset": 0,
-            "units": ""
-          },
-          {
-            "mnemonic": "OCS1P_infoComponentID",
-            "path": "info-component-i-d",
-            "name": "Info component i d",
-            "start": 48,
-            "length": 16,
-            "signed": false,
-            "scale": 1,
-            "offset": 0,
-            "units": ""
-          }
-        ],
-        "11": [
-          {
-            "mnemonic": "OCS1P_infoPcbaID",
-            "path": "info-pcba-i-d",
-            "name": "Info pcba i d",
-            "start": 16,
-            "length": 8,
-            "signed": false,
-            "scale": 1,
-            "offset": 0,
-            "units": ""
-          },
-          {
-            "mnemonic": "OCS1P_infoAssemblyID",
-            "path": "info-assembly-i-d",
-            "name": "Info assembly i d",
-            "start": 24,
-            "length": 8,
-            "signed": false,
-            "scale": 1,
-            "offset": 0,
-            "units": ""
-          },
-          {
-            "mnemonic": "OCS1P_infoUsageID",
-            "path": "info-usage-i-d",
-            "name": "Info usage i d",
-            "start": 32,
-            "length": 16,
-            "signed": false,
-            "scale": 1,
-            "offset": 0,
-            "units": ""
-          },
-          {
-            "mnemonic": "OCS1P_infoSubUsageID",
-            "path": "info-sub-usage-i-d",
-            "name": "Info sub usage i d",
-            "start": 48,
-            "length": 16,
-            "signed": false,
-            "scale": 1,
-            "offset": 0,
-            "units": ""
-          }
-        ],
-        "13": [
-          {
-            "mnemonic": "OCS1P_infoApplicationCRC",
-            "path": "info-application-c-r-c",
-            "name": "Info application c r c",
-            "start": 32,
-            "length": 32,
-            "signed": false,
-            "scale": 1,
-            "offset": 0,
-            "units": ""
-          }
-        ],
-        "14": [
-          {
-            "mnemonic": "OCS1P_infoBootSvnRev",
-            "path": "info-boot-svn-rev",
-            "name": "Info boot svn rev",
-            "start": 8,
-            "length": 24,
-            "signed": false,
-            "scale": 1,
-            "offset": 0,
-            "units": ""
-          }
-        ],
-        "17": [
-          {
-            "mnemonic": "OCS1P_infoAppGitHashBytes",
-            "path": "info-app-git-hash-bytes",
-            "name": "Info app git hash bytes",
-            "start": 10,
-            "length": 54,
-            "signed": false,
-            "scale": 4,
-            "offset": 0,
-            "units": ""
-          }
-        ],
-        "18": [
-          {
-            "mnemonic": "OCS1P_infoBootGitHashBytes",
-            "path": "info-boot-git-hash-bytes",
-            "name": "Info boot git hash bytes",
-            "start": 10,
-            "length": 54,
-            "signed": false,
-            "scale": 4,
-            "offset": 0,
-            "units": ""
-          }
-        ],
-        "19": [
-          {
-            "mnemonic": "OCS1P_infoPlatformType",
-            "path": "info-platform-type",
-            "name": "Info platform type",
-            "start": 8,
-            "length": 8,
-            "signed": false,
-            "scale": 1,
-            "offset": 0,
-            "units": ""
-          }
-        ],
-        "20": [
-          {
-            "mnemonic": "OCS1P_infoBootUdsProtoVersion",
-            "path": "info-boot-uds-proto-version",
-            "name": "Info boot uds proto version",
-            "start": 8,
-            "length": 8,
-            "signed": false,
-            "scale": 1,
-            "offset": 0,
-            "units": ""
-          },
-          {
-            "mnemonic": "OCS1P_infoBootloaderCRC",
-            "path": "info-bootloader-c-r-c",
-            "name": "Info bootloader c r c",
-            "start": 32,
-            "length": 32,
             "signed": false,
             "scale": 1,
             "offset": 0,

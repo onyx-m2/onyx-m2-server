@@ -256,6 +256,10 @@ a {
   background-color: #232020;
   border-radius: 0;
   margin-bottom: 0;
+  padding: 16px;
+  display: grid;
+  grid-template-rows: 140px 50px;
+  grid-template-columns: 200px 270px 270px 240px 200px;
 }
 
 .bttf > .ui.statistic > .value {
@@ -263,7 +267,8 @@ a {
 }
 
 .bttf > .ui.statistic + .ui.statistic {
-  margin: 0 0 0 4.8ch;
+  /* margin: 0 0 0 4.8ch; */
+  margin: 0;
 }
 
 .bttf.segment > .ui.statistic > .label,
@@ -278,14 +283,15 @@ a {
 }
 
 .bttf.segment > .header {
-  font-size: 20px;
+  font-size: 24px;
   letter-spacing: 0.3ch;
   text-indent: 0.3ch;
   background-color: black;
+  grid-column: 1/6;
 }
 
 .bttf.segment > .ui.statistic > .label {
-  font-size: 16px;
+  font-size: 20px;
   letter-spacing: 0.7ch;
   text-indent: 0.7ch;
   background-color: #4c0101;
@@ -296,9 +302,11 @@ a {
 
 .bttf > .ui.statistic > .value {
   font-family: 'seven_segmentregular';
-  letter-spacing: 0.7ch;
-  margin-right: -0.7ch;
+  letter-spacing: 0.5ch;
+  margin-right: -0.5ch;
   color: white;
+  /* background-color: black; */
+  /* text-align: right; */
 }
 
 .bttf > .ui.orange.statistic > .value {

@@ -13,6 +13,10 @@ const ws = new WebSocket('wss://onyx.ngrok.io/m2?pin=1379');
 ws.on('open', () => {
   console.log(`Monitoring active`)
   ws.on('message', (msg) => {
+    if (typeof(msg) === 'string') {
+      return console.log(msg)
+    }
+
     if (msg.length < 7) {
       console.log(`Invalid msg length (${msg.length}): ${msg.toString('hex')}`)
       return
@@ -31,19 +35,22 @@ ws.on('open', () => {
 
     if (message) {
       const buf = new bb.BitView(data)//Uint8Array.from(data.match(/.{1,2}/g).map(byte => parseInt(byte, 16))).buffer)
-      const signals = message.signals.map(s => {
-        var value
-        try {
-          value = buf.getBits(s.start, s.length, s.signed)
-        } catch {
-          value = '<err>'
-        }
-        value = s.offset + s.scale * value
-        if (s.values && s.values[value]) {
-          value = s.values[value]
-        }
-        return `  ${s.mnemonic}=${value}${s.units}`
-      })
+      var signals = []
+      if (message.signals) {
+        signals = message.signals.map(s => {
+          var value
+          try {
+            value = buf.getBits(s.start, s.length, s.signed)
+          } catch {
+            value = '<err>'
+          }
+          value = s.offset + s.scale * value
+          if (s.values && s.values[value]) {
+            value = s.values[value]
+          }
+          return `  ${s.mnemonic}=${value}${s.units}`
+        })
+      }
       const output = `${message.id} | ${message.mnemonic} @ ${ts}\n${signals.join('\n')}`
       interpretedLog.write(`${output}\n`)
       console.log(output)

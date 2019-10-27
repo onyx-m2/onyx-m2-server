@@ -4,7 +4,7 @@ BU_:
 
 CM_ "Added unix and system time signals";
 
-BO_ 792 UTC_systemTime: 6 ETH
+BO_ 792 UTC_systemTime: 8 ETH
  SG_ UTC_year: 0|8@1+ (1,0) [0|0] "" X
  SG_ UTC_month: 8|8@1+ (1,0) [0|0] "" X
  SG_ UTC_seconds: 16|8@1+ (1,0) [0|0] "" X
@@ -2603,13 +2603,12 @@ BO_ 918 DI_oilPump: 8 ETH
  SG_ DI_oilPumpState: 0|3@1+ (1,0) [0|0] "" X
  SG_ DI_oilPumpVoltage: 40|8@1+ (0.1,0) [0|0] "V" X
 
-BO_ 614 DI_power: 7 ETH
- SG_ DI_aps12V: 0|8@1+ (0.1,0) [0|0] "V" X
- SG_ DI_dissipation: 8|8@1+ (125,0) [0|0] "W" X
- SG_ DI_elecPower: 16|11@1- (0.5,0) [0|0] "kW" X
- SG_ DI_heatPowerActual: 48|8@1+ (0.08,0) [0|0] "kW" X
- SG_ DI_heatPowerMax: 40|8@1+ (0.08,0) [0|0] "kW" X
+BO_ 614 DI_power: 8 ETH
+ SG_ DI_elecPower: 0|11@1- (0.5,0) [0|0] "kW" X
+ SG_ DI_dissipation: 16|8@1+ (125,0) [0|0] "W" X
+ SG_ DI_heatPowerActual: 24|8@1+ (0.08,0) [0|0] "kW" X
  SG_ DI_heatPowerOptimal: 32|8@1+ (0.08,0) [0|0] "kW" X
+ SG_ DI_heatPowerMax: 48|8@1+ (0.08,0) [0|0] "kW" X
 
 BO_ 599 DI_speed: 8 ETH
  SG_ DI_speedChecksum: 0|8@1+ (1,0) [0|0] "" X
@@ -2639,7 +2638,17 @@ BO_ 280 DI_systemStatus: 8 ETH
  SG_ DI_trackModeState: 48|2@1+ (1,0) [0|0] "" X
  SG_ DI_tractionControlMode: 40|3@1+ (1,0) [0|0] "" X
 
-BO_ 886 DI_temperature: 8 ETH
+BO_ 886 DI_frontInverterTemperature: 8 ETH
+ SG_ DI_frontDcCapT: 24|8@1+ (1,-40) [0|0] "DegC" X
+ SG_ DI_frontHeatsinkT: 32|8@1+ (1,-40) [0|0] "DegC" X
+ SG_ DI_frontInverterT: 8|8@1+ (1,-40) [0|0] "DegC" X
+ SG_ DI_frontInverterTQF: 56|2@1+ (1,0) [0|0] "" X
+ SG_ DI_frontInverterTpct: 40|8@1+ (0.4,0) [0|0] "%" X
+ SG_ DI_frontPcbT: 0|8@1+ (1,-40) [0|0] "DegC" X
+ SG_ DI_frontStatorT: 16|8@1+ (1,-40) [0|0] "DegC" X
+ SG_ DI_frontStatorTpct: 48|8@1+ (0.4,0) [0|0] "%" X
+
+BO_ 789 DI_temperature: 8 ETH
  SG_ DI_dcCapT: 24|8@1+ (1,-40) [0|0] "DegC" X
  SG_ DI_heatsinkT: 32|8@1+ (1,-40) [0|0] "DegC" X
  SG_ DI_inverterT: 8|8@1+ (1,-40) [0|0] "DegC" X
@@ -4503,23 +4512,23 @@ BO_ 917 OCS1P_alertMatrix: 8 ETH
  SG_ OCS1P_w141_humidityInvalidCalib m2: 24|1@1+ (1,0) [0|0] "" X
  SG_ OCS1P_w142_tempHumidityInvalid m2: 25|1@1+ (1,0) [0|0] "" X
 
-BO_ 789 OCS1P_info: 8 ETH
- SG_ OCS1P_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
- SG_ OCS1P_infoBuildType m10: 8|8@1+ (1,0) [0|0] "" X
- SG_ OCS1P_infoBuildConfigID m10: 16|16@1+ (1,0) [0|0] "" X
- SG_ OCS1P_infoHardwareID m10: 32|16@1+ (1,0) [0|0] "" X
- SG_ OCS1P_infoComponentID m10: 48|16@1+ (1,0) [0|0] "" X
- SG_ OCS1P_infoPcbaID m11: 16|8@1+ (1,0) [0|0] "" X
- SG_ OCS1P_infoAssemblyID m11: 24|8@1+ (1,0) [0|0] "" X
- SG_ OCS1P_infoUsageID m11: 32|16@1+ (1,0) [0|0] "" X
- SG_ OCS1P_infoSubUsageID m11: 48|16@1+ (1,0) [0|0] "" X
- SG_ OCS1P_infoApplicationCRC m13: 32|32@1+ (1,0) [0|0] "" X
- SG_ OCS1P_infoBootSvnRev m14: 8|24@1+ (1,0) [0|0] "" X
- SG_ OCS1P_infoAppGitHashBytes m17: 10|54@1+ (4,0) [0|0] "" X
- SG_ OCS1P_infoBootGitHashBytes m18: 10|54@1+ (4,0) [0|0] "" X
- SG_ OCS1P_infoPlatformType m19: 8|8@1+ (1,0) [0|0] "" X
- SG_ OCS1P_infoBootUdsProtoVersion m20: 8|8@1+ (1,0) [0|0] "" X
- SG_ OCS1P_infoBootloaderCRC m20: 32|32@1+ (1,0) [0|0] "" X
+CM_ BO_ 789 OCS1P_info: 8 ETH
+CM_ SG_ OCS1P_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
+CM_ SG_ OCS1P_infoBuildType m10: 8|8@1+ (1,0) [0|0] "" X
+CM_ SG_ OCS1P_infoBuildConfigID m10: 16|16@1+ (1,0) [0|0] "" X
+CM_ SG_ OCS1P_infoHardwareID m10: 32|16@1+ (1,0) [0|0] "" X
+CM_ SG_ OCS1P_infoComponentID m10: 48|16@1+ (1,0) [0|0] "" X
+CM_ SG_ OCS1P_infoPcbaID m11: 16|8@1+ (1,0) [0|0] "" X
+CM_ SG_ OCS1P_infoAssemblyID m11: 24|8@1+ (1,0) [0|0] "" X
+CM_ SG_ OCS1P_infoUsageID m11: 32|16@1+ (1,0) [0|0] "" X
+CM_ SG_ OCS1P_infoSubUsageID m11: 48|16@1+ (1,0) [0|0] "" X
+CM_ SG_ OCS1P_infoApplicationCRC m13: 32|32@1+ (1,0) [0|0] "" X
+CM_ SG_ OCS1P_infoBootSvnRev m14: 8|24@1+ (1,0) [0|0] "" X
+CM_ SG_ OCS1P_infoAppGitHashBytes m17: 10|54@1+ (4,0) [0|0] "" X
+CM_ SG_ OCS1P_infoBootGitHashBytes m18: 10|54@1+ (4,0) [0|0] "" X
+CM_ SG_ OCS1P_infoPlatformType m19: 8|8@1+ (1,0) [0|0] "" X
+CM_ SG_ OCS1P_infoBootUdsProtoVersion m20: 8|8@1+ (1,0) [0|0] "" X
+CM_ SG_ OCS1P_infoBootloaderCRC m20: 32|32@1+ (1,0) [0|0] "" X
 
 BO_ 771 OCS1P_status: 8 ETH
  SG_ OCS1P_classificationExtHold: 32|1@1+ (1,0) [0|0] "" X
@@ -9896,7 +9905,8 @@ VAL_ 280 DI_systemState 0 "UNAVAILABLE" 1 "IDLE" 2 "STANDBY" 3 "FAULT" 4 "ABORT"
 VAL_ 280 DI_trackModeState 0 "UNAVAILABLE" 1 "AVAILABLE" 2 "ON";
 VAL_ 280 DI_tractionControlMode 0 "NORMAL" 1 "SLIP_START" 2 "DEV_MODE_1" 3 "DEV_MODE_2" 4 "ROLLS_MODE" 5 "DYNO_MODE";
 
-VAL_ 886 DI_inverterTQF 0 "INIT" 1 "IRRATIONAL" 2 "RATIONAL" 3 "UNKNOWN";
+VAL_ 886 DI_frontInverterTQF 0 "INIT" 1 "IRRATIONAL" 2 "RATIONAL" 3 "UNKNOWN";
+VAL_ 789 DI_inverterTQF 0 "INIT" 1 "IRRATIONAL" 2 "RATIONAL" 3 "UNKNOWN";
 
 VAL_ 264 DI_axleSpeed -32768 "SNA";
 VAL_ 264 DI_torqueActual -4096 "SNA";
@@ -10136,8 +10146,8 @@ VAL_ 925 IBST_iBoosterStatus 0 "OFF" 1 "INIT" 2 "FAILURE" 3 "DIAGNOSTIC" 4 "ACTI
 
 VAL_ 917 OCS1P_matrixIndex 2 "OCS1P_AlertMatrix2";
 
-VAL_ 789 OCS1P_infoIndex 10 "Mux10" 11 "Mux11" 13 "Mux13" 14 "Mux14" 17 "Mux17" 18 "Mux18" 19 "Mux19" 20 "Mux20";
-VAL_ 789 OCS1P_infoBuildType 0 "UNKNOWN_BUILD" 1 "PLATFORM_BUILD" 2 "LOCAL_BUILD" 3 "TRACEABLE_CI_BUILD" 4 "MFG_BUILD";
+CM_ VAL_ 789 OCS1P_infoIndex 10 "Mux10" 11 "Mux11" 13 "Mux13" 14 "Mux14" 17 "Mux17" 18 "Mux18" 19 "Mux19" 20 "Mux20";
+CM_ VAL_ 789 OCS1P_infoBuildType 0 "UNKNOWN_BUILD" 1 "PLATFORM_BUILD" 2 "LOCAL_BUILD" 3 "TRACEABLE_CI_BUILD" 4 "MFG_BUILD";
 
 VAL_ 771 OCS1P_classificationHoldState 0 "OFF" 1 "BASIC" 2 "EXTERNAL" 3 "FAULT";
 VAL_ 771 OCS1P_occupantClassification 0 "EMPTY" 1 "OCCUPIED_INHIBIT" 2 "OCCUPIED_ALLOW_SMALL" 3 "OCCUPIED_ALLOW_LARGE" 4 "INIT" 255 "SNA";

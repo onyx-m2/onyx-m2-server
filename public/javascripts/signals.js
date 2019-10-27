@@ -83,6 +83,7 @@ $(() => {
       })
     }
     m2.setAllMessageFlags(0x00)
+    m2.getMessageValue(message.id)
     m2.setMessageFlags(message.id, 0x01)
   }
 

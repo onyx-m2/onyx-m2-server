@@ -10,8 +10,7 @@
       "name": "Replay M2",
       "program": "${workspaceFolder}\\bin\\m2-replay",
       "args": [
-        "${workspaceFolder}/logs/m2-1570902555464.log",
-        "-step"
+        "${workspaceFolder}/logs/m2-1572137363514.log"
       ]
     },
     {

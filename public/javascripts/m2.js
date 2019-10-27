@@ -22,6 +22,12 @@
       }
     }
 
+    getMessageValue(id) {
+      if (this._wsConnected) {
+        this._ws.send(Uint8Array.from([3, 2, id & 0xff, id >> 8]))
+      }
+    }
+
     enableMessages(mnemonics) {
       mnemonics.forEach((mnemonic) => {
         const msg = DBC.messages.find(m => m.mnemonic == mnemonic)
@@ -96,6 +102,17 @@
           }
 
         }
+      }
+      else {
+        DBC.messages.push({
+          id,
+          mnemonic: `UNK_id${id}`,
+          category: 'unk',
+          path: 'id',
+          name: '${id}',
+          length: len,
+          value: data
+        })
       }
       return message
     }
