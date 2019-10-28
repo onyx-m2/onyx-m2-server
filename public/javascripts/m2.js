@@ -82,7 +82,7 @@
       const len = msg[6]
       const data = msg.slice(7, 7 + len)
 
-      const message = DBC.messages.find(m => m.id == id)
+      const message = DBC.messages.find(m => m.id === id)
       if (message) {
         message.ts = ts
         message.value = data
