@@ -1,16 +1,23 @@
 (function(root) {
-  function findMessageSignal(message, mnemonic) {
+  function findMessage(mnemonic) {
+    return DBC.messages.find(m => m.mnemonic === mnemonic)
+  }
+  function findSignal(messageMnemonic, signalMnemonic) {
+    const message = findMessage(messageMnemonic)
+    return findMessageSignal(message, signalMnemonic)
+  }
+  function findMessageSignal(message, signalMnemonic) {
     var signal
     if (message.signals) {
-      signal = message.signals.find(s => s.mnemonic == mnemonic)
+      signal = message.signals.find(s => s.mnemonic == signalMnemonic)
     }
     if (!signal && message.multiplexor) {
-      if (message.multiplexor.mnemonic == mnemonic) {
+      if (message.multiplexor.mnemonic == signalMnemonic) {
         signal = message.multiplexor
       } else {
         Object.values(message.multiplexed).forEach(signals => {
           if (!signal) {
-            signal = signals.find(s => s.mnemonic == mnemonic)
+            signal = signals.find(s => s.mnemonic == signalMnemonic)
           }
         })
       }
@@ -19,6 +26,8 @@
   }
 
   root.DBC = {
+    findMessage,
+    findSignal,
     findMessageSignal,
     "date": "2019-10-17T03:06:43.829Z",
     "categories": [

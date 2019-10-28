@@ -13,8 +13,8 @@
     </div>
 
     <div class="ui orange statistic">
-      <div class="label">RPM</div>
-      <div class="value" data-message="DI_torque" data-signal="DI_axleSpeed">-</div>
+      <div class="label">COOL LPM</div>
+      <div class="value" data-message="VCFRONT_coolant" data-signal="VCFRONT_coolantFlowPTActual">-</div>
     </div>
 
     <div class="ui orange statistic">
@@ -28,7 +28,7 @@
     </div>
 
     <div class="ui centeorange grey header">
-      Drive Inverter
+      Powertrain
     </div>
   </div>
 
@@ -45,13 +45,13 @@
     </div>
 
     <div class="ui green statistic">
-      <div class="label">Nom kW</div>
+      <div class="label">Nom kWh</div>
       <div class="value" data-message="BMS_energyStatus" data-signal="BMS_nominalEnergyRemaining">-</div>
     </div>
 
     <div class="ui green statistic">
-      <div class="label">SOC %</div>
-      <div class="value" data-message="BMS_socStatus" data-signal="BMS_socUI">-</div>
+      <div class="label">COOL LPM</div>
+      <div class="value" data-message="VCFRONT_coolant" data-signal="VCFRONT_coolantFlowBatActual">-</div>
     </div>
 
     <div class="ui green statistic">
@@ -67,7 +67,7 @@
   <div class="ui horizontal {{night}} bttf segment">
 
     <div class="ui yellow statistic">
-      <div class="label">PTCL KW </div>
+      <div class="label">PTCL KW</div>
       <div class="value" data-message="PTC_sensorStatus" data-signal="PTC_leftCurrentHV">-</div>
     </div>
 
@@ -86,8 +86,45 @@
       <div class="value" data-message="PCS_dcdcStatus" data-signal="PCS_dcdcLvOutputCurrent">-</div>
     </div>
 
+    <div class="ui yellow statistic">
+      <div class="label">PWR %</div>
+      <div class="value" id="auxPercent">-</div>
+    </div>
+
     <div class="ui centered grey header">
-      AUX POWER
+      AUXILIARY
+    </div>
+  </div>
+
+  <div class="ui horizontal {{night}} bttf hidden trip segment">
+
+    <div class="ui blue statistic">
+      <div class="label">KM</div>
+      <div class="value" id="tripDistance">0</div>
+    </div>
+
+    <div class="ui blue statistic">
+      <div class="label">Km/h</div>
+      <div class="value" id="tripSpeed">0</div>
+    </div>
+
+    <div class="ui blue statistic">
+      <div class="label">kWh</div>
+      <div class="value" id="tripEnergy">0</div>
+    </div>
+
+    <div class="ui blue statistic">
+      <div class="label">Wh/km</div>
+      <div class="value" id="tripConsumption">0</div>
+    </div>
+
+    <div class="ui blue statistic">
+      <div class="label">REGEN %</div>
+      <div class="value" id="tripRegen">0</div>
+    </div>
+
+    <div class="ui centered grey header" id="tripReset">
+      TRIP
     </div>
   </div>
 
