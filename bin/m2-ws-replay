@@ -17,7 +17,7 @@ function sleep(millis) {
   return new Promise(resolve => setTimeout(resolve, millis));
 }
 
-const ws = new WebSocket('wss://onyx.ngrok.io/m2device?pin=1379');
+const ws = new WebSocket('ws://onyx-m2.net/m2device?pin=1379');
 ws.on('open', () => {
   console.log(`Server connected, starting replay of ${filename}`)
 
