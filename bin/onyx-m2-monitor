@@ -53,7 +53,6 @@ ws.on('open', () => {
       }
       const output = `${message.id} | ${message.mnemonic} @ ${ts}\n${signals.join('\n')}`
       interpretedLog.write(`${output}\n`)
-      console.log(output)
     }
   })
 })

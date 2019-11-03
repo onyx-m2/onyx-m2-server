@@ -43,14 +43,29 @@ app.use((req, res, next) => {
 // webrtc might be faster, but it needs TURN anyway, so not much difference
 var m2DeviceWs
 app.ws('/m2device', (ws, req) => {
-  m2DeviceWs = ws
-  broadcastToM2Clients('m2:connect')
+  if (m2DeviceWs) {
+    const prevWs = m2DeviceWs
+    m2DeviceWs = ws
+    prevWs.terminate();
+  }
+  else {
+    m2DeviceWs = ws
+    broadcastToM2Clients('m2:connect')
+  }
+
   ws.on('message', (msg) => {
     broadcastToM2Clients(msg)
   })
+
+  ws.on('pong', () => {
+
+  })
+
   ws.on('close', () => {
-    broadcastToM2Clients('m2:disconnect')
-    m2DeviceWs = null
+    if (ws === m2DeviceWs) {
+      broadcastToM2Clients('m2:disconnect')
+      m2DeviceWs = null
+    }
   })
 })
 
@@ -81,6 +96,22 @@ app.ws('/m2', (ws, req) => {
 })
 
 const wss = expressWs.getWss()
+wss.on('connection', (ws) => {
+  ws.alive = true
+  ws.on('pong', () => {
+    ws.alive = true;
+  })
+})
+setInterval(() => {
+  wss.clients.forEach((ws) => {
+    if (!ws.alive) {
+      console.log('Closing unresponsive ws')
+      return ws.terminate();
+    }
+    ws.alive = false;
+    ws.ping()
+  })
+}, 2000)
 
 function broadcastToM2Clients(msg) {
   wss.clients.forEach((client) => {

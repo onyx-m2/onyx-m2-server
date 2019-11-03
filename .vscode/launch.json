@@ -7,10 +7,11 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Replay M2",
-      "program": "${workspaceFolder}\\bin\\m2-replay",
+      "name": "M2 Serial Replay",
+      "program": "${workspaceFolder}\\bin\\m2-serial-replay",
       "args": [
-        "${workspaceFolder}/logs/m2-1572137363514.log"
+        "COM4",
+        "${workspaceFolder}/logs/m2-1572225274187.log"
       ]
     },
     {

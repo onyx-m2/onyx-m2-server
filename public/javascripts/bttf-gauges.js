@@ -75,7 +75,7 @@ $(() => {
       dischargeStart = discharge
       timeStart = Date.now()
     }
-    const tripDistance = odometer - odometerStart
+    const tripDistance = Math.max(odometer - odometerStart, 0)
     const tripMillis = (Date.now() - timeStart)
     const tripCharge = charge - chargeStart
     const tripDischarge = discharge - dischargeStart
@@ -85,7 +85,7 @@ $(() => {
       $('#tripSpeed').text(formatVal(tripDistance * 3600000 / tripMillis))
     }
     $('#tripEnergy').text(formatVal(tripEnergy))
-    if (tripDistance > 0) {
+    if (tripDistance > 0.01) {
       $('#tripConsumption').text(formatVal(tripEnergy * 1000 / tripDistance))
       $('#tripRegen').text(formatVal(tripCharge * 100 / tripDischarge))
     }
