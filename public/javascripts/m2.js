@@ -38,7 +38,7 @@
     }
 
     connect() {
-      const ws = new WebSocket(`wss://${location.host}/m2?pin=${onyx.pin}`)
+      const ws = new WebSocket(`ws://${location.host}/m2?pin=${onyx.pin}`)
       ws.binaryType = 'arraybuffer'
       ws.addEventListener('open', () => {
         this._wsConnected = true
