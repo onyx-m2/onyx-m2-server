@@ -28,17 +28,40 @@
       }
     }
 
-    enableMessages(mnemonics) {
-      mnemonics.forEach((mnemonic) => {
-        const msg = DBC.messages.find(m => m.mnemonic == mnemonic)
-        if (msg) {
-          this.setMessageFlags(msg.id, 0x01)
-        }
-      })
+    disableAllMessages() {
+      this.setAllMessageFlags(0x00)
+    }
+
+    enableMessage(messageOrMnemonic) {
+      var message = messageOrMnemonic
+      if (typeof(message) === 'string') {
+        message = DBC.findMessage(message)
+      }
+      if (message) {
+        this.getMessageValue(message.id)
+        this.setMessageFlags(message.id, 0x01)
+      }
+    }
+
+    enableMessages(messages) {
+      var mnemonics = [...new Set(messages)]
+      mnemonics.forEach(m => this.enableMessage(m))
+      // {
+      //   const msg = DBC.findMessage(mnemonic)
+      //   if (msg) {
+      //     this.getMessageValue(msg.id)
+      //     this.setMessageFlags(msg.id, 0x01)
+      //   }
+      // })
+    }
+
+    enableSignals(signals) {
+      signals = [...new Set(signals)]
+      this.enableMessages(signals.map(s => s.message.mnemonic))
     }
 
     connect() {
-      const ws = new WebSocket(`ws://${location.host}/m2?pin=${onyx.pin}`)
+      const ws = new WebSocket(`ws://onyx-m2.net/m2?pin=${onyx.pin}`)
       ws.binaryType = 'arraybuffer'
       ws.addEventListener('open', () => {
         this._wsConnected = true

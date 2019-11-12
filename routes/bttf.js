@@ -3,13 +3,14 @@ var router = express.Router();
 
 router.get('/', function(req, res, next) {
   res.render('bttf', {
-    pin: req.pin,
+    title: 'Onyx BTTF',
     night: 'inverted'
   })
 })
 
 router.get('/gauges', function(req, res, next) {
   res.render('bttf-gauges', {
+    title: 'Onyx Gauges',
     pin: req.pin,
     night: 'inverted'
   })

@@ -27,7 +27,7 @@ $(() => {
   m2.addEventListener('message', (event) => {
     const { message } = event
     $(`[data-message=${message.mnemonic}]`).each((idx, el) => {
-      const signal = DBC.findMessageSignal(message, $(el).data('signal'))
+      const signal = DBC.findSignal($(el).data('signal'))
       if (signal && signal.value !== undefined) {
         $(el).text(formatVal(signal.value))
       }
@@ -40,9 +40,9 @@ $(() => {
   })
 
   // support for aux power percentage
-  const diElecPower = DBC.findSignal('DI_power', 'DI_elecPower')
-  const batVolts = DBC.findSignal('BMS_hvBusStatus', 'BMS_packVoltage')
-  const batAmps = DBC.findSignal('BMS_hvBusStatus', 'BMS_packCurrent')
+  const diElecPower = DBC.findSignal('DI_elecPower')
+  const batVolts = DBC.findSignal('BMS_packVoltage')
+  const batAmps = DBC.findSignal('BMS_packCurrent')
   setInterval(() => {
     const batPowerVal = (batAmps.value || 0) * (batVolts.value || 0) / 1000
     const diPowerVal = diElecPower.value || 0
@@ -56,9 +56,9 @@ $(() => {
   }, 250)
 
   // support for trip statistics
-  const diOdometer = DBC.findSignal('DI_odometerStatus', 'DI_odometer')
-  const bmsDischarge = DBC.findSignal('BMS_kwhCounter', 'BMS_kwhDischargeTotal')
-  const bmsCharge = DBC.findSignal('BMS_kwhCounter', 'BMS_kwhChargeTotal')
+  const diOdometer = DBC.findSignal('DI_odometer')
+  const bmsDischarge = DBC.findSignal('BMS_kwhDischargeTotal')
+  const bmsCharge = DBC.findSignal('BMS_kwhChargeTotal')
   var odometerStart, chargeStart, dischargeStart, timeStart
   var tripStarted = false
   setInterval(() => {
@@ -75,7 +75,7 @@ $(() => {
       dischargeStart = discharge
       timeStart = Date.now()
     }
-    const tripDistance = Math.max(odometer - odometerStart, 0)
+    const tripDistance = odometer - odometerStart
     const tripMillis = (Date.now() - timeStart)
     const tripCharge = charge - chargeStart
     const tripDischarge = discharge - dischargeStart
@@ -87,6 +87,8 @@ $(() => {
     $('#tripEnergy').text(formatVal(tripEnergy))
     if (tripDistance > 0.01) {
       $('#tripConsumption').text(formatVal(tripEnergy * 1000 / tripDistance))
+    }
+    if (tripDischarge > 0) {
       $('#tripRegen').text(formatVal(tripCharge * 100 / tripDischarge))
     }
   }, 250)

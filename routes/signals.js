@@ -35,10 +35,8 @@ router.get('/:category/:message', (req, res, next) => {
     return next(createError(404, 'Message not found'))
   }
   res.render('signals', {
-    pin: req.pin,
-    night: 'inverted',
-    category: message.category,
-    message: message.path,
+    title: 'Onyx Signals',
+    pin: req.pin
   })
 })
 

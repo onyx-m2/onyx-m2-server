@@ -1,34 +1,33 @@
 (function(root) {
   function findMessage(mnemonic) {
-    return DBC.messages.find(m => m.mnemonic === mnemonic)
+    return DBC.indexes.messages[mnemonic]
   }
-  function findSignal(messageMnemonic, signalMnemonic) {
-    const message = findMessage(messageMnemonic)
-    return findMessageSignal(message, signalMnemonic)
+  function findSignal(mnemonic) {
+    return DBC.indexes.signals[mnemonic]
   }
-  function findMessageSignal(message, signalMnemonic) {
-    var signal
-    if (message.signals) {
-      signal = message.signals.find(s => s.mnemonic == signalMnemonic)
-    }
-    if (!signal && message.multiplexor) {
-      if (message.multiplexor.mnemonic == signalMnemonic) {
-        signal = message.multiplexor
-      } else {
-        Object.values(message.multiplexed).forEach(signals => {
-          if (!signal) {
-            signal = signals.find(s => s.mnemonic == signalMnemonic)
-          }
-        })
-      }
-    }
-    return signal
-  }
+  // function findMessageSignal(message, signalMnemonic) {
+  //   var signal
+  //   if (message.signals) {
+  //     signal = message.signals.find(s => s.mnemonic == signalMnemonic)
+  //   }
+  //   if (!signal && message.multiplexor) {
+  //     if (message.multiplexor.mnemonic == signalMnemonic) {
+  //       signal = message.multiplexor
+  //     } else {
+  //       Object.values(message.multiplexed).forEach(signals => {
+  //         if (!signal) {
+  //           signal = signals.find(s => s.mnemonic == signalMnemonic)
+  //         }
+  //       })
+  //     }
+  //   }
+  //   return signal
+  // }
 
   root.DBC = {
     findMessage,
     findSignal,
-    findMessageSignal,
+    //findMessageSignal,
     "date": "2019-10-17T03:06:43.829Z",
     "categories": [
       {
@@ -100920,4 +100919,30 @@
     "warnings": [],
     "errors": []
   }
+
+  // index the dbc to make message and signal lookup efficent
+  DBC.indexes = {
+    messages: {},
+    signals: {}
+  }
+  DBC.messages.forEach(m => {
+    DBC.indexes.messages[m.mnemonic] = m
+    if (m.signals) {
+      m.signals.forEach(s => {
+        s.message = m
+        DBC.indexes.signals[s.mnemonic] = s
+      })
+    }
+    if (m.multiplexor) {
+      m.multiplexor.message = m
+      DBC.indexes.signals[m.multiplexor.mnemonic] = m.multiplexor
+    }
+    if (m.multiplexed) {
+      Object.values(m.multiplexed).forEach(s => {
+        s.message = m
+        DBC.indexes.signals[s.mnemonic] = s
+      })
+    }
+  })
+
 }(this));

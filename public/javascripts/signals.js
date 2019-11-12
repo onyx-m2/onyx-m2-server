@@ -4,11 +4,17 @@ $(() => {
 
   m2.addEventListener('connect', () => {
     $('#disconnected').addClass('hidden')
+    m2.getMessageValue(DBC.findMessage('UI_solarData'))
     initSignals()
   })
 
   m2.addEventListener('message', (event) => {
     const { message } = event
+    if (message.mnemonic == 'UI_solarData') {
+      const isSunUp = DBC.findSignal('UI_isSunUp')
+      displayMode = (isSunUp.value == 0 ? 'night' : 'day')
+      updateDisplayMode()
+    }
     if (message.path == selectedMessagePath) {
       updateSignalValues(event.message)
     }
@@ -46,6 +52,7 @@ $(() => {
     $('#categories > a').click(function (e) {
       e.preventDefault();
       selectCategory($(this).attr('id'))
+      updateDisplayMode()
     })
   }
 
@@ -64,6 +71,7 @@ $(() => {
     $('#messages > a').click(function (e) {
       e.preventDefault();
       selectMessage($(this).attr('id'))
+      updateDisplayMode()
     })
     initSignals()
   }
@@ -82,9 +90,8 @@ $(() => {
         signals.forEach(s => addSignal(s))
       })
     }
-    m2.setAllMessageFlags(0x00)
-    m2.getMessageValue(message.id)
-    m2.setMessageFlags(message.id, 0x01)
+    m2.disableAllMessages()
+    m2.enableMessage(message)
   }
 
   function addSignal(signal) {
@@ -128,7 +135,19 @@ $(() => {
     $(`#${signal.mnemonic} .label`).text(signalDisplayUnits(signal))
   }
 
-  var { category: selectedCategoryPath, message: selectedMessagePath } = onyx.signal
+  function updateDisplayMode() {
+    if (displayMode === 'night') {
+      $('.tesla').addClass('inverted')
+    }
+    if (displayMode === 'day') {
+      $('.tesla').removeClass('inverted')
+    }
+  }
+
+  var path = location.pathname.split('/')
+  var selectedCategoryPath = path[2]
+  var selectedMessagePath = path[3]
+  var displayMode = 'day'
 
   const categoryTemplate = Handlebars.compile($('#category-template').html())
   const messageTemplate = Handlebars.compile($('#message-template').html())

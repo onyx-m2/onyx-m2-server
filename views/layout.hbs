@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Tesla Onyx</title>
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css' />
-    <link rel='stylesheet' href='/stylesheets/range.css' />
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+    <link rel="stylesheet" href="/stylesheets/range.css" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    {{#stylesheets}}
+    <link rel="stylesheet" href="{{href}}" integrity="{{integrity}}" crossorigin="anonymous" />
+    {{/stylesheets}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js" integrity="sha256-t8GepnyPmw9t+foMh3mKNvcorqNHamSKtKRxxpUEgFI=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.4.2/handlebars.min.js" integrity="sha256-oh7N5nthuhldTk8/34Za7FXv3BkeVN9vAnYk/pLfC78=" crossorigin="anonymous"></script>
     <script src="/dbc/tesla_model3.js"></script>
     <script src="/javascripts/bit-buffer.js"></script>
     <script src="/javascripts/m2.js"></script>
+    {{#scripts}}
+    <script src="{{src}}" integrity="{{integrity}}" crossorigin="anonymous"></script>
+    {{/scripts}}
   </head>
   <body>
     {{!-- Connection status message --}}
@@ -28,4 +34,9 @@
       {{{body}}}
     </div>
   </body>
+  <script>
+    window.onyx = {
+      pin: {{pin}}
+    }
+  </script>
 </html>
