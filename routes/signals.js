@@ -1,6 +1,6 @@
-var createError = require('http-errors');
-var express = require('express');
-var router = express.Router();
+var createError = require('http-errors')
+var express = require('express')
+var router = express.Router()
 
 var dbc = require('../dbc/tesla_model3.dbc.json')
 var categories = require('../dbc/categories.json')
@@ -35,9 +35,8 @@ router.get('/:category/:message', (req, res, next) => {
     return next(createError(404, 'Message not found'))
   }
   res.render('signals', {
-    title: 'Onyx Signals',
-    pin: req.pin
+    title: 'Onyx Signals'
   })
 })
 
-module.exports = router;
+module.exports = router

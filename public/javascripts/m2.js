@@ -22,8 +22,12 @@
       }
     }
 
-    getMessageValue(id) {
+    getMessageValue(messageOrId) {
       if (this._wsConnected) {
+        var id = messageOrId
+        if (typeof(messageOrId) === 'object') {
+          id = messageOrId.id
+        }
         this._ws.send(Uint8Array.from([3, 2, id & 0xff, id >> 8]))
       }
     }
@@ -46,13 +50,6 @@
     enableMessages(messages) {
       var mnemonics = [...new Set(messages)]
       mnemonics.forEach(m => this.enableMessage(m))
-      // {
-      //   const msg = DBC.findMessage(mnemonic)
-      //   if (msg) {
-      //     this.getMessageValue(msg.id)
-      //     this.setMessageFlags(msg.id, 0x01)
-      //   }
-      // })
     }
 
     enableSignals(signals) {
@@ -61,7 +58,8 @@
     }
 
     connect() {
-      const ws = new WebSocket(`ws://onyx-m2.net/m2?pin=${onyx.pin}`)
+      const pin = Cookies.get('pin')
+      const ws = new WebSocket(`ws://onyx-m2.net/m2?pin=${pin}`)
       ws.binaryType = 'arraybuffer'
       ws.addEventListener('open', () => {
         this._wsConnected = true

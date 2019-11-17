@@ -1,8 +1,7 @@
-var express = require('express');
-var router = express.Router();
-const url = require('url');
+var express = require('express')
+var router = express.Router()
 
-router.get('/', function(req, res, next) {
+router.get('/', (req, res) => {
   if (req.pin) {
     return res.render('index', {
       night: 'inverted'
@@ -13,8 +12,7 @@ router.get('/', function(req, res, next) {
   })
 })
 
-router.post('/', (req, res, next) => {
-  res.cookie('pin', req.pin, { maxAge: 31536000, httpOnly: true })
+router.post('/', (req, res) => {
   const referer = req.headers.referer
   var redirect = '/'
   if (referer) {
@@ -24,4 +22,4 @@ router.post('/', (req, res, next) => {
   res.redirect(redirect)
 })
 
-module.exports = router;
+module.exports = router

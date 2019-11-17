@@ -1,5 +1,5 @@
-var express = require('express');
-var router = express.Router();
+var express = require('express')
+var router = express.Router()
 
 router.get('/', function(req, res, next) {
   res.render('bttf', {
@@ -11,9 +11,8 @@ router.get('/', function(req, res, next) {
 router.get('/gauges', function(req, res, next) {
   res.render('bttf-gauges', {
     title: 'Onyx Gauges',
-    pin: req.pin,
     night: 'inverted'
   })
 })
 
-module.exports = router;
+module.exports = router

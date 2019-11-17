@@ -1,17 +1,18 @@
 $(() => {
 
   const m2 = new M2()
+  const solarData = DBC.findMessage('UI_solarData')
+  const isSunUp = DBC.findSignal('UI_isSunUp')
 
   m2.addEventListener('connect', () => {
     $('#disconnected').addClass('hidden')
-    m2.getMessageValue(DBC.findMessage('UI_solarData'))
+    m2.getMessageValue(solarData)
     initSignals()
   })
 
   m2.addEventListener('message', (event) => {
     const { message } = event
-    if (message.mnemonic == 'UI_solarData') {
-      const isSunUp = DBC.findSignal('UI_isSunUp')
+    if (message === solarData) {
       displayMode = (isSunUp.value == 0 ? 'night' : 'day')
       updateDisplayMode()
     }

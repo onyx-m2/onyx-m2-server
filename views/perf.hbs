@@ -1,0 +1,90 @@
+
+<div class="ui tesla panel segment">
+  <canvas id="chart"></canvas>
+</div>
+<script>
+  const PACK_VOLTAGE_DS = 0
+  const PACK_CURRENT_DS = 1
+  var chart = new Chart($('#chart'), {
+    type: 'line',
+    data: {
+        datasets: [{
+          //lineTension: 0.0,
+          cubicInterpolationMode: 'default',
+          showLine: true,
+          pointRadius: 0,
+          fill: false,
+          borderColor: 'red',
+          yAxisID: 'v-axis'
+        }, {
+          //lineTension: 1.0,
+          cubicInterpolationMode: 'default',
+          showLine: true,
+          pointRadius: 0,
+          borderColor: 'blue',
+          backgroundColor: 'blue',
+          yAxisID: 'a-axis'
+        }]
+    },
+    options: {
+      scales: {
+        xAxes: [{
+          type: 'realtime',
+          realtime: {
+            refresh: 200,
+					  delay: 300,
+					  //onRefresh: () => {}
+          }
+        }],
+        yAxes: [{
+          id: 'a-axis',
+          //display: true,
+          ticks: {
+            beginAtZero: true,
+            min: -100,
+            max: 250
+          }
+        }, {
+          id: 'v-axis',
+          position: 'right',
+          //display: true,
+          ticks: {
+            beginAtZero: false,
+            min: 260,
+            max: 404
+          }
+        }]
+      }
+    }
+})
+
+  const m2 = new M2()
+
+  //var x = 0
+  const packVoltage = DBC.findSignal('BMS_packVoltage')
+  const packCurrent = DBC.findSignal('BMS_packCurrent')
+  const elecPower = DBC.findSignal('DI_elecPower')
+  m2.addEventListener('message', (event) => {
+    if (event.message.mnemonic == 'DI_power') {
+      chart.data.datasets[PACK_CURRENT_DS].data.push({
+        x: Date.now(),
+        y: elecPower.value
+      })
+    }
+    if (event.message.mnemonic == 'BMS_hvBusStatus') {
+      {{!-- chart.data.datasets[PACK_VOLTAGE_DS].data.push({
+        x: Date.now(),
+        y: packVoltage.value
+      }) --}}
+      chart.data.datasets[PACK_VOLTAGE_DS].data.push({
+        x: Date.now(),
+        y: packVoltage.value
+      })
+      chart.update({ preservation: true })
+    }
+  })
+
+</script>
+
+{{!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" integrity="sha256-Uv9BNBucvCPipKQ2NS9wYpJmi8DTOEfTA/nH2aoJALw=" crossorigin="anonymous"></script> --}}
