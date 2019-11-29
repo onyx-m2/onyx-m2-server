@@ -139,7 +139,7 @@ a {
 } */
 
 .tesla.panel {
-  /* grid-gap: 20px; */
+  grid-gap: 20px;
   width: 1220px;
   height: 884px;
   display: grid;
@@ -305,6 +305,7 @@ a {
 /* BTTF */
 
 .bttf.panel {
+  grid-gap: 0;
   height: unset;
   user-select: none;
 }

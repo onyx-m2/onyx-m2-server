@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-
+require('dotenv').config()
 const lineReader = require('line-reader')
 const WebSocket = require('ws');
 
@@ -16,10 +16,11 @@ function sleep(millis) {
   }
   return new Promise(resolve => setTimeout(resolve, millis));
 }
-
-const ws = new WebSocket('ws://onyx-m2.net/m2device?pin=1379');
+const hostname = process.env.HOSTNAME
+const pin = process.env.PIN
+const ws = new WebSocket(`ws://${hostname}/m2device?pin=${pin}`);
 ws.on('open', () => {
-  console.log(`Server connected, starting replay of ${filename}`)
+  console.log(`Server connected, starting replay of ${filename} to ${hostname}`)
 
   lineReader.eachLine(filename, async (line, last, cb) => {
     // <id> | <hexId> @ <ts> len <len> | <len data bytes>

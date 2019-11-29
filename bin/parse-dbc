@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-
+require('dotenv').config()
 const fs = require('fs')
 const lineReader = require('line-reader')
 
@@ -171,4 +171,3 @@ lineReader.eachLine(filename, function(line, last) {
     throw e
   }
 })
-

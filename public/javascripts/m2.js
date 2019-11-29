@@ -59,7 +59,8 @@
 
     connect() {
       const pin = Cookies.get('pin')
-      const ws = new WebSocket(`ws://onyx-m2.net/m2?pin=${pin}`)
+      const hostname = Cookies.get('hostname')
+      const ws = new WebSocket(`ws://${hostname}/m2?pin=${pin}`)
       ws.binaryType = 'arraybuffer'
       ws.addEventListener('open', () => {
         this._wsConnected = true

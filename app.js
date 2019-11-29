@@ -25,7 +25,7 @@ app.use((req, res, next) => {
   // connection for some reason; no other browser does this, thus we allow
   // the pin to be used in a query string
   var pin = req.query['pin'] | req.cookies['pin'] | req.body['pin']
-  if (pin == '1379') {
+  if (pin == process.env.PIN) {
     if (!req.cookies['pin']) {
       res.cookie('pin', pin, { maxAge: 31536000, httpOnly: false })
     }
@@ -33,6 +33,9 @@ app.use((req, res, next) => {
   }
   if (req.path != '/' && !req.pin) {
     return res.redirect(`/?redirect=${req.path}`)
+  }
+  if (!req.cookies['hostname']) {
+    res.cookie('hostname', process.env.HOSTNAME, { maxAge: 31536000, httpOnly: false })
   }
   next()
 })

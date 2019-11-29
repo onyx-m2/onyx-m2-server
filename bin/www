@@ -1,9 +1,12 @@
 #!/usr/bin/env node
+if (require('dotenv').config().error) {
+  console.error('Unable to configure application, did you create a .env file?')
+  return
+}
 
 /**
  * Module dependencies.
  */
-
 var app = require('../app').app;
 var debug = require('debug')('tesla-browser-tests:server');
 //var http = require('http');

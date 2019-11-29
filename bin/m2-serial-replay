@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-
+require('dotenv').config()
 const SerialPort = require('serialport')
 const cobs = require('cobs')
 const lineReader = require('line-reader')

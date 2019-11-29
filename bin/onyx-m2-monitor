@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-
+require('dotenv').config()
 const fs = require('fs')
 const bb = require('bit-buffer')
 const dbc = require('../dbc/tesla_model3.dbc.json')
@@ -9,7 +9,10 @@ const rawLog = fs.createWriteStream(`./logs/m2-${ts}.log`)
 const interpretedLog = fs.createWriteStream(`./logs/m2-${ts}-interpreted.log`)
 
 const WebSocket = require('ws');
-const ws = new WebSocket('ws://onyx-m2.net/m2?pin=1379');
+
+const hostname = process.env.HOSTNAME
+const pin = process.env.PIN
+const ws = new WebSocket(`ws://${hostname}/m2?pin=${pin}`);
 ws.on('open', () => {
   console.log(`Monitoring active`)
   ws.on('message', (msg) => {

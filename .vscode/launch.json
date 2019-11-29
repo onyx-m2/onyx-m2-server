@@ -7,6 +7,15 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "M2 WS Replay",
+      "program": "${workspaceFolder}\\bin\\m2-ws-replay",
+      "args": [
+        "${workspaceFolder}/logs/m2-1572225274187.log"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "M2 Serial Replay",
       "program": "${workspaceFolder}\\bin\\m2-serial-replay",
       "args": [
@@ -33,7 +42,7 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Monitor Onyx M2",
+      "name": "Onyx M2 Monitor",
       "program": "${workspaceFolder}\\bin\\onyx-m2-monitor"
     }
 

@@ -1,4 +1,72 @@
-# Things that would be useful:
+# Tesla Onyx M2 Server
+
+This project is a Node socket server that works in conjunction with [tesla-onyx-m2-firmware](https://github.com/johnmccalla/tesla-onyx-m2-firmware), which allows a Macchina M2 to use this server to relay CANBUS messages to the Model 3's main screen.
+
+NOTE: This documentation is a work in progress, and by this I mean it sucks and I need to improve it. So, I'm sorry. :)
+
+## Installation
+
+This is currently a pretty straight forward Node/Express server.
+
+Start by setting up your environment in a .env file. It should have at least a `HOSTNAME` and `PIN` entry. The `PIN` is the "magic value" needed to authenticate (yes, this could be better, but hey, it's something).
+
+```
+  # .env
+  HOSTNAME=your_server_hostname_here
+  PIN=your_pin_code_here
+  NODE_ENV=production
+```
+
+You should then be able to run.
+```
+  npm install
+  npm start
+```
+
+## Apps
+
+There are a small number of apps included as demos. As of this writing, they are
+  - `/can` is a simple can bus viewer, which is useful to see the raw messages coming through.
+  - `/signals` is a signal viewer that allows exploration of available can signals.
+  - `/bttf/gauges` is a novelty back to the future center gauge cluster that shows a number of interesting live values
+
+All of these are meant to be run from the Model 3's main screen.
+
+## Tools
+
+There are a number of tools included that will help with development.
+
+- `bin/onyx-m2-monitor` monitors the canbus messages and saves them to a log file.
+- `bin/m2-serial-replay` replays a log file to the serial port. This is useful for debugging the superb communication from the workbench.
+- `bin/m2-ws-replay` replays a log file to the websocket. This is useful to debug application without having to be in the car and/or driving.
+- `bin/parse-dbc` parses a dbc file and outputs a json file that may be consumed by applications.
+
+## Model 3 browser findings
+
+  - V10 is running a very recent version of Chrome (v75)
+  - User agent string is appended with "Tesla" followed by a slash and the firmware
+    version (Tesla/2019.32.11.1-d39e85a)
+  - The screen width is 1260px and the height is reported as 931px, but is really 924px
+  - Has most of the desktop APIs (when comparing to Chrome v74), but
+    - No bluetooth functions
+    - No notifications
+  - Has touch support (ontouchcancel, ontouchend, ontouchmove, ontouchstart)
+  - Some interesting sounding extra functions are present
+    - teslaQuery
+    - teslaQueryCancel
+    - injectScript
+    - teslaTryInit
+    - teslaInit
+    - teslaCss
+    - teslaGeolocation
+
+This last group would be interesting to figure out. The css one sounds appealing if
+it allows us to know when the car switches to night mode. It would be awesome if
+teslaQuery let us grab CAN messages, but yeah, just dreaming here.
+
+## Raw notes to be cleaned up
+
+### Things that would be useful:
 
   - Garage door open/close!!!
 
@@ -50,7 +118,7 @@
   - Media display / control
     - Basically a redo of the native one, but can be integrated with other goodies
 
-# Design
+### Design
 
   - Have a number of small displays, and a single large display that you can display
     one thing at a time in
@@ -71,7 +139,7 @@
     - Photos
     - Dash/sentry cams
 
-# Random implementation ideas:
+### Random implementation ideas:
 
   - Switch to night mode when connected phone goes on night light
 
@@ -86,25 +154,3 @@
 
   - The trip display could be powered by the tesla api and mapbox
 
-# Model 3 browser findings
-
-  - V10 is running a very recent version of Chrome (v75)
-  - User agent string is appended with "Tesla" followed by a slash and the firmware
-    version (Tesla/2019.32.11.1-d39e85a)
-  - The screen width is 1260px and the height is reported as 931px, but is really 924px
-  - Has most of the desktop APIs (when comparing to Chrome v74), but
-    - No bluetooth functions
-    - No notifications
-  - Has touch support (ontouchcancel, ontouchend, ontouchmove, ontouchstart)
-  - Some interesting sounding extra functions are present
-    - teslaQuery
-    - teslaQueryCancel
-    - injectScript
-    - teslaTryInit
-    - teslaInit
-    - teslaCss
-    - teslaGeolocation
-
-This last group would be interesting to figure out. The css one sounds appealing if
-it allows us to know when the car switches to night mode. It would be awesome if
-teslaQuery let us grab CAN messages, but yeah, just dreaming here.
