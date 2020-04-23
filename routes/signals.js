@@ -35,7 +35,7 @@ router.get('/:category/:message', (req, res, next) => {
     return next(createError(404, 'Message not found'))
   }
   res.render('signals', {
-    title: 'Onyx Signals'
+    title: 'Onyx M2 Signals'
   })
 })
 
