@@ -210,6 +210,10 @@ a {
   font-size: 28px;
 }
 
+.tesla.screen > .segment {
+  margin: 0;
+}
+
 .tesla.screen.inverted {
   background-color: rgb(9,9,9); /* found empirically */
 }
@@ -244,9 +248,21 @@ a {
 
 .can.log.segment {
   /* max-height: 804px; */
-  font-family: monospace;
+  font-family: 'Gotham Medium';
   align-content: start;
 }
+
+.can.log .button {
+  font-family: 'Gotham Bold'
+}
+
+#toggle {
+  z-index: 1;
+  position: absolute;
+  right: 40px;
+  top: 40px;
+}
+
 
 .signals.grid {
   font-variant: all-small-caps;
