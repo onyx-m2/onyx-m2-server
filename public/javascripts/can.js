@@ -32,6 +32,7 @@ $(() => {
     for(var id in timestamps) {
       if (now - timestamps[id] > 500) {
         $(`#msg${id} .red.label`).addClass('basic')
+        delete timestamps[id]
       }
     }
   }, 500)
