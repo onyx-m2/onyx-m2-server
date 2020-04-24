@@ -34,8 +34,8 @@ app.use((req, res, next) => {
   if (req.path != '/' && !req.pin) {
     return res.redirect(`/?redirect=${req.path}`)
   }
-  if (!req.cookies['hostname']) {
-    res.cookie('hostname', process.env.HOSTNAME, { maxAge: 31536000, httpOnly: false })
+  if (!req.cookies['m2host']) {
+    res.cookie('m2host', process.env.M2HOST, { maxAge: 31536000, httpOnly: false })
   }
   next()
 })
@@ -71,7 +71,7 @@ app.ws('/m2device', (ws, req) => {
 
 var m2ControlWs
 app.ws('/m2', (ws, req) => {
-  // upon connecting a new m2 client, send the m2 connect message immediatly
+  // upon connecting a new m2 client, send the m2 connect message immediately
   // if the m2 device is connected
   if (m2DeviceWs) {
     ws.send("m2:connect")

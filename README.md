@@ -8,11 +8,11 @@ NOTE: This documentation is a work in progress, and by this I mean it sucks and 
 
 This is currently a pretty straight forward Node/Express server.
 
-Start by setting up your environment in a .env file. It should have at least a `HOSTNAME` and `PIN` entry. The `PIN` is the "magic value" needed to authenticate (yes, this could be better, but hey, it's something).
+Start by setting up your environment in a .env file. It should have at least a `M2HOST` and `PIN` entry. The `PIN` is the "magic value" needed to authenticate (yes, this could be better, but hey, it's something).
 
 ```
   # .env
-  HOSTNAME=your_server_hostname_here
+  M2HOST=your_server_hostname_here
   PIN=your_pin_code_here
   NODE_ENV=production
 ```
@@ -85,7 +85,7 @@ teslaQuery let us grab CAN messages, but yeah, just dreaming here.
 
   - Photos
     - quickly display your recently taken google photos
-    - swipe left and right to move amonst them
+    - swipe left and right to move amongst them
     - maybe even a real time sync?
 
   - Dash/Sentry mode cams

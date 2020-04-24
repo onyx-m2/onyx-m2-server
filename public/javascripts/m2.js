@@ -1,5 +1,12 @@
 (function(root) {
 
+  const CAN_MSG_FLAG_RESET = 0x00
+  const CAN_MSG_FLAG_TRANSMIT = 0x01
+
+  const CMDID_SET_ALL_MSG_FLAGS = 0x01
+  const CMDID_SET_MSG_FLAGS = 0x02
+  const CMDID_GET_MSG_LAST_VALUE = 0x03
+
   class M2EventTarget extends EventTarget {
 
     constructor() {
@@ -12,28 +19,35 @@
 
     setAllMessageFlags(flags) {
       if (this._wsConnected) {
-        this._ws.send(Uint8Array.from([1, 1, flags & 0xff]))
+        const size = 1
+        this._ws.send(Uint8Array.from([CMDID_SET_ALL_MSG_FLAGS, size, flags & 0xff]))
       }
     }
 
     setMessageFlags(id, flags) {
       if (this._wsConnected) {
-        this._ws.send(Uint8Array.from([2, 3, id & 0xff, id >> 8, flags & 0xff]))
+        const size = 3
+        this._ws.send(Uint8Array.from([CMDID_SET_MSG_FLAGS, size, id & 0xff, id >> 8, flags & 0xff]))
       }
     }
 
     getMessageValue(messageOrId) {
       if (this._wsConnected) {
+        const size = 2
         var id = messageOrId
         if (typeof(messageOrId) === 'object') {
           id = messageOrId.id
         }
-        this._ws.send(Uint8Array.from([3, 2, id & 0xff, id >> 8]))
+        this._ws.send(Uint8Array.from([CMDID_GET_MSG_LAST_VALUE, size, id & 0xff, id >> 8]))
       }
     }
 
+    enableAllMessages() {
+      this.setAllMessageFlags(CAN_MSG_FLAG_TRANSMIT)
+    }
+
     disableAllMessages() {
-      this.setAllMessageFlags(0x00)
+      this.setAllMessageFlags(CAN_MSG_FLAG_RESET)
     }
 
     enableMessage(messageOrMnemonic) {
@@ -43,7 +57,7 @@
       }
       if (message) {
         this.getMessageValue(message.id)
-        this.setMessageFlags(message.id, 0x01)
+        this.setMessageFlags(message.id, CAN_MSG_FLAG_TRANSMIT)
       }
     }
 
@@ -59,8 +73,8 @@
 
     connect() {
       const pin = Cookies.get('pin')
-      const hostname = Cookies.get('hostname')
-      const ws = new WebSocket(`ws://${hostname}/m2?pin=${pin}`)
+      const m2host = Cookies.get('m2host')
+      const ws = new WebSocket(`ws://${m2host}/m2?pin=${pin}`)
       ws.binaryType = 'arraybuffer'
       ws.addEventListener('open', () => {
         this._wsConnected = true

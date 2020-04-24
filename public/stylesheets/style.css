@@ -194,7 +194,14 @@ a {
 }
 
 #log {
-  font-size: 20px;
+  font-size: 18px;
+  line-height: 40px;
+  overflow-y: scroll;
+  will-change: scroll-position;
+}
+
+.can.log .value {
+  vertical-align: middle;
 }
 
 .tesla.font {
@@ -250,17 +257,27 @@ a {
   /* max-height: 804px; */
   font-family: 'Gotham Medium';
   align-content: start;
+  padding: 20px;
 }
 
 .can.log .button {
   font-family: 'Gotham Bold'
 }
 
-#toggle {
+#filtertoggle {
   z-index: 1;
   position: absolute;
-  right: 40px;
-  top: 40px;
+  right: 5.4em;
+  top: 2em;
+  margin: 0;
+}
+
+#synctoggle {
+  z-index: 1;
+  position: absolute;
+  right: 2em;
+  top: 2em;
+  margin: 0;
 }
 
 

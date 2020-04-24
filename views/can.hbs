@@ -1,8 +1,27 @@
-<button class="ui circular blue icon button" id="toggle">
+{{! Main panel }}
+<div class="ui can log tesla panel segment">
+  <div class="" id="log">
+  </div>
+</div>
+
+{{! Toggle button for disabling filtering, effectively dumping all data }}
+<button class="ui circular blue icon button" id="filtertoggle">
+   <i class="filter icon"></i>
+</button>
+
+{{! Toggle button for syncing, effectively pausing data updates }}
+<button class="ui circular blue icon button" id="synctoggle">
    <i class="sync icon"></i>
 </button>
 
-<div class="ui can log tesla panel segment" id="log">
-</div>
+{{! Log row template }}
+<script id="row-template" type="text/x-handlebars-template">
+  <div class="canmsg" id="msg\{{id}}">
+    <div class="ui left floated right pointing red label">\{{id}}
+      <div class="detail">\{{mnemonic}}</div>
+    </div>
+    <span class="value">\{{value}}</span>
+  </div>
+</script>
 
 <script src="/javascripts/can.js"></script>

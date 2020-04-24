@@ -1,37 +1,64 @@
 $(() => {
 
+  const row = Handlebars.compile($('#row-template').html())
+
   const m2 = new M2()
-  var enabled = true
+  var synced = true
+  var filtered = true
+
+  const timestamps = {}
 
   m2.addEventListener('connect', () => {
     $('#disconnected').addClass('hidden')
   })
 
   m2.addEventListener('message', (event) => {
-    if (enabled) {
+    if (synced) {
       const { message } = event
-      const { id, mnemonic, ts, value } = message
-      const output = `${id} ${mnemonic} @ ${ts} => ${value}`
+      var { id, mnemonic, ts, value } = message
+      timestamps[id] = Date.now()
       const $msg = $(`#msg${id}`)
       if ($msg.length == 0) {
-        $(`<div id="msg${id}">${output}</div>'`).appendTo('#log')
+        $('#log').append(row({id, mnemonic, value}))
       } else {
-        $msg.text(output)
+        $msg.find('.red.label').removeClass('basic')
+        $msg.find('.value').text(value)
       }
     }
   })
+
+  setInterval(() => {
+    var now = Date.now()
+    for(var id in timestamps) {
+      if (now - timestamps[id] > 500) {
+        $(`#msg${id} .red.label`).addClass('basic')
+      }
+    }
+  }, 500)
 
   m2.addEventListener('disconnect', (event) => {
     $('#disconnected').removeClass('hidden')
     $('#reason').text(`(${event.reason})`)
   })
 
-  $('#toggle').click(() => {
-    if (enabled) {
-      $('#toggle').addClass('basic')
-    } else {
-      $('#toggle').removeClass('basic')
+  $('#filtertoggle').click(() => {
+    if (filtered) {
+      $('#filtertoggle').addClass('basic')
+      m2.enableAllMessages()
     }
-    enabled = !enabled
+    filtered = false
   })
+
+  $('#synctoggle').click(() => {
+    if (synced) {
+      $('#synctoggle').addClass('basic')
+    } else {
+      $('#synctoggle').removeClass('basic')
+    }
+    synced = !synced
+  })
+
+  function formatTs(ts) {
+    return ts.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
 })
