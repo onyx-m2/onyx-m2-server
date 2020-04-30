@@ -2,7 +2,7 @@
 
 This project is a Node socket server that works in conjunction with [tesla-onyx-m2-firmware](https://github.com/johnmccalla/tesla-onyx-m2-firmware), which allows a Macchina M2 to use this server to relay CANBUS messages to the Model 3's main screen.
 
-NOTE: This documentation is a work in progress, and by this I mean it sucks and I need to improve it. So, I'm sorry. :)
+*NOTE: This documentation is now out of date!!!*
 
 ## Installation
 
