@@ -29,7 +29,7 @@ wss.on('connection', (ws) => {
 setInterval(() => {
   wss.clients.forEach((ws) => {
     if (!ws.alive) {
-      log.warn(`Terminating unresponsive client on socket ${ws.id}`)
+      log.warn(`Terminating unresponsive socket ${ws.id}`)
       return ws.terminate()
     }
     ws.alive = false
