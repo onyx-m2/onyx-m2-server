@@ -71,12 +71,16 @@ let primary
 function handleClientConnection(ws) {
   log.info(`Connection ${ws.id} is a client`)
   if (m2) {
-    ws.send("m2:connect")
+    ws.send('m2:connect')
   }
   ws.on('message', (msg) => {
-    primary = ws
-    if (m2) {
-      m2.send(msg)
+    if (msg === 'ping') {
+      ws.send('pong')
+    } else {
+      primary = ws
+      if (m2) {
+        m2.send(msg)
+      }
     }
   })
   ws.on('close', () => {
