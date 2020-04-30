@@ -10,9 +10,9 @@ const interpretedLog = fs.createWriteStream(`./logs/m2-${ts}-interpreted.log`)
 
 const WebSocket = require('ws');
 
-const m2host = process.env.M2HOST
-const pin = process.env.PIN
-const ws = new WebSocket(`ws://${m2host}/m2?pin=${pin}`);
+const hostname = process.env.M2_HOSTNAME
+const pin = process.env.AUTHORIZATION
+const ws = new WebSocket(`ws://${hostname}/m2?pin=${pin}`);
 ws.on('open', () => {
   console.log(`Monitoring active`)
   ws.on('message', (msg) => {

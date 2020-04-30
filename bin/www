@@ -4,91 +4,72 @@ if (require('dotenv').config().error) {
   return
 }
 
-/**
- * Module dependencies.
- */
-var app = require('../app').app;
-var debug = require('debug')('tesla-browser-tests:server');
-//var http = require('http');
+const fs = require('fs')
+const http = require('http')
+const https = require('https')
+const log = require('../logger')
+const app = require('../app')
+const m2 = require('../m2')
 
-/**
- * Get port from environment and store in Express.
- */
-
-var port = normalizePort(process.env.PORT || '3000');
-app.set('port', port);
-
-/**
- * Create HTTP server.
- */
-
-//var server = http.createServer(app);
-var server = require('../app').server
-
-/**
- * Listen on provided port, on all network interfaces.
- */
-
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
-
-/**
- * Normalize a port into a number, string, or false.
- */
-
-function normalizePort(val) {
-  var port = parseInt(val, 10);
-
-  if (isNaN(port)) {
-    // named pipe
-    return val;
-  }
-
-  if (port >= 0) {
-    // port number
-    return port;
-  }
-
-  return false;
+// Create both a http server (for the m2), and a https server for the browser clients
+// that will likely be required to run https
+standUpServer(http, normalizePort(process.env.HTTP_PORT || 80))
+if (process.env.SSL_KEY) {
+  standUpServer(https, normalizePort(process.env.HTTPS_PORT || 443), {
+    key: fs.readFileSync(process.env.SSL_KEY),
+    cert: fs.readFileSync(process.env.SSL_CERT)
+  })
 }
 
-/**
- * Event listener for HTTP server "error" event.
- */
+// Stand up a server using the module and port, and optionally the options
+function standUpServer(module, port, options) {
+  const server = module.createServer(options || {}, app)
+  server.listen(port)
+  server.on('upgrade', m2)
+  server.on('error', (error) => handleError(error, port))
+  server.on('listening', () => handleListening(server))
+  return server
+}
 
-function onError(error) {
-  if (error.syscall !== 'listen') {
-    throw error;
+// Normalize a port into a number, string, or false
+function normalizePort(val) {
+  var port = parseInt(val, 10)
+  if (isNaN(port)) {
+    return val // named pipe
   }
+  if (port >= 0) {
+    return port // port number
+  }
+  return false
+}
 
+// Event listener for HTTP server "error" event
+function handleError(error, port) {
+  if (error.syscall !== 'listen') {
+    throw error
+  }
   var bind = typeof port === 'string'
     ? 'Pipe ' + port
-    : 'Port ' + port;
+    : 'Port ' + port
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
-      process.exit(1);
-      break;
+      log.error(bind + ' requires elevated privileges')
+      process.exit(1)
     case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
-      process.exit(1);
-      break;
+      log.error(bind + ' is already in use')
+      process.exit(1)
     default:
-      throw error;
+      throw error
   }
 }
 
-/**
- * Event listener for HTTP server "listening" event.
- */
-
-function onListening() {
-  var addr = server.address();
+// Event listener for HTTP server "listening" event
+function handleListening(server) {
+  var addr = server.address()
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
-    : 'port ' + addr.port;
-  debug('Listening on ' + bind);
+    : 'port ' + addr.port
+  log.info('Listening on ' + bind)
 }
