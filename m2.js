@@ -35,7 +35,7 @@ setInterval(() => {
     ws.alive = false
     ws.ping()
   })
-}, 2000)
+}, 4000)
 
 // M2 connection handling that broadcasts connect and disconnect messages to clients
 // as well as all binary messages send by the device
