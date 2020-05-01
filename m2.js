@@ -21,6 +21,8 @@ wss.on('connection', (ws) => {
   // set that the connection is alive now and on every received pong
   ws.alive = true
   ws.on('pong', () => {
+    const latency = Date.now() - ws.pingMillisec
+    log.info(`Connection ${ws.id} latency is ${latency} ms`)
     ws.alive = true
   })
 })
@@ -33,6 +35,7 @@ setInterval(() => {
       return ws.terminate()
     }
     ws.alive = false
+    ws.pingMillisec = Date.now()
     ws.ping()
   })
 }, 4000)
