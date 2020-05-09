@@ -69,12 +69,12 @@ Any message that is binary is assumed to be a CAN message from the M2, or a cont
 message from a client. The server does not unpack any of these binary messages, but
 rather acts like a relay.
 
-See [onyx-m2-server](https://github.com/johnmccalla/tesla-onyx-m2-server) for
+See [onyx-m2-firmware](https://github.com/johnmccalla/tesla-onyx-m2-firmware) for
 up to date information on the format of the CAN messages and the commands.
 
 # Deployment
 
-TODO: a simple shoe string deployment example
+*TODO*: a simple shoe string deployment example
 
 # Apps
 
@@ -89,3 +89,78 @@ There are a number of tools included that will help with development.
 - `bin/m2-serial-replay` replays a log file to the serial port. This is useful for debugging the superb communication from the workbench.
 - `bin/m2-ws-replay` replays a log file to the websocket. This is useful to debug application without having to be in the car and/or driving.
 - `bin/parse-dbc` parses a dbc file and outputs a json file that may be consumed by applications.
+
+# Higher Level Client Protocol
+
+What if did all the signal wrangling on the server, and presented clients with a
+nice high level interface to messages?
+
+Possible flow:
+
+```js
+  // Server sends hello, you are session X
+  {
+    event: 'hello',
+    data: {
+      session: id,
+    }
+  }
+
+  // Client then responds by setting up its subscriptions
+  {
+    event: 'subscribe',
+    data: 'DI_elecPower'
+  }
+
+  // Client can also later unsubscribe to a signal
+  {
+    event: 'unsubscribe',
+    data: 'DI_elecPower'
+  }
+
+  // When a subscribed signal is received from the M2, the server sends
+  {
+    event: 'signal',
+    data: {
+      mnemonic: 'DI_elecPower',
+      value: 200
+    }
+  }
+
+  // Client can also ask all messages to be forwarded (firehose), this will
+  // enable all messages on the M2
+  {
+    event: 'monitor-messages',
+    data: true
+  }
+
+  // Server will then send that client
+  {
+    event: 'message'
+    data: {
+      id: 120,
+      value: [0x12, 0x12, 0x12, ...]
+    }
+  }
+
+  // Ping pong is implemented by having the client send
+  {
+    event: 'ping'
+  }
+
+  // and the responds with
+  {
+    event: 'pong'
+  }
+
+  // Server will also send client periodic updates on the M2's status (including rate of
+  // messages emitted)
+  {
+    event: 'status',
+    data: {
+      online: true,
+      latency: 100,
+      rate: 10
+    }
+  }
+```

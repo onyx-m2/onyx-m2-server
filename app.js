@@ -1,13 +1,17 @@
 const createError = require('http-errors')
 const express = require('express')
+const cors = require('cors')
 const cookieParser = require('cookie-parser')
+const path = require('path')
 const log = require('./logger')
 
 const app = express()
 app.set('trust proxy', 1)
+app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
+app.use('/dbc', express.static(path.join(__dirname, 'dbc')))
 
 // log incoming requests
 app.use((req, res, next) => {
@@ -18,7 +22,7 @@ app.use((req, res, next) => {
 // simple pin based authorization that saves query string pin to cookies
 // for convenience using a browser
 app.use((req, res, next) => {
-  const pin = req.query['pin'] | req.cookies['pin'] | req.body['pin']
+  const pin = req.headers['authorization'] || req.query['pin'] || req.cookies['pin'] || req.body['pin']
   if (!pin) {
     return next(createError(401, 'No authorization provided'))
   }
@@ -36,10 +40,6 @@ app.use((req, res, next) => {
 
 app.use('/', require('./routes/index'))
 app.use('/weather', require('./routes/weather'))
-
-app.use('/', (req, res) => {
-  res.json({})
-})
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
