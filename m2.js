@@ -157,7 +157,9 @@ function releaseSignalMessageRef(signal) {
 }
 
 function enableAllSubscribedMessages() {
+  log.debug(`Enabling all subscribed messages`)
   Object.keys(signalEnabledMessageRefs).forEach(mnemonic => {
+    log.debug(`Enabling message ${mnemonic}, has ${signalEnabledMessageRefs[mnemonic]} signals`)
     const message = dbc.getMessage(mnemonic)
     enableMessage(message.id)
   })
