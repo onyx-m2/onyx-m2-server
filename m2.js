@@ -14,12 +14,6 @@ const PING_INTERVAL = 1000
 // Maximum allowable latency before the server terminates connections
 const UNRESPONSIVE_LATENCY = 4000
 
-// Message that instructs the M2 to disable sending of all messages, this is the
-// only M2 binary message known to the server; it's here to provide a level of
-// security for stopping the sending of data that's no longer needed in case all
-// clients are disconnected
-const DISABLE_ALL_MSGS = Uint8Array.of(1, 1, 0)
-
 // The M2 device web socket
 let m2 = null
 
@@ -154,6 +148,11 @@ function releaseSignalMessageRef(signal) {
     }
     signalEnabledMessageRefs[signal.message.mnemonic] = refs - 1
   }
+}
+
+function resetAllSubscribedMessages() {
+  signalEnabledMessageRefs = {}
+  disableAllMessages()
 }
 
 function enableAllSubscribedMessages() {
@@ -304,8 +303,8 @@ function handleClient(ws) {
   ws.on('close', () => {
     log.info(`Detected closing of ${ws.name}-${ws.id}`)
     if (m2 !== null && wss.clients.size == 1) {
-      log.info('Disabling all M2 messages')
-      m2.send(DISABLE_ALL_MSGS)
+      log.info('Resetting all subscribed messages due to last client disconnecting')
+      resetAllSubscribedMessages()
     }
   })
 }
