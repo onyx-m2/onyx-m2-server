@@ -135,7 +135,7 @@ var signalEnabledMessageRefs = {} // a map of how many signals require a given m
 function addSignalMessageRef(signal) {
   let refs = signalEnabledMessageRefs[signal.message.mnemonic] || 0
   if (refs === 0) {
-    enableMessage(signal.message)
+    enableMessage(signal.message.id)
   }
   signalEnabledMessageRefs[signal.message.mnemonic] = refs + 1
 }
@@ -144,7 +144,7 @@ function releaseSignalMessageRef(signal) {
   let refs = signalEnabledMessageRefs[signal.message.mnemonic] || 0
   if (refs > 0) {
     if (refs === 1) {
-      disableMessage(signal.message)
+      disableMessage(signal.message.id)
     }
     signalEnabledMessageRefs[signal.message.mnemonic] = refs - 1
   }
