@@ -99,6 +99,8 @@ function handleM2(ws) {
     broadcast('status', currentStatus())
   }
 
+  enableAllSubscribedMessages()
+
   const at = []
   function handleMessage(msg) {
     recentMsgAt.push(Date.now())
@@ -152,6 +154,13 @@ function releaseSignalMessageRef(signal) {
     }
     signalEnabledMessageRefs[signal.message.mnemonic] = refs - 1
   }
+}
+
+function enableAllSubscribedMessages() {
+  Object.keys(signalEnabledMessageRefs).forEach(mnemonic => {
+    const message = dbc.getMessage(mnemonic)
+    enableMessage(message.id)
+  })
 }
 
 const CAN_MSG_FLAG_RESET = 0x00
