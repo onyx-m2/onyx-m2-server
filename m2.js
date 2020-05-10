@@ -34,6 +34,10 @@ const wss = new Server({ noServer: true })
 // Connection handler for incoming socket requests
 wss.on('connection', (ws) => {
 
+  // use array buffers, mostly because BitView is buggy when using
+  // node buffers
+  ws.binaryType = 'arraybuffer'
+
   // route incoming connections to either the M2 handle or the client handler
   if (ws.url.pathname === '/m2device') {
     handleM2(ws)
@@ -194,22 +198,6 @@ function disableMessage(id) {
   setMessageFlags(id, CAN_MSG_FLAG_RESET)
 }
 
-function decodeMessage(msg) {
-  if (msg.length >= 7) {
-    const ts = msg.readUInt32LE()
-    const id = msg.readUInt16LE(4)
-    const len = msg.readUInt8(6)
-    const data = msg.slice(7, 7 + len)
-
-    // const ts = msg[0] | (msg[1] << 8) | (msg[2] << 16) | (msg[3] << 24)
-    // const id = msg[4] | (msg[5] << 8)
-    // const len = msg[6]
-    // const value = msg.slice(7, 7 + len)
-    return { ts, id, data }
-  }
-  return {}
-}
-
 function decodeSignal(buf, def) {
   try {
     const val = buf.getBits(def.start, def.length, def.signed)
@@ -220,16 +208,21 @@ function decodeSignal(buf, def) {
 }
 
 function processMessage(msg) {
-  const { id, ts, data } = decodeMessage(msg)
-  if (!id) {
+  if (msg.length < 7) {
     return log.warn(`Invalid message format: ${data}`)
   }
+  const data = new Uint8Array(msg)
+  //const ts = data[0] | (data[1] << 8) | (data[2] << 16) | (data[3] << 24)
+  const id = data[4] | (data[5] << 8)
+  const len = data[6]
+  const buf = new BitView(data.buffer, 7, len)
+
   const def = dbc.getMessageFromId(id)
   if (!def) {
     return log.warn(`No definition for message ${id}`)
   }
+
   const ingress = {}
-  const buf = new BitView(data)
   if (def.signals) {
     def.signals.forEach(s => {
       ingress[s.mnemonic] = decodeSignal(buf, s)
