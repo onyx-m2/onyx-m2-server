@@ -77,7 +77,10 @@ setInterval(() => {
   recentRate = recentMsgAt.length
 }, 1000)
 
-// M2 handling that broadcasts all binary messages send by the device
+/**
+ * M2 handler that broadcasts all binary messages send by the device
+ * @param {*} ws Web socket to the M2 device
+ */
 function handleM2(ws) {
   log.info(`New m2-${ws.id} connection`)
   ws.name = 'm2'
@@ -249,21 +252,25 @@ function processMessage(msg) {
       log.warn(`Message ${def.mnemonic} doesn't have a multiplexed signal for ${multiplexId}`)
     }
   }
-  /// ><>>> TODO: broadcast only to subscribed clients
   Object.keys(ingress).forEach(mnemonic => {
     const value = ingress[mnemonic]
-    //if (listeners[mnemonic]) {
-      broadcast('signal', { mnemonic, value })
-      //listeners[mnemonic].forEach(l => l(value))
-    //}
+    wss.clients.forEach(ws => {
+      if (ws !== m2 && ws.readyState === 1 && ws.subscriptions[mnemonic]) {
+        send(ws, 'signal', { mnemonic, value })
+      }
+    })
   })
 }
 
-// Client handling that relays commands to the M2, and implements the message level
-// ping pong mechanism
+/**
+ * Client handling that relays commands to the M2, and implements the message level
+ * ping pong mechanism.
+ * @param {*} ws Web socket to a client
+ */
 function handleClient(ws) {
   log.info(`New client-${ws.id} connection`)
   ws.name = 'client'
+  ws.subscriptions = {}
   send(ws, 'hello', {
     session: ws.id
   })
@@ -283,6 +290,7 @@ function handleClient(ws) {
       case 'subscribe': {
         log.info(`Subscribe from client-${ws.id} for ${data}`)
         const signal = dbc.getSignal(data)
+        ws.subscriptions[data] = true
         addSignalMessageRef(signal)
         break
       }
@@ -290,6 +298,7 @@ function handleClient(ws) {
       case 'unsubscribe': {
         log.info(`Unsubscribe from client-${ws.id} for ${data}`)
         const signal = dbc.getSignal(data)
+        delete ws.subscriptions[data]
         releaseSignalMessageRef(signal)
         break
       }
@@ -302,6 +311,12 @@ function handleClient(ws) {
 
   ws.on('close', () => {
     log.info(`Detected closing of ${ws.name}-${ws.id}`)
+    Object.keys(ws.subscriptions).forEach(mnemonic => {
+      log.info(`Removing stale subscription ${mnemonic} of client-${ws.id}`)
+      const signal = dbc.getSignal(mnemonic)
+      releaseSignalMessageRef(signal)
+    })
+    delete ws.subscriptions
     if (m2 !== null && wss.clients.size == 1) {
       log.info('Resetting all subscribed messages due to last client disconnecting')
       resetAllSubscribedMessages()
