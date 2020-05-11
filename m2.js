@@ -96,16 +96,16 @@ function handleM2(ws) {
     broadcast('status', currentStatus())
   }
 
-  enableAllSubscribedMessages()
-
-  const at = []
-  function handleMessage(msg) {
-    recentMsgAt.push(Date.now())
-    //broadcast('message', Array.from(msg))
-    processMessage(msg)
+  if (snifferRefs != 0) {
+    enableAllMessages()
+  } else {
+    enableAllSubscribedMessages()
   }
 
-  ws.on('message', handleMessage)
+  ws.on('message', (message) => {
+    recentMsgAt.push(Date.now())
+    processMessage(message)
+  })
 
   ws.on('close', () => {
     log.info(`Detected closing of m2-${ws.id}`)
@@ -133,6 +133,7 @@ function currentStatus() {
   return { online, latency, rate }
 }
 
+var snifferRefs = 0
 var signalEnabledMessageRefs = {} // a map of how many signals require a given message
 
 function addSignalMessageRef(signal) {
@@ -165,6 +166,21 @@ function enableAllSubscribedMessages() {
     const message = dbc.getMessage(mnemonic)
     enableMessage(message.id)
   })
+}
+
+function addSnifferRef() {
+  snifferRefs++
+  if (snifferRefs === 1) {
+    enableAllMessages()
+  }
+}
+
+function releaseSnifferRef() {
+  snifferRefs--
+  if (snifferRefs === 0){
+    disableAllMessages()
+    enableAllSubscribedMessages()
+  }
 }
 
 const CAN_MSG_FLAG_RESET = 0x00
@@ -225,10 +241,16 @@ function processMessage(msg) {
     return log.warn(`Invalid message format: ${data}`)
   }
   const data = new Uint8Array(msg)
-  //const ts = data[0] | (data[1] << 8) | (data[2] << 16) | (data[3] << 24)
+  const ts = data[0] | (data[1] << 8) | (data[2] << 16) | (data[3] << 24)
   const id = data[4] | (data[5] << 8)
   const len = data[6]
-  const buf = new BitView(data.buffer, 7, len)
+  const value = new BitView(data.buffer, 7, len)
+
+  wss.clients.forEach(ws => {
+    if (ws !== m2 && ws.readyState === 1 && (ws.monitor || ws.sniffer)) {
+      send(ws, 'message', { id, ts, value: Array.from(data.slice(7)) })
+    }
+  })
 
   const def = dbc.getMessageFromId(id)
   if (!def) {
@@ -238,15 +260,15 @@ function processMessage(msg) {
   const ingress = {}
   if (def.signals) {
     def.signals.forEach(s => {
-      ingress[s.mnemonic] = decodeSignal(buf, s)
+      ingress[s.mnemonic] = decodeSignal(value, s)
     })
   }
   if (def.multiplexor) {
-    const multiplexId = ingress[def.multiplexor.mnemonic] = decodeSignal(buf, def.multiplexor)
+    const multiplexId = ingress[def.multiplexor.mnemonic] = decodeSignal(value, def.multiplexor)
     const multiplexed = def.multiplexed[multiplexId]
     if (multiplexed) {
       multiplexed.forEach(s => {
-        ingress[s.mnemonic] = decodeSignal(buf, s)
+        ingress[s.mnemonic] = decodeSignal(value, s)
       })
     } else {
       log.warn(`Message ${def.mnemonic} doesn't have a multiplexed signal for ${multiplexId}`)
@@ -303,6 +325,24 @@ function handleClient(ws) {
         break
       }
 
+      case 'monitor': {
+        log.info(`Monitor from client-${ws.id}: ${data}`)
+        ws.monitor = data
+        break
+      }
+
+      case 'sniffer': {
+        log.info(`Sniffer from client-${ws.id}: ${data}`)
+        if (data) {
+          ws.sniffer = true
+          addSnifferRef()
+        } else {
+          ws.sniffer = false
+          releaseSnifferRef()
+        }
+        break
+      }
+
       default: {
         log.warn(`Unknown event from client-${ws.id}: ${event}`)
       }
@@ -317,6 +357,9 @@ function handleClient(ws) {
       releaseSignalMessageRef(signal)
     })
     delete ws.subscriptions
+    if (ws.sniffer) {
+      releaseSnifferRef()
+    }
     if (m2 !== null && wss.clients.size == 1) {
       log.info('Resetting all subscribed messages due to last client disconnecting')
       resetAllSubscribedMessages()

@@ -76,6 +76,12 @@ up to date information on the format of the CAN messages and the commands.
 
 *TODO*: a simple shoe string deployment example
 
+To run node apps on ports below 1024, run this once (and every time you upgrade your
+node installation)
+```
+sudo setcap 'cap_net_bind_service=+ep' /usr/bin/node
+```
+
 # Apps
 
 There are no longer any apps provided as part of the server. The server is now purely a data relay,
@@ -127,18 +133,26 @@ Possible flow:
     }
   }
 
-  // Client can also ask all messages to be forwarded (firehose), this will
-  // enable all messages on the M2
+  // Clients can ask to be sniffers, which enables all messages on the M2 and forwards
+  // them to the client
   {
-    event: 'monitor-messages',
+    event: 'sniffer',
     data: true
   }
 
-  // Server will then send that client
+  // Client can also ask to be passive monitors, and receive all messages sent by
+  // the M2
+  {
+    event: 'monitor',
+    data: true
+  }
+
+  // Server sends all messages to monitors and sniffers
   {
     event: 'message'
     data: {
       id: 120,
+      ts: 123456789,
       value: [0x12, 0x12, 0x12, ...]
     }
   }

@@ -1,4 +1,17 @@
 #!/usr/bin/env node
+/**
+ * This script takes a log file produced by `onyx-m2-monitor` and replays on the
+ * configured server, pretending to be an actual M2 device. This is very useful
+ * for debugging while on the workbench, without having to get the car to produce
+ * realtime data.
+ *
+ * @syntax
+ * m2-ws-replay filename [stepMode]
+ *
+ * @argument {filename} Name of a log file to replay
+ * @argument {stepMode} Optional flag to playback one line at time
+ */
+
 require('dotenv').config()
 const lineReader = require('line-reader')
 const WebSocket = require('ws');
@@ -58,5 +71,11 @@ ws.on('open', () => {
     }
   })
 })
-
-
+ws.on('error', (e) => {
+  console.log(`Error connecting to the server (${e.message}), exiting`)
+  process.exit(1)
+})
+ws.on('close', () => {
+  console.log('Server closed the connection, exiting')
+  process.exit(1)
+})

@@ -11,12 +11,12 @@ var lastTs = 0
 
 function sleep(millis) {
   if (stepMode) {
-    console.log('Press enter to continue');
+    console.log('Press enter to continue')
     return new Promise(resolve => process.stdin.once('data', function () {
-      resolve();
+      resolve()
     }))
   }
-  return new Promise(resolve => setTimeout(resolve, millis));
+  return new Promise(resolve => setTimeout(resolve, millis))
 }
 
 const port = new SerialPort(serialPort, { baudRate: 115200 }, (err) => {
@@ -51,7 +51,7 @@ const port = new SerialPort(serialPort, { baudRate: 115200 }, (err) => {
     ]
     msg = msg.concat(data.match(/..?/g).map(s => parseInt(s, 16)))
     port.write(cobs.encode(Buffer.from(msg)))
-    port.write([0x00]);
+    port.write([0x00])
     console.log(line)
     if (last) {
       console.log('Done replaying the log')
