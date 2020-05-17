@@ -239,7 +239,7 @@ function decodeSignal(buf, def) {
 function processMessage(msg) {
   const data = new Uint8Array(msg)
   if (data.length < 7) {
-    return log.warn(`Invalid message format: ${data}`)
+    return log.warn(`Invalid message format, length is ${data.length}, message is ${data.toString()}`)
   }
   const ts = data[0] | (data[1] << 8) | (data[2] << 16) | (data[3] << 24)
   const id = data[4] | (data[5] << 8)
