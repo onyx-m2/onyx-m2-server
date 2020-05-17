@@ -39,6 +39,7 @@ app.use((req, res, next) => {
 // TODO: maybe a data access api? save all m2 data to retrieve it later?
 
 app.use('/', require('./routes/index'))
+app.use('/tesla', require('./routes/tesla'))
 app.use('/weather', require('./routes/weather'))
 
 // catch 404 and forward to error handler
