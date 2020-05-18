@@ -2,6 +2,7 @@ VERSION ""
 BS_:
 BU_:
 
+CM_ "Signals and messages that were moved or deprecated are commented out below";
 CM_ "Added unix and system time signals";
 
 BO_ 792 UTC_systemTime: 8 ETH
@@ -4932,6 +4933,11 @@ BO_ 516 PCS_chgStatus: 8 ETH
  SG_ PCS_chgPwmEnableLine: 56|1@1+ (1,0) [0|0] "" X
  SG_ PCS_gridConfig: 6|2@1+ (1,0) [0|0] "" X
 
+BO_ 692 ID2B4PCS_dcdcBusStatus: 5 VehicleBus
+ SG_ PCS_dcdcHvBusVolt : 10|12@1+ (0.146484375,0) [0|599.853515625] "V"  Receiver
+ SG_ PCS_dcdcLvBusVolt : 0|10@1+ (0.0390625,0) [0|39.9609375] "V"  Receiver
+ SG_ PCS_dcdcLvOutputCurrent : 24|12@1+ (0.1,0) [0|400] "A"  Receiver
+
 BO_ 548 PCS_dcdcStatus: 8 ETH
  SG_ PCS_dcdc12VSupportRtyCnt: 44|4@1+ (1,0) [0|0] "" X
  SG_ PCS_dcdc12VSupportStatus: 2|2@1+ (1,0) [0|0] "" X
@@ -4939,7 +4945,7 @@ BO_ 548 PCS_dcdcStatus: 8 ETH
  SG_ PCS_dcdcFaulted: 15|1@1+ (1,0) [0|0] "" X
  SG_ PCS_dcdcHvBusDischargeStatus: 4|2@1+ (1,0) [0|0] "" X
  SG_ PCS_dcdcInitialPrechargeSubState: 59|5@1+ (1,0) [0|0] "" X
- SG_ PCS_dcdcLvOutputCurrent: 16|12@1+ (0.1,0) [0|0] "A" X
+ CM_ SG_ PCS_dcdcLvOutputCurrent: 16|12@1+ (0.1,0) [0|0] "A" X
  SG_ PCS_dcdcMainState: 6|4@1+ (1,0) [0|0] "" X
  SG_ PCS_dcdcMaxOutputCurrentAllowed: 29|12@1+ (0.1,0) [0|0] "A" X
  SG_ PCS_dcdcOutputIsLimited: 28|1@1+ (1,0) [0|0] "" X
@@ -5045,8 +5051,8 @@ BO_ 708 PCS_logging: 8 ETH
  SG_ PCS_chgNgPllLocked m5: 58|1@1+ (1,0) [0|0] "" X
  SG_ PCS_chgPhManOptimalPhsToUse m5: 59|2@1+ (1,0) [0|0] "" X
  SG_ PCS_chg5VL1Enable m5: 61|1@1+ (1,0) [0|0] "" X
- SG_ PCS_dcdcLvBusVolt m6: 5|10@1+ (0.0390625,0) [0|0] "V" X
- SG_ PCS_dcdcHvBusVolt m6: 16|12@1+ (0.146484,0) [0|0] "V" X
+ CM_ SG_ PCS_dcdcLvBusVolt m6: 5|10@1+ (0.0390625,0) [0|0] "V" X
+ CM_ SG_ PCS_dcdcHvBusVolt m6: 16|12@1+ (0.146484,0) [0|0] "V" X
  SG_ PCS_dcdcMaxLvOutputCurrent m6: 28|12@1+ (0.1,0) [0|0] "A" X
  SG_ PCS_dcdcCurrentLimit m6: 40|12@1+ (0.1,0) [0|0] "A" X
  SG_ PCS_dcdcLvOutputCurrentTempLimit m6: 52|12@1+ (0.1,0) [0|0] "A" X

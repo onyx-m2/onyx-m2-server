@@ -2,11 +2,10 @@ const { Server } = require('ws')
 const { BitView } = require('bit-buffer')
 const log = require('./logger')
 
-const cats = require('./dbc/tm3/categories.json') /// <>>>> TEMP wrap this in DBC object - find way to share with client
-const defs = require('./dbc/tm3/definitions.json') /// <>>>> TEMP wrap this in DBC object - find way to share with client
-const DBC = require('./dbc')
-
-const dbc = new DBC(cats, defs)
+const settings = {}
+function set(name, value) {
+  settings[name] = value
+}
 
 // Interval at which to ping connections
 const PING_INTERVAL = 1000
@@ -137,20 +136,30 @@ var snifferRefs = 0
 var signalEnabledMessageRefs = {} // a map of how many signals require a given message
 
 function addSignalMessageRef(signal) {
-  let refs = signalEnabledMessageRefs[signal.message.mnemonic] || 0
-  if (refs === 0) {
-    enableMessage(signal.message.id)
+  const message = settings.dbc.getSignalMessage(signal)
+  if (!message) {
+    log.warn(`Attempting to subscribe to nonexistent signal ${signal}`)
+   return
   }
-  signalEnabledMessageRefs[signal.message.mnemonic] = refs + 1
+  let refs = signalEnabledMessageRefs[message.mnemonic] || 0
+  if (refs === 0) {
+    enableMessage(message.id)
+  }
+  signalEnabledMessageRefs[message.mnemonic] = refs + 1
 }
 
 function releaseSignalMessageRef(signal) {
-  let refs = signalEnabledMessageRefs[signal.message.mnemonic] || 0
+  const message = settings.dbc.getSignalMessage(signal)
+  if (!message) {
+    log.warn(`Attempting to unsubscribe from nonexistent signal ${signal}`)
+   return
+  }
+  let refs = signalEnabledMessageRefs[message.mnemonic] || 0
   if (refs > 0) {
     if (refs === 1) {
-      disableMessage(signal.message.id)
+      disableMessage(message.id)
     }
-    signalEnabledMessageRefs[signal.message.mnemonic] = refs - 1
+    signalEnabledMessageRefs[message.mnemonic] = refs - 1
   }
 }
 
@@ -163,7 +172,7 @@ function enableAllSubscribedMessages() {
   log.debug(`Enabling all subscribed messages`)
   Object.keys(signalEnabledMessageRefs).forEach(mnemonic => {
     log.debug(`Enabling message ${mnemonic}, has ${signalEnabledMessageRefs[mnemonic]} signals`)
-    const message = dbc.getMessage(mnemonic)
+    const message = settings.dbc.getMessage(mnemonic)
     enableMessage(message.id)
   })
 }
@@ -252,7 +261,7 @@ function processMessage(msg) {
     }
   })
 
-  const def = dbc.getMessageFromId(id)
+  const def = settings.dbc.getMessageFromId(id)
   if (!def) {
     return log.warn(`No definition for message ${id}`)
   }
@@ -311,17 +320,15 @@ function handleClient(ws) {
 
       case 'subscribe': {
         log.info(`Subscribe from client-${ws.id} for ${data}`)
-        const signal = dbc.getSignal(data)
         ws.subscriptions[data] = true
-        addSignalMessageRef(signal)
+        addSignalMessageRef(data)
         break
       }
 
       case 'unsubscribe': {
         log.info(`Unsubscribe from client-${ws.id} for ${data}`)
-        const signal = dbc.getSignal(data)
         delete ws.subscriptions[data]
-        releaseSignalMessageRef(signal)
+        releaseSignalMessageRef(data)
         break
       }
 
@@ -353,8 +360,7 @@ function handleClient(ws) {
     log.info(`Detected closing of ${ws.name}-${ws.id}`)
     Object.keys(ws.subscriptions).forEach(mnemonic => {
       log.info(`Removing stale subscription ${mnemonic} of client-${ws.id}`)
-      const signal = dbc.getSignal(mnemonic)
-      releaseSignalMessageRef(signal)
+      releaseSignalMessageRef(mnemonic)
     })
     delete ws.subscriptions
     if (ws.sniffer) {
@@ -403,4 +409,4 @@ function handleUpgrade(req, socket, head) {
   })
 }
 
-module.exports = handleUpgrade
+module.exports = { set, handleUpgrade }

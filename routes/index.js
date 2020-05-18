@@ -6,4 +6,8 @@ router.get('/', (req, res) => {
   res.json({})
 })
 
+router.get('/dbc', (req, res) => {
+  res.json(req.app.get('dbc'))
+})
+
 module.exports = router
