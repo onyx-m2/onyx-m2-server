@@ -2,9 +2,18 @@ const { Server } = require('ws')
 const { BitView } = require('bit-buffer')
 const log = require('./logger')
 
-const settings = {}
+let pg = null
+let dbc = null
+
 function set(name, value) {
-  settings[name] = value
+  switch (name) {
+    case 'pg':
+      pg = value
+      break
+    case 'dbc':
+      dbc = value
+      break
+  }
 }
 
 // Interval at which to ping connections
@@ -80,7 +89,7 @@ setInterval(() => {
  * M2 handler that broadcasts all binary messages send by the device
  * @param {*} ws Web socket to the M2 device
  */
-function handleM2(ws) {
+async function handleM2(ws) {
   log.info(`New m2-${ws.id} connection`)
   ws.name = 'm2'
 
@@ -103,11 +112,20 @@ function handleM2(ws) {
 
   ws.on('message', (message) => {
     recentMsgAt.push(Date.now())
-    processMessage(message)
+    processMessage(ws, message)
   })
 
   ws.on('close', () => {
     log.info(`Detected closing of m2-${ws.id}`)
+    if (ws.segmentId) {
+      pg.query(`
+        update canbus_segments
+        set
+          end_at = now(),
+          end_id = (select tid from canbus_msgs order by tid desc limit 1)
+        where tid = $1
+      `, [ws.segmentId])
+    }
     if (ws === m2 ) {
       m2 = null
       broadcast('status', currentStatus())
@@ -136,7 +154,7 @@ var snifferRefs = 0
 var signalEnabledMessageRefs = {} // a map of how many signals require a given message
 
 function addSignalMessageRef(signal) {
-  const message = settings.dbc.getSignalMessage(signal)
+  const message = dbc.getSignalMessage(signal)
   if (!message) {
     log.warn(`Attempting to subscribe to nonexistent signal ${signal}`)
    return
@@ -149,7 +167,7 @@ function addSignalMessageRef(signal) {
 }
 
 function releaseSignalMessageRef(signal) {
-  const message = settings.dbc.getSignalMessage(signal)
+  const message = dbc.getSignalMessage(signal)
   if (!message) {
     log.warn(`Attempting to unsubscribe from nonexistent signal ${signal}`)
    return
@@ -172,7 +190,7 @@ function enableAllSubscribedMessages() {
   log.debug(`Enabling all subscribed messages`)
   Object.keys(signalEnabledMessageRefs).forEach(mnemonic => {
     log.debug(`Enabling message ${mnemonic}, has ${signalEnabledMessageRefs[mnemonic]} signals`)
-    const message = settings.dbc.getMessage(mnemonic)
+    const message = dbc.getMessage(mnemonic)
     enableMessage(message.id)
   })
 }
@@ -245,7 +263,7 @@ function decodeSignal(buf, def) {
   }
 }
 
-function processMessage(msg) {
+async function processMessage(ws, msg) {
   const data = new Uint8Array(msg)
   if (data.length < 7) {
     return log.warn(`Invalid message format, length is ${data.length}, message is ${data.toString()}`)
@@ -255,13 +273,37 @@ function processMessage(msg) {
   const len = data[6]
   const value = new BitView(data.buffer, 7, len)
 
+  // if this isn't the first message in the segment, just fire and forget
+  if (ws.segmentId) {
+    pg.query(`
+      insert into canbus_msgs (ts, id, data)
+      values ($1, $2, $3)
+    `, [ts, id, value.buffer])
+  }
+  // if it's the first one, insert a first message, returning its id to be able
+  // to create a new segment
+  else {
+    const { rows: dataRows } = await pg.query(`
+      insert into canbus_msgs (ts, id, data)
+      values ($1, $2, $3)
+      returning tid
+    `, [ts, id, value.buffer])
+
+    const { rows: segmentRows } = await pg.query(`
+      insert into canbus_segments (start_id)
+      values ($1)
+      returning tid
+    `, [dataRows[0].tid])
+    ws.segmentId = segmentRows[0].tid
+  }
+
   wss.clients.forEach(ws => {
     if (ws !== m2 && ws.readyState === 1 && (ws.monitor || ws.sniffer)) {
       send(ws, 'message', { id, ts, value: Array.from(data.slice(7)) })
     }
   })
 
-  const def = settings.dbc.getMessageFromId(id)
+  const def = dbc.getMessageFromId(id)
   if (!def) {
     return log.warn(`No definition for message ${id}`)
   }
