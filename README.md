@@ -115,22 +115,29 @@ Possible flow:
   // Client then responds by setting up its subscriptions
   {
     event: 'subscribe',
-    data: 'DI_elecPower'
+    data: ['DI_elecPower']
   }
 
   // Client can also later unsubscribe to a signal
   {
     event: 'unsubscribe',
-    data: 'DI_elecPower'
+    data: ['DI_elecPower']
   }
 
   // When a subscribed signal is received from the M2, the server sends
   {
     event: 'signal',
-    data: {
-      mnemonic: 'DI_elecPower',
-      value: 200
-    }
+    data: [
+      ['DI_elecPower', 200]
+      ...
+    ]
+  }
+
+  // Clients can also request the last value of a number of signals (the server will emit
+  // the same signal event as a response to this, but not subscribe)
+  {
+    event: 'get',
+    data: ['DI_isSunUp']
   }
 
   // Clients can ask to be sniffers, which enables all messages on the M2 and forwards
@@ -150,11 +157,7 @@ Possible flow:
   // Server sends all messages to monitors and sniffers
   {
     event: 'message'
-    data: {
-      id: 120,
-      ts: 123456789,
-      value: [0x12, 0x12, 0x12, ...]
-    }
+    data: [id, ts, [0x12, 0x12, 0x12, ...]]
   }
 
   // Ping pong is implemented by having the client send
@@ -171,10 +174,6 @@ Possible flow:
   // messages emitted)
   {
     event: 'status',
-    data: {
-      online: true,
-      latency: 100,
-      rate: 10
-    }
+    data: [online, latency, rate]
   }
 ```

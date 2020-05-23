@@ -24,3 +24,6 @@ select tid, ts, id, encode(data, 'hex') from public.canbus_msgs;
 
 -- read segments
 select * from canbus_segments;
+
+-- get database size info
+select relname, relpages from pg_class order by relpages desc;

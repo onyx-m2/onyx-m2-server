@@ -147,7 +147,7 @@ function currentStatus() {
     online = true
     latency = m2.latency || 0
   }
-  return { online, latency, rate }
+  return [ online, latency, rate ]
 }
 
 var snifferRefs = 0
@@ -193,6 +193,11 @@ function enableAllSubscribedMessages() {
     const message = dbc.getMessage(mnemonic)
     enableMessage(message.id)
   })
+}
+
+function getLastSignalValues(signals) {
+  const messages = [...new Set(signals.map(s => dbc.getSignalMessage(s)))]
+  messages.forEach(m => getLastMessageValue(m.id))
 }
 
 function addSnifferRef() {
@@ -299,7 +304,7 @@ async function processMessage(ws, msg) {
 
   wss.clients.forEach(ws => {
     if (ws !== m2 && ws.readyState === 1 && (ws.monitor || ws.sniffer)) {
-      send(ws, 'message', { id, ts, value: Array.from(data.slice(7)) })
+      send(ws, 'message', [ id, ts, Array.from(data.slice(7)) ])
     }
   })
 
@@ -325,13 +330,11 @@ async function processMessage(ws, msg) {
       log.warn(`Message ${def.mnemonic} doesn't have a multiplexed signal for ${multiplexId}`)
     }
   }
-  Object.keys(ingress).forEach(mnemonic => {
-    const value = ingress[mnemonic]
-    wss.clients.forEach(ws => {
-      if (ws !== m2 && ws.readyState === 1 && ws.subscriptions[mnemonic]) {
-        send(ws, 'signal', { mnemonic, value })
-      }
-    })
+  wss.clients.forEach(ws => {
+    if (ws !== m2 && ws.readyState === 1) {
+      const signals = ws.subscriptions.filter(s => ingress[s]).map(s => [s, ingress[s]])
+      send(ws, 'signal', signals)
+    }
   })
 }
 
@@ -343,7 +346,7 @@ async function processMessage(ws, msg) {
 function handleClient(ws) {
   log.info(`New client-${ws.id} connection`)
   ws.name = 'client'
-  ws.subscriptions = {}
+  ws.subscriptions = []
   send(ws, 'hello', {
     session: ws.id
   })
@@ -362,15 +365,28 @@ function handleClient(ws) {
 
       case 'subscribe': {
         log.info(`Subscribe from client-${ws.id} for ${data}`)
-        ws.subscriptions[data] = true
-        addSignalMessageRef(data)
+        data.forEach(signal => {
+          ws.subscriptions.push(signal)
+          addSignalMessageRef(signal)
+        })
         break
       }
 
       case 'unsubscribe': {
         log.info(`Unsubscribe from client-${ws.id} for ${data}`)
-        delete ws.subscriptions[data]
-        releaseSignalMessageRef(data)
+        data.forEach(signal => {
+          const index = ws.subscriptions.indexOf(signal)
+          if (index > -1) {
+            ws.subscriptions.splice(index, 1)
+            releaseSignalMessageRef(signal)
+          }
+        })
+        break
+      }
+
+      case 'get': {
+        log.info(`Get from client-${ws.id} for ${data}`)
+        getLastSignalValues(data)
         break
       }
 
@@ -400,7 +416,7 @@ function handleClient(ws) {
 
   ws.on('close', () => {
     log.info(`Detected closing of ${ws.name}-${ws.id}`)
-    Object.keys(ws.subscriptions).forEach(mnemonic => {
+    ws.subscriptions.forEach(mnemonic => {
       log.info(`Removing stale subscription ${mnemonic} of client-${ws.id}`)
       releaseSignalMessageRef(mnemonic)
     })
