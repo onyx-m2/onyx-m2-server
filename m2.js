@@ -332,7 +332,7 @@ async function processMessage(ws, msg) {
   }
   wss.clients.forEach(ws => {
     if (ws !== m2 && ws.readyState === 1) {
-      const signals = ws.subscriptions.filter(s => ingress[s]).map(s => [s, ingress[s]])
+      const signals = ws.subscriptions.filter(s => s in ingress).map(s => [s, ingress[s]])
       send(ws, 'signal', signals)
     }
   })
