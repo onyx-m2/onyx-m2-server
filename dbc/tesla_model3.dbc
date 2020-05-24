@@ -8108,24 +8108,6 @@ BO_ 770 VCLEFT_info: 8 ETH
  SG_ VCLEFT_infoSubcomponent3 m24: 32|32@1+ (1,0) [0|0] "" X
  SG_ VCLEFT_infoCBCAppCRC m31: 32|32@1+ (1,0) [0|0] "" X
 
-BO_ 994 VCLEFT_lightStatus: 4 ETH
- SG_ VCLEFT_FLMapLightStatus: 6|2@1+ (1,0) [0|0] "" X
- SG_ VCLEFT_FLMapLightSwitchPressed: 14|1@1+ (1,0) [0|0] "" X
- SG_ VCLEFT_FRMapLightStatus: 8|2@1+ (1,0) [0|0] "" X
- SG_ VCLEFT_FRMapLightSwitchPressed: 15|1@1+ (1,0) [0|0] "" X
- SG_ VCLEFT_RLMapLightStatus: 10|2@1+ (1,0) [0|0] "" X
- SG_ VCLEFT_RLMapLightSwitchPressed: 16|1@1+ (1,0) [0|0] "" X
- SG_ VCLEFT_RRMapLightStatus: 12|2@1+ (1,0) [0|0] "" X
- SG_ VCLEFT_RRMapLightSwitchPressed: 17|1@1+ (1,0) [0|0] "" X
- SG_ VCLEFT_brakeLightStatus: 0|2@1+ (1,0) [0|0] "" X
- SG_ VCLEFT_brakeTrailerLightStatus: 22|2@1+ (1,0) [0|0] "" X
- SG_ VCLEFT_fogTrailerLightStatus: 26|2@1+ (1,0) [0|0] "" X
- SG_ VCLEFT_leftTurnTrailerLightStatus: 18|2@1+ (1,0) [0|0] "" X
- SG_ VCLEFT_rightTrnTrailerLightStatus: 20|2@1+ (1,0) [0|0] "" X
- SG_ VCLEFT_tailLightStatus: 2|2@1+ (1,0) [0|0] "" X
- SG_ VCLEFT_tailTrailerLightStatus: 24|2@1+ (1,0) [0|0] "" X
- SG_ VCLEFT_turnSignalStatus: 4|2@1+ (1,0) [0|0] "" X
-
 BO_ 1860 VCLEFT_recallStatus: 1 ETH
  SG_ VCLEFT_columnRecallStatus: 4|2@1+ (1,0) [0|0] "" X
  SG_ VCLEFT_mirrorRecallStatus: 6|2@1+ (1,0) [0|0] "" X
