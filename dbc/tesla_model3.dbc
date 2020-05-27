@@ -2318,12 +2318,33 @@ BO_ 741 DIS_power: 7 ETH
  SG_ DIS_elecPower: 16|11@1- (0.5,0) [0|0] "kW" X
  SG_ DIS_heatPowerActual: 48|8@1+ (0.08,0) [0|0] "kW" X
 
-BO_ 390 DIS_torque: 8 ETH
+CM_ "TODO: joshwardell has different signal parsing on 390 and 472, check these";
+
+BO_ 390 DIS_frontTorque: 8 ETH
+ SG_ DIS_frontAxleSpeed: 40|16@1- (0.1,0) [0|0] "RPM" X
+ SG_ DIS_frontTorqueActual: 27|13@1- (2,0) [0|0] "Nm" X
+ SG_ DIS_frontTorqueChecksum: 0|8@1+ (1,0) [0|0] "" X
+ SG_ DIS_frontTorqueCommand: 12|13@1- (2,0) [0|0] "Nm" X
+ SG_ DIS_frontTorqueCounter: 8|4@1+ (1,0) [0|0] "" X
+
+BO_ 472 DIS_torque: 8 ETH
  SG_ DIS_axleSpeed: 40|16@1- (0.1,0) [0|0] "RPM" X
  SG_ DIS_torqueActual: 27|13@1- (2,0) [0|0] "Nm" X
  SG_ DIS_torqueChecksum: 0|8@1+ (1,0) [0|0] "" X
  SG_ DIS_torqueCommand: 12|13@1- (2,0) [0|0] "Nm" X
  SG_ DIS_torqueCounter: 8|4@1+ (1,0) [0|0] "" X
+
+BO_ 341 DIS_angle: 8 ChassisBus
+ SG_ DIS_angleRR : 24|8@1+ (1.40625,0) [0|358.59375] "deg" X
+ SG_ DIS_angleRL : 16|8@1+ (1.40625,0) [0|358.59375] "deg" X
+ SG_ DIS_angleFR : 8|8@1+ (1.40625,0) [0|358.59375] "deg" X
+ SG_ DIS_angleFL : 0|8@1+ (1.40625,0) [0|358.59375] "deg" X
+
+BO_ 373 DIS_speed: 8 ChassisBus
+ SG_ DIS_speedRR : 39|13@1+ (0.04,0) [0|327.64] "RPM" X
+ SG_ DIS_speedRL : 26|13@1+ (0.04,0) [0|327.64] "RPM" X
+ SG_ DIS_speedFR : 13|13@1+ (0.04,0) [0|327.64] "RPM" X
+ SG_ DIS_speedFL : 0|13@1+ (0.04,0) [0|327.64] "RPM" X
 
 BO_ 1557 DIS_udsResponse: 8 ETH
  SG_ DIS_udsResponseData: 0|54@0+ (1024,0) [0|0] "" X
@@ -2777,7 +2798,7 @@ BO_ 822 DI_maxRatedPower: 3 ETH
 BO_ 950 DI_odometerStatus: 4 ETH
  SG_ DI_odometer: 0|32@1+ (0.001,0) [0|0] "km" X
 
-BO_ 918 DI_oilPump: 8 ETH
+BO_ 917 DI_oilPump: 8 ETH
  SG_ DI_oilPumpCurrent: 48|8@1+ (0.1,0) [0|0] "A" X
  SG_ DI_oilPumpCurrentSensorOffset: 56|8@1+ (0.005,0) [0|0] "A" X
  SG_ DI_oilPumpFlowActual: 16|8@1+ (0.06,0) [0|0] "LPM" X
@@ -2786,6 +2807,20 @@ BO_ 918 DI_oilPump: 8 ETH
  SG_ DI_oilPumpPcbT: 24|8@1+ (1,-40) [0|0] "DegC" X
  SG_ DI_oilPumpState: 0|3@1+ (1,0) [0|0] "" X
  SG_ DI_oilPumpVoltage: 40|8@1+ (0.1,0) [0|0] "V" X
+ SG_ DI_oilPumpFluidConfidence : 3|1@1+ (1,0) [0|0] "" X
+ SG_ DI_oilPumpLeadAngle : 4|4@1+ (1.875,0) [0|28.125] "deg" X
+
+BO_ 918 DI_frontOilPump: 8 ETH
+ SG_ DI_frontOilPumpCurrent: 48|8@1+ (0.1,0) [0|0] "A" X
+ SG_ DI_frontOilPumpCurrentSensorOffset: 56|8@1+ (0.005,0) [0|0] "A" X
+ SG_ DI_frontOilPumpFlowActual: 16|8@1+ (0.06,0) [0|0] "LPM" X
+ SG_ DI_frontOilPumpFlowTarget: 8|8@1+ (0.06,0) [0|0] "LPM" X
+ SG_ DI_frontOilPumpFluidT: 32|8@1+ (1,-40) [0|0] "DegC" X
+ SG_ DI_frontOilPumpPcbT: 24|8@1+ (1,-40) [0|0] "DegC" X
+ SG_ DI_frontOilPumpState: 0|3@1+ (1,0) [0|0] "" X
+ SG_ DI_frontOoilPumpVoltage: 40|8@1+ (0.1,0) [0|0] "V" X
+ SG_ DI_frontOilPumpFluidConfidence : 3|1@1+ (1,0) [0|0] "" X
+ SG_ DI_frontOilPumpLeadAngle : 4|4@1+ (1.875,0) [0|28.125] "deg" X
 
 BO_ 614 DI_power: 8 ETH
  SG_ DI_elecPower: 0|11@1- (0.5,0) [0|0] "kW" X
@@ -2793,6 +2828,14 @@ BO_ 614 DI_power: 8 ETH
  SG_ DI_heatPowerActual: 24|8@1+ (0.08,0) [0|0] "kW" X
  SG_ DI_heatPowerOptimal: 32|8@1+ (0.08,0) [0|0] "kW" X
  SG_ DI_heatPowerMax: 48|8@1+ (0.08,0) [0|0] "kW" X
+
+BO_ 294 DI_hvBusStatus: 3 VehicleBus
+ SG_ DI_voltage : 0|10@1+ (0.5,0) [0|500] "V" X
+ SG_ DI_current : 10|11@1+ (1,0) [0|2047] "A" X
+
+BO_ 421 DI_frontHvBusStatus: 3 VehicleBus
+ SG_ DI_frontVoltage : 0|10@1+ (0.5,0) [0|500] "V" X
+ SG_ DI_frontCurrent : 10|11@1+ (1,0) [0|2047] "A" X
 
 BO_ 599 DI_speed: 8 ETH
  SG_ DI_speedChecksum: 0|8@1+ (1,0) [0|0] "" X
@@ -2842,6 +2885,16 @@ BO_ 789 DI_temperature: 8 ETH
  SG_ DI_pcbT: 0|8@1+ (1,-40) [0|0] "DegC" X
  SG_ DI_statorT: 16|8@1+ (1,-40) [0|0] "DegC" X
  SG_ DI_statorTpct: 48|8@1+ (0.4,0) [0|0] "%" X
+
+BO_ 886 DI_frontTemperature: 8 ETH
+ SG_ DI_frontDcCapT: 24|8@1+ (1,-40) [0|0] "DegC" X
+ SG_ DI_frontHeatsinkT: 32|8@1+ (1,-40) [0|0] "DegC" X
+ SG_ DI_frontInverterT: 8|8@1+ (1,-40) [0|0] "DegC" X
+ SG_ DI_frontInverterTQF: 56|2@1+ (1,0) [0|0] "" X
+ SG_ DI_frontInverterTpct: 40|8@1+ (0.4,0) [0|0] "%" X
+ SG_ DI_frontPcbT: 0|8@1+ (1,-40) [0|0] "DegC" X
+ SG_ DI_frontStatorT: 16|8@1+ (1,-40) [0|0] "DegC" X
+ SG_ DI_frontStatorTpct: 48|8@1+ (0.4,0) [0|0] "%" X
 
 BO_ 1367 DI_thermalControl: 3 ETH
  SG_ DI_activeInletTempReq: 8|8@1+ (1,-40) [0|0] "DegC" X
@@ -4920,15 +4973,16 @@ BO_ 830 PARK_sensorStatusRear: 5 ETH
  SG_ PARK_sensorStatusRearCounter: 28|4@1+ (1,0) [0|0] "" X
  SG_ PARK_systemStatusRear: 24|2@1+ (1,0) [0|0] "" X
 
-BO_ 799 PARK_status: 6 ETH
- SG_ PARK_majorVersion: 24|8@1+ (1,0) [0|0] "" X
- SG_ PARK_minorVersion: 32|8@1+ (1,0) [0|0] "" X
- SG_ PARK_serviceRequest: 2|2@1+ (1,0) [0|0] "" X
- SG_ PARK_status: 0|2@1+ (1,0) [0|0] "" X
- SG_ PARK_statusChecksum: 16|8@1+ (1,0) [0|0] "" X
- SG_ PARK_statusCounter: 12|4@1+ (1,0) [0|0] "" X
- SG_ PARK_subMinorVersion: 40|8@1+ (1,0) [0|0] "" X
- SG_ PARK_systemDtcPresent: 4|2@1+ (1,0) [0|0] "" X
+CM_ "799 is now TPMS_data";
+CM_ BO_ 799 PARK_status: 6 ETH
+CM_  SG_ PARK_majorVersion: 24|8@1+ (1,0) [0|0] "" X
+CM_  SG_ PARK_minorVersion: 32|8@1+ (1,0) [0|0] "" X
+CM_  SG_ PARK_serviceRequest: 2|2@1+ (1,0) [0|0] "" X
+CM_  SG_ PARK_status: 0|2@1+ (1,0) [0|0] "" X
+CM_  SG_ PARK_statusChecksum: 16|8@1+ (1,0) [0|0] "" X
+CM_  SG_ PARK_statusCounter: 12|4@1+ (1,0) [0|0] "" X
+CM_  SG_ PARK_subMinorVersion: 40|8@1+ (1,0) [0|0] "" X
+CM_  SG_ PARK_systemDtcPresent: 4|2@1+ (1,0) [0|0] "" X
 
 BO_ 782 PARK_status2: 8 ETH
  SG_ PARK_autoCalComplete: 16|1@1+ (1,0) [0|0] "" X
@@ -5841,12 +5895,19 @@ BO_ 816 SCCM_info: 8 ETH
  SG_ SCCM_infoUdsProtoVersion m20: 8|8@1+ (1,0) [0|0] "" X
  SG_ SCCM_infoBootCrc m20: 32|32@1+ (1,0) [0|0] "" X
 
+BO_ 553 SCCM_rightStalk: 3 ETH
+ SG_ SCCM_gearStalkStatus : 12|3@1+ (1,0) [0|7] "" X
+ SG_ SCCM_parkButtonStatus : 16|2@1+ (1,0) [0|3] "" X
+
+VAL_ 585 SCCM_turnIndicatorStalkStatus 0 "IDLE" 1 "DOWN_1" 2 "DOWN_2" 3 "UP_1" 4 "UO_2" 5 "SNA";
+VAL_ 585 SCCM_parkButtonStatus 0 "NOT_PRESSED" 1 "1ST_DETENT" 2 "2ND_DETENT" 3 "SNA";
+
 BO_ 585 SCCM_leftStalk: 3 ETH
  SG_ SCCM_highBeamStalkStatus: 12|2@1+ (1,0) [0|0] "" X
  SG_ SCCM_leftStalkCounter: 8|4@1+ (1,0) [0|0] "" X
  SG_ SCCM_leftStalkCrc: 0|8@1+ (1,0) [0|0] "" X
- SG_ SCCM_leftStalkReserved1: 19|5@1+ (1,0) [0|0] "" X
- SG_ SCCM_turnIndicatorStalkStatus: 16|3@1+ (1,0) [0|0] "" X
+ SG_ SCCM_leftStalkReserved1: 20|4@1+ (1,0) [0|0] "" X
+ SG_ SCCM_turnIndicatorStalkStatus: 16|4@1+ (1,0) [0|0] "" X
  SG_ SCCM_washWipeButtonStatus: 14|2@1+ (1,0) [0|0] "" X
 
 BO_ 297 SCCM_steeringAngleSensor: 8 ETH
@@ -6386,7 +6447,7 @@ BO_ 879 TPMS_StatusC: 8 ETH
  SG_ TPMS_vehicleSpeedFail: 45|1@1+ (1,0) [0|0] "" X
  SG_ TPMS_wheelPulseMissing: 44|1@1+ (1,0) [0|0] "" X
 
-BO_ 802 TPMS_data: 8 ETH
+BO_ 799 TPMS_data: 8 ETH
  SG_ TPMS_pressureFL: 0|8@1+ (0.025,0) [0|0] "bar" X
  SG_ TPMS_pressureFR: 16|8@1+ (0.025,0) [0|0] "bar" X
  SG_ TPMS_pressureRL: 32|8@1+ (0.025,0) [0|0] "bar" X
@@ -10270,9 +10331,9 @@ VAL_ 918 DI_oilPumpPcbT 255 "SNA";
 VAL_ 918 DI_oilPumpState 0 "STANDBY" 1 "ENABLE" 2 "COLD_STARTUP" 6 "FAULTED" 7 "SNA";
 VAL_ 918 DI_oilPumpVoltage 255 "SNA";
 
-VAL_ 614 DI_elecPower -1024 "DI_elecPower_SNA";
+VAL_ 614 DI_elecPower -1024 "SNA";
 
-VAL_ 599 DI_uiSpeed 255 "DI_UI_SPEED_SNA";
+VAL_ 599 DI_uiSpeed 255 "SNA";
 VAL_ 599 DI_uiSpeedUnits 0 "MPH" 1 "KPH";
 VAL_ 599 DI_vehicleSpeed 4095 "SNA";
 
