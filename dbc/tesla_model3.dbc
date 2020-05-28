@@ -5899,8 +5899,8 @@ BO_ 553 SCCM_rightStalk: 3 ETH
  SG_ SCCM_gearStalkStatus : 12|3@1+ (1,0) [0|7] "" X
  SG_ SCCM_parkButtonStatus : 16|2@1+ (1,0) [0|3] "" X
 
-VAL_ 585 SCCM_turnIndicatorStalkStatus 0 "IDLE" 1 "DOWN_1" 2 "DOWN_2" 3 "UP_1" 4 "UO_2" 5 "SNA";
-VAL_ 585 SCCM_parkButtonStatus 0 "NOT_PRESSED" 1 "1ST_DETENT" 2 "2ND_DETENT" 3 "SNA";
+VAL_ 553 SCCM_gearStalkStatus 0 "IDLE" 1 "DOWN_1" 2 "DOWN_2" 3 "UP_1" 4 "UO_2" 5 "SNA";
+VAL_ 553 SCCM_parkButtonStatus 0 "NOT_PRESSED" 1 "1ST_DETENT" 2 "2ND_DETENT" 3 "SNA";
 
 BO_ 585 SCCM_leftStalk: 3 ETH
  SG_ SCCM_highBeamStalkStatus: 12|2@1+ (1,0) [0|0] "" X
