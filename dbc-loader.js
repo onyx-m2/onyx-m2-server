@@ -218,7 +218,6 @@ async function generateDbc(stream) {
         }
 
         if (last) {
-          //Object.keys(definitions.categories).map(c => ({ slug: c, name: definitions.categories[c] }) )
           const categories = [...new Set(messages.map(m => m.category))].map(slug => {
             let name = CATEGORIES[slug]
             if (!name) {
@@ -226,15 +225,6 @@ async function generateDbc(stream) {
             }
             return { slug, name }
           })
-
-          // const categories = messages.reduce((acc, cur) => {
-          //   let name = CATEGORIES[cur.category]
-          //   if (!name) {
-          //     name = `Unknown category ${cur.category.toUpperCase()}`
-          //   }
-          //   acc[cur.category] = name
-          //   return acc
-          // }, {})
 
           messages.forEach(m => {
             if (m.signals) {

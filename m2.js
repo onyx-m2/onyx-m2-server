@@ -1,15 +1,12 @@
 const { Server } = require('ws')
 const { BitView } = require('bit-buffer')
 const log = require('./logger')
+const { pg, sql } = require('./db')
 
-let pg = null
 let dbc = null
 
 function set(name, value) {
   switch (name) {
-    case 'pg':
-      pg = value
-      break
     case 'dbc':
       dbc = value
       break
@@ -118,13 +115,13 @@ async function handleM2(ws) {
   ws.on('close', () => {
     log.info(`Detected closing of m2-${ws.id}`)
     if (ws.segmentId) {
-      pg.query(`
-        update canbus_segments
-        set
-          end_at = now(),
-          end_id = (select tid from canbus_msgs order by tid desc limit 1)
-        where tid = $1
-      `, [ws.segmentId])
+      pg.query(sql`
+        UPDATE canbus_segments
+        SET
+          end_at = NOW(),
+          end_id = (SELECT tid FROM canbus_msgs ORDER BY tid DESC LIMIT 1)
+        WHERE tid = ${ws.segmentId}
+      `)
     }
     if (ws === m2 ) {
       m2 = null
@@ -280,26 +277,26 @@ async function processMessage(ws, msg) {
 
   // if this isn't the first message in the segment, just fire and forget
   if (ws.segmentId) {
-    pg.query(`
-      insert into canbus_msgs (ts, id, data)
-      values ($1, $2, $3)
-    `, [ts, id, value.buffer])
+    pg.query(sql`
+      INSERT INTO canbus_msgs (ts, id, data)
+      VALUES (${ts}, ${id}, ${value.buffer})
+    `)
   }
   // if it's the first one, insert a first message, returning its id to be able
   // to create a new segment
   else {
-    const { rows: dataRows } = await pg.query(`
-      insert into canbus_msgs (ts, id, data)
-      values ($1, $2, $3)
-      returning tid
-    `, [ts, id, value.buffer])
+    const { tid: msgId } = await pg.one(sql`
+      INSERT INTO canbus_msgs (ts, id, data)
+      VALUES (${ts}, ${id}, ${value.buffer})
+      RETURNING tid
+    `)
 
-    const { rows: segmentRows } = await pg.query(`
-      insert into canbus_segments (start_id)
-      values ($1)
-      returning tid
-    `, [dataRows[0].tid])
-    ws.segmentId = segmentRows[0].tid
+    const { tid: segmentId } = await pg.one(sql`
+      INSERT INTO canbus_segments (start_id)
+      VALUES (${msgId})
+      RETURNING tid
+    `)
+    ws.segmentId = segmentId
   }
 
   wss.clients.forEach(ws => {

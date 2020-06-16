@@ -22,6 +22,7 @@
     "request-promise-native": "^1.0.8",
     "serialport": "^7.1.5",
     "simple-node-logger": "^18.12.24",
+    "slonik": "^22.4.11",
     "ws": "^7.2.3"
   }
 }

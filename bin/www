@@ -7,7 +7,7 @@ if (require('dotenv').config().error) {
 const fs = require('fs')
 const http = require('http')
 const https = require('https')
-const { Pool: PostgresPool } = require('pg')
+const db = require('../db')
 const log = require('../logger')
 const app = require('../app')
 const m2 = require('../m2')
@@ -15,24 +15,8 @@ const loadDbc = require('../dbc-loader')
 
 async function init() {
 
-  // Initialize and check the connection to the database
-  const connectionString = process.env.PG_CONNECTION
-  if (!connectionString) {
-    console.error(`No database configured, PG_CONNECTION not defined`)
-    process.exit(1)
-  }
-  const pg = new PostgresPool({ connectionString })
-  try {
-    const { rows } = await pg.query('select version()')
-    log.info(`Connected to db using ${connectionString}`)
-    log.info(rows[0].version)
-    m2.set('pg', pg)
-    app.set('pg', pg)
-  }
-  catch (e) {
-    console.error(`Error connecting to the database: ${e.message}`)
-    process.exit(1)
-  }
+  // Initialize the database connection
+  await db.init()
 
   // Initialize the DBC
   const dbcFile = process.env.DBC_FILE || './dbc/tesla_model3.dbc'
