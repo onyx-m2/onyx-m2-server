@@ -285,11 +285,13 @@ async function processMessage(ws, msg) {
   // if it's the first one, insert a first message, returning its id to be able
   // to create a new segment
   else {
-    const { tid: msgId } = await pg.one(sql`
+    const d = await pg.one(sql`
       INSERT INTO canbus_msgs (ts, id, data)
       VALUES (${ts}, ${id}, ${value.buffer})
       RETURNING tid
     `)
+    log.debug(d)
+    const { tid: msgId } = d
 
     const { tid: segmentId } = await pg.one(sql`
       INSERT INTO canbus_segments (start_id)
