@@ -6,6 +6,7 @@ CM_ "Signals and messages that were moved or deprecated are commented out below"
 CM_ "Change log";
 CM_ "Oct 2019: Added unix and system time signals";
 CM_ "May 2020: Added many definitions adapted from joshwardell's file";
+CM_ "Jul 2020: Energy buffers update for 2020.20.X";
 
 CM_ "Updates from https://github.com/joshwardell/model3dbc/commit/699826c0fbba074d227f9d5ecc83d1e7545a80ab"
 
@@ -832,14 +833,14 @@ BO_ 722 BMS_driveLimits: 8 ETH
  SG_ BMS_minBusVoltage: 0|16@1+ (0.01,0) [0|0] "V" X
 
 BO_ 850 BMS_energyStatus: 8 ETH
- SG_ BMS_energyBuffer: 50|8@1+ (0.1,0) [0|0] "KWh" X
- SG_ BMS_energyCounter: 58|4@1+ (1,0) [0|0] "" X
- SG_ BMS_energyToChargeComplete: 40|10@1+ (0.1,0) [0|0] "KWh" X
- SG_ BMS_expectedEnergyRemaining: 20|10@1+ (0.1,0) [0|0] "KWh" X
- SG_ BMS_idealEnergyRemaining: 30|10@1+ (0.1,0) [0|0] "KWh" X
- SG_ BMS_nominalEnergyRemaining: 10|10@1+ (0.1,0) [0|0] "KWh" X
- SG_ BMS_nominalFullPackEnergy: 0|10@1+ (0.1,0) [0|0] "KWh" X
- SG_ BMS_fullyCharged : 62|1@1+ (1,0) [0|1] "" X
+ SG_ BMS_energyBuffer: 55|9@1+ (0.1,0) [0|0] "KWh" X
+ SG_ BMS_energyCounter: 64|4@1+ (1,0) [0|0] "" X
+ SG_ BMS_energyToChargeComplete: 44|11@1+ (0.1,0) [0|0] "KWh" X
+ SG_ BMS_expectedEnergyRemaining: 22|11@1+ (0.1,0) [0|0] "KWh" X
+ SG_ BMS_idealEnergyRemaining: 33|11@1+ (0.1,0) [0|0] "KWh" X
+ SG_ BMS_nominalEnergyRemaining: 11|11@1+ (0.1,0) [0|0] "KWh" X
+ SG_ BMS_nominalFullPackEnergy: 0|11@1+ (0.1,0) [0|0] "KWh" X
+ SG_ BMS_fullyCharged : 68|1@1+ (1,0) [0|1] "" X
 
 CM_ SG_ 390 BMS_currentUnfiltered "changed offset from -1000 to 0";
 CM_ SG_ 390 BMS_packCurrent  "changed offset from -1000 to 0";
@@ -6908,7 +6909,7 @@ BO_ 645 UI_driverProfileRecall: 8 ETH
  SG_ UI_rightLiftSwitchDown m5: 18|2@1+ (1,0) [0|0] "" X
 
 BO_ 984 UI_elevationStatus: 2 ETH
- SG_ UI_elevation: 0|16@1+ (1,0) [0|0] "m" X
+ SG_ UI_elevation: 0|14@1+ (1,0) [0|0] "m" X
 
 BO_ 1139 UI_ethNm: 8 ETH
  SG_ UI_nmGoingToSleep: 0|1@1+ (1,0) [0|0] "" X
