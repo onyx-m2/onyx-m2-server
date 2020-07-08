@@ -12,6 +12,7 @@ const CATEGORIES = {
   bms: "Battery management system",
   cc: "Charge current",
   cmp: "Compressor",
+  cmpd: "CMPD",
   cp: "Charge port",
   das: "Driver assistance system",
   dis: "Driver intervention system",
@@ -47,6 +48,7 @@ const CATEGORIES = {
   vcleft: "Left vehicle controller",
   vcright: "Right vehicle controller",
   vcsec: "Vehicle security controller",
+  vin: "Vehicle identification",
   uncat: "Uncategorized"
 }
 
@@ -219,13 +221,13 @@ async function generateDbc(stream) {
         }
 
         if (last) {
-          const categories = [...new Set(messages.map(m => m.category))].map(slug => {
-            let name = CATEGORIES[slug]
-            if (!name) {
-              name = `Unknown category ${slug.toUpperCase()}`
-            }
-            return { slug, name }
-          })
+          const categories = [...new Set(messages.map(m => m.category))].sort().map(slug => {
+              let name = CATEGORIES[slug]
+              if (!name) {
+                name = `Unknown category ${slug.toUpperCase()}`
+              }
+              return { slug, name }
+            })
 
           messages.forEach(m => {
             if (m.signals) {
