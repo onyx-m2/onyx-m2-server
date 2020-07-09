@@ -17,6 +17,7 @@ app.use(cookieParser())
 if (process.env.CMS_PORT) {
   app.use('/cms', createProxyMiddleware({
     target: `http://localhost:${process.env.CMS_PORT}`,
+    changeOrigin: true,
     pathRewrite: {'^/cms' : ''}
   }))
 }
