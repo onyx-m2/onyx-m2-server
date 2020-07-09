@@ -4,6 +4,7 @@ const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const path = require('path')
 const log = require('./logger')
+const { createProxyMiddleware } = require('http-proxy-middleware')
 
 const app = express()
 app.set('trust proxy', 1)
@@ -11,6 +12,14 @@ app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
+
+// proxy the cms so that both servers can be on the same host
+if (process.env.CMS_PORT) {
+  app.use('/cms', createProxyMiddleware({
+    target: `http://localhost:${process.env.CMS_PORT}`,
+    pathRewrite: {'^/cms' : ''}
+  }))
+}
 
 // log incoming requests
 app.use((req, res, next) => {
