@@ -90,11 +90,11 @@ BO_ 994 VCLEFT_lightStatus: 7 ETH
  SG_ VCLEFT_dynamicBrakeLightStatus : 44|2@1+ (1,0) [0|2] "" X
  SG_ VCLEFT_fogTrailerLightStatus : 26|2@1+ (1,0) [0|3] "" X
  SG_ VCLEFT_frontRideHeight : 28|8@1- (1,0) [-127|127] "mm" X
- SG_ VCLEFT_leftTurnTrailerLightStatu : 18|2@1+ (1,0) [0|3] "" X
+ SG_ VCLEFT_leftTurnTrailerLightStatus : 18|2@1+ (1,0) [0|3] "" X
  SG_ VCLEFT_rearRideHeight : 36|8@1- (1,0) [-127|127] "mm" X
  SG_ VCLEFT_reverseTrailerLightStatus : 49|2@1+ (1,0) [0|3] "" X
  SG_ VCLEFT_rideHeightSensorFault : 48|1@1+ (1,0) [0|1] "" X
- SG_ VCLEFT_rightTrnTrailerLightStatu : 20|2@1+ (1,0) [0|3] "" X
+ SG_ VCLEFT_rightTrnTrailerLightStatus : 20|2@1+ (1,0) [0|3] "" X
  SG_ VCLEFT_tailLightStatus : 2|2@1+ (1,0) [0|3] "" X
  SG_ VCLEFT_tailTrailerLightStatus : 24|2@1+ (1,0) [0|3] "" X
  SG_ VCLEFT_trailerDetected : 46|2@1+ (1,0) [0|3] "" X
@@ -2332,12 +2332,20 @@ BO_ 390 DIS_frontTorque: 8 ETH
  SG_ DIS_frontTorqueCommand: 12|13@1- (2,0) [0|0] "Nm" X
  SG_ DIS_frontTorqueCounter: 8|4@1+ (1,0) [0|0] "" X
 
+VAL_ 390 DIS_frontAxleSpeed -32768 "SNA";
+VAL_ 390 DIS_frontTorqueActual -4096 "SNA";
+VAL_ 390 DIS_frontTorqueCommand -4096 "SNA";
+
 BO_ 472 DIS_torque: 8 ETH
  SG_ DIS_axleSpeed: 40|16@1- (0.1,0) [0|0] "RPM" X
  SG_ DIS_torqueActual: 27|13@1- (2,0) [0|0] "Nm" X
  SG_ DIS_torqueChecksum: 0|8@1+ (1,0) [0|0] "" X
  SG_ DIS_torqueCommand: 12|13@1- (2,0) [0|0] "Nm" X
  SG_ DIS_torqueCounter: 8|4@1+ (1,0) [0|0] "" X
+
+VAL_ 472 DIS_axleSpeed -32768 "SNA";
+VAL_ 472 DIS_torqueActual -4096 "SNA";
+VAL_ 472 DIS_torqueCommand -4096 "SNA";
 
 BO_ 341 DIS_angle: 8 ChassisBus
  SG_ DIS_angleRR : 24|8@1+ (1.40625,0) [0|358.59375] "deg" X
@@ -2815,6 +2823,15 @@ BO_ 917 DI_oilPump: 8 ETH
  SG_ DI_oilPumpFluidConfidence : 3|1@1+ (1,0) [0|0] "" X
  SG_ DI_oilPumpLeadAngle : 4|4@1+ (1.875,0) [0|28.125] "deg" X
 
+VAL_ 917 DI_oilPumpCurrent 255 "SNA";
+VAL_ 917 DI_oilPumpCurrentSensorOffset 255 "SNA";
+VAL_ 917 DI_oilPumpFlowActual 255 "SNA";
+VAL_ 917 DI_oilPumpFlowTarget 255 "SNA";
+VAL_ 917 DI_oilPumpFluidT 255 "SNA";
+VAL_ 917 DI_oilPumpPcbT 255 "SNA";
+VAL_ 917 DI_oilPumpState 0 "STANDBY" 1 "ENABLE" 2 "COLD_STARTUP" 6 "FAULTED" 7 "SNA";
+VAL_ 917 DI_oilPumpVoltage 255 "SNA";
+
 BO_ 918 DI_frontOilPump: 8 ETH
  SG_ DI_frontOilPumpCurrent: 48|8@1+ (0.1,0) [0|0] "A" X
  SG_ DI_frontOilPumpCurrentSensorOffset: 56|8@1+ (0.005,0) [0|0] "A" X
@@ -2826,6 +2843,15 @@ BO_ 918 DI_frontOilPump: 8 ETH
  SG_ DI_frontOoilPumpVoltage: 40|8@1+ (0.1,0) [0|0] "V" X
  SG_ DI_frontOilPumpFluidConfidence : 3|1@1+ (1,0) [0|0] "" X
  SG_ DI_frontOilPumpLeadAngle : 4|4@1+ (1.875,0) [0|28.125] "deg" X
+
+VAL_ 918 DI_frontOilPumpCurrent 255 "SNA";
+VAL_ 918 DI_frontOilPumpCurrentSensorOffset 255 "SNA";
+VAL_ 918 DI_frontOilPumpFlowActual 255 "SNA";
+VAL_ 918 DI_frontOilPumpFlowTarget 255 "SNA";
+VAL_ 918 DI_frontOilPumpFluidT 255 "SNA";
+VAL_ 918 DI_frontOilPumpPcbT 255 "SNA";
+VAL_ 918 DI_frontOilPumpState 0 "STANDBY" 1 "ENABLE" 2 "COLD_STARTUP" 6 "FAULTED" 7 "SNA";
+VAL_ 918 DI_frontOilPumpVoltage 255 "SNA";
 
 BO_ 614 DI_power: 8 ETH
  SG_ DI_elecPower: 0|11@1- (0.5,0) [0|0] "kW" X
@@ -4093,9 +4119,9 @@ BO_ 273 GTW_adc: 7 ETH
  SG_ GTW_WLAN_ANT_DET1: 40|12@0+ (1,0) [0|0] "mV" X
 
 BO_ 274 GTW_adc1: 8 ETH
- SG_ GTW_1V1_eth: 24|12@0+ (1,0) [0|0] "mV" X
- SG_ GTW_1V5_eth: 32|12@0+ (1,0) [0|0] "mV" X
- SG_ GTW_3V3_eth: 0|12@0+ (1.03,0) [0|0] "mV" X
+ SG_ GTW_1V1_ETH: 24|12@0+ (1,0) [0|0] "mV" X
+ SG_ GTW_1V5_ETH: 32|12@0+ (1,0) [0|0] "mV" X
+ SG_ GTW_3V3_ETH: 0|12@0+ (1.03,0) [0|0] "mV" X
  SG_ GTW_3V3_SW: 8|12@0+ (1.5,0) [0|0] "mV" X
  SG_ GTW_5V0_SW: 48|12@0+ (2,0) [0|0] "mV" X
 
@@ -4763,30 +4789,31 @@ BO_ 925 IBST_status: 3 ETH
 BO_ 1629 IBST_udsResponse: 8 ETH
  SG_ IBST_udsResponseData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 917 OCS1P_alertMatrix: 8 ETH
- SG_ OCS1P_matrixIndex M: 0|4@1+ (1,0) [0|0] "" X
- SG_ OCS1P_w121_sandwichOpen m2: 4|1@1+ (1,0) [0|0] "" X
- SG_ OCS1P_w122_sandwichLow m2: 5|1@1+ (1,0) [0|0] "" X
- SG_ OCS1P_w123_sandwichShort m2: 6|1@1+ (1,0) [0|0] "" X
- SG_ OCS1P_w124_cushionSelfOpen m2: 7|1@1+ (1,0) [0|0] "" X
- SG_ OCS1P_w125_cushionSelfLow m2: 8|1@1+ (1,0) [0|0] "" X
- SG_ OCS1P_w126_cushionSelfShort m2: 9|1@1+ (1,0) [0|0] "" X
- SG_ OCS1P_w127_seatbackSelfOpen m2: 10|1@1+ (1,0) [0|0] "" X
- SG_ OCS1P_w128_seatbackSelfLow m2: 11|1@1+ (1,0) [0|0] "" X
- SG_ OCS1P_w129_seatbackSelfShort m2: 12|1@1+ (1,0) [0|0] "" X
- SG_ OCS1P_w130_sandwichNoCalib m2: 13|1@1+ (1,0) [0|0] "" X
- SG_ OCS1P_w131_cushionSelfNoCalib m2: 14|1@1+ (1,0) [0|0] "" X
- SG_ OCS1P_w132_seatbackSelfNoCalib m2: 15|1@1+ (1,0) [0|0] "" X
- SG_ OCS1P_w133_sandwichBadCalib m2: 16|1@1+ (1,0) [0|0] "" X
- SG_ OCS1P_w134_uninitializedCalib m2: 17|1@1+ (1,0) [0|0] "" X
- SG_ OCS1P_w135_tempNoCalib m2: 18|1@1+ (1,0) [0|0] "" X
- SG_ OCS1P_w136_cushionSelfDutyLow m2: 19|1@1+ (1,0) [0|0] "" X
- SG_ OCS1P_w137_cushionSelfDutyHigh m2: 20|1@1+ (1,0) [0|0] "" X
- SG_ OCS1P_w138_seatbackSelfDutyLow m2: 21|1@1+ (1,0) [0|0] "" X
- SG_ OCS1P_w139_seatbackSelfDutyHigh m2: 22|1@1+ (1,0) [0|0] "" X
- SG_ OCS1P_w140_tempInvalidCalib m2: 23|1@1+ (1,0) [0|0] "" X
- SG_ OCS1P_w141_humidityInvalidCalib m2: 24|1@1+ (1,0) [0|0] "" X
- SG_ OCS1P_w142_tempHumidityInvalid m2: 25|1@1+ (1,0) [0|0] "" X
+CM_ "This is now oil pump";
+CM_ BO_ 917 OCS1P_alertMatrix: 8 ETH
+CM_  SG_ OCS1P_matrixIndex M: 0|4@1+ (1,0) [0|0] "" X
+CM_  SG_ OCS1P_w121_sandwichOpen m2: 4|1@1+ (1,0) [0|0] "" X
+CM_  SG_ OCS1P_w122_sandwichLow m2: 5|1@1+ (1,0) [0|0] "" X
+CM_  SG_ OCS1P_w123_sandwichShort m2: 6|1@1+ (1,0) [0|0] "" X
+CM_  SG_ OCS1P_w124_cushionSelfOpen m2: 7|1@1+ (1,0) [0|0] "" X
+CM_  SG_ OCS1P_w125_cushionSelfLow m2: 8|1@1+ (1,0) [0|0] "" X
+CM_  SG_ OCS1P_w126_cushionSelfShort m2: 9|1@1+ (1,0) [0|0] "" X
+CM_  SG_ OCS1P_w127_seatbackSelfOpen m2: 10|1@1+ (1,0) [0|0] "" X
+CM_  SG_ OCS1P_w128_seatbackSelfLow m2: 11|1@1+ (1,0) [0|0] "" X
+CM_  SG_ OCS1P_w129_seatbackSelfShort m2: 12|1@1+ (1,0) [0|0] "" X
+CM_  SG_ OCS1P_w130_sandwichNoCalib m2: 13|1@1+ (1,0) [0|0] "" X
+CM_  SG_ OCS1P_w131_cushionSelfNoCalib m2: 14|1@1+ (1,0) [0|0] "" X
+CM_  SG_ OCS1P_w132_seatbackSelfNoCalib m2: 15|1@1+ (1,0) [0|0] "" X
+CM_  SG_ OCS1P_w133_sandwichBadCalib m2: 16|1@1+ (1,0) [0|0] "" X
+CM_  SG_ OCS1P_w134_uninitializedCalib m2: 17|1@1+ (1,0) [0|0] "" X
+CM_  SG_ OCS1P_w135_tempNoCalib m2: 18|1@1+ (1,0) [0|0] "" X
+CM_  SG_ OCS1P_w136_cushionSelfDutyLow m2: 19|1@1+ (1,0) [0|0] "" X
+CM_  SG_ OCS1P_w137_cushionSelfDutyHigh m2: 20|1@1+ (1,0) [0|0] "" X
+CM_  SG_ OCS1P_w138_seatbackSelfDutyLow m2: 21|1@1+ (1,0) [0|0] "" X
+CM_  SG_ OCS1P_w139_seatbackSelfDutyHigh m2: 22|1@1+ (1,0) [0|0] "" X
+CM_  SG_ OCS1P_w140_tempInvalidCalib m2: 23|1@1+ (1,0) [0|0] "" X
+CM_  SG_ OCS1P_w141_humidityInvalidCalib m2: 24|1@1+ (1,0) [0|0] "" X
+CM_  SG_ OCS1P_w142_tempHumidityInvalid m2: 25|1@1+ (1,0) [0|0] "" X
 
 CM_ BO_ 789 OCS1P_info: 8 ETH
 CM_ SG_ OCS1P_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
@@ -10266,10 +10293,6 @@ VAL_ 821 DIS_oilPumpBuildType 0 "UNKNOWN_BUILD" 1 "PLATFORM_BUILD" 2 "LOCAL_BUIL
 VAL_ 741 DIS_drivePowerMax 511 "SNA";
 VAL_ 741 DIS_elecPower -1024 "DIS_elecPower_SNA";
 
-VAL_ 390 DIS_axleSpeed -32768 "SNA";
-VAL_ 390 DIS_torqueActual -4096 "SNA";
-VAL_ 390 DIS_torqueCommand -4096 "SNA";
-
 VAL_ 694 DI_btcStateUI 0 "OFF" 1 "ON";
 VAL_ 694 DI_ptcStateUI 0 "FAULTED" 1 "BACKUP" 2 "ON" 3 "SNA";
 VAL_ 694 DI_tcTelltaleFlash 0 "OFF" 1 "ON";
@@ -10326,15 +10349,6 @@ VAL_ 822 DI_sysDrivePowerRated 511 "SNA";
 VAL_ 822 DI_sysRegenPowerRated 255 "SNA";
 
 VAL_ 950 DI_odometer 4294967295 "SNA";
-
-VAL_ 918 DI_oilPumpCurrent 255 "SNA";
-VAL_ 918 DI_oilPumpCurrentSensorOffset 255 "SNA";
-VAL_ 918 DI_oilPumpFlowActual 255 "SNA";
-VAL_ 918 DI_oilPumpFlowTarget 255 "SNA";
-VAL_ 918 DI_oilPumpFluidT 255 "SNA";
-VAL_ 918 DI_oilPumpPcbT 255 "SNA";
-VAL_ 918 DI_oilPumpState 0 "STANDBY" 1 "ENABLE" 2 "COLD_STARTUP" 6 "FAULTED" 7 "SNA";
-VAL_ 918 DI_oilPumpVoltage 255 "SNA";
 
 VAL_ 614 DI_elecPower -1024 "SNA";
 
@@ -10594,7 +10608,7 @@ VAL_ 813 IBST_infoBuildType 0 "UNKNOWN_BUILD" 1 "PLATFORM_BUILD" 2 "LOCAL_BUILD"
 VAL_ 925 IBST_driverBrakeApply 0 "NOT_INIT_OR_OFF" 1 "BRAKES_NOT_APPLIED" 2 "DRIVER_APPLYING_BRAKES" 3 "FAULT";
 VAL_ 925 IBST_iBoosterStatus 0 "OFF" 1 "INIT" 2 "FAILURE" 3 "DIAGNOSTIC" 4 "ACTIVE_GOOD_CHECK" 5 "READY" 6 "ACTUATION";
 
-VAL_ 917 OCS1P_matrixIndex 2 "OCS1P_AlertMatrix2";
+CM_ VAL_ 917 OCS1P_matrixIndex 2 "OCS1P_AlertMatrix2";
 
 CM_ VAL_ 789 OCS1P_infoIndex 10 "Mux10" 11 "Mux11" 13 "Mux13" 14 "Mux14" 17 "Mux17" 18 "Mux18" 19 "Mux19" 20 "Mux20";
 CM_ VAL_ 789 OCS1P_infoBuildType 0 "UNKNOWN_BUILD" 1 "PLATFORM_BUILD" 2 "LOCAL_BUILD" 3 "TRACEABLE_CI_BUILD" 4 "MFG_BUILD";
@@ -10715,12 +10729,13 @@ VAL_ 830 PARK_rearRightRawDistData 255 "SNA";
 VAL_ 830 PARK_rearRightSensorState 0 "NO_FAILURE" 1 "PERMANENT_FAILURE" 2 "TEMPORARY_FAILURE" 3 "SNA";
 VAL_ 830 PARK_systemStatusRear 0 "DISABLED" 1 "ENABLED" 2 "UNUSED" 3 "SNA";
 
-VAL_ 799 PARK_majorVersion 255 "SNA";
-VAL_ 799 PARK_minorVersion 255 "SNA";
-VAL_ 799 PARK_serviceRequest 0 "NO_FAILURE" 1 "FAILURE" 2 "UNUSED" 3 "SNA";
-VAL_ 799 PARK_status 0 "DISABLED" 1 "ENABLED" 2 "TEMPORARY_FAILURE" 3 "SNA";
-VAL_ 799 PARK_subMinorVersion 255 "SNA";
-VAL_ 799 PARK_systemDtcPresent 0 "FALSE" 1 "TRUE" 2 "UNUSED" 3 "SNA";
+CM_ "799 is now tpms, not sure what id this is on now";
+CM_ VAL_ 799 PARK_majorVersion 255 "SNA";
+CM_ VAL_ 799 PARK_minorVersion 255 "SNA";
+CM_ VAL_ 799 PARK_serviceRequest 0 "NO_FAILURE" 1 "FAILURE" 2 "UNUSED" 3 "SNA";
+CM_ VAL_ 799 PARK_status 0 "DISABLED" 1 "ENABLED" 2 "TEMPORARY_FAILURE" 3 "SNA";
+CM_ VAL_ 799 PARK_subMinorVersion 255 "SNA";
+CM_ VAL_ 799 PARK_systemDtcPresent 0 "FALSE" 1 "TRUE" 2 "UNUSED" 3 "SNA";
 
 VAL_ 782 PARK_autoCalComplete 0 "INCOMPLETE" 1 "COMPLETE";
 VAL_ 782 PARK_geometryType 0 "MODELS" 1 "MODELS_2" 2 "MODELX" 3 "MODEL3";
@@ -10873,14 +10888,14 @@ VAL_ 525 TAS_targetLevel 0 "VERY_HIGH" 1 "HIGH" 2 "STANDARD" 3 "LOW" 4 "VERY_LOW
 VAL_ 879 TPMS_learningStatus 0 "FAILED" 1 "ONGOING" 2 "STOPPED" 3 "PASSED";
 VAL_ 879 TPMS_localisationStatus 0 "FAILED" 1 "ONGOING" 2 "STOPPED" 3 "PASSED";
 
-VAL_ 802 TPMS_pressureFL 255 "SNA";
-VAL_ 802 TPMS_pressureFR 255 "SNA";
-VAL_ 802 TPMS_pressureRL 255 "SNA";
-VAL_ 802 TPMS_pressureRR 255 "SNA";
-VAL_ 802 TPMS_temperatureFL 255 "SNA";
-VAL_ 802 TPMS_temperatureFR 255 "SNA";
-VAL_ 802 TPMS_temperatureRL 255 "SNA";
-VAL_ 802 TPMS_temperatureRR 255 "SNA";
+VAL_ 799 TPMS_pressureFL 255 "SNA";
+VAL_ 799 TPMS_pressureFR 255 "SNA";
+VAL_ 799 TPMS_pressureRL 255 "SNA";
+VAL_ 799 TPMS_pressureRR 255 "SNA";
+VAL_ 799 TPMS_temperatureFL 255 "SNA";
+VAL_ 799 TPMS_temperatureFR 255 "SNA";
+VAL_ 799 TPMS_temperatureRL 255 "SNA";
+VAL_ 799 TPMS_temperatureRR 255 "SNA";
 
 VAL_ 1519 TPMS_infoIndex 0 "DEPRECATED_0" 1 "DEPRECATED_1" 2 "DEPRECATED_2" 3 "DEPRECATED_3" 4 "DEPRECATED_4" 5 "DEPRECATED_5" 6 "DEPRECATED_6" 7 "DEPRECATED_7" 8 "DEPRECATED_8" 9 "DEPRECATED_9" 10 "BUILD_HWID_COMPONENTID" 11 "PCBAID_ASSYID_USAGEID" 13 "APP_CRC" 14 "BOOTLOADER_SVN" 15 "BOOTLOADER_CRC" 16 "SUBCOMPONENT" 17 "APP_GITHASH" 18 "BOOTLOADER_GITHASH" 19 "VERSION_DEPRECATED" 20 "UDS_PROTOCOL_BOOTCRC" 22 "VARIANTCRC" 25 "PACKAGE_PN_1_7" 26 "PACKAGE_PN_8_14" 27 "PACKAGE_PN_15_20" 29 "PACKAGE_SN_1_7" 30 "PACKAGE_SN_8_14" 31 "SUBCOMPONENT_GITHASH" 255 "END";
 
@@ -10902,16 +10917,16 @@ VAL_ 1019 UI_donDisableCutin 0 "OFF" 1 "ON";
 VAL_ 1019 UI_donMinGoreWidthForAbortMap 0 "DEFAULT" 1 "0_M" 2 "0P5_M" 3 "1_M" 4 "1P5_M" 5 "2_M" 6 "2P5_M" 7 "3_M" 8 "3P5_M" 9 "4_M" 10 "4P5_M" 11 "5_M";
 VAL_ 1019 UI_donAlcProgGoreAbortThres 0 "DEFAULT" 1 "0P00" 2 "0P05" 3 "0P10" 4 "0P15" 5 "0P20" 6 "0P25" 7 "0P30" 8 "0P35" 9 "0P40";
 VAL_ 1019 UI_donMinGoreWidthForAbortNotMap 0 "DEFAULT" 1 "0_M" 2 "0P5_M" 3 "1_M" 4 "1P5_M" 5 "2_M" 6 "2P5_M" 7 "3_M" 8 "3P5_M" 9 "4_M" 10 "4P5_M" 11 "5_M";
-VAL_ 1019 UI_alcDisableUltrasonicCheck 0 "OFF" 1 "ON";
-VAL_ 1019 UI_alcUltrasonicDistance 0 "DEFAULT" 1 "2_M" 2 "2P5_M" 3 "3_M" 4 "3P5_M" 5 "5_M" 6 "4_M" 7 "OFF" 8 "4P5_M";
-VAL_ 1019 UI_alcUltrasonicWaitTime 0 "DEFAULT" 1 "0P1_S" 3 "0P25_S" 4 "0P5_S" 5 "0P75_S" 6 "1_S" 7 "OFF";
-VAL_ 1019 UI_alcEgoLeadingReactionAccel 0 "DEFAULT" 1 "LESS" 2 "EVEN_LESS" 3 "OFF";
-VAL_ 1019 UI_alcMergIntervalRearDHyst 0 "DEFAULT" 1 "LESS" 2 "EVEN_LESS" 3 "OFF";
-VAL_ 1019 UI_alcMergingIntervalHeadwayHyst 0 "DEFAULT" 1 "LESS" 2 "EVEN_LESS" 3 "OFF";
-VAL_ 1019 UI_alcAssertivenessRate 0 "DEFAULT" 1 "LESS" 2 "OFF";
-VAL_ 1019 UI_alcViewRangeSensitivity 0 "DEFAULT" 1 "HIGH" 2 "LOW" 3 "OFF";
-VAL_ 1019 UI_camBlockLaneCheckDisable 0 "DEFAULT" 1 "DISABLE";
-VAL_ 1019 UI_camBlockBlurDisable 0 "DEFAULT" 1 "DISABLE";
+CM_ VAL_ 1019 UI_alcDisableUltrasonicCheck 0 "OFF" 1 "ON";
+CM_ VAL_ 1019 UI_alcUltrasonicDistance 0 "DEFAULT" 1 "2_M" 2 "2P5_M" 3 "3_M" 4 "3P5_M" 5 "5_M" 6 "4_M" 7 "OFF" 8 "4P5_M";
+CM_ VAL_ 1019 UI_alcUltrasonicWaitTime 0 "DEFAULT" 1 "0P1_S" 3 "0P25_S" 4 "0P5_S" 5 "0P75_S" 6 "1_S" 7 "OFF";
+CM_ VAL_ 1019 UI_alcEgoLeadingReactionAccel 0 "DEFAULT" 1 "LESS" 2 "EVEN_LESS" 3 "OFF";
+CM_ VAL_ 1019 UI_alcMergIntervalRearDHyst 0 "DEFAULT" 1 "LESS" 2 "EVEN_LESS" 3 "OFF";
+CM_ VAL_ 1019 UI_alcMergingIntervalHeadwayHyst 0 "DEFAULT" 1 "LESS" 2 "EVEN_LESS" 3 "OFF";
+CM_ VAL_ 1019 UI_alcAssertivenessRate 0 "DEFAULT" 1 "LESS" 2 "OFF";
+CM_ VAL_ 1019 UI_alcViewRangeSensitivity 0 "DEFAULT" 1 "HIGH" 2 "LOW" 3 "OFF";
+CM_ VAL_ 1019 UI_camBlockLaneCheckDisable 0 "DEFAULT" 1 "DISABLE";
+CM_ VAL_ 1019 UI_camBlockBlurDisable 0 "DEFAULT" 1 "DISABLE";
 
 VAL_ 819 UI_acChargeCurrentLimit 127 "SNA";
 
@@ -11199,13 +11214,13 @@ VAL_ 705 VCFRONT_solenoidEvapState 0 "UNDEFINED" 1 "OPENED" 2 "CLOSED" 3 "FAULTE
 VAL_ 897 VCFRONT_logging1HzIndex 0 "COOLANT" 1 "CONDENSER_LOUVER_IC" 2 "ACTIVE_LOUVER_AND_BRUSHLESS_FETS" 3 "FIVE_WAY_VALVE" 4 "END";
 VAL_ 897 VCFRONT_modeTransitionID 0 "PARALLEL_F1_noFlowRequest" 1 "SERIES_F2_faultPumps" 2 "SERIES_1_drive_batteryWantsCool" 3 "SERIES_2_drive_batteryNeedsHeat" 4 "SERIES_3_drive_batteryWantsHeat" 5 "PARALLEL_2_drive_batteryWantsHeat" 6 "PARALLEL_3_drive_batteryWantsCool" 7 "PARALLEL_4_drive_batteryNeedsCool" 8 "SERIES_4_charge_batteryNeedsHeat" 9 "SERIES_5_charge_batteryWantsHeat" 10 "PARALLEL_5_charge_batteryWantsHeat" 11 "PARALLEL_6_charge_batteryWantsCool" 12 "SERIES_6_fastCharge_batteryNeedsHeat" 13 "SERIES_7_fastCharge_batteryWantsCool" 14 "PARALLEL_7_fastCharge_batteryWantsCool" 15 "PARALLEL_8_fastCharge_batteryWantsHeat" 16 "SERIES_8_preConditioning_batteryNeedsHeat" 17 "SERIES_9_drive_driveUnitThermalLimiting" 18 "PARALLEL_9_drive_batteryThermalLimiting" 19 "INIT" 20 "OVERRIDE" 21 "UNDEFINED";
 VAL_ 897 VCFRONT_modeDesired 0 "SERIES" 1 "PARALLEL";
-VAL_ 897 VCFRONT_activeLouverMotorState 0 "UNPOWERED" 1 "INIT_I2C" 2 "INIT_EEPROM" 3 "I2C_ERROR" 4 "READY" 5 "BRAKE" 6 "STALL" 7 "FAULT_MOTOR_DISCONNECTED" 8 "DRIVER_FAULT";
-VAL_ 897 VCFRONT_activeLouverState 0 "UNCALIBRATED" 1 "CALIB_CLOSE" 2 "CALIB_OPEN" 3 "READY" 4 "FAULTED";
+CM_ VAL_ 897 VCFRONT_activeLouverMotorState 0 "UNPOWERED" 1 "INIT_I2C" 2 "INIT_EEPROM" 3 "I2C_ERROR" 4 "READY" 5 "BRAKE" 6 "STALL" 7 "FAULT_MOTOR_DISCONNECTED" 8 "DRIVER_FAULT";
+CM_ VAL_ 897 VCFRONT_activeLouverState 0 "UNCALIBRATED" 1 "CALIB_CLOSE" 2 "CALIB_OPEN" 3 "READY" 4 "FAULTED";
 VAL_ 897 VCFRONT_pumpBatteryFETTemp 255 "SNA";
 VAL_ 897 VCFRONT_pumpPowertrainFETTemp 255 "SNA";
 VAL_ 897 VCFRONT_radiatorFanFETTemp 255 "SNA";
-VAL_ 897 VCFRONT_fiveWayValveRecalReason 0 "UNDEFINED" 1 "MAX_TRAVEL" 2 "GENERAL_FAULT" 3 "CALIBRATION_FAULT_NO_TRAVEL" 4 "SELF_TEST" 5 "MOTOR_FEEDBACK_INTERRUPTED";
-VAL_ 897 VCFRONT_fiveWayValveCountRange 255 "SNA";
+CM_ VAL_ 897 VCFRONT_fiveWayValveRecalReason 0 "UNDEFINED" 1 "MAX_TRAVEL" 2 "GENERAL_FAULT" 3 "CALIBRATION_FAULT_NO_TRAVEL" 4 "SELF_TEST" 5 "MOTOR_FEEDBACK_INTERRUPTED";
+CM_ VAL_ 897 VCFRONT_fiveWayValveCountRange 255 "SNA";
 
 VAL_ 801 VCFRONT_brakeFluidLevel 0 "SNA" 1 "LOW" 2 "NORMAL";
 VAL_ 801 VCFRONT_coolantLevel 0 "NOT_OK" 1 "FILLED";
@@ -11230,7 +11245,7 @@ VAL_ 737 VCFRONT_homelinkCommStatus 0 "SNA" 1 "OFF" 2 "ON" 3 "FAULT";
 VAL_ 737 VCFRONT_pressureRefrigSuction 127 "SNA";
 VAL_ 737 VCFRONT_pressureRefrigDischarge 255 "SNA";
 VAL_ 737 VCFRONT_AS8510Voltage 4095 "SNA";
-VAL_ 737 VCFRONT_calibratedAS8510Volts 4095 "SNA";
+CM_ VAL_ 737 VCFRONT_calibratedAS8510Volts 4095 "SNA";
 
 VAL_ 929 VCFRONT_12vStatusForDrive 0 "NOT_READY_FOR_DRIVE_12V" 1 "READY_FOR_DRIVE_12V" 2 "EXIT_DRIVE_REQUESTED_12V";
 VAL_ 929 VCFRONT_2RowCenterUnbuckled 0 "NONE" 1 "OCCUPIED_AND_UNBUCKLED" 2 "SNA";
@@ -11413,9 +11428,12 @@ VAL_ 611 VCRIGHT_hvacUpperModeActState 0 "BRAKING" 1 "RUNNING" 2 "COASTING";
 VAL_ 611 VCRIGHT_hvacLowerModeActState 0 "BRAKING" 1 "RUNNING" 2 "COASTING";
 VAL_ 611 VCRIGHT_hvacIntakeActuatorState 0 "BRAKING" 1 "RUNNING" 2 "COASTING";
 
+VAL_ 579 VCRIGHT_tempDuctLeft 511 "SNA";
+VAL_ 579 VCRIGHT_tempDuctRight 511 "SNA";
+VAL_ 579 VCRIGHT_hvacDuctTargetLeft 255 "SNA";
+VAL_ 579 VCRIGHT_hvacDuctTargetRight 255 "SNA";
+
 VAL_ 691 VCRIGHT_logging1HzIndex 0 "HVAC_TEMP_SENSORS_AND_ESTIMATES_1" 1 "HVAC_TEMP_SENSORS_AND_ESTIMATES_2" 2 "HVAC_HUMIDITY_HEATER" 3 "HVAC_STATUS_AIRFLOW" 4 "HVAC_COMFORT_SOLAR" 5 "HEATER_AND_DUCT_TARGETS" 6 "HVAC_ACTUATOR_VOLTAGES" 7 "HVAC_ACTUATOR_ENDSTOP" 8 "HVAC_ACTUATOR_ZEROSTOP" 9 "HVAC_MISCELLANEOUS_1" 10 "HVAC_MISCELLANEOUS_2" 11 "END";
-VAL_ 691 VCRIGHT_tempDuctLeft 511 "SNA";
-VAL_ 691 VCRIGHT_tempDuctRight 511 "SNA";
 VAL_ 691 VCRIGHT_tempIncarCabinProbe 255 "SNA";
 VAL_ 691 VCRIGHT_tempIncarCabinMid 250 "SNA";
 VAL_ 691 VCRIGHT_tempIncarCabinDeep 255 "SNA";
@@ -11439,8 +11457,6 @@ VAL_ 691 VCRIGHT_convectionDeliveredRight 255 "SNA";
 VAL_ 691 VCRIGHT_solarLoadRightOccupant 255 "SNA";
 VAL_ 691 VCRIGHT_solarLoadLeftOccupant 255 "SNA";
 VAL_ 691 VCRIGHT_solarLoadOnVehicle 255 "SNA";
-VAL_ 691 VCRIGHT_hvacDuctTargetLeft 255 "SNA";
-VAL_ 691 VCRIGHT_hvacDuctTargetRight 255 "SNA";
 VAL_ 691 VCRIGHT_solarLoadOnVehFiltered 255 "SNA";
 VAL_ 691 VCRIGHT_cabinTempInteriorL3 240 "SNA";
 VAL_ 691 VCRIGHT_cabinTempInteriorSunnyL3 240 "SNA";
