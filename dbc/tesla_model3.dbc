@@ -157,7 +157,7 @@ BO_ 130 UI_tripPlanning: 8 ETH
  SG_ UI_requestActiveBatteryHeating : 2|1@1+ (1,0) [0|1] "" X
  SG_ UI_tripPlanningActive : 0|1@1+ (1,0) [0|1] "" X
 
-BO_ 139 UI_tripPlanning2: 6
+BO_ 139 UI_tripPlanning2: 6 ETH
 SG_ UI_maxSpeedToReachDestination : 0|16@1+ (0.01,0) [0|655.34] "m/s"
 SG_ UI_remainingWeightedRMSSpeed : 16|16@1+ (0.01,0) [0|655.34] "m/s"
 SG_ UI_timeToDestination : 32|16@1+ (1,0) [0|65534] "s"
