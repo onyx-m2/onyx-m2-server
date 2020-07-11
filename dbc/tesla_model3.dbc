@@ -100,8 +100,8 @@ BO_ 994 VCLEFT_lightStatus: 7 ETH
  SG_ VCLEFT_trailerDetected : 46|2@1+ (1,0) [0|3] "" X
  SG_ VCLEFT_turnSignalStatus : 4|2@1+ (1,0) [0|3] "" X
 
-BO_ 513 ID201VCFRONT_loggingAndVitals10Hz: 8 ETH
- SG_ VCFRONT_loggingAndVitals10HzInde M : 0|3@1+ (1,0) [0|7] "" X
+BO_ 513 VCFRONT_logging10Hz2: 8 ETH
+ SG_ VCFRONT_logging10Hz2 M : 0|3@1+ (1,0) [0|7] "" X
  SG_ VCFRONT_activeLouverOpenPos m1 : 16|7@1+ (1,0) [0|100] "%" X
  SG_ VCFRONT_activeLouverOpenPosTarg m1 : 8|7@1+ (1,0) [0|100] "%" X
  SG_ VCFRONT_cclExvFlow m3 : 44|10@1+ (0.1,0) [0|100] "%" X
@@ -2840,7 +2840,7 @@ BO_ 918 DI_frontOilPump: 8 ETH
  SG_ DI_frontOilPumpFluidT: 32|8@1+ (1,-40) [0|0] "DegC" X
  SG_ DI_frontOilPumpPcbT: 24|8@1+ (1,-40) [0|0] "DegC" X
  SG_ DI_frontOilPumpState: 0|3@1+ (1,0) [0|0] "" X
- SG_ DI_frontOoilPumpVoltage: 40|8@1+ (0.1,0) [0|0] "V" X
+ SG_ DI_frontOilPumpVoltage: 40|8@1+ (0.1,0) [0|0] "V" X
  SG_ DI_frontOilPumpFluidConfidence : 3|1@1+ (1,0) [0|0] "" X
  SG_ DI_frontOilPumpLeadAngle : 4|4@1+ (1.875,0) [0|28.125] "deg" X
 
@@ -11189,27 +11189,27 @@ VAL_ 1009 VCFRONT_turnSignalLeftStatus 0 "OFF" 1 "ON" 2 "FAULT" 3 "SNA";
 VAL_ 1009 VCFRONT_turnSignalRightStatus 0 "OFF" 1 "ON" 2 "FAULT" 3 "SNA";
 
 VAL_ 705 VCFRONT_logging10HzIndex 0 "COOLANT_PUMPS" 1 "THERMAL_FAN" 2 "FIVE_WAY_VALVE" 3 "REFRIGERANT_LV8907" 4 "COMPRESSOR" 5 "EXV_EVAP_SOLENOID_AIRFLOW" 6 "END";
-VAL_ 705 VCFRONT_pumpBatteryRPMActual 1023 "SNA";
+VAL_ 513 VCFRONT_pumpBatteryRPMActual 1023 "SNA";
 VAL_ 705 VCFRONT_pumpBatteryRPMTarget 1023 "SNA";
-VAL_ 705 VCFRONT_pumpPowertrainRPMActual 1023 "SNA";
+VAL_ 513 VCFRONT_pumpPowertrainRPMActual 1023 "SNA";
 VAL_ 705 VCFRONT_pumpPowertrainRPMTarget 1023 "SNA";
 VAL_ 705 VCFRONT_radiatorFanRPMTarget 1023 "SNA";
-VAL_ 705 VCFRONT_radiatorFanRPMActual 1023 "SNA";
-VAL_ 705 VCFRONT_fiveWayValveMode 0 "SERIES" 1 "PARALLEL";
+VAL_ 513 VCFRONT_radiatorFanRPMActual 1023 "SNA";
+VAL_ 513 VCFRONT_fiveWayValveMode 0 "SERIES" 1 "PARALLEL";
 VAL_ 705 VCFRONT_coolantTempBasedMode 0 "SERIES" 1 "PARALLEL";
-VAL_ 705 VCFRONT_fiveWayValveAngleActual 1023 "SNA";
-VAL_ 705 VCFRONT_fiveWayValveAngleTarget 1023 "SNA";
-VAL_ 705 VCFRONT_fiveWayValveRadBypass 127 "SNA";
-VAL_ 705 VCFRONT_fiveWayValveState 0 "UNPOWERED" 1 "CALIBRATING" 2 "READY" 3 "FAULT";
-VAL_ 705 VCFRONT_fiveWayValveDuty 127 "SNA";
-VAL_ 705 VCFRONT_tempRefrigSuction 255 "SNA";
-VAL_ 705 VCFRONT_tempRefrigDischarge 2047 "SNA";
-VAL_ 705 VCFRONT_tempSuperheatActual 1023 "SNA";
+VAL_ 513 VCFRONT_fiveWayValveAngleActual 1023 "SNA";
+VAL_ 513 VCFRONT_fiveWayValveAngleTarget 1023 "SNA";
+VAL_ 513 VCFRONT_fiveWayValveRadBypass 127 "SNA";
+VAL_ 513 VCFRONT_fiveWayValveState 0 "UNPOWERED" 1 "CALIBRATING" 2 "READY" 3 "FAULT";
+VAL_ 513 VCFRONT_fiveWayValveDuty 127 "SNA";
+VAL_ 513 VCFRONT_tempRefrigSuction 255 "SNA";
+VAL_ 513 VCFRONT_tempRefrigDischarge 2047 "SNA";
+VAL_ 513 VCFRONT_tempSuperheatActual 1023 "SNA";
 VAL_ 705 VCFRONT_tempDischargeSimulated 2047 "SNA";
-VAL_ 705 VCFRONT_compressorState 0 "STANDBY" 1 "READY" 2 "RUNNING" 3 "FAULT";
-VAL_ 705 VCFRONT_exvMotorState 0 "UNPOWERED" 1 "HARD_RESET_SETUP" 2 "HARD_RESET" 3 "INIT_SPI" 4 "SPI_ERROR" 5 "ENABLE_MOTOR" 6 "READY" 7 "STALL" 8 "FAULT_SHORT_COIL" 9 "FAULT_OPEN_COIL" 10 "DRIVER_FAULT" 11 "SPI_COMMS_DOWN";
-VAL_ 705 VCFRONT_exvState 0 "UNINIT" 1 "INIT_OPEN" 2 "INIT_CLOSE" 3 "READY" 4 "FAULTED" 5 "WAIT";
-VAL_ 705 VCFRONT_solenoidEvapState 0 "UNDEFINED" 1 "OPENED" 2 "CLOSED" 3 "FAULTED";
+VAL_ 513 VCFRONT_compressorState 0 "STANDBY" 1 "READY" 2 "RUNNING" 3 "FAULT";
+VAL_ 513 VCFRONT_exvMotorState 0 "UNPOWERED" 1 "HARD_RESET_SETUP" 2 "HARD_RESET" 3 "INIT_SPI" 4 "SPI_ERROR" 5 "ENABLE_MOTOR" 6 "READY" 7 "STALL" 8 "FAULT_SHORT_COIL" 9 "FAULT_OPEN_COIL" 10 "DRIVER_FAULT" 11 "SPI_COMMS_DOWN";
+VAL_ 513 VCFRONT_exvState 0 "UNINIT" 1 "INIT_OPEN" 2 "INIT_CLOSE" 3 "READY" 4 "FAULTED" 5 "WAIT";
+VAL_ 513 VCFRONT_solenoidEvapState 0 "UNDEFINED" 1 "OPENED" 2 "CLOSED" 3 "FAULTED";
 
 VAL_ 897 VCFRONT_logging1HzIndex 0 "COOLANT" 1 "CONDENSER_LOUVER_IC" 2 "ACTIVE_LOUVER_AND_BRUSHLESS_FETS" 3 "FIVE_WAY_VALVE" 4 "END";
 VAL_ 897 VCFRONT_modeTransitionID 0 "PARALLEL_F1_noFlowRequest" 1 "SERIES_F2_faultPumps" 2 "SERIES_1_drive_batteryWantsCool" 3 "SERIES_2_drive_batteryNeedsHeat" 4 "SERIES_3_drive_batteryWantsHeat" 5 "PARALLEL_2_drive_batteryWantsHeat" 6 "PARALLEL_3_drive_batteryWantsCool" 7 "PARALLEL_4_drive_batteryNeedsCool" 8 "SERIES_4_charge_batteryNeedsHeat" 9 "SERIES_5_charge_batteryWantsHeat" 10 "PARALLEL_5_charge_batteryWantsHeat" 11 "PARALLEL_6_charge_batteryWantsCool" 12 "SERIES_6_fastCharge_batteryNeedsHeat" 13 "SERIES_7_fastCharge_batteryWantsCool" 14 "PARALLEL_7_fastCharge_batteryWantsCool" 15 "PARALLEL_8_fastCharge_batteryWantsHeat" 16 "SERIES_8_preConditioning_batteryNeedsHeat" 17 "SERIES_9_drive_driveUnitThermalLimiting" 18 "PARALLEL_9_drive_batteryThermalLimiting" 19 "INIT" 20 "OVERRIDE" 21 "UNDEFINED";
