@@ -158,9 +158,9 @@ BO_ 130 UI_tripPlanning: 8 ETH
  SG_ UI_tripPlanningActive : 0|1@1+ (1,0) [0|1] "" X
 
 BO_ 139 UI_tripPlanning2: 6 ETH
-SG_ UI_maxSpeedToReachDestination : 0|16@1+ (0.01,0) [0|655.34] "m/s" X
-SG_ UI_remainingWeightedRMSSpeed : 16|16@1+ (0.01,0) [0|655.34] "m/s" X
-SG_ UI_timeToDestination : 32|16@1+ (1,0) [0|65534] "s" X
+ SG_ UI_maxSpeedToReachDestination : 0|16@1+ (0.01,0) [0|655.34] "m/s" X
+ SG_ UI_remainingWeightedRMSSpeed : 16|16@1+ (0.01,0) [0|655.34] "m/s" X
+ SG_ UI_timeToDestination : 32|16@1+ (1,0) [0|65534] "s" X
 
 BO_ 680 CMPD_state: 8 ETH
  SG_ CMPD_inputHVCurrent : 32|9@1+ (0.1,0) [0|50] "A" X
