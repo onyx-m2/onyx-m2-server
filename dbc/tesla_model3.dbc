@@ -149,7 +149,7 @@ BO_ 513 ID201VCFRONT_loggingAndVitals10Hz: 8 ETH
  SG_ VCFRONT_tempSuperheatActual m0 : 34|10@1+ (0.1,-20) [-20|80] "C" X
  SG_ VCFRONT_tempSuperheatTarget m0 : 44|10@1+ (0.1,0) [0|60] "C" X
 
-BO_ 130 ID082UI_tripPlanning: 8 ETH
+BO_ 130 UI_tripPlanning: 8 ETH
  SG_ UI_energyAtDestination : 48|16@1- (0.01,0) [-327.67|327.67] "kWh" X
  SG_ UI_hindsightEnergy : 32|16@1- (0.01,0) [-327.67|327.67] "kWh" X
  SG_ UI_navToSupercharger : 1|1@1+ (1,0) [0|1] "" X
@@ -157,7 +157,11 @@ BO_ 130 ID082UI_tripPlanning: 8 ETH
  SG_ UI_requestActiveBatteryHeating : 2|1@1+ (1,0) [0|1] "" X
  SG_ UI_tripPlanningActive : 0|1@1+ (1,0) [0|1] "" X
 
-CM_ "TODO: what is CMPD?"
+BO_ 139 UI_tripPlanning2: 6
+SG_ UI_maxSpeedToReachDestination : 0|16@1+ (0.01,0) [0|655.34] "m/s"
+SG_ UI_remainingWeightedRMSSpeed : 16|16@1+ (0.01,0) [0|655.34] "m/s"
+SG_ UI_timeToDestination : 32|16@1+ (1,0) [0|65534] "s"
+
 BO_ 680 CMPD_state: 8 ETH
  SG_ CMPD_inputHVCurrent : 32|9@1+ (0.1,0) [0|50] "A" X
  SG_ CMPD_inputHVPower : 21|11@1+ (10,0) [0|20000] "W" X
