@@ -31,7 +31,7 @@ function sleep(millis) {
 }
 const hostname = process.env.M2_HOSTNAME
 const pin = process.env.AUTHORIZATION
-const ws = new WebSocket(`ws://${hostname}/m2device?pin=${pin}`);
+const ws = new WebSocket(`ws://${hostname}/m2?pin=${pin}`);
 ws.on('open', () => {
   console.log(`Server connected, starting replay of ${filename} to ${hostname}`)
 
