@@ -19,9 +19,6 @@ const PING_INTERVAL = 1000
 // Maximum allowable latency before the server terminates connections
 const UNRESPONSIVE_LATENCY = 4000
 
-// The M2 device web socket
-let m2 = null
-
 // The timestamp of all recently received message from the M2
 let recentMsgAt = []
 let recentRate = 0
@@ -30,6 +27,21 @@ let recentRate = 0
 // https servers to it
 const wss = new Server({ noServer: true })
 
+// Get the M2 to use for all commands and connection metrics.
+// The first directly connected m2 will be chosen if possible,
+// and will fallback on the first relay if not available.
+function activeM2() {
+  const all = Array.from(wss.clients).filter(c => c.isM2)
+  if (all.length === 0) {
+    return null
+  }
+  const direct = all.find(c => c.isDirect)
+  if (direct) {
+    return direct
+  }
+  return all[0]
+}
+
 // Connection handler for incoming socket requests
 wss.on('connection', (ws) => {
 
@@ -37,9 +49,14 @@ wss.on('connection', (ws) => {
   // node buffers
   ws.binaryType = 'arraybuffer'
 
+  // name the web socket to make logging a bit easier to follow
+  ws.name = ws.url.pathname.slice(1)
+
   // route incoming connections to either the M2 handle or the client handler
-  if (ws.url.pathname === '/m2device') {
-    handleM2(ws)
+  if (ws.name === 'm2') {
+    handleM2(ws, true)
+  } else if (ws.name === 'relay') {
+    handleM2(ws, false)
   } else {
     handleClient(ws)
   }
@@ -71,7 +88,9 @@ setInterval(() => {
       ws.at = now
       ws.ping()
     }
-    send(ws, 'status', status)
+    if (!ws.isM2) {
+      sendJSON(ws, 'status', status)
+    }
   })
 }, PING_INTERVAL)
 
@@ -86,25 +105,21 @@ setInterval(() => {
  * M2 handler that broadcasts all binary messages send by the device
  * @param {*} ws Web socket to the M2 device
  */
-async function handleM2(ws) {
+async function handleM2(ws, direct) {
   log.info(`New m2-${ws.id} connection`)
-  ws.name = 'm2'
+  ws.isM2 = true
+  ws.isDirect = direct
 
-  if (m2) {
-    log.warn(`Terminating m2-${m2.id} due to new connection`)
-    const prevM2 = m2
-    m2 = ws
-    prevM2.terminate()
-  }
-  else {
-    m2 = ws
+  // if this is the only m2, update status and re-enable messages
+  const allM2s = Array.from(wss.clients).filter(c => c.isM2)
+  if (allM2s.length === 1) {
     broadcast('status', currentStatus())
-  }
 
-  if (snifferRefs != 0) {
-    enableAllMessages()
-  } else {
-    enableAllSubscribedMessages()
+    if (snifferRefs != 0) {
+      enableAllMessages()
+    } else {
+      enableAllSubscribedMessages()
+    }
   }
 
   ws.on('message', (message) => {
@@ -114,6 +129,8 @@ async function handleM2(ws) {
 
   ws.on('close', () => {
     log.info(`Detected closing of m2-${ws.id}`)
+
+    // TODO >>> segment detection needs work; especially bad with secondary m2
     if (ws.segmentId) {
       pg.query(sql`
         UPDATE canbus_segments
@@ -123,20 +140,22 @@ async function handleM2(ws) {
         WHERE tid = ${ws.segmentId}
       `)
     }
-    if (ws === m2 ) {
-      m2 = null
+
+    const allM2s = Array.from(wss.clients).filter(c => c.isM2)
+    if (allM2s.length === 1) {
       broadcast('status', currentStatus())
     }
   })
 }
 
 // Client send convenience function that packages the data into a json event
-function send(ws, event, data) {
+function sendJSON(ws, event, data) {
   ws.send(JSON.stringify({ event, data }))
 }
 
 // Get the current state of the M2
 function currentStatus() {
+  const m2 = activeM2()
   let online = false
   let latency = 0
   let rate = recentRate
@@ -219,6 +238,7 @@ const CMDID_SET_MSG_FLAGS = 0x02
 const CMDID_GET_MSG_LAST_VALUE = 0x03
 
 function getLastMessageValue(id) {
+  const m2 = activeM2()
   const size = 2
   if (m2) {
     m2.send(Uint8Array.from([CMDID_GET_MSG_LAST_VALUE, size, id & 0xff, id >> 8]))
@@ -226,6 +246,7 @@ function getLastMessageValue(id) {
 }
 
 function setAllMessageFlags(flags) {
+  const m2 = activeM2()
   const size = 1
   if (m2) {
     m2.send(Uint8Array.from([CMDID_SET_ALL_MSG_FLAGS, size, flags & 0xff]))
@@ -233,6 +254,7 @@ function setAllMessageFlags(flags) {
 }
 
 function setMessageFlags(id, flags) {
+  const m2 = activeM2()
   const size = 3
   if (m2) {
     m2.send(Uint8Array.from([CMDID_SET_MSG_FLAGS, size, id & 0xff, id >> 8, flags & 0xff]))
@@ -300,8 +322,8 @@ async function processMessage(ws, msg) {
   }
 
   wss.clients.forEach(ws => {
-    if (ws !== m2 && ws.readyState === 1 && (ws.monitor || ws.sniffer)) {
-      send(ws, 'message', [ id, ts, Array.from(data.slice(7)) ])
+    if (!ws.isM2 && ws.readyState === 1 && (ws.monitor || ws.sniffer)) {
+      sendJSON(ws, 'message', [ id, ts, Array.from(data.slice(7)) ])
     }
   })
 
@@ -328,9 +350,9 @@ async function processMessage(ws, msg) {
     }
   }
   wss.clients.forEach(ws => {
-    if (ws !== m2 && ws.readyState === 1) {
+    if (!ws.isM2 && ws.readyState === 1) {
       const signals = ws.subscriptions.filter(s => s in ingress).map(s => [s, ingress[s]])
-      send(ws, 'signal', signals)
+      sendJSON(ws, 'signal', signals)
     }
   })
 }
@@ -342,9 +364,8 @@ async function processMessage(ws, msg) {
  */
 function handleClient(ws) {
   log.info(`New client-${ws.id} connection`)
-  ws.name = 'client'
   ws.subscriptions = []
-  send(ws, 'hello', {
+  sendJSON(ws, 'hello', {
     session: ws.id
   })
   ws.on('message', (msg) => {
@@ -356,7 +377,7 @@ function handleClient(ws) {
     }
     switch (event) {
       case 'ping': {
-        send(ws, 'pong')
+        sendJSON(ws, 'pong')
         break
       }
 
@@ -421,7 +442,8 @@ function handleClient(ws) {
     if (ws.sniffer) {
       releaseSnifferRef()
     }
-    if (m2 !== null && wss.clients.size == 1) {
+    const lastClient = !Array.from(wss.clients).some(c => !c.isM2)
+    if (lastClient) {
       log.info('Resetting all subscribed messages due to last client disconnecting')
       resetAllSubscribedMessages()
     }
@@ -431,8 +453,8 @@ function handleClient(ws) {
 // Broadcast an M2 message to all connected clients
 function broadcast(event, data) {
   wss.clients.forEach(ws => {
-    if (ws !== m2 && ws.readyState === 1) {
-      send(ws, event, data)
+    if (!ws.isM2 && ws.readyState === 1) {
+      sendJSON(ws, event, data)
     }
   })
 }
