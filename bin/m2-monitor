@@ -10,23 +10,21 @@ const WebSocket = require('ws')
 
 const hostname = process.env.M2_HOSTNAME
 const pin = process.env.AUTHORIZATION
-const ws = new WebSocket(`ws://${hostname}/m2?pin=${pin}`)
+const ws = new WebSocket(`ws://${hostname}/monitor?pin=${pin}`)
 ws.on('open', () => {
   console.log(`Monitoring active`)
   send('monitor', true)
   ws.on('message', (msg) => {
     const { event, data } = JSON.parse(msg)
     if (event === 'message') {
-      const { id, ts, value } = data
-      const output = `${id} | 0x${id.toString(16)} @ ${ts} len ${value.length} | ${Buffer.from(value).toString('hex')}`
-      messageLog.write(output + '\n')
-      console.log('Message: ' + output)
+      const [ id, ts, value ] = data
+      messageLog.write(`${id} | 0x${id.toString(16)} @ ${ts} len ${value.length} | ${Buffer.from(value).toString('hex')}\n`)
+      console.log(`id:${id} ts:${ts} value:${value}`)
     }
     else if (event === 'status') {
-      const { online, latency, rate } = data
-      const output = `${online} | ${latency} @ ${rate}`
-      statusLog.write(output + '\n')
-      console.log('Status: ' + output)
+      const [ online, latency, rate ] = data
+      statusLog.write(`${online} | ${latency} @ ${rate}\n`)
+      console.log(`online:${online} latency:${latency} rate:${rate}`)
     }
   })
 })
