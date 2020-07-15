@@ -19,11 +19,15 @@ function sleep(millis) {
   return new Promise(resolve => setTimeout(resolve, millis))
 }
 
-const port = new SerialPort(serialPort, { baudRate: 115200 }, (err) => {
+const port = new SerialPort(serialPort, { baudRate: 115200, xon: true, xoff: true }, (err) => {
   if (err) {
     return console.error(err)
   }
   console.log(`Serial port ${serialPort} open, starting playback of log ${logFilename}`)
+
+  port.on('data', (data) => {
+    console.log('>> ', data.toString())
+  })
 
   lineReader.eachLine(logFilename, async (line, last, cb) => {
     // <id> | <hexId> @ <ts> len <len> | <len data bytes>
@@ -52,7 +56,7 @@ const port = new SerialPort(serialPort, { baudRate: 115200 }, (err) => {
     msg = msg.concat(data.match(/..?/g).map(s => parseInt(s, 16)))
     port.write(cobs.encode(Buffer.from(msg)))
     port.write([0x00])
-    console.log(line)
+    console.log(`<< ${line}`)
     if (last) {
       console.log('Done replaying the log')
       ws.close()
