@@ -17,7 +17,7 @@ function set(name, value) {
 const PING_INTERVAL = 1000
 
 // Maximum allowable latency before the server terminates connections
-const UNRESPONSIVE_LATENCY = 4000
+const UNRESPONSIVE_LATENCY = 2000
 
 // The timestamp of all recently received message from the M2
 let recentMsgAt = []
