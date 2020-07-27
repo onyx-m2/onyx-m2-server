@@ -2439,27 +2439,16 @@ VAL_ 390 DIS_frontTorqueActual -4096 "SNA";
 VAL_ 390 DIS_frontTorqueCommand -4096 "SNA";
 
 BO_ 472 DIS_torque: 8 ETH
+ SG_ DIS_torqueFlags: 0|8@1+ (1,0) [0|0] "" X
+ SG_ DIS_torqueCommand: 8|15@1- (0.1,0) [0|0] "Nm" X
+ SG_ DIS_torqueActual: 24|13@1- (2,0) [0|0] "Nm" X
  SG_ DIS_axleSpeed: 40|16@1- (0.1,0) [0|0] "RPM" X
- SG_ DIS_torqueActual: 27|13@1- (2,0) [0|0] "Nm" X
- SG_ DIS_torqueChecksum: 0|8@1+ (1,0) [0|0] "" X
- SG_ DIS_torqueCommand: 12|13@1- (2,0) [0|0] "Nm" X
- SG_ DIS_torqueCounter: 8|4@1+ (1,0) [0|0] "" X
+ SG_ DIS_torqueChecksum: 56|8@1+ (1,0) [0|0] "" X
+ SG_ DIS_torqueCounter: 53|3@1+ (1,0) [0|0] "" X
 
 VAL_ 472 DIS_axleSpeed -32768 "SNA";
 VAL_ 472 DIS_torqueActual -4096 "SNA";
 VAL_ 472 DIS_torqueCommand -4096 "SNA";
-
-BO_ 341 DIS_angle: 8 ChassisBus
- SG_ DIS_angleRR : 24|8@1+ (1.40625,0) [0|358.59375] "deg" X
- SG_ DIS_angleRL : 16|8@1+ (1.40625,0) [0|358.59375] "deg" X
- SG_ DIS_angleFR : 8|8@1+ (1.40625,0) [0|358.59375] "deg" X
- SG_ DIS_angleFL : 0|8@1+ (1.40625,0) [0|358.59375] "deg" X
-
-BO_ 373 DIS_speed: 8 ChassisBus
- SG_ DIS_speedRR : 39|13@1+ (0.04,0) [0|327.64] "RPM" X
- SG_ DIS_speedRL : 26|13@1+ (0.04,0) [0|327.64] "RPM" X
- SG_ DIS_speedFR : 13|13@1+ (0.04,0) [0|327.64] "RPM" X
- SG_ DIS_speedFL : 0|13@1+ (0.04,0) [0|327.64] "RPM" X
 
 BO_ 1557 DIS_udsResponse: 8 ETH
  SG_ DIS_udsResponseData: 0|54@0+ (1024,0) [0|0] "" X
@@ -3012,14 +3001,14 @@ BO_ 886 DI_frontInverterTemperature: 8 ETH
  SG_ DI_frontInverterTQF: 56|2@1+ (1,0) [0|0] "" X
 
 BO_ 789 DI_temperature: 8 ETH
+ SG_ DI_pcbT: 0|8@1+ (1,-40) [0|0] "DegC" X
+ SG_ DI_inverterT: 8|8@1+ (1,-40) [0|0] "DegC" X
+ SG_ DI_statorT: 16|8@1+ (1,-40) [0|0] "DegC" X
  SG_ DI_dcCapT: 24|8@1+ (1,-40) [0|0] "DegC" X
  SG_ DI_heatsinkT: 32|8@1+ (1,-40) [0|0] "DegC" X
- SG_ DI_inverterT: 8|8@1+ (1,-40) [0|0] "DegC" X
  SG_ DI_inverterTpct: 40|8@1+ (0.4,0) [0|0] "%" X
- SG_ DI_pcbT: 0|8@1+ (1,-40) [0|0] "DegC" X
- SG_ DI_statorT: 16|8@1+ (1,-40) [0|0] "DegC" X
  SG_ DI_statorTpct: 48|8@1+ (0.4,0) [0|0] "%" X
- SG_ DI_inverterTQF : 56|2@1+ (1,0) [0|3] "" X
+ SG_ DI_inverterTQF: 56|2@1+ (1,0) [0|3] "" X
 
 BO_ 886 DI_frontTemperature: 8 ETH
  SG_ DI_frontDcCapT: 24|8@1+ (1,-40) [0|0] "DegC" X
@@ -4002,6 +3991,57 @@ BO_ 325 ESP_status: 8 ETH
  SG_ ESP_statusCounter: 8|4@1+ (1,0) [0|0] "" X
  SG_ ESP_steeringAngleQF: 27|1@1+ (1,0) [0|0] "" X
  SG_ ESP_yawRateQF: 26|1@1+ (1,0) [0|0] "" X
+
+BO_ 341 ESP_wheelRotation: 8 ChassisBus
+ SG_ ESP_wheelAngleFL: 0|8@1+ (1.40625,0) [0|358.59375] "deg" X
+ SG_ ESP_wheelAngleFR: 8|8@1+ (1.40625,0) [0|358.59375] "deg" X
+ SG_ ESP_wheelAngleRL: 16|8@1+ (1.40625,0) [0|358.59375] "deg" X
+ SG_ ESP_wheelAngleRR: 24|8@1+ (1.40625,0) [0|358.59375] "deg" X
+ SG_ ESP_wheelRotationRR: 32|2@1+ (1,0) [0|3] ""  Receiver
+ SG_ ESP_wheelRotationRL: 34|2@1+ (1,0) [0|3] ""  Receiver
+ SG_ ESP_wheelRotationFR: 36|2@1+ (1,0) [0|3] ""  Receiver
+ SG_ ESP_wheelRotationFL: 38|2@1+ (1,0) [0|3] ""  Receiver
+ SG_ ESP_wheelRotationQF: 40|1@1+ (1,0) [0|1] ""  Receiver
+ SG_ ESP_standstillStatus : 41|1@1+ (1,0) [0|1] ""  Receiver
+ SG_ ESP_vehicleSpeed : 42|10@1+ (0.5,0) [0|511] "kph"  Receiver
+ SG_ ESP_wheelRotationCounter : 52|4@1+ (1,0) [0|15] ""  Receiver
+ SG_ ESP_wheelRotationChecksum : 56|8@1+ (1,0) [0|255] ""  Receiver
+
+VAL_ 341 ESP_wheelRotationRR 3 "UNKNOWN" 2 "STANDSTILL" 1 "BACKWARD" 0 "FORWARD" ;
+VAL_ 341 ESP_wheelRotationRL 3 "UNKNOWN" 2 "STANDSTILL" 1 "BACKWARD" 0 "FORWARD" ;
+VAL_ 341 ESP_WheelRotationFR 3 "UNKNOWN" 2 "STANDSTILL" 1 "BACKWARD" 0 "FORWARD" ;
+VAL_ 341 ESP_wheelRotationFL 3 "UNKNOWN" 2 "STANDSTILL" 1 "BACKWARD" 0 "FORWARD" ;
+VAL_ 341 ESP_wheelRotationQF 1 "VALID" 0 "INVALID" ;
+VAL_ 341 ESP_standstillStatus 1 "STANDSTILL" 0 "ROLLING" ;
+VAL_ 341 ESP_vehicleSpeed 1023 "SNA" ;
+
+BO_ 373 ESP_wheelSpeed: 8 ChassisBus
+ SG_ ESP_wheelSpeedRR : 39|13@1+ (0.04,0) [0|327.64] "RPM" X
+ SG_ ESP_wheelSpeedRL : 26|13@1+ (0.04,0) [0|327.64] "RPM" X
+ SG_ ESP_wheelSpeedFR : 13|13@1+ (0.04,0) [0|327.64] "RPM" X
+ SG_ ESP_wheelSpeedFL : 0|13@1+ (0.04,0) [0|327.64] "RPM" X
+ SG_ ESP_wheelSpeedCounter : 52|4@1+ (1,0) [0|15] ""  Receiver
+ SG_ ESP_wheelSpeedChecksum : 56|8@1+ (1,0) [0|255] ""  Receiver
+
+VAL_ 373 ESP_wheelSpeedRR 8191 "SNA";
+VAL_ 373 ESP_wheelSpeedRL 8191 "SNA";
+VAL_ 373 ESP_wheelSpeedFR 8191 "SNA";
+VAL_ 373 ESP_wheelSpeedFL 8191 "SNA";
+
+BO_ 389 ESP_brakeTorque: 8 ChassisBus
+ SG_ ESP_brakeTorqueFL : 0|12@1+ (2,0) [0|8190] "Nm"  Receiver
+ SG_ ESP_brakeTorqueFR : 12|12@1+ (2,0) [0|8190] "Nm"  Receiver
+ SG_ ESP_brakeTorqueRL : 24|12@1+ (2,0) [0|8190] "Nm"  Receiver
+ SG_ ESP_brakeTorqueRR : 36|12@1+ (2,0) [0|8190] "Nm"  Receiver
+ SG_ ESP_brakeTorqueQF : 50|1@1+ (1,0) [0|1] ""  Receiver
+ SG_ ESP_brakeTorqueCounter : 52|4@1+ (1,0) [0|15] ""  Receiver
+ SG_ ESP_brakeTorqueChecksum : 56|8@1+ (1,0) [0|255] ""  Receiver
+
+VAL_ 389 ESP_brakeTorqueFL 4095 "SNA" ;
+VAL_ 389 ESP_brakeTorqueFR 4095 "SNA" ;
+VAL_ 389 ESP_brakeTorqueRL 4095 "SNA" ;
+VAL_ 389 ESP_brakeTorqueRR 4095 "SNA" ;
+VAL_ 389 ESP_brakeTorqueQF 1 "IN_SPEC" 0 "UNDEFINABLE_ACCURACY" ;
 
 BO_ 1621 ESP_udsResponse: 8 ETH
  SG_ ESP_udsResponseData: 0|54@0+ (1024,0) [0|0] "" X
