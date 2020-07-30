@@ -177,7 +177,7 @@ function addSignalMessageRef(signal) {
   }
   let refs = signalEnabledMessageRefs[message.mnemonic] || 0
   if (refs === 0) {
-    enableMessage(message.id)
+    enableMessage(message.bus, message.id)
   }
   signalEnabledMessageRefs[message.mnemonic] = refs + 1
 }
@@ -191,7 +191,7 @@ function releaseSignalMessageRef(signal) {
   let refs = signalEnabledMessageRefs[message.mnemonic] || 0
   if (refs > 0) {
     if (refs === 1) {
-      disableMessage(message.id)
+      disableMessage(message.bus, message.id)
     }
     signalEnabledMessageRefs[message.mnemonic] = refs - 1
   }
@@ -207,13 +207,13 @@ function enableAllSubscribedMessages() {
   Object.keys(signalEnabledMessageRefs).forEach(mnemonic => {
     log.debug(`Enabling message ${mnemonic}, has ${signalEnabledMessageRefs[mnemonic]} signals`)
     const message = dbc.getMessage(mnemonic)
-    enableMessage(message.id)
+    enableMessage(message.bus, message.id)
   })
 }
 
 function getLastSignalValues(signals) {
   const messages = [...new Set(signals.map(s => dbc.getSignalMessage(s)))]
-  messages.forEach(m => getLastMessageValue(m.id))
+  messages.forEach(m => getLastMessageValue(m.bus, m.id))
 }
 
 function addSnifferRef() {
@@ -237,11 +237,11 @@ const CMDID_SET_ALL_MSG_FLAGS = 0x01
 const CMDID_SET_MSG_FLAGS = 0x02
 const CMDID_GET_MSG_LAST_VALUE = 0x03
 
-function getLastMessageValue(id) {
+function getLastMessageValue(bus, id) {
   const m2 = activeM2()
-  const size = 2
+  const size = 3
   if (m2) {
-    m2.send(Uint8Array.from([CMDID_GET_MSG_LAST_VALUE, size, id & 0xff, id >> 8]))
+    m2.send(Uint8Array.from([CMDID_GET_MSG_LAST_VALUE, size, bus, id & 0xff, id >> 8]))
   }
 }
 
@@ -253,11 +253,11 @@ function setAllMessageFlags(flags) {
   }
 }
 
-function setMessageFlags(id, flags) {
+function setMessageFlags(bus, id, flags) {
   const m2 = activeM2()
-  const size = 3
+  const size = 4
   if (m2) {
-    m2.send(Uint8Array.from([CMDID_SET_MSG_FLAGS, size, id & 0xff, id >> 8, flags & 0xff]))
+    m2.send(Uint8Array.from([CMDID_SET_MSG_FLAGS, size, bus, id & 0xff, id >> 8, flags & 0xff]))
   }
 }
 
@@ -269,13 +269,13 @@ function disableAllMessages() {
   setAllMessageFlags(CAN_MSG_FLAG_RESET)
 }
 
-function enableMessage(id) {
-  getLastMessageValue(id)
-  setMessageFlags(id, CAN_MSG_FLAG_TRANSMIT)
+function enableMessage(bus, id) {
+  getLastMessageValue(bus, id)
+  setMessageFlags(bus, id, CAN_MSG_FLAG_TRANSMIT)
 }
 
-function disableMessage(id) {
-  setMessageFlags(id, CAN_MSG_FLAG_RESET)
+function disableMessage(bus, id) {
+  setMessageFlags(bus, id, CAN_MSG_FLAG_RESET)
 }
 
 function decodeSignal(buf, def) {
@@ -289,37 +289,38 @@ function decodeSignal(buf, def) {
 
 async function processMessage(ws, msg) {
   const data = new Uint8Array(msg)
-  if (data.length < 7) {
+  if (data.length < 8) {
     return log.warn(`Invalid message format, length is ${data.length}, message is ${data.toString()}`)
   }
   const ts = data[0] | (data[1] << 8) | (data[2] << 16) | (data[3] << 24)
-  const id = data[4] | (data[5] << 8)
-  const len = data[6]
-  const value = new BitView(data.buffer, 7, len)
+  const bus = data[4]
+  const id = data[5] | (data[6] << 8)
+  const len = data[7]
+  const value = new BitView(data.buffer, 8, len)
 
   // if this isn't the first message in the segment, just fire and forget
-  if (ws.segmentId) {
-    pg.query(sql`
-      INSERT INTO canbus_msgs (ts, id, data)
-      VALUES (${ts}, ${id}, ${sql.binary(value.buffer)})
-    `)
-  }
+  // if (ws.segmentId) {
+  //   pg.query(sql`
+  //     INSERT INTO canbus_msgs (ts, id, data)
+  //     VALUES (${ts}, ${id}, ${sql.binary(value.buffer)})
+  //   `)
+  // }
   // if it's the first one, insert a first message, returning its id to be able
   // to create a new segment
-  else {
-    const { tid: msgId } = await pg.one(sql`
-      INSERT INTO canbus_msgs (ts, id, data)
-      VALUES (${ts}, ${id}, ${sql.binary(value.buffer)})
-      RETURNING tid
-    `)
+  // else {
+  //   const { tid: msgId } = await pg.one(sql`
+  //     INSERT INTO canbus_msgs (ts, id, data)
+  //     VALUES (${ts}, ${id}, ${sql.binary(value.buffer)})
+  //     RETURNING tid
+  //   `)
 
-    const { tid: segmentId } = await pg.one(sql`
-      INSERT INTO canbus_segments (start_id)
-      VALUES (${msgId})
-      RETURNING tid
-    `)
-    ws.segmentId = segmentId
-  }
+  //   const { tid: segmentId } = await pg.one(sql`
+  //     INSERT INTO canbus_segments (start_id)
+  //     VALUES (${msgId})
+  //     RETURNING tid
+  //   `)
+  //   ws.segmentId = segmentId
+  // }
 
   wss.clients.forEach(ws => {
     if (!ws.isM2 && ws.readyState === 1 && (ws.monitor || ws.sniffer)) {
@@ -327,9 +328,9 @@ async function processMessage(ws, msg) {
     }
   })
 
-  const def = dbc.getMessageFromId(id)
+  const def = dbc.getMessageFromId(bus, id)
   if (!def) {
-    return log.warn(`No definition for message ${id}`)
+    return log.warn(`No definition for message ${id} on bus ${bus}`)
   }
 
   const ingress = {}

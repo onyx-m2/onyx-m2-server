@@ -52,6 +52,12 @@ const CATEGORIES = {
   uncat: "Uncategorized"
 }
 
+const BUSES = {
+  'ETH': 0,
+  'VehicleBus': 0,
+  'ChassisBus': 1
+}
+
 module.exports = async (dbcFile) => {
   let dbc
   try {
@@ -96,7 +102,7 @@ async function generateDbc(stream) {
       try {
         // message
         if (line.startsWith('BO_')) {
-          const parts = /BO_ (\d+) (\w+_)?(\w+): (\d+)/.exec(line)
+          const parts = /BO_ (\d+) (\w+_)?(\w+): (\d+) (\w+)/.exec(line)
           if (!parts) {
             console.warn(`Failed to parse message: "${line}"`)
             warnings.push(line)
@@ -112,12 +118,18 @@ async function generateDbc(stream) {
           }
           const mnemonic = parts[3]
           const length = Number(parts[4])
+          let bus = BUSES[parts[5]]
+          if (bus === undefined) {
+            console.warn(`Failed to find bus in message: "${line}", defaulting to 0`)
+            warnings.push(line)
+            bus = 0
+          }
           const slug = toSlug(mnemonic)
           const name = toName(mnemonic)
           messages.push({ id,
             mnemonic: `${category}_${mnemonic}`,
             category: category.toLowerCase(),
-            slug, name, length
+            bus, slug, name, length
           })
         }
 

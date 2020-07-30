@@ -21,7 +21,7 @@ class DBC {
   }
 
   addMessage(message) {
-    if (!this.getMessageFromId(message.id)) {
+    if (!this.getMessageFromId(message.bus, message.id)) {
       this.messages.push(message)
       this.indexMessage(message)
     }
@@ -31,8 +31,12 @@ class DBC {
     return this.messageByPath[categoryPath + '/' + messagePath]
   }
 
-  getMessageFromId(id) {
-    return this.messageById[id]
+  getMessageFromId(bus, id) {
+    const message = this.messageById[id]
+    if (message.bus === bus) {
+      return message
+    }
+    return null
   }
 
   getMessage(mnemonic) {
