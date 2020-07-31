@@ -324,7 +324,7 @@ async function processMessage(ws, msg) {
 
   wss.clients.forEach(ws => {
     if (!ws.isM2 && ws.readyState === 1 && (ws.monitor || ws.sniffer)) {
-      sendJSON(ws, 'message', [ id, ts, Array.from(data.slice(7)) ])
+      sendJSON(ws, 'message', [ bus, id, ts, Array.from(data.slice(8)) ])
     }
   })
 

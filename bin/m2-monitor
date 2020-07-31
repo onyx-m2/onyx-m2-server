@@ -17,9 +17,9 @@ ws.on('open', () => {
   ws.on('message', (msg) => {
     const { event, data } = JSON.parse(msg)
     if (event === 'message') {
-      const [ id, ts, value ] = data
-      messageLog.write(`${id} | 0x${id.toString(16)} @ ${ts} len ${value.length} | ${Buffer.from(value).toString('hex')}\n`)
-      console.log(`id:${id} ts:${ts} value:${value}`)
+      const [ bus, id, ts, value ] = data
+      messageLog.write(`${bus} | ${id} | 0x${id.toString(16)} @ ${ts} len ${value.length} | ${Buffer.from(value).toString('hex')}\n`)
+      console.log(`bus: ${bus} id:${id} ts:${ts} value:${value}`)
     }
     else if (event === 'status') {
       const [ online, latency, rate ] = data
