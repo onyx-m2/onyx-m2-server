@@ -310,7 +310,7 @@ async function processMessage(ws, msg) {
     value = new BitView(data.buffer, 8, len)
   }
   catch (e) {
-    log.error(`Data: ${data}`)
+    log.error(`Error parsing data, length: ${data.length}, ts: ${ts}, bus: ${bus}, id: ${id}, len: ${len}`)
     log.error(e)
     return
   }
