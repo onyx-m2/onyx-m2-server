@@ -27,6 +27,10 @@ class DBC {
     }
   }
 
+  getMessages() {
+    return this.messages
+  }
+
   getMessageFromPath(categoryPath, messagePath) {
     return this.messageByPath[categoryPath + '/' + messagePath]
   }

@@ -154,6 +154,24 @@ Possible flow:
     data: true
   }
 
+  // Clients can also request the last value of a given message id on a given bus (the
+  // server will emit the same message and signals events as a response to this that
+  // it does when data is received from the M2)
+  {
+    event: 'get-message',
+    data: {
+      bus: 0,
+      id: 789
+    }
+  }
+
+  // Clients can also request the last value of a every message (the
+  // server will emit the same message and signals events as a response to this that
+  // it does when data is received from the M2)
+  {
+    event: 'get-all-messages'
+  }
+
   // Server sends all messages to monitors and sniffers
   {
     event: 'message'

@@ -236,6 +236,15 @@ const CAN_MSG_FLAG_TRANSMIT = 0x01
 const CMDID_SET_ALL_MSG_FLAGS = 0x01
 const CMDID_SET_MSG_FLAGS = 0x02
 const CMDID_GET_MSG_LAST_VALUE = 0x03
+const CMDID_GET_ALL_MSG_LAST_VALUE = 0x04
+
+function getAllLastMessageValues() {
+  const m2 = activeM2()
+  const size = 0
+  if (m2) {
+    m2.send(Uint8Array.from([CMDID_GET_ALL_MSG_LAST_VALUE, size]))
+  }
+}
 
 function getLastMessageValue(bus, id) {
   const m2 = activeM2()
@@ -352,10 +361,13 @@ async function processMessage(ws, msg) {
   }
   wss.clients.forEach(ws => {
     if (!ws.isM2 && ws.readyState === 1) {
-      const signals = ws.subscriptions.filter(s => s in ingress).map(s => [s, ingress[s]])
+      const subscribedSignals = ws.subscriptions.filter(s => s in ingress)
+      const oneShotSignals = ws.oneShotSignals.filter(s => s in ingress)
+      const signals = [...new Set([...subscribedSignals, ...oneShotSignals])].map(s => [s, ingress[s]])
       if (signals.length > 0) {
         sendJSON(ws, 'signal', signals)
       }
+      ws.oneShotSignals = ws.oneShotSignals.filter(s => !oneShotSignals.includes(s))
     }
   })
 }
@@ -368,6 +380,7 @@ async function processMessage(ws, msg) {
 function handleClient(ws) {
   log.info(`New client-${ws.id} connection`)
   ws.subscriptions = []
+  ws.oneShotSignals = []
   sendJSON(ws, 'hello', {
     session: ws.id
   })
@@ -407,7 +420,20 @@ function handleClient(ws) {
 
       case 'get': {
         log.info(`Get from client-${ws.id} for ${data}`)
+        ws.oneShotSignals.push(...data)
         getLastSignalValues(data)
+        break
+      }
+
+      case 'get-message': {
+        log.info(`Get message from client-${ws.id} for ${data}`)
+        getLastMessageValue(data.bus, data.id)
+        break
+      }
+
+      case 'get-all-messages': {
+        log.info(`Get all messages from client-${ws.id}`)
+        getAllLastMessageValues()
         break
       }
 
