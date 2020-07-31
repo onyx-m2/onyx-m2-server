@@ -207,8 +207,118 @@ BO_ 1029 VIN_info: 8 VehicleBus
  SG_ VIN_C405 m18 : 8|56@1+ (1,0) [0|7.2057594038E+016] "" X
  SG_ VIN_A405 m16 : 8|56@1+ (1,0) [0|7.2057594038E+016] "" X
 
-CM_ BO_ 1025 BMS_cellVoltages: 8 VehicleBus
-CM_ "Individual cell voltages are no longer available";
+CM_ "Individual cell voltages are no longer available?";
+BO_ 1025 BMS_cellVoltages: 8 ChassisBus
+ SG_ MultiplexSelector M : 0|8@1+ (1,0) [0|0] ""  Receiver
+ SG_ StatusFlags : 8|8@1+ (1,0) [0|0] ""  Receiver
+ SG_ Cell0 m0 : 16|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell1 m0 : 32|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell2 m0 : 48|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell3 m1 : 16|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell4 m1 : 32|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell5 m1 : 48|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell6 m2 : 16|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell7 m2 : 32|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell8 m2 : 48|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell9 m3 : 16|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell10 m3 : 32|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell11 m3 : 48|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell12 m4 : 16|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell13 m4 : 32|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell14 m4 : 48|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell15 m5 : 16|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell16 m5 : 32|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell17 m5 : 48|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell18 m6 : 16|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell19 m6 : 32|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell20 m6 : 48|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell21 m7 : 16|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell22 m7 : 32|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell23 m7 : 48|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell24 m8 : 16|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell25 m8 : 32|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell26 m8 : 48|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell27 m9 : 16|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell28 m9 : 32|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell29 m9 : 48|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell30 m10 : 16|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell31 m10 : 32|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell32 m10 : 48|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell34 m11 : 16|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell33 m11 : 32|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell35 m11 : 48|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell36 m12 : 16|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell37 m12 : 32|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell38 m12 : 48|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell39 m13 : 16|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell40 m13 : 32|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell41 m13 : 48|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell42 m14 : 16|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell43 m14 : 32|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell44 m14 : 48|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell45 m15 : 16|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell46 m15 : 32|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell47 m15 : 48|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell48 m16 : 16|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell49 m16 : 32|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell50 m16 : 48|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell51 m17 : 16|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell52 m17 : 32|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell53 m17 : 48|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell54 m18 : 16|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell55 m18 : 32|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell56 m18 : 48|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell57 m19 : 16|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell58 m19 : 32|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell59 m19 : 48|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell60 m20 : 16|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell61 m20 : 32|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell62 m20 : 48|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell63 m21 : 16|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell64 m21 : 32|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell65 m21 : 48|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell66 m22 : 16|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell67 m22 : 32|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell68 m22 : 48|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell69 m23 : 16|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell70 m23 : 32|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell71 m23 : 48|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell72 m24 : 16|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell73 m24 : 32|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell74 m24 : 48|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell75 m25 : 16|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell76 m25 : 32|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell77 m25 : 48|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell78 m26 : 16|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell79 m26 : 32|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell80 m26 : 48|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell81 m27 : 16|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell82 m27 : 32|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell83 m27 : 48|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell84 m28 : 16|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell85 m28 : 32|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell86 m28 : 48|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell87 m29 : 16|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell88 m29 : 32|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell89 m29 : 48|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell90 m30 : 16|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell91 m30 : 32|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell92 m30 : 48|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell93 m31 : 16|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell94 m31 : 32|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell95 m31 : 48|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell96 m32 : 16|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell97 m32 : 32|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell98 m32 : 48|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell99 m33 : 16|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell100 m33 : 32|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell101 m33 : 48|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell102 m34 : 16|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell103 m34 : 32|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell104 m34 : 48|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell105 m35 : 16|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell106 m35 : 32|16@1+ (0.0001,0) [0|0] "V"  Receiver
+ SG_ Cell107 m35 : 48|16@1+ (0.0001,0) [0|0] "V"  Receiver
 
 CM_ "Also updated UI_autopilotControl, UI_gpsVehicleSpeed, UI_hvacRequest, UI_vehicleControl2, VCFRONT_logging10Hz, VCFRONT_status, VCFRONT_vehicleStatus, VCRIGHT_hvacStatus, VCRIGHT_hvacRequest, VCRIGHT_logging1Hz, VCFRONT_logging1Hz, GTW_carConfig";
 
@@ -229,12 +339,12 @@ BO_ 1320 UTC_unixTime: 4 ETH
 
 CM_ "End of time updates";
 
-BO_ 600 APB_status: 8 ETH
+BO_ 600 APB_status: 8 ChassisBus
  SG_ APB_statusChecksum: 56|8@1+ (1,0) [0|0] "" X
  SG_ APB_statusCounter: 52|4@1+ (1,0) [0|0] "" X
  SG_ APB_watchdogState: 0|3@1+ (1,0) [0|0] "" X
 
-BO_ 1020 APP_boardTemperatures: 7 ETH
+BO_ 1020 APP_boardTemperatures: 7 ChassisBus
  SG_ APP_decisionTemperature: 0|8@1+ (1,-128) [0|0] "C" X
  SG_ APP_parkerATemperature: 16|8@1+ (1,-128) [0|0] "C" X
  SG_ APP_parkerBTemperature: 24|8@1+ (1,-128) [0|0] "C" X
@@ -243,7 +353,7 @@ BO_ 1020 APP_boardTemperatures: 7 ETH
  SG_ APP_pascalHeaterDecision: 48|1@1+ (1,0) [0|0] "" X
  SG_ APP_pascalTemperature: 8|8@1+ (1,-128) [0|0] "C" X
 
-BO_ 1012 APP_camCalibrationStatus: 6 ETH
+BO_ 1012 APP_camCalibrationStatus: 6 ChassisBus
  SG_ APP_cameraPosition M: 0|4@1+ (1,0) [0|0] "" X
  SG_ APP_mainCamExtPitchCal m1: 8|9@1+ (0.05,-12.5) [0|0] "deg" X
  SG_ APP_mainCamExtYawCal m1: 17|9@1+ (0.05,-12.5) [0|0] "deg" X
@@ -286,7 +396,7 @@ BO_ 1012 APP_camCalibrationStatus: 6 ETH
  SG_ APP_backupCalibProgress m8: 33|7@1+ (1,0) [0|0] "percent" X
  SG_ APP_backupCalibrated m8: 40|1@1+ (1,0) [0|0] "" X
 
-BO_ 1018 APP_cameraLux: 8 ETH
+BO_ 1018 APP_cameraLux: 8 ChassisBus
  SG_ APP_backupCameraLUX: 56|8@1+ (50,0) [0|0] "lux" X
  SG_ APP_fisheyeCameraLUX: 16|8@1+ (50,0) [0|0] "lux" X
  SG_ APP_lPillarCameraLUX: 40|8@1+ (50,0) [0|0] "lux" X
@@ -296,22 +406,22 @@ BO_ 1018 APP_cameraLux: 8 ETH
  SG_ APP_rPillarCameraLUX: 48|8@1+ (50,0) [0|0] "lux" X
  SG_ APP_rRepeatCameraLUX: 32|8@1+ (50,0) [0|0] "lux" X
 
-BO_ 1040 APP_cameraStatus: 1 ETH
+BO_ 1040 APP_cameraStatus: 1 ChassisBus
  SG_ APP_backupCameraFeedGood: 0|1@1+ (1,0) [0|0] "" X
  SG_ APP_backupCameraFrameRate: 1|6@1+ (1,0) [0|0] "" X
 
-BO_ 1353 APP_info: 8 ETH
+BO_ 1353 APP_info: 8 ChassisBus
  SG_ APP_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
  SG_ APP_buildType m0: 8|8@1+ (1,0) [0|0] "" X
  SG_ APP_infoAppFwGitHashBytes m1: 10|54@1+ (4,0) [0|0] "" X
  SG_ APP_infoAppApGitHashBytes m2: 10|54@1+ (4,0) [0|0] "" X
 
-BO_ 601 APP_status: 8 ETH
+BO_ 601 APP_status: 8 ChassisBus
  SG_ APP_statusChecksum: 56|8@1+ (1,0) [0|0] "" X
  SG_ APP_statusCounter: 52|4@1+ (1,0) [0|0] "" X
  SG_ APP_watchdogState: 0|3@1+ (1,0) [0|0] "" X
 
-BO_ 809 APP_warningMatrix0: 8 ETH
+BO_ 809 APP_warningMatrix0: 8 ChassisBus
  SG_ APP_w001_DEPRECATED: 0|1@1+ (1,0) [0|0] "" X
  SG_ APP_w002_ldwDisabled: 1|1@1+ (1,0) [0|0] "" X
  SG_ APP_w003_isaDisabled: 2|1@1+ (1,0) [0|0] "" X
@@ -377,7 +487,7 @@ BO_ 809 APP_warningMatrix0: 8 ETH
  SG_ APP_w063_parkVersionMismatch: 62|1@1+ (1,0) [0|0] "" X
  SG_ APP_w064_epasMia: 63|1@1+ (1,0) [0|0] "" X
 
-BO_ 873 APP_warningMatrix1: 8 ETH
+BO_ 873 APP_warningMatrix1: 8 ChassisBus
  SG_ APP_w065_deserializerOvercurrent: 0|1@1+ (1,0) [0|0] "" X
  SG_ APP_w066_deserializerLockLost: 1|1@1+ (1,0) [0|0] "" X
  SG_ APP_w067_steeringAlignment: 2|1@1+ (1,0) [0|0] "" X
@@ -421,7 +531,7 @@ BO_ 873 APP_warningMatrix1: 8 ETH
  SG_ APP_w105_DEPRECATED: 40|1@1+ (1,0) [0|0] "" X
  SG_ APP_w106_torsionBarOffset: 41|1@1+ (1,0) [0|0] "" X
 
-BO_ 1065 APP_warningMatrix2: 8 ETH
+BO_ 1065 APP_warningMatrix2: 8 ChassisBus
  SG_ APP_w129_mainCamExtNotCal: 0|1@1+ (1,0) [0|0] "" X
  SG_ APP_w130_narrowCamExtNotCal: 1|1@1+ (1,0) [0|0] "" X
  SG_ APP_w131_mainCamCalSaved: 2|1@1+ (1,0) [0|0] "" X
@@ -487,7 +597,7 @@ BO_ 1065 APP_warningMatrix2: 8 ETH
  SG_ APP_w191_autopilotAborting: 62|1@1+ (1,0) [0|0] "" X
  SG_ APP_w192_emergencySpeakerFail: 63|1@1+ (1,0) [0|0] "" X
 
-BO_ 1081 APP_warningMatrix3: 8 ETH
+BO_ 1081 APP_warningMatrix3: 8 ChassisBus
  SG_ APP_w193_camWindshieldUnclean: 0|1@1+ (1,0) [0|0] "" X
  SG_ APP_w194_accDriverResumeRqrd: 1|1@1+ (1,0) [0|0] "" X
  SG_ APP_w195_scwUnavailable: 2|1@1+ (1,0) [0|0] "" X
@@ -527,7 +637,7 @@ BO_ 1081 APP_warningMatrix3: 8 ETH
  SG_ APP_w229_alcUltrasoundDamaged: 36|1@1+ (1,0) [0|0] "" X
  SG_ APP_w230_alcUltrasoundBlocked: 37|1@1+ (1,0) [0|0] "" X
 
-BO_ 1097 APP_warningMatrix4: 8 ETH
+BO_ 1097 APP_warningMatrix4: 8 ChassisBus
  SG_ APP_w257_brakeJerkEvent: 0|1@1+ (1,0) [0|0] "" X
  SG_ APP_w258_aebEvent: 1|1@1+ (1,0) [0|0] "" X
  SG_ APP_w259_aebOverrideEvent: 2|1@1+ (1,0) [0|0] "" X
@@ -549,7 +659,7 @@ BO_ 637 APS_eacMonitor: 3 ETH
  SG_ APS_eacMonitorChecksum: 16|8@1+ (1,0) [0|0] "" X
  SG_ APS_eacMonitorCounter: 8|4@1+ (1,0) [0|0] "" X
 
-BO_ 970 APS_status: 4 ETH
+BO_ 970 APS_status: 4 ChassisBus
  SG_ APS_apbGpioState: 20|2@1+ (1,0) [0|0] "" X
  SG_ APS_apbStatusMonitorState: 16|3@1+ (1,0) [0|0] "" X
  SG_ APS_appGpioState: 10|2@1+ (1,0) [0|0] "" X
@@ -560,7 +670,7 @@ BO_ 970 APS_status: 4 ETH
  SG_ APS_switchState: 15|1@1+ (1,0) [0|0] "" X
  SG_ APS_vehBehaviorState: 4|3@1+ (1,0) [0|0] "" X
 
-BO_ 811 APS_warningMatrix0: 8 ETH
+BO_ 811 APS_warningMatrix0: 8 ChassisBus
  SG_ APS_w001_DEPRECATED: 0|1@1+ (1,0) [0|0] "" X
  SG_ APS_w002_ldwDisabled: 1|1@1+ (1,0) [0|0] "" X
  SG_ APS_w003_isaDisabled: 2|1@1+ (1,0) [0|0] "" X
@@ -626,7 +736,7 @@ BO_ 811 APS_warningMatrix0: 8 ETH
  SG_ APS_w063_parkVersionMismatch: 62|1@1+ (1,0) [0|0] "" X
  SG_ APS_w064_epasMia: 63|1@1+ (1,0) [0|0] "" X
 
-BO_ 876 APS_warningMatrix1: 8 ETH
+BO_ 876 APS_warningMatrix1: 8 ChassisBus
  SG_ APS_w065_deserializerOvercurrent: 0|1@1+ (1,0) [0|0] "" X
  SG_ APS_w066_deserializerLockLost: 1|1@1+ (1,0) [0|0] "" X
  SG_ APS_w067_steeringAlignment: 2|1@1+ (1,0) [0|0] "" X
@@ -670,7 +780,7 @@ BO_ 876 APS_warningMatrix1: 8 ETH
  SG_ APS_w105_DEPRECATED: 40|1@1+ (1,0) [0|0] "" X
  SG_ APS_w106_torsionBarOffset: 41|1@1+ (1,0) [0|0] "" X
 
-BO_ 1113 APS_warningMatrix2: 8 ETH
+BO_ 1113 APS_warningMatrix2: 8 ChassisBus
  SG_ APS_w129_ECU_Power_Issue: 0|1@1+ (1,0) [0|0] "" X
  SG_ APS_w130_ECU_Thermal_Issue: 1|1@1+ (1,0) [0|0] "" X
  SG_ APS_w131_trap_exception: 2|1@1+ (1,0) [0|0] "" X
@@ -704,7 +814,7 @@ BO_ 1113 APS_warningMatrix2: 8 ETH
  SG_ APS_w160_apbVersionMismatch: 31|1@1+ (1,0) [0|0] "" X
  SG_ APS_w161_gpsAntennaDisconnected: 32|1@1+ (1,0) [0|0] "" X
 
-BO_ 848 APS_warningMatrix3: 8 ETH
+BO_ 848 APS_warningMatrix3: 8 ChassisBus
  SG_ APS_w193_camWindshieldUnclean: 0|1@1+ (1,0) [0|0] "" X
  SG_ APS_w194_accDriverResumeRqrd: 1|1@1+ (1,0) [0|0] "" X
  SG_ APS_w195_scwUnavailable: 2|1@1+ (1,0) [0|0] "" X
@@ -1346,7 +1456,7 @@ BO_ 697 DAS_control: 8 ChassisBus
  SG_ DAS_jerkMin: 18|9@1+ (0.018,-9.1) [0|0] "m/s^3" X
  SG_ DAS_setSpeed: 0|12@1+ (0.1,0) [0|0] "kph" X
 
-BO_ 1337 DAS_info: 8 ETH
+BO_ 1337 DAS_info: 8 ChassisBus
  SG_ DAS_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
  SG_ DAS_infoBuildType m10: 8|8@1+ (1,0) [0|0] "" X
  SG_ DAS_infoBuildConfigID m10: 16|16@1+ (1,0) [0|0] "" X
@@ -1386,7 +1496,7 @@ BO_ 569 DAS_lanes: 8 ChassisBus
  SG_ DAS_virtualLaneViewRange: 8|8@1+ (1,0) [0|0] "m" X
  SG_ DAS_virtualLaneWidth: 4|4@1+ (0.3125,2) [0|0] "m" X
 
-BO_ 777 DAS_object: 8 ETH
+BO_ 777 DAS_object: 8 ChassisBus
  SG_ DAS_objectId M: 0|3@1+ (1,0) [0|0] "" X
  SG_ DAS_leadVehType m0: 3|3@1+ (1,0) [0|0] "" X
  SG_ DAS_leadVehRelevantForControl m0: 7|1@1+ (1,0) [0|0] "" X
@@ -3208,7 +3318,7 @@ BO_ 883 EPAS3P_sysStatus: 8 ETH
 BO_ 1592 EPAS3P_udsResponseCH: 8 ETH
  SG_ EPAS3P_udsResponseDataCH: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 913 EPAS3S_alertMatrix: 8 ETH
+BO_ 913 EPAS3S_alertMatrix: 8 ChassisBus
  SG_ EPAS3S_matrixIndex M: 0|4@1+ (1,0) [0|0] "" X
  SG_ EPAS3S_a001_sent1Mia m0: 4|1@1+ (1,0) [0|0] "" X
  SG_ EPAS3S_a002_sent1Error m0: 5|1@1+ (1,0) [0|0] "" X
@@ -3341,7 +3451,7 @@ BO_ 913 EPAS3S_alertMatrix: 8 ETH
  SG_ EPAS3S_a129_combEcu1StatFail m2: 12|1@1+ (1,0) [0|0] "" X
  SG_ EPAS3S_a130_sasOffsetNotCal m2: 13|1@1+ (1,0) [0|0] "" X
 
-BO_ 785 EPAS3S_info: 8 ETH
+BO_ 785 EPAS3S_info: 8 ChassisBus
  SG_ EPAS3S_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
  SG_ EPAS3S_infoBuildType m10: 8|8@1+ (1,0) [0|0] "" X
  SG_ EPAS3S_infoComponentID m10: 48|16@1+ (1,0) [0|0] "" X
@@ -3691,7 +3801,7 @@ BO_ 1575 EPBR_udsResponse: 8 ETH
  SG_ EPBR_udsResponseData_H: 0|32@0+ (1,0) [0|0] "" X
  SG_ EPBR_udsResponseData_L: 32|32@0+ (1,0) [0|0] "" X
 
-BO_ 981 ESP_alertMatrix: 8 ETH
+BO_ 981 ESP_alertMatrix: 8 ChassisBus
  SG_ ESP_matrixIndex M: 0|4@1+ (1,0) [0|0] "" X
  SG_ ESP_a001_ecuGenericFault m0: 4|1@1+ (1,0) [0|0] "" X
  SG_ ESP_a002_valvesGenericFault m0: 5|1@1+ (1,0) [0|0] "" X
@@ -4753,7 +4863,7 @@ BO_ 1898 HVP_vehicleDbg: 8 ETH
  SG_ HVP_minRobinBrickId m1: 48|7@1+ (1,1) [0|0] "" X
  SG_ HVP_avgRobinBrickV m2: 8|16@1- (0.001,0) [0|0] "V" X
 
-BO_ 861 IBST_alertMatrix: 8 ETH
+BO_ 861 IBST_alertMatrix: 8 ChassisBus
  SG_ IBST_matrixIndex M: 0|4@1+ (1,0) [0|0] "" X
  SG_ IBST_a001_microSupplyError m0: 4|1@1+ (1,0) [0|0] "" X
  SG_ IBST_a002_HWBISTError m0: 5|1@1+ (1,0) [0|0] "" X
@@ -4931,7 +5041,7 @@ BO_ 861 IBST_alertMatrix: 8 ETH
  SG_ IBST_a174_LVOffStateInvalid m2: 57|1@1+ (1,0) [0|0] "" X
  SG_ IBST_a175_LVGoingDownInvalid m2: 58|1@1+ (1,0) [0|0] "" X
 
-BO_ 813 IBST_info: 8 ETH
+BO_ 813 IBST_info: 8 ChassisBus
  SG_ IBST_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
  SG_ IBST_infoBuildType m10: 8|8@1+ (1,0) [0|0] "" X
  SG_ IBST_infoComponentID m10: 48|16@1+ (1,0) [0|0] "" X
@@ -4952,7 +5062,7 @@ BO_ 925 IBST_status: 3 ChassisBus
 BO_ 1629 IBST_udsResponse: 8 ETH
  SG_ IBST_udsResponseData: 0|54@0+ (1024,0) [0|0] "" X
 
-CM_ "This is now oil pump";
+CM_ "This is now oil pump"; Might still be OCS1P_alertMatrix on ChassisBus !!! TODO >> VERIFY
 CM_ BO_ 917 OCS1P_alertMatrix: 8 ETH
 CM_  SG_ OCS1P_matrixIndex M: 0|4@1+ (1,0) [0|0] "" X
 CM_  SG_ OCS1P_w121_sandwichOpen m2: 4|1@1+ (1,0) [0|0] "" X
@@ -4978,7 +5088,7 @@ CM_  SG_ OCS1P_w140_tempInvalidCalib m2: 23|1@1+ (1,0) [0|0] "" X
 CM_  SG_ OCS1P_w141_humidityInvalidCalib m2: 24|1@1+ (1,0) [0|0] "" X
 CM_  SG_ OCS1P_w142_tempHumidityInvalid m2: 25|1@1+ (1,0) [0|0] "" X
 
-CM_ BO_ 789 OCS1P_info: 8 ETH
+CM_ BO_ 789 OCS1P_info: 8 ChassisBus
 CM_ SG_ OCS1P_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
 CM_ SG_ OCS1P_infoBuildType m10: 8|8@1+ (1,0) [0|0] "" X
 CM_ SG_ OCS1P_infoBuildConfigID m10: 16|16@1+ (1,0) [0|0] "" X
@@ -5024,7 +5134,7 @@ BO_ 1152 ODIN_IsoTpPipeVCSEC: 8 ETH
  SG_ ODIN_IsoTpPipeVCSEC6: 48|8@1+ (1,0) [0|0] "" X
  SG_ ODIN_IsoTpPipeVCSEC7: 56|8@1+ (1,0) [0|0] "" X
 
-BO_ 806 PARK_info: 8 ETH
+BO_ 806 PARK_info: 8 ChassisBus
  SG_ PARK_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
  SG_ PARK_infoBuildType m10: 8|8@1+ (1,0) [0|0] "" X
  SG_ PARK_infoComponentID m10: 48|16@1+ (1,0) [0|0] "" X
@@ -5035,21 +5145,21 @@ BO_ 806 PARK_info: 8 ETH
  SG_ PARK_infoBootloaderCRC m20: 32|32@1+ (1,0) [0|0] "" X
  SG_ PARK_infoApplicationCRC m13: 32|32@1+ (1,0) [0|0] "" X
 
-BO_ 846 PARK_pasFrontMiddle: 5 ETH
+BO_ 846 PARK_pasFrontMiddle: 5 ChassisBus
  SG_ PARK_frontLeftMiddleRawDistData: 0|8@1+ (1,0) [0|0] "cm" X
  SG_ PARK_frontMiddleRawDistData: 8|8@1+ (1,0) [0|0] "cm" X
  SG_ PARK_frontRightMiddleRawDistData: 16|8@1+ (1,0) [0|0] "cm" X
  SG_ PARK_pasFrontMiddleChecksum: 32|8@1+ (1,0) [0|0] "" X
  SG_ PARK_pasFrontMiddleCounter: 24|4@1+ (1,0) [0|0] "" X
 
-BO_ 862 PARK_pasRearMiddle: 5 ETH
+BO_ 862 PARK_pasRearMiddle: 5 ChassisBus
  SG_ PARK_pasRearMiddleChecksum: 32|8@1+ (1,0) [0|0] "" X
  SG_ PARK_pasRearMiddleCounter: 24|4@1+ (1,0) [0|0] "" X
  SG_ PARK_rearLeftMiddleRawDistData: 0|8@1+ (1,0) [0|0] "cm" X
  SG_ PARK_rearMiddleRawDistData: 8|8@1+ (1,0) [0|0] "cm" X
  SG_ PARK_rearRightMiddleRawDistData: 16|8@1+ (1,0) [0|0] "cm" X
 
-BO_ 926 PARK_pasSides: 6 ETH
+BO_ 926 PARK_pasSides: 6 ChassisBus
  SG_ PARK_leftSideFrontRawDistData: 16|8@1+ (1,0) [0|0] "cm" X
  SG_ PARK_leftSideRearRawDistData: 24|8@1+ (1,0) [0|0] "cm" X
  SG_ PARK_pasSidesChecksum: 36|8@1+ (1,0) [0|0] "" X
@@ -5057,7 +5167,7 @@ BO_ 926 PARK_pasSides: 6 ETH
  SG_ PARK_rightSideFrontRawDistData: 0|8@1+ (1,0) [0|0] "cm" X
  SG_ PARK_rightSideRearRawDistData: 8|8@1+ (1,0) [0|0] "cm" X
 
-BO_ 606 PARK_pscEnvSlot: 8 ETH
+BO_ 606 PARK_pscEnvSlot: 8 ChassisBus
  SG_ PARK_pscEnvSlotType M: 0|2@1+ (1,0) [0|0] "" X
  SG_ PARK_pscLeftParallelObj1X m0: 3|11@1+ (2,-2048) [0|0] "cm" X
  SG_ PARK_pscLeftParallelObj1Y m0: 14|11@1+ (2,-2048) [0|0] "cm" X
@@ -5101,7 +5211,7 @@ BO_ 542 PARK_pscStatus: 8 ETH
  SG_ PARK_pscStatusChecksum: 60|4@1+ (1,0) [0|0] "" X
  SG_ PARK_pscStatusCounter: 56|4@1+ (1,0) [0|0] "" X
 
-BO_ 590 PARK_pscVehSlot: 8 ETH
+BO_ 590 PARK_pscVehSlot: 8 ChassisBus
  SG_ PARK_pscVehSlotType M: 0|2@1+ (1,0) [0|0] "" X
  SG_ PARK_pscLeftParallelVehX m0: 5|11@1+ (2,-2048) [0|0] "cm" X
  SG_ PARK_pscLeftParallelVehY m0: 16|11@1+ (2,-2048) [0|0] "cm" X
@@ -5134,7 +5244,7 @@ BO_ 526 PARK_sdiFront: 8 ChassisBus
  SG_ PARK_sdiSensor5RawDistData: 36|9@1+ (1,0) [0|0] "cm" X
  SG_ PARK_sdiSensor6RawDistData: 45|9@1+ (1,0) [0|0] "cm" X
 
-BO_ 558 PARK_sdiRear: 8 ETH
+BO_ 558 PARK_sdiRear: 8 ChassisBus
  SG_ PARK_sdiRearChecksum: 56|8@1+ (1,0) [0|0] "" X
  SG_ PARK_sdiRearCounter: 54|2@1+ (1,0) [0|0] "" X
  SG_ PARK_sdiSensor10RawDistData: 27|9@1+ (1,0) [0|0] "cm" X
@@ -5144,7 +5254,7 @@ BO_ 558 PARK_sdiRear: 8 ETH
  SG_ PARK_sdiSensor8RawDistData: 9|9@1+ (1,0) [0|0] "cm" X
  SG_ PARK_sdiSensor9RawDistData: 18|9@1+ (1,0) [0|0] "cm" X
 
-BO_ 814 PARK_sensorStatusFront: 5 ETH
+BO_ 814 PARK_sensorStatusFront: 5 ChassisBus
  SG_ PARK_frontDtcPresent: 26|2@1+ (1,0) [0|0] "" X
  SG_ PARK_frontLeftMiddleSensorState: 4|2@1+ (1,0) [0|0] "" X
  SG_ PARK_frontLeftRawDistData: 8|8@1+ (1,0) [0|0] "cm" X
@@ -5156,7 +5266,7 @@ BO_ 814 PARK_sensorStatusFront: 5 ETH
  SG_ PARK_sensorStatusFrontCounter: 28|4@1+ (1,0) [0|0] "" X
  SG_ PARK_systemStatusFront: 24|2@1+ (1,0) [0|0] "" X
 
-BO_ 830 PARK_sensorStatusRear: 5 ETH
+BO_ 830 PARK_sensorStatusRear: 5 ChassisBus
  SG_ PARK_rearDtcPresent: 26|2@1+ (1,0) [0|0] "" X
  SG_ PARK_rearLeftMiddleSensorState: 4|2@1+ (1,0) [0|0] "" X
  SG_ PARK_rearLeftRawDistData: 8|8@1+ (1,0) [0|0] "cm" X
@@ -5179,7 +5289,7 @@ CM_  SG_ PARK_statusCounter: 12|4@1+ (1,0) [0|0] "" X
 CM_  SG_ PARK_subMinorVersion: 40|8@1+ (1,0) [0|0] "" X
 CM_  SG_ PARK_systemDtcPresent: 4|2@1+ (1,0) [0|0] "" X
 
-BO_ 782 PARK_status2: 8 ETH
+BO_ 782 PARK_status2: 8 ChassisBus
  SG_ PARK_autoCalComplete: 16|1@1+ (1,0) [0|0] "" X
  SG_ PARK_frontSVACharID: 0|6@1+ (1,0) [0|0] "" X
  SG_ PARK_geometryType: 17|2@1+ (1,0) [0|0] "" X
@@ -5198,7 +5308,7 @@ BO_ 782 PARK_status2: 8 ETH
 BO_ 1630 PARK_udsResponse: 8 ETH
  SG_ PARK_udsResponseData: 10|54@1+ (1024,0) [0|0] "" X
 
-BO_ 894 PARK_warningMatrix: 8 ETH
+BO_ 894 PARK_warningMatrix: 8 ChassisBus
  SG_ PARK_matrixIndex M: 0|4@1+ (1,0) [0|0] "" X
  SG_ PARK_a001_s1_overTemp m0: 4|1@1+ (1,0) [0|0] "" X
  SG_ PARK_a002_s1_internalFail m0: 5|1@1+ (1,0) [0|0] "" X
@@ -5775,7 +5885,7 @@ BO_ 647 PTC_sensorStatus: 8 ETH
 BO_ 1750 PTC_udsResponse: 8 ETH
  SG_ PTC_udsResponseData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 1282 RADC_alertMatrix0: 8 ETH
+BO_ 1282 RADC_alertMatrix0: 8 ChassisBus
  SG_ RADC_a001_can1BusOff: 1|1@1+ (1,0) [0|0] "" X
  SG_ RADC_a002_ecuAdcError: 2|1@1+ (1,0) [0|0] "" X
  SG_ RADC_a003_ecuBistDisabled: 3|1@1+ (1,0) [0|0] "" X
@@ -5832,7 +5942,7 @@ BO_ 1282 RADC_alertMatrix0: 8 ETH
  SG_ RADC_a054_blockageInfo_Frame_1: 54|1@1+ (1,0) [0|0] "" X
  SG_ RADC_a055_blockageInfo_Frame_2: 55|1@1+ (1,0) [0|0] "" X
 
-BO_ 1329 RADC_info: 8 ETH
+BO_ 1329 RADC_info: 8 ChassisBus
  SG_ RADC_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
  SG_ RADC_infoPlatformType m19: 8|8@1+ (1,0) [0|0] "" X
  SG_ RADC_infoMajorVersion m19: 16|8@1+ (1,0) [0|0] "" X
@@ -6006,7 +6116,7 @@ BO_ 273 RCM_inertial2: 8 ChassisBus
  SG_ RCM_verticalAccel : 32|16@1- (0.00125,0) [-40.9575|40.9575] "m/s^2" X
  SG_ RCM_verticalAccelQF : 50|1@1+ (1,0) [0|1] ""  X
 
-BO_ 849 RCM_info: 8 ETH
+BO_ 849 RCM_info: 8 ChassisBus
  SG_ RCM_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
  SG_ RCM_infoBuildType m10: 8|8@1+ (1,0) [0|0] "" X
  SG_ RCM_infoComponentID m10: 48|16@1+ (1,0) [0|0] "" X
@@ -6137,7 +6247,7 @@ BO_ 1680 SCCM_udsResponse: 8 ETH
  SG_ SCCM_functionalResponseData_6: 48|8@1+ (1,0) [0|0] "" X
  SG_ SCCM_functionalResponseData_7: 56|8@1+ (1,0) [0|0] "" X
 
-BO_ 815 SCM_alertMatrix1: 8 ETH
+BO_ 815 SCM_alertMatrix1: 8 ChassisBus
  SG_ SCM_a001_hwDSPfault: 0|1@1+ (1,0) [0|0] "" X
  SG_ SCM_a002_hwIbatOC: 1|1@1+ (1,0) [0|0] "" X
  SG_ SCM_a003_hwCordOT: 2|1@1+ (1,0) [0|0] "" X
@@ -6335,7 +6445,7 @@ BO_ 869 SCS_alertMatrix1: 8 ETH
  SG_ SCS_a063_canRationality: 62|1@1+ (1,0) [0|0] "" X
  SG_ SCS_a064_vehicleCommandTimeout: 63|1@1+ (1,0) [0|0] "" X
 
-BO_ 880 SCS_alertMatrix2: 8 ETH
+BO_ 880 SCS_alertMatrix2: 8 ChassisBus
  SG_ SCS_a065_vBatRationalityStage1: 0|1@1+ (1,0) [0|0] "" X
  SG_ SCS_a066_vBatRationalityStage2: 1|1@1+ (1,0) [0|0] "" X
  SG_ SCS_a067_vBatRationalityStage3: 2|1@1+ (1,0) [0|0] "" X
@@ -6604,7 +6714,7 @@ BO_ 973 TAS_warningMatrix5: 8 ETH
  SG_ TAS_w294_rearAxleTooLow: 37|1@1+ (1,0) [0|0] "" X
  SG_ TAS_w295_targetHeightNotMet: 38|1@1+ (1,0) [0|0] "" X
 
-BO_ 879 TPMS_StatusC: 8 ETH
+BO_ 879 TPMS_StatusC: 8 ChassisBus
  SG_ TPMS_WA_version: 3|1@1+ (1,0) [0|0] "" X
  SG_ TPMS_c_globalHardWarning: 0|1@1+ (1,0) [0|0] "" X
  SG_ TPMS_c_globalSoftWarning: 1|1@1+ (1,0) [0|0] "" X
@@ -6662,7 +6772,7 @@ BO_ 799 TPMS_data: 8 ChassisBus
  SG_ TPMS_temperatureRL: 40|8@1+ (1,-40) [0|0] "degC" X
  SG_ TPMS_temperatureRR: 56|8@1+ (1,-40) [0|0] "degC" X
 
-BO_ 1519 TPMS_info: 8 ETH
+BO_ 1519 TPMS_info: 8 ChassisBus
  SG_ TPMS_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
  SG_ TPMS_infoComponentID m10: 48|16@1+ (1,0) [0|0] "" X
  SG_ TPMS_infoPcbaID m11: 16|8@1+ (1,0) [0|0] "" X
@@ -7123,7 +7233,7 @@ BO_ 1139 UI_ethNm: 8 ETH
  SG_ UI_nmKeepAwakeReason: 4|4@1+ (1,0) [0|0] "" X
  SG_ UI_wakeupTime: 32|32@1+ (1,0) [0|0] "" X
 
-BO_ 985 UI_gpsVehicleSpeed: 7 ChassisBus
+BO_ 985 UI_gpsVehicleSpeed: 7 VehicleBus
  SG_ UI_gpsHDOP: 0|8@1+ (0.1,0) [0|0] "1" X
  SG_ UI_gpsVehicleHeading: 8|16@1+ (0.0078125,0) [0|0] "deg" X
  SG_ UI_gpsVehicleSpeed: 24|16@1+ (0.00390625,0) [0|0] "km/hr" X
@@ -7237,7 +7347,7 @@ BO_ 12 UI_status: 7 ETH
  SG_ UI_wifiActive: 6|1@1+ (1,0) [0|0] "" X
  SG_ UI_wifiConnected: 7|1@1+ (1,0) [0|0] "" X
 
-BO_ 1064 UI_telemetryControl: 8 ETH
+BO_ 1064 UI_telemetryControl: 8 ChassisBus
  SG_ UI_TCR_classConstElem: 5|1@1+ (1,0) [0|0] "" X
  SG_ UI_TCR_classMovingFourWheel: 8|1@1+ (1,0) [0|0] "" X
  SG_ UI_TCR_classMovingPed: 6|1@1+ (1,0) [0|0] "" X
@@ -7262,7 +7372,7 @@ BO_ 856 UI_tpmsMode: 4 ETH
  SG_ UI_sizeOfReqCANAutoLearn: 24|1@1+ (1,0) [0|0] "" X
  SG_ UI_sizeOfWheelSelect: 16|2@1+ (1,0) [0|0] "" X
 
-BO_ 952 UI_tpmsRCPsetting: 8 ETH
+BO_ 952 UI_tpmsRCPsetting: 8 ChassisBus
  SG_ UI_setRCPFront: 16|8@1+ (0.025,0) [0|0] "bar" X
  SG_ UI_setRCPRear: 24|8@1+ (0.025,0) [0|0] "bar" X
 
