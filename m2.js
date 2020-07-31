@@ -353,7 +353,9 @@ async function processMessage(ws, msg) {
   wss.clients.forEach(ws => {
     if (!ws.isM2 && ws.readyState === 1) {
       const signals = ws.subscriptions.filter(s => s in ingress).map(s => [s, ingress[s]])
-      sendJSON(ws, 'signal', signals)
+      if (signals.length > 0) {
+        sendJSON(ws, 'signal', signals)
+      }
     }
   })
 }
