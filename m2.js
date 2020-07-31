@@ -288,7 +288,6 @@ function decodeSignal(buf, def) {
 }
 
 async function processMessage(ws, msg) {
-  log.debug(msg)
   const data = new Uint8Array(msg)
   if (data.length < 8) {
     return log.warn(`Invalid message format, length is ${data.length}, message is ${data.toString()}`)
