@@ -305,7 +305,15 @@ async function processMessage(ws, msg) {
   const bus = data[4]
   const id = data[5] | (data[6] << 8)
   const len = data[7]
-  const value = new BitView(data.buffer, 8, len)
+  let value
+  try {
+    value = new BitView(data.buffer, 8, len)
+  }
+  catch (e) {
+    log.error(`Data: ${data}`)
+    log.error(e)
+    return
+  }
 
   // if this isn't the first message in the segment, just fire and forget
   // if (ws.segmentId) {
@@ -426,7 +434,7 @@ function handleClient(ws) {
       }
 
       case 'get-message': {
-        log.info(`Get message from client-${ws.id} for ${data}`)
+        log.info(`Get message from client-${ws.id} for bus: ${data.bus}, id: ${data.id}`)
         getLastMessageValue(data.bus, data.id)
         break
       }
