@@ -33,7 +33,7 @@ class DBC {
 
   getMessageFromId(bus, id) {
     const message = this.messageById[id]
-    if (message.bus === bus) {
+    if (message && message.bus === bus) {
       return message
     }
     return null
