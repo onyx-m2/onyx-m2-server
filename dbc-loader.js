@@ -53,9 +53,8 @@ const CATEGORIES = {
 }
 
 const BUSES = {
-  'ETH': 0,
-  'VehicleBus': 0,
-  'ChassisBus': 1
+  'VEH': 0,
+  'CH': 1
 }
 
 module.exports = async (dbcFile) => {

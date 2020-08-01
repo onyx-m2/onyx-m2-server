@@ -7,15 +7,15 @@ CM_ "Change log";
 CM_ "Oct 2019: Added unix and system time signals";
 CM_ "May 2020: Added many definitions adapted from joshwardell's file";
 CM_ "Jul 2020: Energy buffers update for 2020.20.X";
-CM_ "Aug 2020: Updates for 2020.24.X";
+CM_ "Jul 2020: Updates for 2020.24.X";
 
 CM_ "New messages from https://github.com/joshwardell/model3dbc/commit/4fc040286b1f64adcf826dd82a322ec88df64402"
 
-BO_ 603 APP_environment: 1 ChassisBus
+BO_ 603 APP_environment: 1 CH
  SG_ APP_environmentRainy : 0|1@1+ (1,0) [0|1] "" X
  SG_ APP_environmentSnowy : 1|1@1+ (1,0) [0|1] "" X
 
-BO_ 615 DI_vehicleEstimates: 8 VehicleBus
+BO_ 615 DI_vehicleEstimates: 8 VEH
  SG_ DI_gradeEst : 33|7@1- (1,0) [-40|40] "%"  Receiver
  SG_ DI_gradeEstInternal : 48|7@1- (1,0) [-40|40] "%"  Receiver
  SG_ DI_mass : 0|10@1+ (5,1900) [1900|7010] "kg"  Receiver
@@ -34,7 +34,7 @@ VAL_ 615 DI_trailerDetected 1 "TRAILER_DETECTED" 0 "TRAILER_NOT_DETECTED" ;
 
 CM_ "Updates from https://github.com/joshwardell/model3dbc/commit/699826c0fbba074d227f9d5ecc83d1e7545a80ab"
 
-BO_ 322 VCLEFT_liftgateStatus: 8 ETH
+BO_ 322 VCLEFT_liftgateStatus: 8 VEH
  SG_ VCLEFT_liftgateStatusIndex M : 0|2@1+ (1,0) [0|2] "" X
  SG_ VCLEFT_liftgateLatchRequest m0 : 61|3@1+ (1,0) [0|4] "" X
  SG_ VCLEFT_liftgateMvmntNotAllowedCo m0 : 14|3@1+ (1,0) [0|5] "" X
@@ -49,7 +49,7 @@ BO_ 322 VCLEFT_liftgateStatus: 8 ETH
  SG_ VCLEFT_liftgateStrutDutyCycle m1 : 3|8@1- (1,0) [-100|100] "%" X
  SG_ VCLEFT_liftgateUIChimeRequest m0 : 18|3@1+ (1,0) [0|4] "" X
 
-BO_ 537 VCSEC_TPMSData: 5 ChassisBus
+BO_ 537 VCSEC_TPMSData: 5 CH
  SG_ VCSEC_TPMSBatVoltage0 m0 : 24|8@1+ (0.01,1.5) [1.5|4.04] "V" X
  SG_ VCSEC_TPMSBatVoltage1 m1 : 24|8@1+ (0.01,1.5) [1.5|4.04] "V" X
  SG_ VCSEC_TPMSBatVoltage2 m2 : 24|8@1+ (0.01,1.5) [1.5|4.04] "V" X
@@ -67,7 +67,7 @@ BO_ 537 VCSEC_TPMSData: 5 ChassisBus
  SG_ VCSEC_TPMSTemperature2 m2 : 16|8@1+ (1,-40) [-40|214] "C" X
  SG_ VCSEC_TPMSTemperature3 m3 : 16|8@1+ (1,-40) [-40|214] "C" X
 
-BO_ 1066 VCSEC_TPMSConnectionData: 8 ETH
+BO_ 1066 VCSEC_TPMSConnectionData: 8 VEH
  SG_ VCSEC_TPMSConnectionTypeCurrent0 : 11|2@1+ (1,0) [0|2] "" X
  SG_ VCSEC_TPMSConnectionTypeCurrent1 : 26|2@1+ (1,0) [0|2] "" X
  SG_ VCSEC_TPMSConnectionTypeCurrent2 : 41|2@1+ (1,0) [0|2] "" X
@@ -86,7 +86,7 @@ BO_ 1066 VCSEC_TPMSConnectionData: 8 ETH
  SG_ VCSEC_TPMSSensorState3 : 45|3@1+ (1,0) [0|4] "" X
 
 CM_ "Message id is now used by CP_status";
-CM_ BO_ 605 APP_trafficControl: 6 ETH
+CM_ BO_ 605 APP_trafficControl: 6 VEH
 CM_  SG_ APP_tcConfirmationType : 31|2@1+ (1,0) [0|2] "" X
 CM_  SG_ APP_tcContinuationReason : 27|4@1+ (1,0) [0|14] "" X
 CM_  SG_ APP_tcControlDistance : 16|8@1+ (1,0) [0|255] "m" X
@@ -102,7 +102,7 @@ CM_  SG_ APP_tcVisionRoadMarking : 44|1@1+ (1,0) [0|1] "" X
 CM_  SG_ APP_tcVisionSign : 43|1@1+ (1,0) [0|1] "" X
 CM_  SG_ APP_tcWarningSuppressionReason : 33|5@1+ (1,0) [0|17] "" X
 
-BO_ 994 VCLEFT_lightStatus: 7 ETH
+BO_ 994 VCLEFT_lightStatus: 7 VEH
  SG_ VCLEFT_FLMapLightStatus : 6|2@1+ (1,0) [0|3] "" X
  SG_ VCLEFT_FLMapLightSwitchPressed : 14|1@1+ (1,0) [0|1] "" X
  SG_ VCLEFT_FRMapLightStatus : 8|2@1+ (1,0) [0|3] "" X
@@ -126,7 +126,7 @@ BO_ 994 VCLEFT_lightStatus: 7 ETH
  SG_ VCLEFT_trailerDetected : 46|2@1+ (1,0) [0|3] "" X
  SG_ VCLEFT_turnSignalStatus : 4|2@1+ (1,0) [0|3] "" X
 
-BO_ 513 VCFRONT_logging10Hz2: 8 ETH
+BO_ 513 VCFRONT_logging10Hz2: 8 VEH
  SG_ VCFRONT_logging10Hz2 M : 0|3@1+ (1,0) [0|7] "" X
  SG_ VCFRONT_activeLouverOpenPos m1 : 16|7@1+ (1,0) [0|100] "%" X
  SG_ VCFRONT_activeLouverOpenPosTarg m1 : 8|7@1+ (1,0) [0|100] "%" X
@@ -176,7 +176,7 @@ BO_ 513 VCFRONT_logging10Hz2: 8 ETH
  SG_ VCFRONT_tempSuperheatActual m0 : 34|10@1+ (0.1,-20) [-20|80] "C" X
  SG_ VCFRONT_tempSuperheatTarget m0 : 44|10@1+ (0.1,0) [0|60] "C" X
 
-BO_ 130 UI_tripPlanning: 8 ETH
+BO_ 130 UI_tripPlanning: 8 VEH
  SG_ UI_energyAtDestination : 48|16@1- (0.01,0) [-327.67|327.67] "kWh" X
  SG_ UI_hindsightEnergy : 32|16@1- (0.01,0) [-327.67|327.67] "kWh" X
  SG_ UI_navToSupercharger : 1|1@1+ (1,0) [0|1] "" X
@@ -184,12 +184,12 @@ BO_ 130 UI_tripPlanning: 8 ETH
  SG_ UI_requestActiveBatteryHeating : 2|1@1+ (1,0) [0|1] "" X
  SG_ UI_tripPlanningActive : 0|1@1+ (1,0) [0|1] "" X
 
-BO_ 139 UI_tripPlanning2: 6 ETH
+BO_ 139 UI_tripPlanning2: 6 VEH
  SG_ UI_maxSpeedToReachDestination : 0|16@1+ (0.01,0) [0|655.34] "m/s" X
  SG_ UI_remainingWeightedRMSSpeed : 16|16@1+ (0.01,0) [0|655.34] "m/s" X
  SG_ UI_timeToDestination : 32|16@1+ (1,0) [0|65534] "s" X
 
-BO_ 680 CMPD_state: 8 ETH
+BO_ 680 CMPD_state: 8 VEH
  SG_ CMPD_inputHVCurrent : 32|9@1+ (0.1,0) [0|50] "A" X
  SG_ CMPD_inputHVPower : 21|11@1+ (10,0) [0|20000] "W" X
  SG_ CMPD_inputHVVoltage : 41|11@1+ (0.5,0) [0|1000] "V" X
@@ -201,14 +201,14 @@ BO_ 680 CMPD_state: 8 ETH
  SG_ CMPD_state : 56|4@1+ (1,0) [0|15] "" X
  SG_ CMPD_wasteHeatState : 60|2@1+ (1,0) [0|3] "" X
 
-BO_ 1029 VIN_info: 8 VehicleBus
+BO_ 1029 VIN_info: 8 VEH
  SG_ VIN_infoIndex M : 0|8@1+ (1,0) [0|255] "" X
  SG_ VIN_B405 m17 : 8|56@1+ (1,0) [0|7.2057594038E+016] "" X
  SG_ VIN_C405 m18 : 8|56@1+ (1,0) [0|7.2057594038E+016] "" X
  SG_ VIN_A405 m16 : 8|56@1+ (1,0) [0|7.2057594038E+016] "" X
 
 CM_ "Individual cell voltages are no longer available?";
-BO_ 1025 BMS_cellVoltages: 8 ChassisBus
+BO_ 1025 BMS_cellVoltages: 8 CH
  SG_ MultiplexSelector M : 0|8@1+ (1,0) [0|0] ""  Receiver
  SG_ StatusFlags : 8|8@1+ (1,0) [0|0] ""  Receiver
  SG_ Cell0 m0 : 16|16@1+ (0.0001,0) [0|0] "V"  Receiver
@@ -324,7 +324,7 @@ CM_ "Also updated UI_autopilotControl, UI_gpsVehicleSpeed, UI_hvacRequest, UI_ve
 
 CM_ "Start of time updates";
 
-BO_ 792 UTC_systemTime: 8 ETH
+BO_ 792 UTC_systemTime: 8 VEH
  SG_ UTC_year: 0|8@1+ (1,0) [0|0] "" X
  SG_ UTC_month: 8|8@1+ (1,0) [0|0] "" X
  SG_ UTC_seconds: 16|8@1+ (1,0) [0|0] "" X
@@ -334,17 +334,17 @@ BO_ 792 UTC_systemTime: 8 ETH
  SG_ UTC_statusCounter: 52|4@1+ (1,0) [0|0] "" X
  SG_ UTC_statusChecksum: 56|8@1+ (1,0) [0|0] "" X
 
-BO_ 1320 UTC_unixTime: 4 ETH
+BO_ 1320 UTC_unixTime: 4 VEH
  SG_ UTC_unixTime : 0|32@0+ (1,0) [0|0] "sec" X
 
 CM_ "End of time updates";
 
-BO_ 600 APB_status: 8 ChassisBus
+BO_ 600 APB_status: 8 CH
  SG_ APB_statusChecksum: 56|8@1+ (1,0) [0|0] "" X
  SG_ APB_statusCounter: 52|4@1+ (1,0) [0|0] "" X
  SG_ APB_watchdogState: 0|3@1+ (1,0) [0|0] "" X
 
-BO_ 1020 APP_boardTemperatures: 7 ChassisBus
+BO_ 1020 APP_boardTemperatures: 7 CH
  SG_ APP_decisionTemperature: 0|8@1+ (1,-128) [0|0] "C" X
  SG_ APP_parkerATemperature: 16|8@1+ (1,-128) [0|0] "C" X
  SG_ APP_parkerBTemperature: 24|8@1+ (1,-128) [0|0] "C" X
@@ -353,7 +353,7 @@ BO_ 1020 APP_boardTemperatures: 7 ChassisBus
  SG_ APP_pascalHeaterDecision: 48|1@1+ (1,0) [0|0] "" X
  SG_ APP_pascalTemperature: 8|8@1+ (1,-128) [0|0] "C" X
 
-BO_ 1012 APP_camCalibrationStatus: 6 ChassisBus
+BO_ 1012 APP_camCalibrationStatus: 6 CH
  SG_ APP_cameraPosition M: 0|4@1+ (1,0) [0|0] "" X
  SG_ APP_mainCamExtPitchCal m1: 8|9@1+ (0.05,-12.5) [0|0] "deg" X
  SG_ APP_mainCamExtYawCal m1: 17|9@1+ (0.05,-12.5) [0|0] "deg" X
@@ -396,7 +396,7 @@ BO_ 1012 APP_camCalibrationStatus: 6 ChassisBus
  SG_ APP_backupCalibProgress m8: 33|7@1+ (1,0) [0|0] "percent" X
  SG_ APP_backupCalibrated m8: 40|1@1+ (1,0) [0|0] "" X
 
-BO_ 1018 APP_cameraLux: 8 ChassisBus
+BO_ 1018 APP_cameraLux: 8 CH
  SG_ APP_backupCameraLUX: 56|8@1+ (50,0) [0|0] "lux" X
  SG_ APP_fisheyeCameraLUX: 16|8@1+ (50,0) [0|0] "lux" X
  SG_ APP_lPillarCameraLUX: 40|8@1+ (50,0) [0|0] "lux" X
@@ -406,22 +406,22 @@ BO_ 1018 APP_cameraLux: 8 ChassisBus
  SG_ APP_rPillarCameraLUX: 48|8@1+ (50,0) [0|0] "lux" X
  SG_ APP_rRepeatCameraLUX: 32|8@1+ (50,0) [0|0] "lux" X
 
-BO_ 1040 APP_cameraStatus: 1 ChassisBus
+BO_ 1040 APP_cameraStatus: 1 CH
  SG_ APP_backupCameraFeedGood: 0|1@1+ (1,0) [0|0] "" X
  SG_ APP_backupCameraFrameRate: 1|6@1+ (1,0) [0|0] "" X
 
-BO_ 1353 APP_info: 8 ChassisBus
+BO_ 1353 APP_info: 8 CH
  SG_ APP_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
  SG_ APP_buildType m0: 8|8@1+ (1,0) [0|0] "" X
  SG_ APP_infoAppFwGitHashBytes m1: 10|54@1+ (4,0) [0|0] "" X
  SG_ APP_infoAppApGitHashBytes m2: 10|54@1+ (4,0) [0|0] "" X
 
-BO_ 601 APP_status: 8 ChassisBus
+BO_ 601 APP_status: 8 CH
  SG_ APP_statusChecksum: 56|8@1+ (1,0) [0|0] "" X
  SG_ APP_statusCounter: 52|4@1+ (1,0) [0|0] "" X
  SG_ APP_watchdogState: 0|3@1+ (1,0) [0|0] "" X
 
-BO_ 809 APP_warningMatrix0: 8 ChassisBus
+BO_ 809 APP_warningMatrix0: 8 CH
  SG_ APP_w001_DEPRECATED: 0|1@1+ (1,0) [0|0] "" X
  SG_ APP_w002_ldwDisabled: 1|1@1+ (1,0) [0|0] "" X
  SG_ APP_w003_isaDisabled: 2|1@1+ (1,0) [0|0] "" X
@@ -487,7 +487,7 @@ BO_ 809 APP_warningMatrix0: 8 ChassisBus
  SG_ APP_w063_parkVersionMismatch: 62|1@1+ (1,0) [0|0] "" X
  SG_ APP_w064_epasMia: 63|1@1+ (1,0) [0|0] "" X
 
-BO_ 873 APP_warningMatrix1: 8 ChassisBus
+BO_ 873 APP_warningMatrix1: 8 CH
  SG_ APP_w065_deserializerOvercurrent: 0|1@1+ (1,0) [0|0] "" X
  SG_ APP_w066_deserializerLockLost: 1|1@1+ (1,0) [0|0] "" X
  SG_ APP_w067_steeringAlignment: 2|1@1+ (1,0) [0|0] "" X
@@ -531,7 +531,7 @@ BO_ 873 APP_warningMatrix1: 8 ChassisBus
  SG_ APP_w105_DEPRECATED: 40|1@1+ (1,0) [0|0] "" X
  SG_ APP_w106_torsionBarOffset: 41|1@1+ (1,0) [0|0] "" X
 
-BO_ 1065 APP_warningMatrix2: 8 ChassisBus
+BO_ 1065 APP_warningMatrix2: 8 CH
  SG_ APP_w129_mainCamExtNotCal: 0|1@1+ (1,0) [0|0] "" X
  SG_ APP_w130_narrowCamExtNotCal: 1|1@1+ (1,0) [0|0] "" X
  SG_ APP_w131_mainCamCalSaved: 2|1@1+ (1,0) [0|0] "" X
@@ -597,7 +597,7 @@ BO_ 1065 APP_warningMatrix2: 8 ChassisBus
  SG_ APP_w191_autopilotAborting: 62|1@1+ (1,0) [0|0] "" X
  SG_ APP_w192_emergencySpeakerFail: 63|1@1+ (1,0) [0|0] "" X
 
-BO_ 1081 APP_warningMatrix3: 8 ChassisBus
+BO_ 1081 APP_warningMatrix3: 8 CH
  SG_ APP_w193_camWindshieldUnclean: 0|1@1+ (1,0) [0|0] "" X
  SG_ APP_w194_accDriverResumeRqrd: 1|1@1+ (1,0) [0|0] "" X
  SG_ APP_w195_scwUnavailable: 2|1@1+ (1,0) [0|0] "" X
@@ -637,7 +637,7 @@ BO_ 1081 APP_warningMatrix3: 8 ChassisBus
  SG_ APP_w229_alcUltrasoundDamaged: 36|1@1+ (1,0) [0|0] "" X
  SG_ APP_w230_alcUltrasoundBlocked: 37|1@1+ (1,0) [0|0] "" X
 
-BO_ 1097 APP_warningMatrix4: 8 ChassisBus
+BO_ 1097 APP_warningMatrix4: 8 CH
  SG_ APP_w257_brakeJerkEvent: 0|1@1+ (1,0) [0|0] "" X
  SG_ APP_w258_aebEvent: 1|1@1+ (1,0) [0|0] "" X
  SG_ APP_w259_aebOverrideEvent: 2|1@1+ (1,0) [0|0] "" X
@@ -654,12 +654,12 @@ BO_ 1097 APP_warningMatrix4: 8 ChassisBus
  SG_ APP_w270_blindspotRestricted: 13|1@1+ (1,0) [0|0] "" X
  SG_ APP_w271_laneChangeAborted: 14|1@1+ (1,0) [0|0] "" X
 
-BO_ 637 APS_eacMonitor: 3 ETH
+BO_ 637 APS_eacMonitor: 3 VEH
  SG_ APS_eacAllow: 0|2@1+ (1,0) [0|0] "" X
  SG_ APS_eacMonitorChecksum: 16|8@1+ (1,0) [0|0] "" X
  SG_ APS_eacMonitorCounter: 8|4@1+ (1,0) [0|0] "" X
 
-BO_ 970 APS_status: 4 ChassisBus
+BO_ 970 APS_status: 4 CH
  SG_ APS_apbGpioState: 20|2@1+ (1,0) [0|0] "" X
  SG_ APS_apbStatusMonitorState: 16|3@1+ (1,0) [0|0] "" X
  SG_ APS_appGpioState: 10|2@1+ (1,0) [0|0] "" X
@@ -670,7 +670,7 @@ BO_ 970 APS_status: 4 ChassisBus
  SG_ APS_switchState: 15|1@1+ (1,0) [0|0] "" X
  SG_ APS_vehBehaviorState: 4|3@1+ (1,0) [0|0] "" X
 
-BO_ 811 APS_warningMatrix0: 8 ChassisBus
+BO_ 811 APS_warningMatrix0: 8 CH
  SG_ APS_w001_DEPRECATED: 0|1@1+ (1,0) [0|0] "" X
  SG_ APS_w002_ldwDisabled: 1|1@1+ (1,0) [0|0] "" X
  SG_ APS_w003_isaDisabled: 2|1@1+ (1,0) [0|0] "" X
@@ -736,7 +736,7 @@ BO_ 811 APS_warningMatrix0: 8 ChassisBus
  SG_ APS_w063_parkVersionMismatch: 62|1@1+ (1,0) [0|0] "" X
  SG_ APS_w064_epasMia: 63|1@1+ (1,0) [0|0] "" X
 
-BO_ 876 APS_warningMatrix1: 8 ChassisBus
+BO_ 876 APS_warningMatrix1: 8 CH
  SG_ APS_w065_deserializerOvercurrent: 0|1@1+ (1,0) [0|0] "" X
  SG_ APS_w066_deserializerLockLost: 1|1@1+ (1,0) [0|0] "" X
  SG_ APS_w067_steeringAlignment: 2|1@1+ (1,0) [0|0] "" X
@@ -780,19 +780,19 @@ BO_ 876 APS_warningMatrix1: 8 ChassisBus
  SG_ APS_w105_DEPRECATED: 40|1@1+ (1,0) [0|0] "" X
  SG_ APS_w106_torsionBarOffset: 41|1@1+ (1,0) [0|0] "" X
 
-BO_ 1113 APS_warningMatrix2: 8 ChassisBus
+BO_ 1113 APS_warningMatrix2: 8 CH
  SG_ APS_w129_ECU_Power_Issue: 0|1@1+ (1,0) [0|0] "" X
  SG_ APS_w130_ECU_Thermal_Issue: 1|1@1+ (1,0) [0|0] "" X
  SG_ APS_w131_trap_exception: 2|1@1+ (1,0) [0|0] "" X
  SG_ APS_w132_appVersionMismatch: 3|1@1+ (1,0) [0|0] "" X
- SG_ APS_w133_ethSwitchError: 4|1@1+ (1,0) [0|0] "" X
+ SG_ APS_w133_VEHSwitchError: 4|1@1+ (1,0) [0|0] "" X
  SG_ APS_w134_appMia: 5|1@1+ (1,0) [0|0] "" X
  SG_ APS_w135_appCritical: 6|1@1+ (1,0) [0|0] "" X
  SG_ APS_w136_gpsDisabled: 7|1@1+ (1,0) [0|0] "" X
  SG_ APS_w137_gpsFaultReset: 8|1@1+ (1,0) [0|0] "" X
  SG_ APS_w138_gpsComIssue: 9|1@1+ (1,0) [0|0] "" X
  SG_ APS_w139_udpBufferOverflow: 10|1@1+ (1,0) [0|0] "" X
- SG_ APS_w140_vcfrontMiaETH: 11|1@1+ (1,0) [0|0] "" X
+ SG_ APS_w140_vcfrontMiaVEH: 11|1@1+ (1,0) [0|0] "" X
  SG_ APS_w141_rcmMiaPartyBus: 12|1@1+ (1,0) [0|0] "" X
  SG_ APS_w142_diMiaPartyBus: 13|1@1+ (1,0) [0|0] "" X
  SG_ APS_w143_espMiaPartyBus: 14|1@1+ (1,0) [0|0] "" X
@@ -806,7 +806,7 @@ BO_ 1113 APS_warningMatrix2: 8 ChassisBus
  SG_ APS_w151_apRecovered: 22|1@1+ (1,0) [0|0] "" X
  SG_ APS_w152_gpsFusionStatus: 23|1@1+ (1,0) [0|0] "" X
  SG_ APS_w153_eacInhibit: 24|1@1+ (1,0) [0|0] "" X
- SG_ APS_w155_ethLwipError: 26|1@1+ (1,0) [0|0] "" X
+ SG_ APS_w155_VEHLwipError: 26|1@1+ (1,0) [0|0] "" X
  SG_ APS_w156_lwipAssert: 27|1@1+ (1,0) [0|0] "" X
  SG_ APS_w157_autopilotReboot: 28|1@1+ (1,0) [0|0] "" X
  SG_ APS_w158_apbMia: 29|1@1+ (1,0) [0|0] "" X
@@ -814,7 +814,7 @@ BO_ 1113 APS_warningMatrix2: 8 ChassisBus
  SG_ APS_w160_apbVersionMismatch: 31|1@1+ (1,0) [0|0] "" X
  SG_ APS_w161_gpsAntennaDisconnected: 32|1@1+ (1,0) [0|0] "" X
 
-BO_ 848 APS_warningMatrix3: 8 ChassisBus
+BO_ 848 APS_warningMatrix3: 8 CH
  SG_ APS_w193_camWindshieldUnclean: 0|1@1+ (1,0) [0|0] "" X
  SG_ APS_w194_accDriverResumeRqrd: 1|1@1+ (1,0) [0|0] "" X
  SG_ APS_w195_scwUnavailable: 2|1@1+ (1,0) [0|0] "" X
@@ -854,7 +854,7 @@ BO_ 848 APS_warningMatrix3: 8 ChassisBus
  SG_ APS_w229_alcUltrasoundDamaged: 36|1@1+ (1,0) [0|0] "" X
  SG_ APS_w230_alcUltrasoundBlocked: 37|1@1+ (1,0) [0|0] "" X
 
-BO_ 800 BMS_alertMatrix: 8 ETH
+BO_ 800 BMS_alertMatrix: 8 VEH
  SG_ BMS_matrixIndex M: 0|4@1+ (1,0) [0|0] "" X
  SG_ BMS_a017_SW_Brick_OV m0: 20|1@1+ (1,0) [0|0] "" X
  SG_ BMS_a018_SW_Brick_UV m0: 21|1@1+ (1,0) [0|0] "" X
@@ -949,7 +949,7 @@ BO_ 800 BMS_alertMatrix: 8 ETH
  SG_ BMS_a179_SW_Hvp_12V_Fault m2: 62|1@1+ (1,0) [0|0] "" X
  SG_ BMS_a180_SW_ECU_reset_blocked m2: 63|1@1+ (1,0) [0|0] "" X
 
-BO_ 818 BMS_bmbMinMax: 6 ETH
+BO_ 818 BMS_bmbMinMax: 6 VEH
  SG_ BMS_bmbMinMaxMultiplexer M: 0|2@1+ (1,0) [0|0] "" X
  SG_ BMS_thermistorNumTMax m0: 2|4@1+ (1,0) [0|0] "" X
  SG_ BMS_thermistorNumTMin m0: 8|4@1+ (1,0) [0|0] "" X
@@ -962,18 +962,18 @@ BO_ 818 BMS_bmbMinMax: 6 ETH
  SG_ BMS_brickNumVoltageMax m1: 32|7@1+ (1,1) [0|0] "" X
  SG_ BMS_brickNumVoltageMin m1: 40|7@1+ (1,1) [0|0] "" X
 
-BO_ 690 BMS_chargerRequest: 3 ETH
+BO_ 690 BMS_chargerRequest: 3 VEH
  SG_ BMS_acChargeEnable: 17|1@1+ (1,0) [0|0] "" X
  SG_ BMS_acChargePowerRequest: 0|16@1+ (0.001,0) [0|0] "kW" X
  SG_ BMS_pcsClearFaultRequest: 16|1@1+ (1,0) [0|0] "" X
 
-BO_ 722 BMS_driveLimits: 8 ETH
+BO_ 722 BMS_driveLimits: 8 VEH
  SG_ BMS_maxBusVoltage: 16|16@1+ (0.01,0) [0|0] "V" X
  SG_ BMS_maxChargeCurrent: 32|14@1+ (0.1,0) [0|0] "A" X
  SG_ BMS_maxDischargeCurrent: 48|14@1+ (0.128,0) [0|0] "A" X
  SG_ BMS_minBusVoltage: 0|16@1+ (0.01,0) [0|0] "V" X
 
-BO_ 850 BMS_energyStatus: 8 ETH
+BO_ 850 BMS_energyStatus: 8 VEH
  SG_ BMS_energyBuffer: 55|8@1+ (0.1,0) [0|0] "KWh" X
  SG_ BMS_energyCounter: 64|4@1+ (1,0) [0|0] "" X
  SG_ BMS_energyToChargeComplete: 44|11@1+ (0.1,0) [0|0] "KWh" X
@@ -993,13 +993,13 @@ VAL_ 850 BMS_nominalFullPackEnergy 2047 "SNA" ;
 CM_ SG_ 390 BMS_currentUnfiltered "changed offset from -1000 to 0";
 CM_ SG_ 390 BMS_packCurrent  "changed offset from -1000 to 0";
 
-BO_ 306 BMS_hvBusStatus: 8 ETH
+BO_ 306 BMS_hvBusStatus: 8 VEH
  SG_ BMS_chgTimeToFull: 48|12@1+ (0.0166667,0) [0|0] "Hours" X
  SG_ BMS_currentUnfiltered: 32|16@1- (-0.05,500) [0|0] "A" X
  SG_ BMS_packCurrent: 16|15@1- (-0.1,0) [0|0] "A" X
  SG_ BMS_packVoltage: 0|16@1+ (0.01,0) [0|0] "V" X
 
-BO_ 768 BMS_info: 8 ETH
+BO_ 768 BMS_info: 8 VEH
  SG_ BMS_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
  SG_ BMS_buildType m10: 8|3@1+ (1,0) [0|0] "" X
  SG_ BMS_buildConfigId m10: 16|16@1+ (1,0) [0|0] "" X
@@ -1016,18 +1016,18 @@ BO_ 768 BMS_info: 8 ETH
  SG_ BMS_bootUdsProtoVersion m20: 8|8@1+ (1,0) [0|0] "" X
  SG_ BMS_bootCrc m20: 32|32@1+ (1,0) [0|0] "" X
 
-BO_ 978 BMS_kwhCounter: 8 ETH
+BO_ 978 BMS_kwhCounter: 8 VEH
  SG_ BMS_kwhChargeTotal: 32|32@1+ (0.001,0) [0|0] "KWh" X
  SG_ BMS_kwhDischargeTotal: 0|32@1+ (0.001,0) [0|0] "KWh" X
 
-BO_ 1010 BMS_kwhCountersMultiplexed: 8 ETH
+BO_ 1010 BMS_kwhCountersMultiplexed: 8 VEH
  SG_ BMS_kwhCounter_Id M: 0|3@1+ (1,0) [0|0] "" X
  SG_ BMS_acChargerKwhTotal m0: 8|32@1+ (0.001,0) [0|0] "KWh" X
  SG_ BMS_dcChargerKwhTotal m1: 8|32@1+ (0.001,0) [0|0] "KWh" X
  SG_ BMS_kwhRegenChargeTotal m2: 8|32@1+ (0.001,0) [0|0] "KWh" X
  SG_ BMS_kwhDriveDischargeTotal m3: 8|32@1+ (0.001,0) [0|0] "KWh" X
 
-BO_ 594 BMS_powerAvailable: 8 ETH
+BO_ 594 BMS_powerAvailable: 8 VEH
  SG_ BMS_hvacPowerBudget: 50|10@1+ (0.02,0) [0|0] "kW" X
  SG_ BMS_maxDischargePower: 16|16@1+ (0.01,0) [0|0] "kW" X
  SG_ BMS_maxRegenPower: 0|16@1+ (0.01,0) [0|0] "kW" X
@@ -1036,13 +1036,13 @@ BO_ 594 BMS_powerAvailable: 8 ETH
  SG_ BMS_inverterTQF : 56|2@1+ (1,0) [0|3] "" X
 
 
-BO_ 658 BMS_socStatus: 8 ETH
+BO_ 658 BMS_socStatus: 8 VEH
  SG_ BMS_socAvg: 30|10@1+ (0.1,0) [0|0] "%" X
  SG_ BMS_socMax: 20|10@1+ (0.1,0) [0|0] "%" X
  SG_ BMS_socMin: 0|10@1+ (0.1,0) [0|0] "%" X
  SG_ BMS_socUI: 10|10@1+ (0.1,0) [0|0] "%" X
 
-BO_ 530 BMS_status: 8 ETH
+BO_ 530 BMS_status: 8 VEH
  SG_ BMS_activeHeatingWorthwhile: 5|1@1+ (1,0) [0|0] "" X
  SG_ BMS_chargeRequest: 29|1@1+ (1,0) [0|0] "" X
  SG_ BMS_chargeRetryCount: 49|4@1+ (1,0) [0|0] "" X
@@ -1066,7 +1066,7 @@ BO_ 530 BMS_status: 8 ETH
  SG_ BMS_uiChargeStatus: 32|3@1+ (1,0) [0|0] "" X
  SG_ BMS_updateAllowed: 4|1@1+ (1,0) [0|0] "" X
 
-BO_ 786 BMS_thermalStatus: 8 ETH
+BO_ 786 BMS_thermalStatus: 8 VEH
  SG_ BMS_flowRequest: 10|7@1+ (0.3,0) [0|0] "LPM" X
  SG_ BMS_inletActiveCoolTargetT: 17|8@1+ (0.25,10) [0|0] "DegC" X
  SG_ BMS_inletActiveHeatTargetT: 33|8@1+ (0.25,-25) [0|0] "DegC" X
@@ -1075,17 +1075,17 @@ BO_ 786 BMS_thermalStatus: 8 ETH
  SG_ BMS_pcsNoFlowRequest: 62|1@1+ (1,0) [0|0] "" X
  SG_ BMS_powerDissipation: 0|10@1+ (0.02,0) [0|0] "kW" X
 
-BO_ 1554 BMS_udsResponse: 8 ETH
+BO_ 1554 BMS_udsResponse: 8 VEH
  SG_ BMS_udsResponseData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 754 BMS_vehNm: 2 ETH
+BO_ 754 BMS_vehNm: 2 VEH
  SG_ BMS_hvsBusAsleep: 2|1@1+ (1,0) [0|0] "" X
  SG_ BMS_nmGoingToSleep: 0|1@1+ (1,0) [0|0] "" X
  SG_ BMS_nmKeepAwakeReason: 4|3@1+ (1,0) [0|0] "" X
  SG_ BMS_nmWakeUpBus: 1|1@1+ (1,0) [0|0] "" X
  SG_ BMS_nmWakeUpReason: 8|3@1+ (1,0) [0|0] "" X
 
-BO_ 1132 CC_alertMatrix1: 8 ETH
+BO_ 1132 CC_alertMatrix1: 8 VEH
  SG_ CC_a001_gndMonIntrptLineSide: 0|1@1+ (1,0) [0|0] "" X
  SG_ CC_a002_gndMonIntrptLoadSide: 1|1@1+ (1,0) [0|0] "" X
  SG_ CC_a003_CCIDTripped: 2|1@1+ (1,0) [0|0] "" X
@@ -1117,7 +1117,7 @@ BO_ 1132 CC_alertMatrix1: 8 ETH
  SG_ CC_a029_PilotFFault: 28|1@1+ (1,0) [0|0] "" X
  SG_ CC_a030_masterSlaveMismatch: 29|1@1+ (1,0) [0|0] "" X
 
-BO_ 796 CC_chgStatus: 8 ETH
+BO_ 796 CC_chgStatus: 8 VEH
  SG_ CC_currentLimit: 0|8@1+ (0.5,0) [0|0] "A" X
  SG_ CC_deltaTransformer: 28|2@1+ (1,0) [0|0] "" X
  SG_ CC_gridGrounding: 26|2@1+ (1,0) [0|0] "" X
@@ -1128,11 +1128,11 @@ BO_ 796 CC_chgStatus: 8 ETH
  SG_ CC_numVehCharging: 30|3@1+ (1,0) [0|0] "" X
  SG_ CC_pilotState: 8|2@1+ (1,0) [0|0] "" X
 
-BO_ 797 CC_chgStatus2: 8 ETH
+BO_ 797 CC_chgStatus2: 8 VEH
  SG_ CC_chgStatus2Index M: 0|8@1+ (1,0) [0|0] "" X
  SG_ CC_buttonState m0: 8|1@1+ (1,0) [0|0] "" X
 
-BO_ 812 CC_logData: 8 ETH
+BO_ 812 CC_logData: 8 VEH
  SG_ CC_logIndex M: 0|8@1+ (1,0) [0|0] "" X
  SG_ CC_activeConnectorID m0: 8|8@1+ (1,0) [0|0] "" X
  SG_ CC_temperature1 m0: 16|8@1- (1,88) [0|0] "DegC" X
@@ -1149,10 +1149,10 @@ BO_ 812 CC_logData: 8 ETH
  SG_ CC_lifetimeCtrCycles m11: 8|28@1+ (1,0) [0|0] "" X
  SG_ CC_lifetimeCtrCyclesLoaded m11: 36|28@1+ (1,0) [0|0] "" X
  SG_ CC_lifetimeAlertCount m12: 8|28@1+ (1,0) [0|0] "" X
- SG_ CC_lifetimETHermalFoldbacks m12: 36|28@1+ (1,0) [0|0] "" X
+ SG_ CC_lifetimVEHermalFoldbacks m12: 36|28@1+ (1,0) [0|0] "" X
  SG_ CC_lifetimeAvgStartupTemp m13: 36|28@1- (0.1,0) [0|0] "degC" X
 
-BO_ 867 CMP_info: 8 ETH
+BO_ 867 CMP_info: 8 VEH
  SG_ CMP_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
  SG_ CMP_infoBuildType m10: 8|8@1+ (1,0) [0|0] "" X
  SG_ CMP_infoBuildConfigId m10: 16|16@1+ (1,0) [0|0] "" X
@@ -1167,10 +1167,10 @@ BO_ 867 CMP_info: 8 ETH
  SG_ CMP_infoPlatformType m13: 8|8@1+ (1,0) [0|0] "" X
  SG_ CMP_infoAppCrc m13: 32|32@1+ (1,0) [0|0] "" X
 
-BO_ 1555 CMP_udsResponse: 8 ETH
+BO_ 1555 CMP_udsResponse: 8 VEH
  SG_ CMP_udsResponseData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 798 CP_alertMatrix: 8 ETH
+BO_ 798 CP_alertMatrix: 8 VEH
  SG_ CP_matrixIndex M: 0|4@1+ (1,0) [0|0] "" X
  SG_ CP_a001_canRx m0: 4|1@1+ (1,0) [0|0] "" X
  SG_ CP_a002_canTx m0: 5|1@1+ (1,0) [0|0] "" X
@@ -1244,10 +1244,10 @@ BO_ 798 CP_alertMatrix: 8 ETH
  SG_ CP_a256_unused m1: 13|1@1+ (1,0) [0|0] "" X
 
 CM_ "CP_chargeStatus was 573 now 317";
-CM_ BO_ 573 CP_chargeStatus: 1 ETH
+CM_ BO_ 573 CP_chargeStatus: 1 VEH
 CM_  SG_ CP_acChargeCurrentLimit: 0|8@1+ (0.5,0) [0|0] "A" X
 
-BO_ 317 CP_chargeStatus: 6 VehicleBus
+BO_ 317 CP_chargeStatus: 6 VEH
  SG_ CP_acChargeCurrentLimit : 8|8@1+ (0.5,0) [0|127.5] "A"  Receiver
  SG_ CP_chargeShutdownRequest : 3|2@1+ (1,0) [0|2] ""  Receiver
  SG_ CP_evseChargeType : 40|2@1+ (1,0) [0|2] ""  Receiver
@@ -1261,7 +1261,7 @@ VAL_ 317 CP_chargeShutdownRequest 2 "EMERGENCY_SHUTDOWN_REQUESTED" 1 "GRACEFUL_S
 VAL_ 317 CP_evseChargeType 2 "AC_CHARGER_PRESENT" 1 "DC_CHARGER_PRESENT" 0 "NO_CHARGER_PRESENT" ;
 VAL_ 317 CP_hvChargeStatus 1 "CP_CHARGE_CONNECTED" 5 "CP_CHARGE_ENABLED" 6 "CP_CHARGE_FAULTED" 0 "CP_CHARGE_INACTIVE" 2 "CP_CHARGE_STANDBY" 4 "CP_EVSE_TEST_PASSED" 3 "CP_EXT_EVSE_TEST_ACTIVE" ;
 
-BO_ 541 CP_evseStatus: 8 ETH
+BO_ 541 CP_evseStatus: 8 VEH
  SG_ CP_acChargeRetriesExceeded: 41|1@1+ (1,0) [0|0] "" X
  SG_ CP_acChargeState: 60|2@1+ (1,0) [0|0] "" X
  SG_ CP_acNumRetries: 42|2@1+ (1,0) [0|0] "" X
@@ -1284,7 +1284,7 @@ BO_ 541 CP_evseStatus: 8 ETH
  SG_ CP_teslaSwcanState: 34|3@1+ (1,0) [0|0] "" X
  SG_ CP_vehiclePrechargeRequired: 44|1@1+ (1,0) [0|0] "" X
 
-BO_ 1342 CP_info: 8 ETH
+BO_ 1342 CP_info: 8 VEH
  SG_ CP_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
  SG_ CP_buildType m10: 8|3@1+ (1,0) [0|0] "" X
  SG_ CP_buildConfigId m10: 16|16@1+ (1,0) [0|0] "" X
@@ -1301,7 +1301,7 @@ BO_ 1342 CP_info: 8 ETH
  SG_ CP_bootUdsProtoVersion m20: 8|8@1+ (1,0) [0|0] "" X
  SG_ CP_bootCrc m20: 32|32@1+ (1,0) [0|0] "" X
 
-BO_ 1885 CP_sensorData: 8 ETH
+BO_ 1885 CP_sensorData: 8 VEH
  SG_ CP_sensorDataSelect M : 0|4@1+ (1,0) [0|12] ""  Receiver
  SG_ CP_UHF_chipState m6 : 4|3@1+ (1,0) [0|7] ""  Receiver
  SG_ CP_UHF_fifoData m6 : 32|8@1+ (1,0) [0|255] ""  Receiver
@@ -1348,7 +1348,7 @@ BO_ 1885 CP_sensorData: 8 ETH
  SG_ CP_refVoltage m7 : 8|8@1+ (0.0070588235,0) [0|1.7999999925] "V"  Receiver
 
 CM_ CP_status was 528 is now 605
-CM_ BO_ 605 CP_status: 8 ETH
+CM_ BO_ 605 CP_status: 8 VEH
 CM_  SG_ CP_UHF_controlState: 40|4@1+ (1,0) [0|0] "" X
 CM_  SG_ CP_UHF_handleFound: 44|1@1+ (1,0) [0|0] "" X
 CM_  SG_ CP_apsVoltage: 24|8@1+ (0.0715686,0) [0|0] "V" X
@@ -1373,7 +1373,7 @@ CM_  SG_ CP_swcanRelayClosed: 37|1@1+ (1,0) [0|0] "" X
 CM_  SG_ CP_type: 0|2@1+ (1,0) [0|0] "" X
 CM_  SG_ CP_vehicleUnlockRequest: 55|1@1+ (1,0) [0|0] "" X
 
-BO_ 605 CP_status: 8 VehicleBus
+BO_ 605 CP_status: 8 VEH
  SG_ CP_UHF_controlState : 38|4@1+ (1,0) [0|10] ""  Receiver
  SG_ CP_UHF_handleFound : 42|1@1+ (1,0) [0|1] ""  Receiver
  SG_ CP_apsVoltage : 24|8@1+ (0.0715686,0) [0|18.249] "V" Vector__XXX
@@ -1404,15 +1404,15 @@ BO_ 605 CP_status: 8 VehicleBus
  SG_ CP_type : 0|2@1+ (1,0) [0|3] ""  Receiver
  SG_ CP_vehicleUnlockRequest : 52|1@1+ (1,0) [0|1] ""  Receiver
 
-BO_ 669 CP_dcChargeStatus: 4 ETH
+BO_ 669 CP_dcChargeStatus: 4 VEH
  SG_ CP_evseOutputDcCurrent : 0|15@1- (0.0732467,0) [-1200|1200] "A" X
  SG_ CP_evseOutputDcCurrentStale : 29|1@1+ (1,0) [0|1] "" X
  SG_ CP_evseOutputDcVoltage : 16|13@1+ (0.0732422,0) [0|599.927] "V" X
 
-BO_ 1566 CP_udsResponse: 8 ETH
+BO_ 1566 CP_udsResponse: 8 VEH
  SG_ CP_udsResponseData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 583 DAS_autopilotDebug: 8 ETH
+BO_ 583 DAS_autopilotDebug: 8 VEH
  SG_ DAS_autopilotAbortReason: 32|8@1+ (1,0) [0|255] "" X
  SG_ DAS_behaviorReport: 16|6@1+ (1,0) [0|43] "" X
  SG_ DAS_cameraContext: 30|2@1+ (1,0) [0|0] "" X
@@ -1430,7 +1430,7 @@ BO_ 583 DAS_autopilotDebug: 8 ETH
  SG_ DAS_arbiterBehavior : 2|3@1+ (1,0) [0|4] "" X
  SG_ DAS_rqstedBehaviorStatus: 40|5@1+ (1,0) [0|0] "" X
 
-BO_ 1001 DAS_bodyControls: 8 ETH
+BO_ 1001 DAS_bodyControls: 8 VEH
  SG_ DAS_bodyControlsChecksum: 56|8@1+ (1,0) [0|0] "" X
  SG_ DAS_bodyControlsCounter: 52|4@1+ (1,0) [0|0] "" X
  SG_ DAS_dynamicBrakeLightRequest : 22|1@1+ (1,0) [0|1] "" X
@@ -1445,7 +1445,7 @@ BO_ 1001 DAS_bodyControls: 8 ETH
  SG_ DAS_radarHeaterRequest : 23|1@1+ (1,0) [0|1] "" X
  SG_ DAS_ahlbOverride : 24|1@1+ (1,0) [0|1] "" X
 
-BO_ 697 DAS_control: 8 ChassisBus
+BO_ 697 DAS_control: 8 CH
  SG_ DAS_accState: 12|4@1+ (1,0) [0|0] "" X
  SG_ DAS_accelMax: 44|9@1+ (0.04,-15) [0|0] "m/s^2" X
  SG_ DAS_accelMin: 35|9@1+ (0.04,-15) [0|0] "m/s^2" X
@@ -1456,7 +1456,7 @@ BO_ 697 DAS_control: 8 ChassisBus
  SG_ DAS_jerkMin: 18|9@1+ (0.018,-9.1) [0|0] "m/s^3" X
  SG_ DAS_setSpeed: 0|12@1+ (0.1,0) [0|0] "kph" X
 
-BO_ 1337 DAS_info: 8 ChassisBus
+BO_ 1337 DAS_info: 8 CH
  SG_ DAS_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
  SG_ DAS_infoBuildType m10: 8|8@1+ (1,0) [0|0] "" X
  SG_ DAS_infoBuildConfigID m10: 16|16@1+ (1,0) [0|0] "" X
@@ -1481,7 +1481,7 @@ BO_ 1337 DAS_info: 8 ChassisBus
  SG_ DAS_infoEyeQAppCRC m23: 16|32@1+ (1,0) [0|0] "" X
  SG_ DAS_infoEyeQFfsCRC m24: 16|32@1+ (1,0) [0|0] "" X
 
-BO_ 569 DAS_lanes: 8 ChassisBus
+BO_ 569 DAS_lanes: 8 CH
  SG_ DAS_lanesCounter: 60|4@1+ (1,0) [0|0] "" X
  SG_ DAS_leftFork: 52|2@1+ (1,0) [0|0] "" X
  SG_ DAS_leftLaneExists: 0|1@1+ (1,0) [0|0] "" X
@@ -1496,7 +1496,7 @@ BO_ 569 DAS_lanes: 8 ChassisBus
  SG_ DAS_virtualLaneViewRange: 8|8@1+ (1,0) [0|0] "m" X
  SG_ DAS_virtualLaneWidth: 4|4@1+ (0.3125,2) [0|0] "m" X
 
-BO_ 777 DAS_object: 8 ChassisBus
+BO_ 777 DAS_object: 8 CH
  SG_ DAS_objectId M: 0|3@1+ (1,0) [0|0] "" X
  SG_ DAS_leadVehType m0: 3|3@1+ (1,0) [0|0] "" X
  SG_ DAS_leadVehRelevantForControl m0: 7|1@1+ (1,0) [0|0] "" X
@@ -1555,7 +1555,7 @@ BO_ 777 DAS_object: 8 ChassisBus
  SG_ DAS_rightVeh2Heading m5: 48|8@1+ (0.0245437,-3.14159) [0|0] "rad" X
  SG_ DAS_cutinVehHeading m5: 56|8@1+ (0.0245437,-3.14159) [0|0] "rad" X
 
-BO_ 921 DAS_status: 8 ChassisBus
+BO_ 921 DAS_status: 8 CH
  SG_ DAS_autoLaneChangeState: 46|5@1+ (1,0) [0|0] "" X
  SG_ DAS_autoParked: 25|1@1+ (1,0) [0|0] "" X
  SG_ DAS_autoparkReady: 24|1@1+ (1,0) [0|0] "" X
@@ -1583,7 +1583,7 @@ BO_ 921 DAS_status: 8 ChassisBus
  SG_ DAS_suppressSpeedWarning: 13|1@1+ (1,0) [0|0] "" X
  SG_ DAS_visionOnlySpeedLimit: 16|5@1+ (5,0) [0|0] "kph/mph" X
 
-BO_ 905 DAS_status2: 8 ChassisBus
+BO_ 905 DAS_status2: 8 CH
  SG_ DAS_ACC_report: 26|5@1+ (1,0) [0|0] "" X
  SG_ DAS_accSpeedLimit: 0|10@1+ (0.2,0) [0|0] "mph" X
  SG_ DAS_activationFailureStatus: 14|2@1+ (1,0) [0|0] "" X
@@ -1602,7 +1602,7 @@ BO_ 905 DAS_status2: 8 ChassisBus
  SG_ DAS_status2Checksum: 56|8@1+ (1,0) [0|0] "" X
  SG_ DAS_status2Counter: 52|4@1+ (1,0) [0|0] "" X
 
-BO_ 937 DAS_telemetry: 8 ETH
+BO_ 937 DAS_telemetry: 8 VEH
  SG_ DAS_telemetryMultiplexer M: 0|8@1+ (1,0) [0|0] "" X
  SG_ DAS_telLeftLaneType m0: 8|3@1+ (1,0) [0|0] "" X
  SG_ DAS_telRightLaneType m0: 11|3@1+ (1,0) [0|0] "" X
@@ -1658,7 +1658,7 @@ BO_ 937 DAS_telemetry: 8 ETH
  SG_ DAS_assAutosteerActive m9: 30|1@1+ (1,0) [0|0] "" X
  SG_ DAS_assSmartSpeedActive m9: 31|1@1+ (1,0) [0|0] "" X
 
-BO_ 986 DAS_telemetryEvent: 8 ETH
+BO_ 986 DAS_telemetryEvent: 8 VEH
  SG_ DAS_TE_multiplexer M: 0|5@1+ (1,0) [0|0] "" X
  SG_ DAS_TE_counter m0: 5|3@1+ (1,0) [0|0] "" X
  SG_ DAS_TE_eventID m0: 8|16@1+ (1,0) [0|0] "" X
@@ -1752,7 +1752,7 @@ BO_ 986 DAS_telemetryEvent: 8 ETH
  SG_ DAS_TE_robTrustRadarMap m9: 52|1@1+ (1,0) [0|0] "" X
  SG_ DAS_TE_robActiveBraking m9: 53|1@1+ (1,0) [0|0] "" X
 
-BO_ 945 DAS_telemetryFurniture: 8 ETH
+BO_ 945 DAS_telemetryFurniture: 8 VEH
  SG_ DAS_TF_multiplexer M: 0|5@1+ (1,0) [0|0] "" X
  SG_ DAS_TF_furnitureIndex0 m0: 5|8@1+ (1,0) [0|0] "" X
  SG_ DAS_TF_distTraveled m0: 13|11@1+ (0.1,0) [0|0] "m" X
@@ -1777,7 +1777,7 @@ BO_ 945 DAS_telemetryFurniture: 8 ETH
  SG_ DAS_TF_stopLineDist m2: 28|11@1+ (0.1,-10) [0|0] "m" X
  SG_ DAS_TF_ttc m2: 39|7@1+ (0.1,0) [0|0] "s" X
 
-BO_ 890 DAS_telemetryPeriodic: 8 ETH
+BO_ 890 DAS_telemetryPeriodic: 8 VEH
  SG_ DAS_TP_multiplexer M: 0|5@1+ (1,0) [0|0] "" X
  SG_ DAS_TP_counter m0: 5|3@1+ (1,0) [0|0] "" X
  SG_ DAS_TP_vlWidth m0: 8|8@1+ (0.05,0) [0|0] "m" X
@@ -1880,7 +1880,7 @@ BO_ 890 DAS_telemetryPeriodic: 8 ETH
  SG_ DAS_TP_lane8LLR m9: 53|6@1+ (0.3125,-10) [0|0] "1" X
  SG_ DAS_TP_egoLane m9: 59|3@1+ (1,0) [0|0] "" X
 
-BO_ 1548 DAS_telemetryRadar: 8 ETH
+BO_ 1548 DAS_telemetryRadar: 8 VEH
  SG_ DAS_TR_Counter: 54|2@1+ (1,0) [0|0] "" X
  SG_ DAS_TR_ObjIndex M: 0|5@1+ (1,0) [0|0] "" X
  SG_ DAS_TR_Obj00_Class m0: 5|3@1+ (1,0) [0|0] "" X
@@ -2172,10 +2172,10 @@ BO_ 1548 DAS_telemetryRadar: 8 ETH
  SG_ DAS_TR_Obj31_Dz m31: 48|6@1+ (0.25,-5) [0|0] "m" X
  SG_ DAS_TR_Obj31_Exist m31: 56|5@1+ (3.125,0) [0|0] "%" X
 
-BO_ 1625 DAS_udsResponse: 8 ETH
+BO_ 1625 DAS_udsResponse: 8 VEH
  SG_ DAS_udsResponseData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 586 DAS_visualDebug: 8 ChassisBus
+BO_ 586 DAS_visualDebug: 8 CH
  SG_ DAS_accSmartSpeedActive: 48|1@1+ (1,0) [0|0] "" X
  SG_ DAS_accSmartSpeedState: 49|3@1+ (1,0) [0|0] "" X
  SG_ DAS_autosteerBottsDotsUsage: 12|2@1+ (1,0) [0|0] "" X
@@ -2197,7 +2197,7 @@ BO_ 586 DAS_visualDebug: 8 ChassisBus
  SG_ DAS_ulcInProgress: 52|1@1+ (1,0) [0|0] "" X
  SG_ DAS_ulcType: 58|1@1+ (1,0) [0|0] "" X
 
-BO_ 810 DAS_warningMatrix0: 8 ETH
+BO_ 810 DAS_warningMatrix0: 8 VEH
  SG_ DAS_w002_ldwDisabled: 1|1@1+ (1,0) [0|0] "" X
  SG_ DAS_w003_isaDisabled: 2|1@1+ (1,0) [0|0] "" X
  SG_ DAS_w004_accDisabled: 3|1@1+ (1,0) [0|0] "" X
@@ -2262,7 +2262,7 @@ BO_ 810 DAS_warningMatrix0: 8 ETH
  SG_ DAS_w063_parkVersionMismatch: 62|1@1+ (1,0) [0|0] "" X
  SG_ DAS_w064_epasMia: 63|1@1+ (1,0) [0|0] "" X
 
-BO_ 874 DAS_warningMatrix1: 8 ETH
+BO_ 874 DAS_warningMatrix1: 8 VEH
  SG_ DAS_w065_deserializerOvercurrent: 0|1@1+ (1,0) [0|0] "" X
  SG_ DAS_w066_deserializerLockLost: 1|1@1+ (1,0) [0|0] "" X
  SG_ DAS_w067_steeringAlignment: 2|1@1+ (1,0) [0|0] "" X
@@ -2306,7 +2306,7 @@ BO_ 874 DAS_warningMatrix1: 8 ETH
  SG_ DAS_w105_DEPRECATED: 40|1@1+ (1,0) [0|0] "" X
  SG_ DAS_w106_torsionBarCalibrated: 41|1@1+ (1,0) [0|0] "" X
 
-BO_ 841 DAS_warningMatrix2: 8 ETH
+BO_ 841 DAS_warningMatrix2: 8 VEH
  SG_ DAS_w129_mainCamExtNotCal: 0|1@1+ (1,0) [0|0] "" X
  SG_ DAS_w130_narrowCamExtNotCal: 1|1@1+ (1,0) [0|0] "" X
  SG_ DAS_w131_mainCamCalSaved: 2|1@1+ (1,0) [0|0] "" X
@@ -2334,7 +2334,7 @@ BO_ 841 DAS_warningMatrix2: 8 ETH
  SG_ DAS_w180_lRepeatCamCalSaved: 51|1@1+ (1,0) [0|0] "" X
  SG_ DAS_w181_rRepeatCamCalSaved: 52|1@1+ (1,0) [0|0] "" X
 
-BO_ 1082 DAS_warningMatrix3: 8 ETH
+BO_ 1082 DAS_warningMatrix3: 8 VEH
  SG_ DAS_w193_camWindshieldUnclean: 0|1@1+ (1,0) [0|0] "" X
  SG_ DAS_w194_accDriverResumeRqrd: 1|1@1+ (1,0) [0|0] "" X
  SG_ DAS_w195_scwUnavailable: 2|1@1+ (1,0) [0|0] "" X
@@ -2374,7 +2374,7 @@ BO_ 1082 DAS_warningMatrix3: 8 ETH
  SG_ DAS_w229_alcUltrasoundDamaged: 36|1@1+ (1,0) [0|0] "" X
  SG_ DAS_w230_alcUltrasoundBlocked: 37|1@1+ (1,0) [0|0] "" X
 
-BO_ 933 DIS_alertMatrix1: 8 ETH
+BO_ 933 DIS_alertMatrix1: 8 VEH
  SG_ DIS_a001_hwPhaseAgateDrive: 0|1@1+ (1,0) [0|0] "" X
  SG_ DIS_a002_hwPhaseBgateDrive: 1|1@1+ (1,0) [0|0] "" X
  SG_ DIS_a003_hwPhaseCgateDrive: 2|1@1+ (1,0) [0|0] "" X
@@ -2427,7 +2427,7 @@ BO_ 933 DIS_alertMatrix1: 8 ETH
  SG_ DIS_a062_systemLimpMode: 61|1@1+ (1,0) [0|0] "" X
  SG_ DIS_a064_torqueIntervention: 63|1@1+ (1,0) [0|0] "" X
 
-BO_ 949 DIS_alertMatrix2: 8 ETH
+BO_ 949 DIS_alertMatrix2: 8 VEH
  SG_ DIS_a065_canHardwareBusB: 0|1@1+ (1,0) [0|0] "" X
  SG_ DIS_a066_canDataBusB: 1|1@1+ (1,0) [0|0] "" X
  SG_ DIS_a067_canOverrunBusB: 2|1@1+ (1,0) [0|0] "" X
@@ -2471,7 +2471,7 @@ BO_ 949 DIS_alertMatrix2: 8 ETH
  SG_ DIS_a126_limpMode: 61|1@1+ (1,0) [0|0] "" X
  SG_ DIS_a127_gracefulPowerOff: 62|1@1+ (1,0) [0|0] "" X
 
-BO_ 965 DIS_alertMatrix3: 8 ETH
+BO_ 965 DIS_alertMatrix3: 8 VEH
  SG_ DIS_a129_epbNotApplied: 0|1@1+ (1,0) [0|0] "" X
  SG_ DIS_a131_highSpeedWearLimit: 2|1@1+ (1,0) [0|0] "" X
  SG_ DIS_a133_capacitorOT: 4|1@1+ (1,0) [0|0] "" X
@@ -2495,7 +2495,7 @@ BO_ 965 DIS_alertMatrix3: 8 ETH
  SG_ DIS_a160_busVoltageAnomaly: 31|1@1+ (1,0) [0|0] "" X
  SG_ DIS_a161_epas3pMIA: 32|1@1+ (1,0) [0|0] "" X
 
-BO_ 997 DIS_alertMatrix4: 8 ETH
+BO_ 997 DIS_alertMatrix4: 8 VEH
  SG_ DIS_a202_excessHeatUnavailable: 9|1@1+ (1,0) [0|0] "" X
  SG_ DIS_a225_tmpEstPlausibility: 32|1@1+ (1,0) [0|0] "" X
  SG_ DIS_a229_batteryIsHeating: 36|1@1+ (1,0) [0|0] "" X
@@ -2503,11 +2503,11 @@ BO_ 997 DIS_alertMatrix4: 8 ETH
  SG_ DIS_a234_pcsMIA: 41|1@1+ (1,0) [0|0] "" X
  SG_ DIS_a241_systemThermallyLimited: 48|1@1+ (1,0) [0|0] "" X
 
-BO_ 392 DIS_capability2: 2 ETH
+BO_ 392 DIS_capability2: 2 VEH
  SG_ DIS_heatPowerMax: 8|8@1+ (0.08,0) [0|0] "kW" X
  SG_ DIS_heatPowerOptimal: 0|8@1+ (0.08,0) [0|0] "kW" X
 
-BO_ 821 DIS_info: 8 ETH
+BO_ 821 DIS_info: 8 VEH
  SG_ DIS_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
  SG_ DIS_buildType m10: 8|3@1+ (1,0) [0|0] "" X
  SG_ DIS_buildConfigurationId m10: 16|16@1+ (1,0) [0|0] "" X
@@ -2531,7 +2531,7 @@ BO_ 821 DIS_info: 8 ETH
  SG_ DIS_bootloaderCrc m20: 32|32@1+ (1,0) [0|0] "" X
  SG_ DIS_subcomponentGitHash m31: 10|54@1+ (4,0) [0|0] "" X
 
-BO_ 741 DIS_power: 7 ETH
+BO_ 741 DIS_power: 7 VEH
  SG_ DIS_aps12V: 0|8@1+ (0.1,0) [0|0] "V" X
  SG_ DIS_dissipation: 8|8@1+ (125,0) [0|0] "W" X
  SG_ DIS_drivePowerMax: 32|9@1+ (1,0) [0|0] "kW" X
@@ -2540,7 +2540,7 @@ BO_ 741 DIS_power: 7 ETH
 
 CM_ "TODO: joshwardell has different signal parsing on 390 and 472, check these";
 
-BO_ 390 DIS_frontTorque: 8 ETH
+BO_ 390 DIS_frontTorque: 8 VEH
  SG_ DIS_frontTorqueChecksum: 0|8@1+ (1,0) [0|0] "" X
  SG_ DIS_frontTorqueCounter: 8|4@1+ (1,0) [0|0] "" X
  SG_ DIS_frontTorqueCommand: 12|13@1- (2,0) [0|0] "Nm" X
@@ -2552,7 +2552,7 @@ VAL_ 390 DIS_frontAxleSpeed -32768 "SNA";
 VAL_ 390 DIS_frontTorqueActual -4096 "SNA";
 VAL_ 390 DIS_frontTorqueCommand -4096 "SNA";
 
-BO_ 472 DIS_torque: 8 ETH
+BO_ 472 DIS_torque: 8 VEH
  SG_ DIS_torqueFlags: 0|8@1+ (1,0) [0|0] "" X
  SG_ DIS_torqueCommand: 8|15@1- (0.1,0) [0|0] "Nm" X
  SG_ DIS_torqueActual: 24|13@1- (2,0) [0|0] "Nm" X
@@ -2564,10 +2564,10 @@ VAL_ 472 DIS_axleSpeed -32768 "SNA";
 VAL_ 472 DIS_torqueActual -4096 "SNA";
 VAL_ 472 DIS_torqueCommand -4096 "SNA";
 
-BO_ 1557 DIS_udsResponse: 8 ETH
+BO_ 1557 DIS_udsResponse: 8 VEH
  SG_ DIS_udsResponseData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 854 DI_alertMatrix1: 8 ETH
+BO_ 854 DI_alertMatrix1: 8 VEH
  SG_ DI_a001_hwPhaseAgateDrive: 0|1@1+ (1,0) [0|0] "" X
  SG_ DI_a002_hwPhaseBgateDrive: 1|1@1+ (1,0) [0|0] "" X
  SG_ DI_a003_hwPhaseCgateDrive: 2|1@1+ (1,0) [0|0] "" X
@@ -2627,7 +2627,7 @@ BO_ 854 DI_alertMatrix1: 8 ETH
  SG_ DI_a063_systemGracefulPowerOff: 62|1@1+ (1,0) [0|0] "" X
  SG_ DI_a064_torqueIntervention: 63|1@1+ (1,0) [0|0] "" X
 
-BO_ 855 DI_alertMatrix2: 8 ETH
+BO_ 855 DI_alertMatrix2: 8 VEH
  SG_ DI_a065_canHardwareBusB: 0|1@1+ (1,0) [0|0] "" X
  SG_ DI_a066_canDataBusB: 1|1@1+ (1,0) [0|0] "" X
  SG_ DI_a067_canOverrunBusB: 2|1@1+ (1,0) [0|0] "" X
@@ -2682,7 +2682,7 @@ BO_ 855 DI_alertMatrix2: 8 ETH
  SG_ DI_a126_limpMode: 61|1@1+ (1,0) [0|0] "" X
  SG_ DI_a127_gracefulPowerOff: 62|1@1+ (1,0) [0|0] "" X
 
-BO_ 858 DI_alertMatrix3: 8 ETH
+BO_ 858 DI_alertMatrix3: 8 VEH
  SG_ DI_a129_epbNotApplied: 0|1@1+ (1,0) [0|0] "" X
  SG_ DI_a130_aebFault: 1|1@1+ (1,0) [0|0] "" X
  SG_ DI_a131_highSpeedWearLimit: 2|1@1+ (1,0) [0|0] "" X
@@ -2742,7 +2742,7 @@ BO_ 858 DI_alertMatrix3: 8 ETH
  SG_ DI_a191_brakeShiftReq: 62|1@1+ (1,0) [0|0] "" X
  SG_ DI_a192_invalidOdometer: 63|1@1+ (1,0) [0|0] "" X
 
-BO_ 859 DI_alertMatrix4: 8 ETH
+BO_ 859 DI_alertMatrix4: 8 VEH
  SG_ DI_a193_vdcEspBrakeTorqueFr: 0|1@1+ (1,0) [0|0] "" X
  SG_ DI_a194_vdcEspBrakeTorqueRe: 1|1@1+ (1,0) [0|0] "" X
  SG_ DI_a195_vdcEspSlipFr: 2|1@1+ (1,0) [0|0] "" X
@@ -2790,7 +2790,7 @@ BO_ 859 DI_alertMatrix4: 8 ETH
  SG_ DI_a239_neutralRequestByPM: 46|1@1+ (1,0) [0|0] "" X
  SG_ DI_a241_systemThermallyLimited: 48|1@1+ (1,0) [0|0] "" X
 
-BO_ 694 DI_chassisControlStatus: 2 ETH
+BO_ 694 DI_chassisControlStatus: 2 VEH
  SG_ DI_btcStateUI: 9|1@1+ (1,0) [0|0] "" X
  SG_ DI_ptcStateUI: 7|2@1+ (1,0) [0|0] "" X
  SG_ DI_tcTelltaleFlash: 2|1@1+ (1,0) [0|0] "" X
@@ -2800,7 +2800,7 @@ BO_ 694 DI_chassisControlStatus: 2 ETH
  SG_ DI_vdcTelltaleOn: 1|1@1+ (1,0) [0|0] "" X
 
 CM_ "BO_ 1879 DI_debug > 2005";
-BO_ 2005 DI_debug: 8 ETH
+BO_ 2005 DI_debug: 8 VEH
  SG_ DI_debugSelector M: 0|8@1+ (1,0) [0|0] "" X
  SG_ DI_motorType m128: 8|5@1+ (1,0) [0|0] "" X
  SG_ DI_cpu1HzMin m128: 16|8@1+ (0.4,0) [0|0] "%" X
@@ -2946,7 +2946,7 @@ BO_ 2005 DI_debug: 8 ETH
  SG_ DI_statorEndWindingTemp m72: 8|8@1+ (1,-40) [0|0] "DegC" X
  SG_ DI_rotorMaxMagnetTemp m72: 16|8@1+ (1,-40) [0|0] "DegC" X
 
-BO_ 1880 DI_dyno: 8 ETH
+BO_ 1880 DI_dyno: 8 VEH
  SG_ DI_dynoSelector M: 0|8@1+ (1,0) [0|0] "" X
  SG_ DI_Isx m0: 16|16@1+ (1.5259e-05,0) [0|0] "A" X
  SG_ DI_Isy m0: 32|16@1+ (1.5259e-05,0) [0|0] "A" X
@@ -2965,13 +2965,13 @@ BO_ 1880 DI_dyno: 8 ETH
  SG_ DI_slipEstimate m33: 8|10@1- (0.02,0) [0|0] "Hz" X
  SG_ DI_mechToElcFactor m64: 8|4@1- (1,0) [0|0] "" X
 
-BO_ 1022 DI_estimatedBrakeTemp: 5 ETH
+BO_ 1022 DI_estimatedBrakeTemp: 5 VEH
  SG_ DI_brakeFLTemp: 0|10@1+ (1,-40) [0|0] "DegC" X
  SG_ DI_brakeFRTemp: 10|10@1+ (1,-40) [0|0] "DegC" X
  SG_ DI_brakeRLTemp: 20|10@1+ (1,-40) [0|0] "DegC" X
  SG_ DI_brakeRRTemp: 30|10@1+ (1,-40) [0|0] "DegC" X
 
-BO_ 1622 DI_info: 8 ETH
+BO_ 1622 DI_info: 8 VEH
  SG_ DI_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
  SG_ DI_buildType m10: 8|3@1+ (1,0) [0|0] "" X
  SG_ DI_buildConfigurationId m10: 16|16@1+ (1,0) [0|0] "" X
@@ -2995,7 +2995,7 @@ BO_ 1622 DI_info: 8 ETH
  SG_ DI_bootloaderCrc m20: 32|32@1+ (1,0) [0|0] "" X
  SG_ DI_subcomponentGitHash m31: 10|54@1+ (4,0) [0|0] "" X
 
-BO_ 646 DI_locStatus: 7 ETH
+BO_ 646 DI_locStatus: 7 VEH
  SG_ DI_aebState: 37|3@1+ (1,0) [0|0] "" X
  SG_ DI_autoparkState: 25|4@1+ (1,0) [0|0] "" X
  SG_ DI_autopilotRequest: 36|1@1+ (1,0) [0|0] "" X
@@ -3010,14 +3010,14 @@ BO_ 646 DI_locStatus: 7 ETH
  SG_ DI_summonInPanic: 48|1@1+ (1,0) [0|0] "" X
  SG_ DI_vehicleHoldState: 42|3@1+ (1,0) [0|0] "" X
 
-BO_ 822 DI_maxRatedPower: 3 ETH
+BO_ 822 DI_maxRatedPower: 3 VEH
  SG_ DI_sysDrivePowerRated: 0|9@1+ (1,0) [0|0] "kW" X
  SG_ DI_sysRegenPowerRated: 16|8@1+ (1,-100) [0|0] "kW" X
 
-BO_ 950 DI_odometerStatus: 4 ETH
+BO_ 950 DI_odometerStatus: 4 VEH
  SG_ DI_odometer: 0|32@1+ (0.001,0) [0|0] "km" X
 
-BO_ 917 DI_oilPump: 8 ETH
+BO_ 917 DI_oilPump: 8 VEH
  SG_ DI_oilPumpState: 0|3@1+ (1,0) [0|0] "" X
  SG_ DI_oilPumpFluidConfidence : 3|1@1+ (1,0) [0|0] "" X
  SG_ DI_oilPumpLeadAngle : 4|4@1+ (1.875,0) [0|28.125] "deg" X
@@ -3038,7 +3038,7 @@ VAL_ 917 DI_oilPumpPcbT 255 "SNA";
 VAL_ 917 DI_oilPumpState 0 "STANDBY" 1 "ENABLE" 2 "COLD_STARTUP" 6 "FAULTED" 7 "SNA";
 VAL_ 917 DI_oilPumpVoltage 255 "SNA";
 
-BO_ 918 DI_frontOilPump: 8 ETH
+BO_ 918 DI_frontOilPump: 8 VEH
  SG_ DI_frontOilPumpCurrent: 48|8@1+ (0.1,0) [0|0] "A" X
  SG_ DI_frontOilPumpCurrentSensorOffset: 56|8@1+ (0.005,0) [0|0] "A" X
  SG_ DI_frontOilPumpFlowActual: 16|8@1+ (0.06,0) [0|0] "LPM" X
@@ -3059,35 +3059,35 @@ VAL_ 918 DI_frontOilPumpPcbT 255 "SNA";
 VAL_ 918 DI_frontOilPumpState 0 "STANDBY" 1 "ENABLE" 2 "COLD_STARTUP" 6 "FAULTED" 7 "SNA";
 VAL_ 918 DI_frontOilPumpVoltage 255 "SNA";
 
-BO_ 614 DI_power: 8 ETH
+BO_ 614 DI_power: 8 VEH
  SG_ DI_elecPower: 0|11@1- (0.5,0) [0|0] "kW" X
  SG_ DI_dissipation: 16|8@1+ (125,0) [0|0] "W" X
  SG_ DI_heatPowerActual: 24|8@1+ (0.08,0) [0|0] "kW" X
  SG_ DI_heatPowerOptimal: 32|8@1+ (0.08,0) [0|0] "kW" X
  SG_ DI_heatPowerMax: 48|8@1+ (0.08,0) [0|0] "kW" X
 
-BO_ 294 DI_hvBusStatus: 3 VehicleBus
+BO_ 294 DI_hvBusStatus: 3 VEH
  SG_ DI_voltage : 0|10@1+ (0.5,0) [0|500] "V" X
  SG_ DI_current : 10|11@1+ (1,0) [0|2047] "A" X
 
-BO_ 421 DI_frontHvBusStatus: 3 VehicleBus
+BO_ 421 DI_frontHvBusStatus: 3 VEH
  SG_ DI_frontVoltage : 0|10@1+ (0.5,0) [0|500] "V" X
  SG_ DI_frontCurrent : 10|11@1+ (1,0) [0|2047] "A" X
 
-BO_ 599 DI_speed: 8 ETH
+BO_ 599 DI_speed: 8 VEH
  SG_ DI_speedChecksum: 0|8@1+ (1,0) [0|0] "" X
  SG_ DI_speedCounter: 8|4@1+ (1,0) [0|0] "" X
  SG_ DI_uiSpeed: 24|8@1+ (1,0) [0|0] "" X
  SG_ DI_uiSpeedUnits: 32|1@1+ (1,0) [0|0] "" X
  SG_ DI_vehicleSpeed: 12|12@1+ (0.08,-40) [0|0] "kph" X
 
-BO_ 616 DI_systemPower: 5 ETH
+BO_ 616 DI_systemPower: 5 VEH
  SG_ DI_sysDrivePowerMax: 16|9@1+ (1,0) [0|0] "kW" X
  SG_ DI_sysHeatPowerActual: 8|8@1+ (0.08,0) [0|0] "kW" X
  SG_ DI_sysHeatPowerMax: 0|8@1+ (0.08,0) [0|0] "kW" X
  SG_ DI_sysRegenPowerMax: 32|8@1+ (1,-100) [0|0] "kW" X
 
-BO_ 280 DI_systemStatus: 8 ETH
+BO_ 280 DI_systemStatus: 8 VEH
  SG_ DI_accelPedalPos: 32|8@1+ (0.4,0) [0|0] "%" X
  SG_ DI_brakePedalState: 19|2@1+ (1,0) [0|0] "" X
  SG_ DI_driveBlocked : 12|2@1+ (1,0) [0|2] "" X
@@ -3103,7 +3103,7 @@ BO_ 280 DI_systemStatus: 8 ETH
  SG_ DI_trackModeState: 48|2@1+ (1,0) [0|0] "" X
  SG_ DI_tractionControlMode: 40|3@1+ (1,0) [0|0] "" X
 
-BO_ 886 DI_frontInverterTemperature: 8 ETH
+BO_ 886 DI_frontInverterTemperature: 8 VEH
  SG_ DI_frontDcCapT: 24|8@1+ (1,-40) [0|0] "DegC" X
  SG_ DI_frontHeatsinkT: 32|8@1+ (1,-40) [0|0] "DegC" X
  SG_ DI_frontInverterT: 8|8@1+ (1,-40) [0|0] "DegC" X
@@ -3114,7 +3114,7 @@ BO_ 886 DI_frontInverterTemperature: 8 ETH
  SG_ DI_frontStatorTpct: 48|8@1+ (0.4,0) [0|0] "%" X
  SG_ DI_frontInverterTQF: 56|2@1+ (1,0) [0|0] "" X
 
-BO_ 789 DI_temperature: 8 ETH
+BO_ 789 DI_temperature: 8 VEH
  SG_ DI_pcbT: 0|8@1+ (1,-40) [0|0] "DegC" X
  SG_ DI_inverterT: 8|8@1+ (1,-40) [0|0] "DegC" X
  SG_ DI_statorT: 16|8@1+ (1,-40) [0|0] "DegC" X
@@ -3124,7 +3124,7 @@ BO_ 789 DI_temperature: 8 ETH
  SG_ DI_statorTpct: 48|8@1+ (0.4,0) [0|0] "%" X
  SG_ DI_inverterTQF: 56|2@1+ (1,0) [0|3] "" X
 
-BO_ 886 DI_frontTemperature: 8 ETH
+BO_ 886 DI_frontTemperature: 8 VEH
  SG_ DI_frontDcCapT: 24|8@1+ (1,-40) [0|0] "DegC" X
  SG_ DI_frontHeatsinkT: 32|8@1+ (1,-40) [0|0] "DegC" X
  SG_ DI_frontInverterT: 8|8@1+ (1,-40) [0|0] "DegC" X
@@ -3134,19 +3134,19 @@ BO_ 886 DI_frontTemperature: 8 ETH
  SG_ DI_frontStatorT: 16|8@1+ (1,-40) [0|0] "DegC" X
  SG_ DI_frontStatorTpct: 48|8@1+ (0.4,0) [0|0] "%" X
 
-BO_ 1367 DI_frontThermalControl: 4 ETH
+BO_ 1367 DI_frontThermalControl: 4 VEH
  SG_ DI_frontActiveInletTempReq : 8|8@1+ (1,-40) [-40|120] "C" X
  SG_ DI_frontCoolantFlowReq : 16|8@1+ (0.2,0) [0|50] "LPM" X
  SG_ DI_frontOilFlowReq : 24|8@1+ (0.06,0) [0|15] "LPM" X
  SG_ DI_frontPassiveInletTempReq : 0|8@1+ (1,-40) [-40|120] "C" X
 
-BO_ 1495 DI_thermalControl: 3 ETH
+BO_ 1495 DI_thermalControl: 3 VEH
  SG_ DI_activeInletTempReq: 8|8@1+ (1,-40) [0|0] "DegC" X
  SG_ DI_coolantFlowReq: 16|8@1+ (0.2,0) [0|0] "LPM" X
  SG_ DI_oilFlowReq : 24|8@1+ (0.06,0) [0|15] "LPM" X
  SG_ DI_passiveInletTempReq: 0|8@1+ (1,-40) [0|0] "DegC" X
 
-BO_ 264 DI_torque: 8 ETH
+BO_ 264 DI_torque: 8 VEH
  SG_ DI_axleSpeed: 40|16@1- (0.1,0) [0|0] "RPM" X
  SG_ DI_torqueActual: 27|13@1- (2,0) [0|0] "Nm" X
  SG_ DI_torqueChecksum: 0|8@1+ (1,0) [0|0] "" X
@@ -3154,10 +3154,10 @@ BO_ 264 DI_torque: 8 ETH
  SG_ DI_torqueCounter: 8|4@1+ (1,0) [0|0] "" X
  SG_ DI_slavePedalPos : 56|8@1+ (0.4,0) [0|100] "%" X
 
-BO_ 1558 DI_udsResponse: 8 ETH
+BO_ 1558 DI_udsResponse: 8 VEH
  SG_ DI_udsResponseData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 914 EPAS3P_alertMatrix: 8 ETH
+BO_ 914 EPAS3P_alertMatrix: 8 VEH
  SG_ EPAS3P_matrixIndex M: 0|4@1+ (1,0) [0|0] "" X
  SG_ EPAS3P_a001_sent1Mia m0: 4|1@1+ (1,0) [0|0] "" X
  SG_ EPAS3P_a002_sent1Error m0: 5|1@1+ (1,0) [0|0] "" X
@@ -3290,7 +3290,7 @@ BO_ 914 EPAS3P_alertMatrix: 8 ETH
  SG_ EPAS3P_a129_combEcu1StatFail m2: 12|1@1+ (1,0) [0|0] "" X
  SG_ EPAS3P_a130_sasOffsetNotCal m2: 13|1@1+ (1,0) [0|0] "" X
 
-BO_ 817 EPAS3P_info: 8 ETH
+BO_ 817 EPAS3P_info: 8 VEH
  SG_ EPAS3P_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
  SG_ EPAS3P_infoBuildType m10: 8|8@1+ (1,0) [0|0] "" X
  SG_ EPAS3P_infoComponentID m10: 48|16@1+ (1,0) [0|0] "" X
@@ -3301,7 +3301,7 @@ BO_ 817 EPAS3P_info: 8 ETH
  SG_ EPAS3P_infoBootloaderCRC m20: 32|32@1+ (1,0) [0|0] "" X
  SG_ EPAS3P_infoApplicationCRC m13: 32|32@1+ (1,0) [0|0] "" X
 
-BO_ 883 EPAS3P_sysStatus: 8 ETH
+BO_ 883 EPAS3P_sysStatus: 8 VEH
  SG_ EPAS3P_currentTuneMode: 5|3@1+ (1,0) [0|0] "" X
  SG_ EPAS3P_eacErrorCode: 20|4@1+ (1,0) [0|0] "" X
  SG_ EPAS3P_eacStatus: 53|3@1+ (1,0) [0|0] "" X
@@ -3315,10 +3315,10 @@ BO_ 883 EPAS3P_sysStatus: 8 ETH
  SG_ EPAS3P_sysStatusCounter: 48|4@1+ (1,0) [0|0] "" X
  SG_ EPAS3P_torsionBarTorque: 16|12@0+ (0.01,-20.5) [0|0] "Nm" X
 
-BO_ 1592 EPAS3P_udsResponseCH: 8 ETH
+BO_ 1592 EPAS3P_udsResponseCH: 8 VEH
  SG_ EPAS3P_udsResponseDataCH: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 913 EPAS3S_alertMatrix: 8 ChassisBus
+BO_ 913 EPAS3S_alertMatrix: 8 CH
  SG_ EPAS3S_matrixIndex M: 0|4@1+ (1,0) [0|0] "" X
  SG_ EPAS3S_a001_sent1Mia m0: 4|1@1+ (1,0) [0|0] "" X
  SG_ EPAS3S_a002_sent1Error m0: 5|1@1+ (1,0) [0|0] "" X
@@ -3451,7 +3451,7 @@ BO_ 913 EPAS3S_alertMatrix: 8 ChassisBus
  SG_ EPAS3S_a129_combEcu1StatFail m2: 12|1@1+ (1,0) [0|0] "" X
  SG_ EPAS3S_a130_sasOffsetNotCal m2: 13|1@1+ (1,0) [0|0] "" X
 
-BO_ 785 EPAS3S_info: 8 ChassisBus
+BO_ 785 EPAS3S_info: 8 CH
  SG_ EPAS3S_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
  SG_ EPAS3S_infoBuildType m10: 8|8@1+ (1,0) [0|0] "" X
  SG_ EPAS3S_infoComponentID m10: 48|16@1+ (1,0) [0|0] "" X
@@ -3462,7 +3462,7 @@ BO_ 785 EPAS3S_info: 8 ChassisBus
  SG_ EPAS3S_infoBootloaderCRC m20: 32|32@1+ (1,0) [0|0] "" X
  SG_ EPAS3S_infoApplicationCRC m13: 32|32@1+ (1,0) [0|0] "" X
 
-BO_ 882 EPAS3S_sysStatus: 8 ETH
+BO_ 882 EPAS3S_sysStatus: 8 VEH
  SG_ EPAS3S_currentTuneMode: 5|3@1+ (1,0) [0|0] "" X
  SG_ EPAS3S_eacErrorCode: 20|4@1+ (1,0) [0|0] "" X
  SG_ EPAS3S_eacStatus: 53|3@1+ (1,0) [0|0] "" X
@@ -3476,10 +3476,10 @@ BO_ 882 EPAS3S_sysStatus: 8 ETH
  SG_ EPAS3S_sysStatusCounter: 48|4@1+ (1,0) [0|0] "" X
  SG_ EPAS3S_torsionBarTorque: 16|12@0+ (0.01,-20.5) [0|0] "Nm" X
 
-BO_ 1848 EPAS3S_udsResponse: 8 ETH
+BO_ 1848 EPAS3S_udsResponse: 8 VEH
  SG_ EPAS3S_udsResponseData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 968 EPBL_alertMatrix: 8 ETH
+BO_ 968 EPBL_alertMatrix: 8 VEH
  SG_ EPBL_matrixIndex M: 0|4@1+ (1,0) [0|0] "" X
  SG_ EPBL_a001_WatchdogReset m0: 4|1@1+ (1,0) [0|0] "" X
  SG_ EPBL_a002_PowerLossReset m0: 5|1@1+ (1,0) [0|0] "" X
@@ -3580,7 +3580,7 @@ BO_ 968 EPBL_alertMatrix: 8 ETH
  SG_ EPBL_a250_WinchModeCanceled m4: 13|1@1+ (1,0) [0|0] "" X
  SG_ EPBL_a251_currentVarianceHigh m4: 14|1@1+ (1,0) [0|0] "" X
 
-BO_ 1992 EPBL_info: 8 ETH
+BO_ 1992 EPBL_info: 8 VEH
  SG_ EPBL_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
  SG_ EPBL_infoBuildType m10: 8|3@1+ (1,0) [0|0] "" X
  SG_ EPBL_infoBuildConfigId m10: 16|16@1+ (1,0) [0|0] "" X
@@ -3597,7 +3597,7 @@ BO_ 1992 EPBL_info: 8 ETH
  SG_ EPBL_infoBootUdsProtoVersion m20: 8|16@1+ (1,0) [0|0] "" X
  SG_ EPBL_infoBootCrc m20: 24|32@1+ (1,0) [0|0] "" X
 
-BO_ 648 EPBL_internalStatus: 8 ETH
+BO_ 648 EPBL_internalStatus: 8 VEH
  SG_ EPBL_12VFilt: 37|12@1+ (0.00544368,0) [0|0] "V" X
  SG_ EPBL_csmFaultReason: 21|5@1+ (1,0) [0|0] "" X
  SG_ EPBL_disconnected: 10|1@1+ (1,0) [0|0] "" X
@@ -3614,7 +3614,7 @@ BO_ 648 EPBL_internalStatus: 8 ETH
  SG_ EPBL_unitFaultStatus: 5|2@1+ (1,0) [0|0] "" X
  SG_ EPBL_unitStatus: 0|5@1+ (1,0) [0|0] "" X
 
-BO_ 681 EPBL_status: 8 ETH
+BO_ 681 EPBL_status: 8 VEH
  SG_ EPBL_blockDrive: 51|1@1+ (1,0) [0|0] "" X
  SG_ EPBL_bothDisconnected: 50|1@1+ (1,0) [0|0] "" X
  SG_ EPBL_brakeDiscWipeRequest: 30|2@1+ (1,0) [0|0] "" X
@@ -3636,11 +3636,11 @@ BO_ 681 EPBL_status: 8 ETH
  SG_ EPBL_winchModeAvailable: 49|1@1+ (1,0) [0|0] "" X
  SG_ EPBL_winchModeTimer: 32|12@1+ (1,0) [0|0] "" X
 
-BO_ 1573 EPBL_udsResponse: 8 ETH
+BO_ 1573 EPBL_udsResponse: 8 VEH
  SG_ EPBL_udsResponseData_H: 0|32@0+ (1,0) [0|0] "" X
  SG_ EPBL_udsResponseData_L: 32|32@0+ (1,0) [0|0] "" X
 
-BO_ 1000 EPBR_alertMatrix: 8 ETH
+BO_ 1000 EPBR_alertMatrix: 8 VEH
  SG_ EPBR_matrixIndex M: 0|4@1+ (1,0) [0|0] "" X
  SG_ EPBR_a001_WatchdogReset m0: 4|1@1+ (1,0) [0|0] "" X
  SG_ EPBR_a002_PowerLossReset m0: 5|1@1+ (1,0) [0|0] "" X
@@ -3741,7 +3741,7 @@ BO_ 1000 EPBR_alertMatrix: 8 ETH
  SG_ EPBR_a250_WinchModeCanceled m4: 13|1@1+ (1,0) [0|0] "" X
  SG_ EPBR_a251_currentVarianceHigh m4: 14|1@1+ (1,0) [0|0] "" X
 
-BO_ 2024 EPBR_info: 8 ETH
+BO_ 2024 EPBR_info: 8 VEH
  SG_ EPBR_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
  SG_ EPBR_infoBuildType m10: 8|3@1+ (1,0) [0|0] "" X
  SG_ EPBR_infoBuildConfigId m10: 16|16@1+ (1,0) [0|0] "" X
@@ -3758,7 +3758,7 @@ BO_ 2024 EPBR_info: 8 ETH
  SG_ EPBR_infoBootUdsProtoVersion m20: 8|16@1+ (1,0) [0|0] "" X
  SG_ EPBR_infoBootCrc m20: 24|32@1+ (1,0) [0|0] "" X
 
-BO_ 552 EPBR_internalStatus: 8 ETH
+BO_ 552 EPBR_internalStatus: 8 VEH
  SG_ EPBR_12VFilt: 37|12@1+ (0.00544368,0) [0|0] "V" X
  SG_ EPBR_csmFaultReason: 21|5@1+ (1,0) [0|0] "" X
  SG_ EPBR_disconnected: 10|1@1+ (1,0) [0|0] "" X
@@ -3775,7 +3775,7 @@ BO_ 552 EPBR_internalStatus: 8 ETH
  SG_ EPBR_unitFaultStatus: 5|2@1+ (1,0) [0|0] "" X
  SG_ EPBR_unitStatus: 0|5@1+ (1,0) [0|0] "" X
 
-BO_ 744 EPBR_status: 8 ETH
+BO_ 744 EPBR_status: 8 VEH
  SG_ EPBR_blockDrive: 51|1@1+ (1,0) [0|0] "" X
  SG_ EPBR_bothDisconnected: 50|1@1+ (1,0) [0|0] "" X
  SG_ EPBR_brakeDiscWipeRequest: 30|2@1+ (1,0) [0|0] "" X
@@ -3797,11 +3797,11 @@ BO_ 744 EPBR_status: 8 ETH
  SG_ EPBR_winchModeAvailable: 49|1@1+ (1,0) [0|0] "" X
  SG_ EPBR_winchModeTimer: 32|12@1+ (1,0) [0|0] "" X
 
-BO_ 1575 EPBR_udsResponse: 8 ETH
+BO_ 1575 EPBR_udsResponse: 8 VEH
  SG_ EPBR_udsResponseData_H: 0|32@0+ (1,0) [0|0] "" X
  SG_ EPBR_udsResponseData_L: 32|32@0+ (1,0) [0|0] "" X
 
-BO_ 981 ESP_alertMatrix: 8 ChassisBus
+BO_ 981 ESP_alertMatrix: 8 CH
  SG_ ESP_matrixIndex M: 0|4@1+ (1,0) [0|0] "" X
  SG_ ESP_a001_ecuGenericFault m0: 4|1@1+ (1,0) [0|0] "" X
  SG_ ESP_a002_valvesGenericFault m0: 5|1@1+ (1,0) [0|0] "" X
@@ -3884,7 +3884,7 @@ BO_ 981 ESP_alertMatrix: 8 ChassisBus
  SG_ ESP_a079_ReRWSSSupplyShortToGnd m1: 22|1@1+ (1,0) [0|0] "" X
  SG_ ESP_a080_ReRWSSGeneralFault m1: 23|1@1+ (1,0) [0|0] "" X
  SG_ ESP_a081_PressureSensorShort m1: 24|1@1+ (1,0) [0|0] "" X
- SG_ ESP_a082_PMCSensorOffsetHigh m1: 25|1@1+ (1,0) [0|0] "" X
+ SG_ ESP_a082_PMCSensorOffsVEHigh m1: 25|1@1+ (1,0) [0|0] "" X
  SG_ ESP_a083_PMCSensorFault m1: 26|1@1+ (1,0) [0|0] "" X
  SG_ ESP_a084_BrakeFluidReservoirLow m1: 27|1@1+ (1,0) [0|0] "" X
  SG_ ESP_a085_BrakeSwitchStuckHigh m1: 28|1@1+ (1,0) [0|0] "" X
@@ -3897,8 +3897,8 @@ BO_ 981 ESP_alertMatrix: 8 ChassisBus
  SG_ ESP_a092_CANOvervoltage m1: 35|1@1+ (1,0) [0|0] "" X
  SG_ ESP_a093_partyBusOff m1: 36|1@1+ (1,0) [0|0] "" X
  SG_ ESP_a094_partyBusPassive m1: 37|1@1+ (1,0) [0|0] "" X
- SG_ ESP_a095_chassisBusOff m1: 38|1@1+ (1,0) [0|0] "" X
- SG_ ESP_a096_chassisBusPassive m1: 39|1@1+ (1,0) [0|0] "" X
+ SG_ ESP_a095_CHOff m1: 38|1@1+ (1,0) [0|0] "" X
+ SG_ ESP_a096_CHPassive m1: 39|1@1+ (1,0) [0|0] "" X
  SG_ ESP_a097_tcsRefSpeedNotInit m1: 40|1@1+ (1,0) [0|0] "" X
  SG_ ESP_a098_vdcRefSpeedNotInit m1: 41|1@1+ (1,0) [0|0] "" X
  SG_ ESP_a099_brakeTempModelOverheat m1: 42|1@1+ (1,0) [0|0] "" X
@@ -4067,7 +4067,7 @@ BO_ 981 ESP_alertMatrix: 8 ChassisBus
  SG_ ESP_a262_epblStatusDLC m4: 25|1@1+ (1,0) [0|0] "" X
  SG_ ESP_a263_epblStatusCounter m4: 26|1@1+ (1,0) [0|0] "" X
 
-BO_ 808 ESP_info: 8 ETH
+BO_ 808 ESP_info: 8 VEH
  SG_ ESP_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
  SG_ ESP_infoBuildType m10: 8|8@1+ (1,0) [0|0] "" X
  SG_ ESP_infoComponentID m10: 48|16@1+ (1,0) [0|0] "" X
@@ -4080,7 +4080,7 @@ BO_ 808 ESP_info: 8 ETH
  SG_ ESP_infoBootloaderCRC m20: 32|32@1+ (1,0) [0|0] "" X
  SG_ ESP_infoVariantCRC m22: 32|32@0+ (1,0) [0|0] "" X
 
-BO_ 325 ESP_status: 8 ChassisBus
+BO_ 325 ESP_status: 8 CH
  SG_ ESP_absBrakeEvent2: 22|2@1+ (1,0) [0|0] "" X
  SG_ ESP_absFaultLamp: 17|1@1+ (1,0) [0|0] "" X
  SG_ ESP_brakeApply: 31|1@1+ (1,0) [0|0] "" X
@@ -4106,7 +4106,7 @@ BO_ 325 ESP_status: 8 ChassisBus
  SG_ ESP_steeringAngleQF: 27|1@1+ (1,0) [0|0] "" X
  SG_ ESP_yawRateQF: 26|1@1+ (1,0) [0|0] "" X
 
-BO_ 341 ESP_wheelRotation: 8 ChassisBus
+BO_ 341 ESP_wheelRotation: 8 CH
  SG_ ESP_wheelAngleFL: 0|8@1+ (1.40625,0) [0|358.59375] "deg" X
  SG_ ESP_wheelAngleFR: 8|8@1+ (1.40625,0) [0|358.59375] "deg" X
  SG_ ESP_wheelAngleRL: 16|8@1+ (1.40625,0) [0|358.59375] "deg" X
@@ -4129,7 +4129,7 @@ VAL_ 341 ESP_wheelRotationQF 1 "VALID" 0 "INVALID" ;
 VAL_ 341 ESP_standstillStatus 1 "STANDSTILL" 0 "ROLLING" ;
 VAL_ 341 ESP_vehicleSpeed 1023 "SNA" ;
 
-BO_ 373 ESP_wheelSpeed: 8 ChassisBus
+BO_ 373 ESP_wheelSpeed: 8 CH
  SG_ ESP_wheelSpeedRR : 39|13@1+ (0.04,0) [0|327.64] "RPM" X
  SG_ ESP_wheelSpeedRL : 26|13@1+ (0.04,0) [0|327.64] "RPM" X
  SG_ ESP_wheelSpeedFR : 13|13@1+ (0.04,0) [0|327.64] "RPM" X
@@ -4142,7 +4142,7 @@ VAL_ 373 ESP_wheelSpeedRL 8191 "SNA";
 VAL_ 373 ESP_wheelSpeedFR 8191 "SNA";
 VAL_ 373 ESP_wheelSpeedFL 8191 "SNA";
 
-BO_ 389 ESP_brakeTorque: 8 ChassisBus
+BO_ 389 ESP_brakeTorque: 8 CH
  SG_ ESP_brakeTorqueFL : 0|12@1+ (2,0) [0|8190] "Nm"  Receiver
  SG_ ESP_brakeTorqueFR : 12|12@1+ (2,0) [0|8190] "Nm"  Receiver
  SG_ ESP_brakeTorqueRL : 24|12@1+ (2,0) [0|8190] "Nm"  Receiver
@@ -4157,17 +4157,17 @@ VAL_ 389 ESP_brakeTorqueRL 4095 "SNA" ;
 VAL_ 389 ESP_brakeTorqueRR 4095 "SNA" ;
 VAL_ 389 ESP_brakeTorqueQF 1 "IN_SPEC" 0 "UNDEFINABLE_ACCURACY" ;
 
-BO_ 1621 ESP_udsResponse: 8 ETH
+BO_ 1621 ESP_udsResponse: 8 VEH
  SG_ ESP_udsResponseData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 805 FC_alertMatrix1: 8 ETH
+BO_ 805 FC_alertMatrix1: 8 VEH
  SG_ FC_a001_scPostOutOfService: 0|1@1+ (1,0) [0|0] "" X
  SG_ FC_a002_scPowerShared: 1|1@1+ (1,0) [0|0] "" X
 
-BO_ 831 FC_alertMatrix2: 8 ETH
+BO_ 831 FC_alertMatrix2: 8 VEH
  SG_ FC_a065_userData: 0|1@1+ (1,0) [0|0] "" X
 
-BO_ 895 FC_alertMatrix3: 8 ETH
+BO_ 895 FC_alertMatrix3: 8 VEH
  SG_ FC_a129_CA_flyback_HW_OC: 0|1@1+ (1,0) [0|0] "" X
  SG_ FC_a130_CA_flyback_SW_OV: 1|1@1+ (1,0) [0|0] "" X
  SG_ FC_a131_CA_flyback_HW_OV: 2|1@1+ (1,0) [0|0] "" X
@@ -4228,10 +4228,10 @@ BO_ 895 FC_alertMatrix3: 8 ETH
  SG_ FC_a186_CA_fcContOpenTimeout: 57|1@1+ (1,0) [0|0] "" X
  SG_ FC_a187_CA_evseConLockTimeout: 58|1@1+ (1,0) [0|0] "" X
 
-BO_ 927 FC_alertMatrix4: 8 ETH
+BO_ 927 FC_alertMatrix4: 8 VEH
  SG_ FC_a193_FCAlertPlaceholder: 0|1@1+ (1,0) [0|0] "" X
 
-BO_ 958 FC_alertMatrix5: 8 ETH
+BO_ 958 FC_alertMatrix5: 8 VEH
  SG_ FC_a257_GB_bmsMia: 0|1@1+ (1,0) [0|0] "" X
  SG_ FC_a258_GB_evseMia: 1|1@1+ (1,0) [0|0] "" X
  SG_ FC_a259_GB_vehTxBufOvf: 2|1@1+ (1,0) [0|0] "" X
@@ -4289,14 +4289,14 @@ BO_ 958 FC_alertMatrix5: 8 ETH
  SG_ FC_a311_GB_battParamsTimeout: 54|1@1+ (1,0) [0|0] "" X
  SG_ FC_a312_GB_evseLimitsTimeout: 55|1@1+ (1,0) [0|0] "" X
 
-BO_ 990 FC_alertMatrix6: 8 ETH
+BO_ 990 FC_alertMatrix6: 8 VEH
  SG_ FC_a321_FCAlertPlaceholder: 0|1@1+ (1,0) [0|0] "" X
 
-BO_ 1303 FC_identifier: 8 ETH
+BO_ 1303 FC_identifier: 8 VEH
  SG_ FC_id: 0|32@1+ (1,0) [0|0] "" X
  SG_ FC_sessionId: 32|32@1+ (1,0) [0|0] "" X
 
-BO_ 1310 FC_info: 8 ETH
+BO_ 1310 FC_info: 8 VEH
  SG_ FC_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
  SG_ FC_infoBuildType m10: 8|3@1+ (1,0) [0|0] "" X
  SG_ FC_infoBuildConfigID m10: 16|8@1+ (1,0) [0|0] "" X
@@ -4341,17 +4341,17 @@ BO_ 1310 FC_info: 8 ETH
  SG_ FC_partNumChar19 m27: 40|1@1+ (1,0) [0|0] "" X
  SG_ FC_partNumChar20 m27: 48|1@1+ (1,0) [0|0] "" X
 
-BO_ 580 FC_limits: 8 ETH
+BO_ 580 FC_limits: 8 VEH
  SG_ FC_currentLimit: 16|13@1+ (0.0732422,0) [0|0] "A" X
  SG_ FC_maxVoltageLimit: 32|13@1+ (0.0732422,0) [0|0] "V" X
  SG_ FC_minVoltageLimit: 48|13@1+ (0.0732422,0) [0|0] "V" X
  SG_ FC_powerLimit: 0|13@1+ (0.0622559,0) [0|0] "kW" X
 
-BO_ 1345 FC_maxLimits: 8 ETH
+BO_ 1345 FC_maxLimits: 8 VEH
  SG_ FC_maxCurrentLimit: 16|13@1+ (0.0732422,0) [0|0] "A" X
  SG_ FC_maxPowerLimit: 0|13@1+ (0.0622559,0) [0|0] "kW" X
 
-BO_ 532 FC_status: 8 ETH
+BO_ 532 FC_status: 8 VEH
  SG_ FC_adapterLocked: 15|1@1+ (1,0) [0|0] "" X
  SG_ FC_currentLimitAchieved: 12|1@1+ (1,0) [0|0] "" X
  SG_ FC_dcCurrent: 32|14@1- (0.0732422,0) [0|0] "A" X
@@ -4364,10 +4364,10 @@ BO_ 532 FC_status: 8 ETH
  SG_ FC_type: 29|3@1+ (1,0) [0|0] "" X
  SG_ FC_voltageLimitAchieved: 14|1@1+ (1,0) [0|0] "" X
 
-BO_ 533 FC_status2: 1 ETH
+BO_ 533 FC_status2: 1 VEH
  SG_ FC_externalIsolationResistance: 0|8@1+ (40,0) [0|0] "kOhm" X
 
-BO_ 535 FC_status3: 8 ETH
+BO_ 535 FC_status3: 8 VEH
  SG_ FC_status3DataSelect M: 0|7@1+ (1,0) [0|0] "" X
  SG_ FC_status3DummySig: 7|1@1+ (1,0) [0|0] "" X
  SG_ FC_class m0: 8|8@1+ (1,0) [0|0] "" X
@@ -4375,40 +4375,40 @@ BO_ 535 FC_status3: 8 ETH
  SG_ FC_coolingType m0: 20|4@1+ (1,0) [0|0] "" X
  SG_ FC_uiStopType m0: 24|4@1+ (1,0) [0|0] "" X
 
-BO_ 888 GTW_ECall: 1 ETH
+BO_ 888 GTW_ECall: 1 VEH
  SG_ GTW_GSM_ECALL_nLOCK: 0|1@1+ (1,0) [0|0] "" X
 
 CM_ 273 is RCM_inertial2 now
-CM_ BO_ 273 GTW_adc: 7 ETH
+CM_ BO_ 273 GTW_adc: 7 VEH
 CM_  SG_ GTW_12V0_AUDIO_FILT: 0|14@0+ (11,0) [0|0] "mV" X
 CM_  SG_ GTW_12V0_FILT: 16|14@0+ (11,0) [0|0] "mV" X
 CM_  SG_ GTW_WLAN_ANT_DET0: 32|12@0+ (1,0) [0|0] "mV" X
 CM_  SG_ GTW_WLAN_ANT_DET1: 40|12@0+ (1,0) [0|0] "mV" X
 
-BO_ 274 GTW_adc1: 8 ETH
- SG_ GTW_1V1_ETH: 24|12@0+ (1,0) [0|0] "mV" X
- SG_ GTW_1V5_ETH: 32|12@0+ (1,0) [0|0] "mV" X
- SG_ GTW_3V3_ETH: 0|12@0+ (1.03,0) [0|0] "mV" X
+BO_ 274 GTW_adc1: 8 VEH
+ SG_ GTW_1V1_VEH: 24|12@0+ (1,0) [0|0] "mV" X
+ SG_ GTW_1V5_VEH: 32|12@0+ (1,0) [0|0] "mV" X
+ SG_ GTW_3V3_VEH: 0|12@0+ (1.03,0) [0|0] "mV" X
  SG_ GTW_3V3_SW: 8|12@0+ (1.5,0) [0|0] "mV" X
  SG_ GTW_5V0_SW: 48|12@0+ (2,0) [0|0] "mV" X
 
-BO_ 275 GTW_adc2: 7 ETH
+BO_ 275 GTW_adc2: 7 VEH
  SG_ GTW_12V0_DISP: 24|14@0+ (11,0) [0|0] "mV" X
  SG_ GTW_1V1_FPD: 40|12@0+ (1,0) [0|0] "mV" X
  SG_ GTW_1V8_GSM: 8|12@0+ (1,0) [0|0] "mV" X
  SG_ GTW_GSM_MDM_VNDR: 0|12@0+ (1,0) [0|0] "mV" X
 
-BO_ 276 GTW_adc3: 8 ETH
+BO_ 276 GTW_adc3: 8 VEH
  SG_ GTW_1V2_CSI: 24|12@0+ (1,0) [0|0] "mV" X
  SG_ GTW_1V8_VID: 8|12@0+ (1,0) [0|0] "mV" X
  SG_ GTW_1V8_VIO: 0|12@0+ (2,0) [0|0] "mV" X
  SG_ GTW_3V3_BMP: 32|12@0+ (2,0) [0|0] "mV" X
  SG_ GTW_GSM_BRD_REV: 48|12@0+ (1,0) [0|0] "mV" X
 
-BO_ 62 GTW_alertMatrix: 8 ETH
+BO_ 62 GTW_alertMatrix: 8 VEH
  SG_ GTW_matrixIndex M: 0|4@1+ (1,0) [0|0] "" X
  SG_ GTW_w000_GTW_ALERT_DO_NOT_USE m0: 4|1@1+ (1,0) [0|0] "" X
- SG_ GTW_w001_canEthTxQueue m0: 5|1@1+ (1,0) [0|0] "" X
+ SG_ GTW_w001_canVEHTxQueue m0: 5|1@1+ (1,0) [0|0] "" X
  SG_ GTW_w002_taskError m0: 6|1@1+ (1,0) [0|0] "" X
  SG_ GTW_w003_logWriteRecord m0: 7|1@1+ (1,0) [0|0] "" X
  SG_ GTW_w004_mallocHook m0: 8|1@1+ (1,0) [0|0] "" X
@@ -4481,7 +4481,7 @@ BO_ 62 GTW_alertMatrix: 8 ETH
  SG_ GTW_w073_steeringWheelReset m1: 15|1@1+ (1,0) [0|0] "" X
  SG_ GTW_w074_epas3pMIA m1: 16|1@1+ (1,0) [0|0] "" X
  SG_ GTW_w075_epas3sMIA m1: 17|1@1+ (1,0) [0|0] "" X
- SG_ GTW_w076_ethInterfaceReset m1: 18|1@1+ (1,0) [0|0] "" X
+ SG_ GTW_w076_VEHInterfaceReset m1: 18|1@1+ (1,0) [0|0] "" X
  SG_ GTW_w077_bmpPmicError m1: 19|1@1+ (1,0) [0|0] "" X
  SG_ GTW_w078_VEHbusOverloaded m1: 20|1@1+ (1,0) [0|0] "" X
  SG_ GTW_w079_PARTYbusOverloaded m1: 21|1@1+ (1,0) [0|0] "" X
@@ -4512,12 +4512,12 @@ BO_ 62 GTW_alertMatrix: 8 ETH
  SG_ GTW_w105_eBuckConfigured m1: 46|1@1+ (1,0) [0|0] "" X
  SG_ GTW_w106_failedToStartUpdater m1: 47|1@1+ (1,0) [0|0] "" X
 
-BO_ 281 GTW_busLoadInfo: 3 ETH
+BO_ 281 GTW_busLoadInfo: 3 VEH
  SG_ GTW_CHbusLoadPercent: 16|7@1+ (1,0) [0|0] "percent" X
  SG_ GTW_PARTYbusLoadPercent: 8|7@1+ (1,0) [0|0] "percent" X
  SG_ GTW_VEHbusLoadPercent: 0|7@1+ (1,0) [0|0] "percent" X
 
-BO_ 904 GTW_canStatus: 2 ETH
+BO_ 904 GTW_canStatus: 2 VEH
  SG_ GTW_CH_canBusActivity: 2|1@1+ (1,0) [0|0] "" X
  SG_ GTW_CH_faultConfinement: 13|2@1+ (1,0) [0|0] "" X
  SG_ GTW_CH_rxWarning: 8|1@1+ (1,0) [0|0] "" X
@@ -4531,7 +4531,7 @@ BO_ 904 GTW_canStatus: 2 ETH
  SG_ GTW_VEH_rxWarning: 6|1@1+ (1,0) [0|0] "" X
  SG_ GTW_VEH_txWarning: 3|1@1+ (1,0) [0|0] "" X
 
-BO_ 2047 GTW_carConfig: 8 ETH
+BO_ 2047 GTW_carConfig: 8 VEH
  SG_ GTW_carConfigMultiplexer M : 0|8@1+ (1,0) [0|255] ""  Receiver
  SG_ GTW_CabinBlowerCtrlType m2 : 30|1@1+ (1,0) [0|1] ""  Receiver
  SG_ GTW_activeHighBeam m2 : 34|1@1+ (1,0) [0|1] ""  Receiver
@@ -4614,21 +4614,21 @@ BO_ 2047 GTW_carConfig: 8 ETH
  SG_ GTW_xcpESP m2 : 16|1@1+ (1,0) [0|1] ""  Receiver
  SG_ GTW_xcpIbst m2 : 15|1@1+ (1,0) [0|1] ""  Receiver
 
-BO_ 1323 GTW_diskioErr: 1 ETH
+BO_ 1323 GTW_diskioErr: 1 VEH
  SG_ GTW_sdCmdErr: 2|1@1+ (1,0) [0|0] "" X
  SG_ GTW_sdIntStatusErrs: 0|1@1+ (1,0) [0|0] "" X
  SG_ GTW_sdReadErr: 4|1@1+ (1,0) [0|0] "" X
  SG_ GTW_sdTimeout: 1|1@1+ (1,0) [0|0] "" X
  SG_ GTW_sdWriteErr: 3|1@1+ (1,0) [0|0] "" X
 
-BO_ 1080 GTW_ethNm: 2 ETH
- SG_ GTW_ethGotoSleep: 0|1@1+ (1,0) [0|0] "" X
- SG_ GTW_ethHeartBeatCounter: 4|4@1+ (1,0) [0|0] "" X
- SG_ GTW_ethWakeUpBus: 1|1@1+ (1,0) [0|0] "" X
- SG_ GTW_ethWakeUpReason: 8|4@1+ (1,0) [0|0] "" X
+BO_ 1080 GTW_VEHNm: 2 VEH
+ SG_ GTW_VEHGotoSleep: 0|1@1+ (1,0) [0|0] "" X
+ SG_ GTW_VEHHeartBeatCounter: 4|4@1+ (1,0) [0|0] "" X
+ SG_ GTW_VEHWakeUpBus: 1|1@1+ (1,0) [0|0] "" X
+ SG_ GTW_VEHWakeUpReason: 8|4@1+ (1,0) [0|0] "" X
  SG_ GTW_vehBusAsleep: 2|1@1+ (1,0) [0|0] "" X
 
-BO_ 1376 GTW_factoryEcuPresent: 4 ETH
+BO_ 1376 GTW_factoryEcuPresent: 4 VEH
  SG_ GTW_BMSpresent: 0|1@1+ (1,0) [0|0] "" X
  SG_ GTW_CMPpresent: 23|1@1+ (1,0) [0|0] "" X
  SG_ GTW_CPpresent: 26|1@1+ (1,0) [0|0] "" X
@@ -4658,7 +4658,7 @@ BO_ 1376 GTW_factoryEcuPresent: 4 ETH
  SG_ GTW_VCRIGHTpresent: 21|1@1+ (1,0) [0|0] "" X
  SG_ GTW_VCSECpresent: 17|1@1+ (1,0) [0|0] "" X
 
-BO_ 2033 GTW_hrl: 7 ETH
+BO_ 2033 GTW_hrl: 7 VEH
  SG_ GTW_hrlIndex M: 0|2@1+ (1,0) [0|0] "" X
  SG_ GTW_hrlPagesCount m1: 8|32@0+ (1,0) [0|0] "" X
  SG_ GTW_hrlState m2: 2|1@1+ (1,0) [0|0] "" X
@@ -4667,7 +4667,7 @@ BO_ 2033 GTW_hrl: 7 ETH
  SG_ GTW_hrlTriggerId m2: 32|16@0+ (1,0) [0|0] "" X
  SG_ GTW_hrlTriggerBus m2: 48|3@1+ (1,0) [0|0] "" X
 
-BO_ 60 GTW_info: 8 ETH
+BO_ 60 GTW_info: 8 VEH
  SG_ GTW_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
  SG_ GTW_applicationGitHash m17: 10|54@1+ (4,0) [0|0] "" X
  SG_ GTW_buildType m10: 8|3@1+ (1,0) [0|0] "" X
@@ -4677,26 +4677,26 @@ BO_ 60 GTW_info: 8 ETH
  SG_ GTW_platformType m13: 8|8@1+ (1,0) [0|0] "" X
  SG_ GTW_appCrc m13: 32|32@1+ (1,0) [0|0] "" X
 
-BO_ 840 GTW_status: 1 ETH
+BO_ 840 GTW_status: 1 VEH
  SG_ GTW_autopilotTrial: 0|1@1+ (1,0) [0|0] "" X
  SG_ GTW_vehicleVersionMatchStatus: 1|2@1+ (1,0) [0|0] "" X
 
-BO_ 872 GTW_updateStatus: 1 ETH
+BO_ 872 GTW_updateStatus: 1 VEH
  SG_ GTW_offboardUpdateState: 1|3@1+ (1,0) [0|0] "" X
  SG_ GTW_offboardUpdateStatus: 4|3@1+ (1,0) [0|0] "" X
  SG_ GTW_updateStarted: 7|1@1+ (1,0) [0|0] "" X
 
-BO_ 1112 GTW_vehNm: 7 ETH
+BO_ 1112 GTW_vehNm: 7 VEH
  SG_ GTW_OTAKeepAwake: 48|1@1+ (1,0) [0|0] "" X
  SG_ GTW_chBusAsleep: 2|1@1+ (1,0) [0|0] "" X
- SG_ GTW_ethBusAsleep: 3|1@1+ (1,0) [0|0] "" X
+ SG_ GTW_VEHBusAsleep: 3|1@1+ (1,0) [0|0] "" X
  SG_ GTW_nmDebugWakeUp: 16|32@1+ (1,0) [0|0] "" X
  SG_ GTW_nmGoingToSleep: 0|1@1+ (1,0) [0|0] "" X
  SG_ GTW_nmKeepAwakeReason: 4|4@1+ (1,0) [0|0] "" X
  SG_ GTW_nmWakeUpBus: 1|1@1+ (1,0) [0|0] "" X
  SG_ GTW_nmWakeUpReason: 8|4@1+ (1,0) [0|0] "" X
 
-BO_ 938 HVP_alertMatrix1: 8 ETH
+BO_ 938 HVP_alertMatrix1: 8 VEH
  SG_ HVP_w001_WatchdogReset: 0|1@1+ (1,0) [0|0] "" X
  SG_ HVP_w002_UnusedAlert2: 1|1@1+ (1,0) [0|0] "" X
  SG_ HVP_w003_SwAssertion: 2|1@1+ (1,0) [0|0] "" X
@@ -4748,7 +4748,7 @@ BO_ 938 HVP_alertMatrix1: 8 ETH
  SG_ HVP_w050_fcCtrCloseFailed: 49|1@1+ (1,0) [0|0] "" X
  SG_ HVP_w051_shuntThermistorMia: 50|1@1+ (1,0) [0|0] "" X
 
-BO_ 522 HVP_contactorState: 6 ETH
+BO_ 522 HVP_contactorState: 6 VEH
  SG_ HVP_dcLinkAllowedToEnergize: 38|1@1+ (1,0) [0|0] "" X
  SG_ HVP_fcContNegativeState: 12|3@1+ (1,0) [0|0] "" X
  SG_ HVP_fcContPositiveState: 16|3@1+ (1,0) [0|0] "" X
@@ -4771,7 +4771,7 @@ BO_ 522 HVP_contactorState: 6 ETH
  SG_ HVP_packCtrsResetRequestRequired: 34|1@1+ (1,0) [0|0] "" X
  SG_ HVP_pyroTestInProgress: 39|1@1+ (1,0) [0|0] "" X
 
-BO_ 1962 HVP_debugMessage: 8 VehicleBus
+BO_ 1962 HVP_debugMessage: 8 VEH
  SG_ HVP_debugMessageMultiplexer M : 0|4@1+ (1,0) [0|6] ""  Receiver
  SG_ HVP_auxCurrentMia m0 : 57|1@1+ (1,0) [0|1] ""  Receiver
  SG_ HVP_battery12V m5 : 36|12@1+ (0.1,0) [0|30] "V"  Receiver
@@ -4830,7 +4830,7 @@ BO_ 1962 HVP_debugMessage: 8 VehicleBus
  SG_ HVP_shuntRefVoltageMismatch m0 : 59|1@1+ (1,0) [0|1] ""  Receiver
  SG_ HVP_shuntThermistorMia m0 : 60|1@1+ (1,0) [0|1] ""  Receiver
 
-BO_ 784 HVP_info: 8 ETH
+BO_ 784 HVP_info: 8 VEH
  SG_ HVP_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
  SG_ HVP_buildType m10: 8|3@1+ (1,0) [0|0] "" X
  SG_ HVP_buildConfigId m10: 16|16@1+ (1,0) [0|0] "" X
@@ -4847,10 +4847,10 @@ BO_ 784 HVP_info: 8 ETH
  SG_ HVP_bootUdsProtoVersion m20: 8|8@1+ (1,0) [0|0] "" X
  SG_ HVP_bootCrc m20: 32|32@1+ (1,0) [0|0] "" X
 
-BO_ 1553 HVP_udsResponse: 8 ETH
+BO_ 1553 HVP_udsResponse: 8 VEH
  SG_ HVP_udsResponseData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 1898 HVP_vehicleDbg: 8 ETH
+BO_ 1898 HVP_vehicleDbg: 8 VEH
  SG_ HVP_ecuLogUploadRequest: 5|2@1+ (1,0) [0|0] "" X
  SG_ HVP_vehicleDebugMultiplexer M: 0|5@1+ (1,0) [0|0] "" X
  SG_ HVP_packNegativeContPwmDuty m0: 8|14@1+ (0.01,0) [0|0] "%" X
@@ -4863,7 +4863,7 @@ BO_ 1898 HVP_vehicleDbg: 8 ETH
  SG_ HVP_minRobinBrickId m1: 48|7@1+ (1,1) [0|0] "" X
  SG_ HVP_avgRobinBrickV m2: 8|16@1- (0.001,0) [0|0] "V" X
 
-BO_ 861 IBST_alertMatrix: 8 ChassisBus
+BO_ 861 IBST_alertMatrix: 8 CH
  SG_ IBST_matrixIndex M: 0|4@1+ (1,0) [0|0] "" X
  SG_ IBST_a001_microSupplyError m0: 4|1@1+ (1,0) [0|0] "" X
  SG_ IBST_a002_HWBISTError m0: 5|1@1+ (1,0) [0|0] "" X
@@ -4964,9 +4964,9 @@ BO_ 861 IBST_alertMatrix: 8 ChassisBus
  SG_ IBST_a097_bridgeDriverError m1: 40|1@1+ (1,0) [0|0] "" X
  SG_ IBST_a098_bridgeShortedPhase m1: 41|1@1+ (1,0) [0|0] "" X
  SG_ IBST_a099_bridgeSwitchInitError m1: 42|1@1+ (1,0) [0|0] "" X
- SG_ IBST_a100_current2OffsetHigh m1: 43|1@1+ (1,0) [0|0] "" X
+ SG_ IBST_a100_current2OffsVEHigh m1: 43|1@1+ (1,0) [0|0] "" X
  SG_ IBST_a101_current2OffsetLow m1: 44|1@1+ (1,0) [0|0] "" X
- SG_ IBST_a102_current1OffsetHigh m1: 45|1@1+ (1,0) [0|0] "" X
+ SG_ IBST_a102_current1OffsVEHigh m1: 45|1@1+ (1,0) [0|0] "" X
  SG_ IBST_a103_current1OffsetLow m1: 46|1@1+ (1,0) [0|0] "" X
  SG_ IBST_a104_bridgeDriverShort m1: 47|1@1+ (1,0) [0|0] "" X
  SG_ IBST_a105_LiPSUndervoltage m1: 48|1@1+ (1,0) [0|0] "" X
@@ -4979,7 +4979,7 @@ BO_ 861 IBST_alertMatrix: 8 ChassisBus
  SG_ IBST_a112_LiPS1SentTransmission m1: 55|1@1+ (1,0) [0|0] "" X
  SG_ IBST_a113_LiPS1SentSensor m1: 56|1@1+ (1,0) [0|0] "" X
  SG_ IBST_a114_partyBusOff m1: 57|1@1+ (1,0) [0|0] "" X
- SG_ IBST_a115_chassisBusOff m1: 58|1@1+ (1,0) [0|0] "" X
+ SG_ IBST_a115_CHOff m1: 58|1@1+ (1,0) [0|0] "" X
  SG_ IBST_a116_supplyUndervoltageLvl2 m1: 59|1@1+ (1,0) [0|0] "" X
  SG_ IBST_a117_supplyOvervoltageLvl2 m1: 60|1@1+ (1,0) [0|0] "" X
  SG_ IBST_a118_RPSNvMReadFault m1: 61|1@1+ (1,0) [0|0] "" X
@@ -5041,7 +5041,7 @@ BO_ 861 IBST_alertMatrix: 8 ChassisBus
  SG_ IBST_a174_LVOffStateInvalid m2: 57|1@1+ (1,0) [0|0] "" X
  SG_ IBST_a175_LVGoingDownInvalid m2: 58|1@1+ (1,0) [0|0] "" X
 
-BO_ 813 IBST_info: 8 ChassisBus
+BO_ 813 IBST_info: 8 CH
  SG_ IBST_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
  SG_ IBST_infoBuildType m10: 8|8@1+ (1,0) [0|0] "" X
  SG_ IBST_infoComponentID m10: 48|16@1+ (1,0) [0|0] "" X
@@ -5053,17 +5053,17 @@ BO_ 813 IBST_info: 8 ChassisBus
  SG_ IBST_infoApplicationCRC m13: 32|32@1+ (1,0) [0|0] "" X
  SG_ IBST_infoVariantCRC m22: 32|32@1+ (1,0) [0|0] "" X
 
-BO_ 925 IBST_status: 3 ChassisBus
+BO_ 925 IBST_status: 3 CH
  SG_ IBST_driverBrakeApply: 16|2@1+ (1,0) [0|0] "" X
  SG_ IBST_iBoosterStatus: 12|3@1+ (1,0) [0|0] "" X
  SG_ IBST_statusChecksum: 0|8@1+ (1,0) [0|0] "" X
  SG_ IBST_statusCounter: 8|4@1+ (1,0) [0|0] "" X
 
-BO_ 1629 IBST_udsResponse: 8 ETH
+BO_ 1629 IBST_udsResponse: 8 VEH
  SG_ IBST_udsResponseData: 0|54@0+ (1024,0) [0|0] "" X
 
-CM_ "This is now oil pump"; Might still be OCS1P_alertMatrix on ChassisBus !!! TODO >> VERIFY
-CM_ BO_ 917 OCS1P_alertMatrix: 8 ETH
+CM_ "This is now oil pump"; Might still be OCS1P_alertMatrix on CH !!! TODO >> VERIFY
+CM_ BO_ 917 OCS1P_alertMatrix: 8 VEH
 CM_  SG_ OCS1P_matrixIndex M: 0|4@1+ (1,0) [0|0] "" X
 CM_  SG_ OCS1P_w121_sandwichOpen m2: 4|1@1+ (1,0) [0|0] "" X
 CM_  SG_ OCS1P_w122_sandwichLow m2: 5|1@1+ (1,0) [0|0] "" X
@@ -5088,7 +5088,7 @@ CM_  SG_ OCS1P_w140_tempInvalidCalib m2: 23|1@1+ (1,0) [0|0] "" X
 CM_  SG_ OCS1P_w141_humidityInvalidCalib m2: 24|1@1+ (1,0) [0|0] "" X
 CM_  SG_ OCS1P_w142_tempHumidityInvalid m2: 25|1@1+ (1,0) [0|0] "" X
 
-CM_ BO_ 789 OCS1P_info: 8 ChassisBus
+CM_ BO_ 789 OCS1P_info: 8 CH
 CM_ SG_ OCS1P_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
 CM_ SG_ OCS1P_infoBuildType m10: 8|8@1+ (1,0) [0|0] "" X
 CM_ SG_ OCS1P_infoBuildConfigID m10: 16|16@1+ (1,0) [0|0] "" X
@@ -5106,7 +5106,7 @@ CM_ SG_ OCS1P_infoPlatformType m19: 8|8@1+ (1,0) [0|0] "" X
 CM_ SG_ OCS1P_infoBootUdsProtoVersion m20: 8|8@1+ (1,0) [0|0] "" X
 CM_ SG_ OCS1P_infoBootloaderCRC m20: 32|32@1+ (1,0) [0|0] "" X
 
-BO_ 771 OCS1P_status: 8 ETH
+BO_ 771 OCS1P_status: 8 VEH
  SG_ OCS1P_classificationExtHold: 32|1@1+ (1,0) [0|0] "" X
  SG_ OCS1P_classificationHeld: 15|1@1+ (1,0) [0|0] "" X
  SG_ OCS1P_classificationHoldState: 33|2@1+ (1,0) [0|0] "" X
@@ -5121,10 +5121,10 @@ BO_ 771 OCS1P_status: 8 ETH
  SG_ OCS1P_statusChecksum: 56|8@1+ (1,0) [0|0] "" X
  SG_ OCS1P_statusCounter: 52|4@1+ (1,0) [0|0] "" X
 
-BO_ 1619 OCS1P_udsResponse: 8 ETH
+BO_ 1619 OCS1P_udsResponse: 8 VEH
  SG_ OCS1P_udsResponseData: 10|54@1+ (1024,0) [0|0] "" X
 
-BO_ 1152 ODIN_IsoTpPipeVCSEC: 8 ETH
+BO_ 1152 ODIN_IsoTpPipeVCSEC: 8 VEH
  SG_ ODIN_IsoTpPipeVCSEC0: 0|8@1+ (1,0) [0|0] "" X
  SG_ ODIN_IsoTpPipeVCSEC1: 8|8@1+ (1,0) [0|0] "" X
  SG_ ODIN_IsoTpPipeVCSEC2: 16|8@1+ (1,0) [0|0] "" X
@@ -5134,7 +5134,7 @@ BO_ 1152 ODIN_IsoTpPipeVCSEC: 8 ETH
  SG_ ODIN_IsoTpPipeVCSEC6: 48|8@1+ (1,0) [0|0] "" X
  SG_ ODIN_IsoTpPipeVCSEC7: 56|8@1+ (1,0) [0|0] "" X
 
-BO_ 806 PARK_info: 8 ChassisBus
+BO_ 806 PARK_info: 8 CH
  SG_ PARK_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
  SG_ PARK_infoBuildType m10: 8|8@1+ (1,0) [0|0] "" X
  SG_ PARK_infoComponentID m10: 48|16@1+ (1,0) [0|0] "" X
@@ -5145,21 +5145,21 @@ BO_ 806 PARK_info: 8 ChassisBus
  SG_ PARK_infoBootloaderCRC m20: 32|32@1+ (1,0) [0|0] "" X
  SG_ PARK_infoApplicationCRC m13: 32|32@1+ (1,0) [0|0] "" X
 
-BO_ 846 PARK_pasFrontMiddle: 5 ChassisBus
+BO_ 846 PARK_pasFrontMiddle: 5 CH
  SG_ PARK_frontLeftMiddleRawDistData: 0|8@1+ (1,0) [0|0] "cm" X
  SG_ PARK_frontMiddleRawDistData: 8|8@1+ (1,0) [0|0] "cm" X
  SG_ PARK_frontRightMiddleRawDistData: 16|8@1+ (1,0) [0|0] "cm" X
  SG_ PARK_pasFrontMiddleChecksum: 32|8@1+ (1,0) [0|0] "" X
  SG_ PARK_pasFrontMiddleCounter: 24|4@1+ (1,0) [0|0] "" X
 
-BO_ 862 PARK_pasRearMiddle: 5 ChassisBus
+BO_ 862 PARK_pasRearMiddle: 5 CH
  SG_ PARK_pasRearMiddleChecksum: 32|8@1+ (1,0) [0|0] "" X
  SG_ PARK_pasRearMiddleCounter: 24|4@1+ (1,0) [0|0] "" X
  SG_ PARK_rearLeftMiddleRawDistData: 0|8@1+ (1,0) [0|0] "cm" X
  SG_ PARK_rearMiddleRawDistData: 8|8@1+ (1,0) [0|0] "cm" X
  SG_ PARK_rearRightMiddleRawDistData: 16|8@1+ (1,0) [0|0] "cm" X
 
-BO_ 926 PARK_pasSides: 6 ChassisBus
+BO_ 926 PARK_pasSides: 6 CH
  SG_ PARK_leftSideFrontRawDistData: 16|8@1+ (1,0) [0|0] "cm" X
  SG_ PARK_leftSideRearRawDistData: 24|8@1+ (1,0) [0|0] "cm" X
  SG_ PARK_pasSidesChecksum: 36|8@1+ (1,0) [0|0] "" X
@@ -5167,7 +5167,7 @@ BO_ 926 PARK_pasSides: 6 ChassisBus
  SG_ PARK_rightSideFrontRawDistData: 0|8@1+ (1,0) [0|0] "cm" X
  SG_ PARK_rightSideRearRawDistData: 8|8@1+ (1,0) [0|0] "cm" X
 
-BO_ 606 PARK_pscEnvSlot: 8 ChassisBus
+BO_ 606 PARK_pscEnvSlot: 8 CH
  SG_ PARK_pscEnvSlotType M: 0|2@1+ (1,0) [0|0] "" X
  SG_ PARK_pscLeftParallelObj1X m0: 3|11@1+ (2,-2048) [0|0] "cm" X
  SG_ PARK_pscLeftParallelObj1Y m0: 14|11@1+ (2,-2048) [0|0] "cm" X
@@ -5194,7 +5194,7 @@ BO_ 606 PARK_pscEnvSlot: 8 ChassisBus
  SG_ PARK_pscRightCrossObj2X m3: 46|11@1+ (2,-2048) [0|0] "cm" X
  SG_ PARK_pscRightCrossObj2Alpha m3: 57|7@1+ (2,-128) [0|0] "deg" X
 
-BO_ 542 PARK_pscStatus: 8 ETH
+BO_ 542 PARK_pscStatus: 8 VEH
  SG_ PARK_pscAngleActive: 40|1@1+ (1,0) [0|0] "" X
  SG_ PARK_pscAngleRequest: 41|15@1+ (0.1,-1638.4) [0|0] "deg" X
  SG_ PARK_pscCrossLeftParkable: 24|2@1+ (1,0) [0|0] "" X
@@ -5211,7 +5211,7 @@ BO_ 542 PARK_pscStatus: 8 ETH
  SG_ PARK_pscStatusChecksum: 60|4@1+ (1,0) [0|0] "" X
  SG_ PARK_pscStatusCounter: 56|4@1+ (1,0) [0|0] "" X
 
-BO_ 590 PARK_pscVehSlot: 8 ChassisBus
+BO_ 590 PARK_pscVehSlot: 8 CH
  SG_ PARK_pscVehSlotType M: 0|2@1+ (1,0) [0|0] "" X
  SG_ PARK_pscLeftParallelVehX m0: 5|11@1+ (2,-2048) [0|0] "cm" X
  SG_ PARK_pscLeftParallelVehY m0: 16|11@1+ (2,-2048) [0|0] "cm" X
@@ -5234,7 +5234,7 @@ BO_ 590 PARK_pscVehSlot: 8 ChassisBus
  SG_ PARK_pscRightCrossSizeX m3: 48|8@1+ (4,0) [0|0] "cm" X
  SG_ PARK_pscRightCrossSizeY m3: 56|8@1+ (4,0) [0|0] "cm" X
 
-BO_ 526 PARK_sdiFront: 8 ChassisBus
+BO_ 526 PARK_sdiFront: 8 CH
  SG_ PARK_sdiFrontChecksum: 56|8@1+ (1,0) [0|0] "" X
  SG_ PARK_sdiFrontCounter: 54|2@1+ (1,0) [0|0] "" X
  SG_ PARK_sdiSensor1RawDistData: 0|9@1+ (1,0) [0|0] "cm" X
@@ -5244,7 +5244,7 @@ BO_ 526 PARK_sdiFront: 8 ChassisBus
  SG_ PARK_sdiSensor5RawDistData: 36|9@1+ (1,0) [0|0] "cm" X
  SG_ PARK_sdiSensor6RawDistData: 45|9@1+ (1,0) [0|0] "cm" X
 
-BO_ 558 PARK_sdiRear: 8 ChassisBus
+BO_ 558 PARK_sdiRear: 8 CH
  SG_ PARK_sdiRearChecksum: 56|8@1+ (1,0) [0|0] "" X
  SG_ PARK_sdiRearCounter: 54|2@1+ (1,0) [0|0] "" X
  SG_ PARK_sdiSensor10RawDistData: 27|9@1+ (1,0) [0|0] "cm" X
@@ -5254,7 +5254,7 @@ BO_ 558 PARK_sdiRear: 8 ChassisBus
  SG_ PARK_sdiSensor8RawDistData: 9|9@1+ (1,0) [0|0] "cm" X
  SG_ PARK_sdiSensor9RawDistData: 18|9@1+ (1,0) [0|0] "cm" X
 
-BO_ 814 PARK_sensorStatusFront: 5 ChassisBus
+BO_ 814 PARK_sensorStatusFront: 5 CH
  SG_ PARK_frontDtcPresent: 26|2@1+ (1,0) [0|0] "" X
  SG_ PARK_frontLeftMiddleSensorState: 4|2@1+ (1,0) [0|0] "" X
  SG_ PARK_frontLeftRawDistData: 8|8@1+ (1,0) [0|0] "cm" X
@@ -5266,7 +5266,7 @@ BO_ 814 PARK_sensorStatusFront: 5 ChassisBus
  SG_ PARK_sensorStatusFrontCounter: 28|4@1+ (1,0) [0|0] "" X
  SG_ PARK_systemStatusFront: 24|2@1+ (1,0) [0|0] "" X
 
-BO_ 830 PARK_sensorStatusRear: 5 ChassisBus
+BO_ 830 PARK_sensorStatusRear: 5 CH
  SG_ PARK_rearDtcPresent: 26|2@1+ (1,0) [0|0] "" X
  SG_ PARK_rearLeftMiddleSensorState: 4|2@1+ (1,0) [0|0] "" X
  SG_ PARK_rearLeftRawDistData: 8|8@1+ (1,0) [0|0] "cm" X
@@ -5279,7 +5279,7 @@ BO_ 830 PARK_sensorStatusRear: 5 ChassisBus
  SG_ PARK_systemStatusRear: 24|2@1+ (1,0) [0|0] "" X
 
 CM_ "799 is now TPMS_data";
-CM_ BO_ 799 PARK_status: 6 ETH
+CM_ BO_ 799 PARK_status: 6 VEH
 CM_  SG_ PARK_majorVersion: 24|8@1+ (1,0) [0|0] "" X
 CM_  SG_ PARK_minorVersion: 32|8@1+ (1,0) [0|0] "" X
 CM_  SG_ PARK_serviceRequest: 2|2@1+ (1,0) [0|0] "" X
@@ -5289,7 +5289,7 @@ CM_  SG_ PARK_statusCounter: 12|4@1+ (1,0) [0|0] "" X
 CM_  SG_ PARK_subMinorVersion: 40|8@1+ (1,0) [0|0] "" X
 CM_  SG_ PARK_systemDtcPresent: 4|2@1+ (1,0) [0|0] "" X
 
-BO_ 782 PARK_status2: 8 ChassisBus
+BO_ 782 PARK_status2: 8 CH
  SG_ PARK_autoCalComplete: 16|1@1+ (1,0) [0|0] "" X
  SG_ PARK_frontSVACharID: 0|6@1+ (1,0) [0|0] "" X
  SG_ PARK_geometryType: 17|2@1+ (1,0) [0|0] "" X
@@ -5305,10 +5305,10 @@ BO_ 782 PARK_status2: 8 ChassisBus
  SG_ PARK_status2Counter: 52|4@1+ (1,0) [0|0] "" X
  SG_ PARK_tireFitment: 19|2@1+ (1,0) [0|0] "" X
 
-BO_ 1630 PARK_udsResponse: 8 ETH
+BO_ 1630 PARK_udsResponse: 8 VEH
  SG_ PARK_udsResponseData: 10|54@1+ (1024,0) [0|0] "" X
 
-BO_ 894 PARK_warningMatrix: 8 ChassisBus
+BO_ 894 PARK_warningMatrix: 8 CH
  SG_ PARK_matrixIndex M: 0|4@1+ (1,0) [0|0] "" X
  SG_ PARK_a001_s1_overTemp m0: 4|1@1+ (1,0) [0|0] "" X
  SG_ PARK_a002_s1_internalFail m0: 5|1@1+ (1,0) [0|0] "" X
@@ -5397,7 +5397,7 @@ BO_ 894 PARK_warningMatrix: 8 ChassisBus
  SG_ PARK_a085_watchdogReset m1: 28|1@1+ (1,0) [0|0] "" X
  SG_ PARK_a086_nvmFault m1: 29|1@1+ (1,0) [0|0] "" X
 
-BO_ 932 PCS_alertMatrix: 8 ETH
+BO_ 932 PCS_alertMatrix: 8 VEH
  SG_ PCS_matrixIndex M: 0|4@1+ (1,0) [0|0] "" X
  SG_ PCS_a001_chgHwInputOc m0: 4|1@1+ (1,0) [0|0] "" X
  SG_ PCS_a002_chgHwOutputOc m0: 5|1@1+ (1,0) [0|0] "" X
@@ -5489,13 +5489,13 @@ BO_ 932 PCS_alertMatrix: 8 ETH
  SG_ PCS_a088_pchgParameters m1: 31|1@1+ (1,0) [0|0] "" X
  SG_ PCS_a089_hvBusDischargeIrrational m1: 32|1@1+ (1,0) [0|0] "" X
 
-BO_ 612 PCS_chgLineStatus: 6 ETH
+BO_ 612 PCS_chgLineStatus: 6 VEH
  SG_ PCS_chgAcCurrentLimit: 32|10@1+ (0.1,0) [0|0] "A" X
  SG_ PCS_chgInputPower: 24|8@1+ (0.1,0) [0|0] "kW" X
  SG_ PCS_chgInputVoltage: 0|14@1+ (0.033,0) [0|0] "V" X
  SG_ PCS_chgLineCurrent: 14|9@1+ (0.1,0) [0|0] "A" X
 
-BO_ 516 PCS_chgStatus: 8 ETH
+BO_ 516 PCS_chgStatus: 8 VEH
  SG_ PCS_chargeStatus: 4|2@1+ (1,0) [0|0] "" X
  SG_ PCS_chgInstantAcPowerAvailable: 16|8@1+ (0.1,0) [0|0] "kW" X
  SG_ PCS_chgMainState: 0|4@1+ (1,0) [0|0] "" X
@@ -5509,12 +5509,12 @@ BO_ 516 PCS_chgStatus: 8 ETH
  SG_ PCS_chgPwmEnableLine: 56|1@1+ (1,0) [0|0] "" X
  SG_ PCS_gridConfig: 6|2@1+ (1,0) [0|0] "" X
 
-BO_ 692 PCS_dcdcBusStatus: 5 ETH
+BO_ 692 PCS_dcdcBusStatus: 5 VEH
  SG_ PCS_dcdcHvBusVolt : 10|12@1+ (0.146484375,0) [0|599.853515625] "V" X
  SG_ PCS_dcdcLvBusVolt : 0|10@1+ (0.0390625,0) [0|39.9609375] "V" X
  SG_ PCS_dcdcLvOutputCurrent : 24|12@1+ (0.1,0) [0|400] "A" X
 
-BO_ 548 PCS_dcdcStatus: 8 ETH
+BO_ 548 PCS_dcdcStatus: 8 VEH
  SG_ PCS_dcdc12VSupportRtyCnt: 44|4@1+ (1,0) [0|0] "" X
  SG_ PCS_dcdc12VSupportStatus: 2|2@1+ (1,0) [0|0] "" X
  SG_ PCS_dcdcDischargeRtyCnt: 48|4@1+ (1,0) [0|0] "" X
@@ -5533,7 +5533,7 @@ BO_ 548 PCS_dcdcStatus: 8 ETH
  SG_ PCS_dcdcSupportingFixedLvTarget: 53|1@1+ (1,0) [0|0] "" X
  SG_ PCS_ecuLogUploadRequest: 54|2@1+ (1,0) [0|0] "" X
 
-BO_ 964 PCS_info: 8 ETH
+BO_ 964 PCS_info: 8 VEH
  SG_ PCS_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
  SG_ PCS_buildType m10: 8|8@1+ (1,0) [0|0] "" X
  SG_ PCS_buildConfigId m10: 16|16@1+ (1,0) [0|0] "" X
@@ -5585,7 +5585,7 @@ BO_ 964 PCS_info: 8 ETH
  SG_ PCS_serialNumChar13 m30: 48|8@1+ (1,0) [0|0] "" X
  SG_ PCS_serialNumChar14 m30: 56|8@1+ (1,0) [0|0] "" X
 
-BO_ 708 PCS_logging: 8 ETH
+BO_ 708 PCS_logging: 8 VEH
  SG_ PCS_logMessageSelect M: 0|5@1+ (1,0) [0|0] "" X
  SG_ PCS_chgPhAInputIrms m0: 5|9@1+ (0.1,0) [0|0] "A" X
  SG_ PCS_chgPhAIntBusV m0: 14|9@1+ (1,0) [0|0] "V" X
@@ -5710,17 +5710,17 @@ BO_ 708 PCS_logging: 8 ETH
  SG_ PCS_chgInputNGVdc m21: 46|10@1- (1,0) [0|0] "V" X
  SG_ PCS_dcdc12vSupportLifetimekWh m22: 8|24@1+ (0.01,0) [0|0] "kWh" X
 
-BO_ 676 PCS_thermalStatus: 8 ETH
+BO_ 676 PCS_thermalStatus: 8 VEH
  SG_ PCS_ambientTemp: 48|11@1- (0.1,40) [0|0] "C" X
  SG_ PCS_chgPhATemp: 0|11@1- (0.1,40) [0|0] "C" X
  SG_ PCS_chgPhBTemp: 11|11@1- (0.1,40) [0|0] "C" X
  SG_ PCS_chgPhCTemp: 24|11@1- (0.1,40) [0|0] "C" X
  SG_ PCS_dcdcTemp: 35|11@1- (0.1,40) [0|0] "C" X
 
-BO_ 1577 PCS_udsResponse: 8 ETH
+BO_ 1577 PCS_udsResponse: 8 VEH
  SG_ PCS_udsResponseData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 900 PMS_alertMatrix1: 8 ETH
+BO_ 900 PMS_alertMatrix1: 8 VEH
  SG_ PMS_w001_absoluteTorque: 0|1@1+ (1,0) [0|0] "" X
  SG_ PMS_w002_accumulatedTorque: 1|1@1+ (1,0) [0|0] "" X
  SG_ PMS_w003_torqueReversal: 2|1@1+ (1,0) [0|0] "" X
@@ -5758,7 +5758,7 @@ BO_ 900 PMS_alertMatrix1: 8 ETH
  SG_ PMS_w063_debugAlert: 62|1@1+ (1,0) [0|0] "" X
  SG_ PMS_w064_torqueIntervention: 63|1@1+ (1,0) [0|0] "" X
 
-BO_ 1748 PMS_info: 8 ETH
+BO_ 1748 PMS_info: 8 VEH
  SG_ PMS_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
  SG_ PMS_buildType m10: 8|8@1+ (1,0) [0|0] "" X
  SG_ PMS_buildConfigurationId m10: 16|16@1+ (1,0) [0|0] "" X
@@ -5777,10 +5777,10 @@ BO_ 1748 PMS_info: 8 ETH
  SG_ PMS_udsProtocolVersion m20: 8|8@1+ (1,0) [0|0] "" X
  SG_ PMS_bootloaderCrc m20: 32|32@1+ (1,0) [0|0] "" X
 
-BO_ 1620 PMS_udsResponse: 8 ETH
+BO_ 1620 PMS_udsResponse: 8 VEH
  SG_ PMS_udsResponseData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 772 PM_alertMatrix1: 8 ETH
+BO_ 772 PM_alertMatrix1: 8 VEH
  SG_ PM_a001_absoluteTorque: 0|1@1+ (1,0) [0|0] "" X
  SG_ PM_a002_accumulatedTorque: 1|1@1+ (1,0) [0|0] "" X
  SG_ PM_a003_torqueReversal: 2|1@1+ (1,0) [0|0] "" X
@@ -5836,7 +5836,7 @@ BO_ 772 PM_alertMatrix1: 8 ETH
  SG_ PM_a063_debugAlert: 62|1@1+ (1,0) [0|0] "" X
  SG_ PM_a064_torqueIntervention: 63|1@1+ (1,0) [0|0] "" X
 
-BO_ 790 PM_info: 8 ETH
+BO_ 790 PM_info: 8 VEH
  SG_ PM_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
  SG_ PM_buildType m10: 8|8@1+ (1,0) [0|0] "" X
  SG_ PM_buildConfigurationId m10: 16|16@1+ (1,0) [0|0] "" X
@@ -5855,10 +5855,10 @@ BO_ 790 PM_info: 8 ETH
  SG_ PM_udsProtocolVersion m20: 8|8@1+ (1,0) [0|0] "" X
  SG_ PM_bootloaderCrc m20: 32|32@1+ (1,0) [0|0] "" X
 
-BO_ 1556 PM_udsResponse: 8 ETH
+BO_ 1556 PM_udsResponse: 8 VEH
  SG_ PM_udsResponseData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 837 PTC_info: 8 ETH
+BO_ 837 PTC_info: 8 VEH
  SG_ PTC_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
  SG_ PTC_infoBuildType m10: 8|3@1+ (1,0) [0|0] "" X
  SG_ PTC_infoBuildConfigId m10: 16|16@1+ (1,0) [0|0] "" X
@@ -5873,7 +5873,7 @@ BO_ 837 PTC_info: 8 ETH
  SG_ PTC_infoPlatformType m13: 8|8@1+ (1,0) [0|0] "" X
  SG_ PTC_infoAppCrc m13: 32|32@1+ (1,0) [0|0] "" X
 
-BO_ 647 PTC_sensorStatus: 8 ETH
+BO_ 647 PTC_sensorStatus: 8 VEH
  SG_ PTC_leftCurrentHV: 48|8@1+ (0.2,0) [0|0] "A" X
  SG_ PTC_leftTempIGBT: 0|8@1+ (1,-40) [0|0] "degC" X
  SG_ PTC_rightCurrentHV: 56|8@1+ (0.2,0) [0|0] "A" X
@@ -5882,10 +5882,10 @@ BO_ 647 PTC_sensorStatus: 8 ETH
  SG_ PTC_tempPCB: 24|8@1+ (1,-40) [0|0] "degC" X
  SG_ PTC_voltageHV: 32|10@1+ (0.5,0) [0|0] "V" X
 
-BO_ 1750 PTC_udsResponse: 8 ETH
+BO_ 1750 PTC_udsResponse: 8 VEH
  SG_ PTC_udsResponseData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 1282 RADC_alertMatrix0: 8 ChassisBus
+BO_ 1282 RADC_alertMatrix0: 8 CH
  SG_ RADC_a001_can1BusOff: 1|1@1+ (1,0) [0|0] "" X
  SG_ RADC_a002_ecuAdcError: 2|1@1+ (1,0) [0|0] "" X
  SG_ RADC_a003_ecuBistDisabled: 3|1@1+ (1,0) [0|0] "" X
@@ -5942,7 +5942,7 @@ BO_ 1282 RADC_alertMatrix0: 8 ChassisBus
  SG_ RADC_a054_blockageInfo_Frame_1: 54|1@1+ (1,0) [0|0] "" X
  SG_ RADC_a055_blockageInfo_Frame_2: 55|1@1+ (1,0) [0|0] "" X
 
-BO_ 1329 RADC_info: 8 ChassisBus
+BO_ 1329 RADC_info: 8 CH
  SG_ RADC_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
  SG_ RADC_infoPlatformType m19: 8|8@1+ (1,0) [0|0] "" X
  SG_ RADC_infoMajorVersion m19: 16|8@1+ (1,0) [0|0] "" X
@@ -5961,10 +5961,10 @@ BO_ 1329 RADC_info: 8 ChassisBus
  SG_ RADC_infoBootloaderCRC m20: 32|32@1+ (1,0) [0|0] "" X
  SG_ RADC_infoApplicationCRC m13: 32|32@1+ (1,0) [0|0] "" X
 
-BO_ 1665 RADC_udsResponse: 8 ETH
+BO_ 1665 RADC_udsResponse: 8 VEH
  SG_ RADC_udsResponseData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 881 RCM_alertMatrix: 8 ETH
+BO_ 881 RCM_alertMatrix: 8 VEH
  SG_ RCM_matrixIndex M: 0|4@1+ (1,0) [0|0] "" X
  SG_ RCM_a000_crashDetected m0: 4|1@1+ (1,0) [0|0] "" X
  SG_ RCM_a001_nearDeploy m0: 5|1@1+ (1,0) [0|0] "" X
@@ -6034,7 +6034,7 @@ BO_ 881 RCM_alertMatrix: 8 ETH
  SG_ RCM_a065_driverOrientConfigPin m1: 9|1@1+ (1,0) [0|0] "" X
  SG_ RCM_a066_seatBackSw2ndRowLeft m1: 10|1@1+ (1,0) [0|0] "" X
  SG_ RCM_a067_comCANInitFailure m1: 11|1@1+ (1,0) [0|0] "" X
- SG_ RCM_a068_comChassisBusOff m1: 12|1@1+ (1,0) [0|0] "" X
+ SG_ RCM_a068_comCHOff m1: 12|1@1+ (1,0) [0|0] "" X
  SG_ RCM_a069_comCHCANPH7 m1: 13|1@1+ (1,0) [0|0] "" X
  SG_ RCM_a070_comCHCANPH8 m1: 14|1@1+ (1,0) [0|0] "" X
  SG_ RCM_a071_comCHCANPH9 m1: 15|1@1+ (1,0) [0|0] "" X
@@ -6086,7 +6086,7 @@ BO_ 881 RCM_alertMatrix: 8 ETH
  SG_ RCM_a117_imuVerticalAcceleration m1: 61|1@1+ (1,0) [0|0] "" X
  SG_ RCM_a118_imuInPlaneAcceleration m1: 62|1@1+ (1,0) [0|0] "" X
 
-BO_ 17 RCM_collision: 4 ETH
+BO_ 17 RCM_collision: 4 VEH
  SG_ RCM_collisionChecksum: 0|8@1+ (1,0) [0|0] "" X
  SG_ RCM_collisionCounter: 8|4@1+ (1,0) [0|0] "" X
  SG_ RCM_collisionFront: 18|2@1+ (1,0) [0|0] "" X
@@ -6096,7 +6096,7 @@ BO_ 17 RCM_collision: 4 ETH
  SG_ RCM_collisionRollover: 20|2@1+ (1,0) [0|0] "" X
  SG_ RCM_collisionSeverity: 24|2@1+ (1,0) [0|0] "" X
 
-BO_ 257 RCM_inertial1: 8 ChassisBus
+BO_ 257 RCM_inertial1: 8 CH
  SG_ RCM_inertial1Checksum: 56|8@1+ (1,0) [0|0] "" X
  SG_ RCM_inertial1Counter: 52|4@1+ (1,0) [0|0] "" X
  SG_ RCM_pitchRate: 16|15@1- (0.00025,0) [0|0] "rad/s" X
@@ -6106,7 +6106,7 @@ BO_ 257 RCM_inertial1: 8 ChassisBus
  SG_ RCM_yawRate: 0|16@1- (0.0001,0) [0|0] "rad/s" X
  SG_ RCM_yawRateQF: 48|1@1+ (1,0) [0|0] "" X
 
-BO_ 273 RCM_inertial2: 8 ChassisBus
+BO_ 273 RCM_inertial2: 8 CH
  SG_ RCM_inertial2Checksum : 56|8@1+ (1,0) [0|255] "" X
  SG_ RCM_inertial2Counter : 52|4@1+ (1,0) [0|15] "" X
  SG_ RCM_lateralAccel : 16|16@1- (0.00125,0) [-40.9575|40.9575] "m/s^2" X
@@ -6116,7 +6116,7 @@ BO_ 273 RCM_inertial2: 8 ChassisBus
  SG_ RCM_verticalAccel : 32|16@1- (0.00125,0) [-40.9575|40.9575] "m/s^2" X
  SG_ RCM_verticalAccelQF : 50|1@1+ (1,0) [0|1] ""  X
 
-BO_ 849 RCM_info: 8 ChassisBus
+BO_ 849 RCM_info: 8 CH
  SG_ RCM_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
  SG_ RCM_infoBuildType m10: 8|8@1+ (1,0) [0|0] "" X
  SG_ RCM_infoComponentID m10: 48|16@1+ (1,0) [0|0] "" X
@@ -6128,7 +6128,7 @@ BO_ 849 RCM_info: 8 ChassisBus
  SG_ RCM_infoApplicationCRC m13: 32|32@1+ (1,0) [0|0] "" X
  SG_ RCM_infoVariantCRC m22: 32|32@1+ (1,0) [0|0] "" X
 
-BO_ 289 RCM_nearDeploy: 4 ETH
+BO_ 289 RCM_nearDeploy: 4 VEH
  SG_ RCM_crashAlgoWakeup: 22|2@1+ (1,0) [0|0] "" X
  SG_ RCM_nearDeployChecksum: 0|8@1+ (1,0) [0|0] "" X
  SG_ RCM_nearDeployCounter: 8|4@1+ (1,0) [0|0] "" X
@@ -6138,7 +6138,7 @@ BO_ 289 RCM_nearDeploy: 4 ETH
  SG_ RCM_nearDeployRight: 14|2@1+ (1,0) [0|0] "" X
  SG_ RCM_nearDeployRollover: 20|2@1+ (1,0) [0|0] "" X
 
-BO_ 529 RCM_status: 6 ETH
+BO_ 529 RCM_status: 6 VEH
  SG_ RCM_airbagCutoffStatus: 18|2@1+ (1,0) [0|0] "" X
  SG_ RCM_alrSwitchStatus: 20|2@1+ (1,0) [0|0] "" X
  SG_ RCM_armStatus: 12|2@1+ (1,0) [0|0] "" X
@@ -6155,10 +6155,10 @@ BO_ 529 RCM_status: 6 ETH
  SG_ RCM_vinLearnFlag: 22|2@1+ (1,0) [0|0] "" X
  SG_ RCM_warningIndicatorState: 14|2@1+ (1,0) [0|0] "" X
 
-BO_ 1617 RCM_udsResponse: 8 ETH
+BO_ 1617 RCM_udsResponse: 8 VEH
  SG_ RCM_udsResponseData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 1359 SCCM_alertMatrix: 8 ETH
+BO_ 1359 SCCM_alertMatrix: 8 VEH
  SG_ SCCM_matrixIndex M: 0|4@1+ (1,0) [0|0] "" X
  SG_ SCCM_a001_CANBusOff m0: 4|1@1+ (1,0) [0|0] "" X
  SG_ SCCM_a002_CANTOut m0: 5|1@1+ (1,0) [0|0] "" X
@@ -6190,7 +6190,7 @@ BO_ 1359 SCCM_alertMatrix: 8 ETH
  SG_ SCCM_a028_parkButtonShortToGround m0: 31|1@1+ (1,0) [0|0] "" X
  SG_ SCCM_a029_parkButtonMalfunction m0: 32|1@1+ (1,0) [0|0] "" X
 
-BO_ 816 SCCM_info: 8 ETH
+BO_ 816 SCCM_info: 8 VEH
  SG_ SCCM_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
  SG_ SCCM_infoBuildType m10: 8|8@1+ (1,0) [0|0] "" X
  SG_ SCCM_infoBuildConfigId m10: 16|16@1+ (1,0) [0|0] "" X
@@ -6210,14 +6210,14 @@ BO_ 816 SCCM_info: 8 ETH
  SG_ SCCM_infoUdsProtoVersion m20: 8|8@1+ (1,0) [0|0] "" X
  SG_ SCCM_infoBootCrc m20: 32|32@1+ (1,0) [0|0] "" X
 
-BO_ 553 SCCM_rightStalk: 3 ETH
+BO_ 553 SCCM_rightStalk: 3 VEH
  SG_ SCCM_gearStalkStatus : 12|3@1+ (1,0) [0|7] "" X
  SG_ SCCM_parkButtonStatus : 16|2@1+ (1,0) [0|3] "" X
 
 VAL_ 553 SCCM_gearStalkStatus 0 "IDLE" 1 "DOWN_1" 2 "DOWN_2" 3 "UP_1" 4 "UO_2" 5 "SNA";
 VAL_ 553 SCCM_parkButtonStatus 0 "NOT_PRESSED" 1 "1ST_DETENT" 2 "2ND_DETENT" 3 "SNA";
 
-BO_ 585 SCCM_leftStalk: 3 ETH
+BO_ 585 SCCM_leftStalk: 3 VEH
  SG_ SCCM_highBeamStalkStatus: 12|2@1+ (1,0) [0|0] "" X
  SG_ SCCM_leftStalkCounter: 8|4@1+ (1,0) [0|0] "" X
  SG_ SCCM_leftStalkCrc: 0|8@1+ (1,0) [0|0] "" X
@@ -6225,7 +6225,7 @@ BO_ 585 SCCM_leftStalk: 3 ETH
  SG_ SCCM_turnIndicatorStalkStatus: 16|4@1+ (1,0) [0|0] "" X
  SG_ SCCM_washWipeButtonStatus: 14|2@1+ (1,0) [0|0] "" X
 
-BO_ 297 SCCM_steeringAngleSensor: 8 ETH
+BO_ 297 SCCM_steeringAngleSensor: 8 VEH
  SG_ SCCM_steeringAngle: 16|14@1+ (0.1,-819.2) [0|0] "deg" X
  SG_ SCCM_steeringAngleCounter: 8|4@1+ (1,0) [0|0] "" X
  SG_ SCCM_steeringAngleCrc: 0|8@1+ (1,0) [0|0] "" X
@@ -6237,7 +6237,7 @@ BO_ 297 SCCM_steeringAngleSensor: 8 ETH
  SG_ SCCM_steeringAngleValidity: 30|2@1+ (1,0) [0|0] "" X
  SG_ SCCM_supplierID: 12|2@1+ (1,0) [0|0] "" X
 
-BO_ 1680 SCCM_udsResponse: 8 ETH
+BO_ 1680 SCCM_udsResponse: 8 VEH
  SG_ SCCM_functionalResponseData_0: 0|8@1+ (1,0) [0|0] "" X
  SG_ SCCM_functionalResponseData_1: 8|8@1+ (1,0) [0|0] "" X
  SG_ SCCM_functionalResponseData_2: 16|8@1+ (1,0) [0|0] "" X
@@ -6247,7 +6247,7 @@ BO_ 1680 SCCM_udsResponse: 8 ETH
  SG_ SCCM_functionalResponseData_6: 48|8@1+ (1,0) [0|0] "" X
  SG_ SCCM_functionalResponseData_7: 56|8@1+ (1,0) [0|0] "" X
 
-BO_ 815 SCM_alertMatrix1: 8 ChassisBus
+BO_ 815 SCM_alertMatrix1: 8 CH
  SG_ SCM_a001_hwDSPfault: 0|1@1+ (1,0) [0|0] "" X
  SG_ SCM_a002_hwIbatOC: 1|1@1+ (1,0) [0|0] "" X
  SG_ SCM_a003_hwCordOT: 2|1@1+ (1,0) [0|0] "" X
@@ -6313,7 +6313,7 @@ BO_ 815 SCM_alertMatrix1: 8 ChassisBus
  SG_ SCM_a063_canRationality: 62|1@1+ (1,0) [0|0] "" X
  SG_ SCM_a064_vehicleCommandTimeout: 63|1@1+ (1,0) [0|0] "" X
 
-BO_ 1355 SCM_alertMatrix2: 8 ETH
+BO_ 1355 SCM_alertMatrix2: 8 VEH
  SG_ SCM_a065_vBatRationalityStage1: 0|1@1+ (1,0) [0|0] "" X
  SG_ SCM_a066_vBatRationalityStage2: 1|1@1+ (1,0) [0|0] "" X
  SG_ SCM_a067_vBatRationalityStage3: 2|1@1+ (1,0) [0|0] "" X
@@ -6379,7 +6379,7 @@ BO_ 1355 SCM_alertMatrix2: 8 ETH
  SG_ SCM_a127_unused127: 62|1@1+ (1,0) [0|0] "" X
  SG_ SCM_a128_unused128: 63|1@1+ (1,0) [0|0] "" X
 
-BO_ 869 SCS_alertMatrix1: 8 ETH
+BO_ 869 SCS_alertMatrix1: 8 VEH
  SG_ SCS_a001_hwDSPfault: 0|1@1+ (1,0) [0|0] "" X
  SG_ SCS_a002_hwIbatOC: 1|1@1+ (1,0) [0|0] "" X
  SG_ SCS_a003_hwCordOT: 2|1@1+ (1,0) [0|0] "" X
@@ -6445,7 +6445,7 @@ BO_ 869 SCS_alertMatrix1: 8 ETH
  SG_ SCS_a063_canRationality: 62|1@1+ (1,0) [0|0] "" X
  SG_ SCS_a064_vehicleCommandTimeout: 63|1@1+ (1,0) [0|0] "" X
 
-BO_ 880 SCS_alertMatrix2: 8 ChassisBus
+BO_ 880 SCS_alertMatrix2: 8 CH
  SG_ SCS_a065_vBatRationalityStage1: 0|1@1+ (1,0) [0|0] "" X
  SG_ SCS_a066_vBatRationalityStage2: 1|1@1+ (1,0) [0|0] "" X
  SG_ SCS_a067_vBatRationalityStage3: 2|1@1+ (1,0) [0|0] "" X
@@ -6511,7 +6511,7 @@ BO_ 880 SCS_alertMatrix2: 8 ChassisBus
  SG_ SCS_a127_unused127: 62|1@1+ (1,0) [0|0] "" X
  SG_ SCS_a128_unused128: 63|1@1+ (1,0) [0|0] "" X
 
-BO_ 523 TAS_heights: 8 ETH
+BO_ 523 TAS_heights: 8 VEH
  SG_ TAS_fastFilteredHeightFL: 0|8@1+ (1,-128) [0|0] "mm" X
  SG_ TAS_fastFilteredHeightFR: 8|8@1+ (1,-128) [0|0] "mm" X
  SG_ TAS_fastFilteredHeightRL: 16|8@1+ (1,-128) [0|0] "mm" X
@@ -6521,7 +6521,7 @@ BO_ 523 TAS_heights: 8 ETH
  SG_ TAS_modeFilteredHeightRL: 48|8@1+ (1,-128) [0|0] "mm" X
  SG_ TAS_modeFilteredHeightRR: 56|8@1+ (1,-128) [0|0] "mm" X
 
-BO_ 1357 TAS_info: 8 ETH
+BO_ 1357 TAS_info: 8 VEH
  SG_ TAS_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
  SG_ TAS_infoBuildType m10: 8|3@1+ (1,0) [0|0] "" X
  SG_ TAS_infoBuildConfigId m10: 16|16@1+ (1,0) [0|0] "" X
@@ -6543,7 +6543,7 @@ BO_ 1357 TAS_info: 8 ETH
  SG_ TAS_infoBootUdsProtoVersion m20: 8|8@1+ (1,0) [0|0] "" X
  SG_ TAS_infoBootCrc m20: 32|32@1+ (1,0) [0|0] "" X
 
-BO_ 525 TAS_states: 8 ETH
+BO_ 525 TAS_states: 8 VEH
  SG_ TAS_compressorRun: 30|1@1+ (1,0) [0|0] "" X
  SG_ TAS_currentLevel: 42|3@1+ (1,0) [0|0] "" X
  SG_ TAS_filterMode: 27|3@1+ (1,0) [0|0] "" X
@@ -6568,10 +6568,10 @@ BO_ 525 TAS_states: 8 ETH
  SG_ TAS_veryLowAllowed: 33|1@1+ (1,0) [0|0] "" X
  SG_ TAS_yellowWarningLamp: 39|1@1+ (1,0) [0|0] "" X
 
-BO_ 1627 TAS_udsResponse: 8 ETH
+BO_ 1627 TAS_udsResponse: 8 VEH
  SG_ TAS_udsResponseData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 845 TAS_warningMatrix1: 8 ETH
+BO_ 845 TAS_warningMatrix1: 8 VEH
  SG_ TAS_w001_WatchdogReset: 0|1@1+ (1,0) [0|0] "" X
  SG_ TAS_w002_PowerLossReset: 1|1@1+ (1,0) [0|0] "" X
  SG_ TAS_w003_SWAssertion: 2|1@1+ (1,0) [0|0] "" X
@@ -6614,7 +6614,7 @@ BO_ 845 TAS_warningMatrix1: 8 ETH
  SG_ TAS_w040_PWMopenRL: 39|1@1+ (1,0) [0|0] "" X
  SG_ TAS_w041_PWMopenRR: 40|1@1+ (1,0) [0|0] "" X
 
-BO_ 877 TAS_warningMatrix2: 8 ETH
+BO_ 877 TAS_warningMatrix2: 8 VEH
  SG_ TAS_w070_lowVoltage12V: 5|1@1+ (1,0) [0|0] "" X
  SG_ TAS_w071_highVoltage12V: 6|1@1+ (1,0) [0|0] "" X
  SG_ TAS_w072_shortCircuit5VS0: 7|1@1+ (1,0) [0|0] "" X
@@ -6645,7 +6645,7 @@ BO_ 877 TAS_warningMatrix2: 8 ETH
  SG_ TAS_w127_maxDutyBoost: 62|1@1+ (1,0) [0|0] "" X
  SG_ TAS_w128_maxDutyCompressor: 63|1@1+ (1,0) [0|0] "" X
 
-BO_ 909 TAS_warningMatrix3: 8 ETH
+BO_ 909 TAS_warningMatrix3: 8 VEH
  SG_ TAS_w129_openCircuitFL: 0|1@1+ (1,0) [0|0] "" X
  SG_ TAS_w130_openCircuitFR: 1|1@1+ (1,0) [0|0] "" X
  SG_ TAS_w131_openCircuitRL: 2|1@1+ (1,0) [0|0] "" X
@@ -6683,7 +6683,7 @@ BO_ 909 TAS_warningMatrix3: 8 ETH
  SG_ TAS_w163_reservoirFillDisabled: 34|1@1+ (1,0) [0|0] "" X
  SG_ TAS_w164_calibrationVersion: 35|1@1+ (1,0) [0|0] "" X
 
-BO_ 941 TAS_warningMatrix4: 8 ETH
+BO_ 941 TAS_warningMatrix4: 8 VEH
  SG_ TAS_w200_jackModeActive: 7|1@1+ (1,0) [0|0] "" X
  SG_ TAS_w201_lowHVBattery: 8|1@1+ (1,0) [0|0] "" X
  SG_ TAS_w210_outOfRangeCalibration: 17|1@1+ (1,0) [0|0] "" X
@@ -6706,15 +6706,15 @@ BO_ 941 TAS_warningMatrix4: 8 ETH
  SG_ TAS_w228_PWMfastDetectRL: 35|1@1+ (1,0) [0|0] "" X
  SG_ TAS_w229_PWMfastDetectRR: 36|1@1+ (1,0) [0|0] "" X
 
-BO_ 973 TAS_warningMatrix5: 8 ETH
+BO_ 973 TAS_warningMatrix5: 8 VEH
  SG_ TAS_w290_twistSustainedAtSpeed: 33|1@1+ (1,0) [0|0] "" X
  SG_ TAS_w291_frontAxleTooHigh: 34|1@1+ (1,0) [0|0] "" X
  SG_ TAS_w292_rearAxleTooHigh: 35|1@1+ (1,0) [0|0] "" X
  SG_ TAS_w293_frontAxleTooLow: 36|1@1+ (1,0) [0|0] "" X
  SG_ TAS_w294_rearAxleTooLow: 37|1@1+ (1,0) [0|0] "" X
- SG_ TAS_w295_targetHeightNotMet: 38|1@1+ (1,0) [0|0] "" X
+ SG_ TAS_w295_targVEHeightNotMet: 38|1@1+ (1,0) [0|0] "" X
 
-BO_ 879 TPMS_StatusC: 8 ChassisBus
+BO_ 879 TPMS_StatusC: 8 CH
  SG_ TPMS_WA_version: 3|1@1+ (1,0) [0|0] "" X
  SG_ TPMS_c_globalHardWarning: 0|1@1+ (1,0) [0|0] "" X
  SG_ TPMS_c_globalSoftWarning: 1|1@1+ (1,0) [0|0] "" X
@@ -6762,7 +6762,7 @@ BO_ 879 TPMS_StatusC: 8 ChassisBus
  SG_ TPMS_vehicleSpeedFail: 45|1@1+ (1,0) [0|0] "" X
  SG_ TPMS_wheelPulseMissing: 44|1@1+ (1,0) [0|0] "" X
 
-BO_ 799 TPMS_data: 8 ChassisBus
+BO_ 799 TPMS_data: 8 CH
  SG_ TPMS_pressureFL: 0|8@1+ (0.025,0) [0|0] "bar" X
  SG_ TPMS_pressureFR: 16|8@1+ (0.025,0) [0|0] "bar" X
  SG_ TPMS_pressureRL: 32|8@1+ (0.025,0) [0|0] "bar" X
@@ -6772,7 +6772,7 @@ BO_ 799 TPMS_data: 8 ChassisBus
  SG_ TPMS_temperatureRL: 40|8@1+ (1,-40) [0|0] "degC" X
  SG_ TPMS_temperatureRR: 56|8@1+ (1,-40) [0|0] "degC" X
 
-BO_ 1519 TPMS_info: 8 ChassisBus
+BO_ 1519 TPMS_info: 8 CH
  SG_ TPMS_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
  SG_ TPMS_infoComponentID m10: 48|16@1+ (1,0) [0|0] "" X
  SG_ TPMS_infoPcbaID m11: 16|8@1+ (1,0) [0|0] "" X
@@ -6782,51 +6782,51 @@ BO_ 1519 TPMS_info: 8 ChassisBus
  SG_ TPMS_infoBootloaderCRC m20: 32|32@1+ (1,0) [0|0] "" X
  SG_ TPMS_infoApplicationCRC m13: 32|32@1+ (1,0) [0|0] "" X
 
-BO_ 1631 TPMS_udsResponse: 8 ETH
+BO_ 1631 TPMS_udsResponse: 8 VEH
  SG_ TPMS_udsResponseData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 1641 UDS_KOSTIAsccmRequest: 8 ETH
+BO_ 1641 UDS_KOSTIAsccmRequest: 8 VEH
  SG_ UDS_KOSTIAsccmRequestData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 1538 UDS_bmsRequest: 8 ETH
+BO_ 1538 UDS_bmsRequest: 8 VEH
  SG_ UDS_bmsRequestData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 1579 UDS_ccRequest: 8 ETH
+BO_ 1579 UDS_ccRequest: 8 VEH
  SG_ UDS_ccRequestData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 1539 UDS_cmpRequest: 8 ETH
+BO_ 1539 UDS_cmpRequest: 8 VEH
  SG_ UDS_cmpRequestData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 1550 UDS_cpRequest: 8 ETH
+BO_ 1550 UDS_cpRequest: 8 VEH
  SG_ UDS_cpRequestData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 1609 UDS_dasRequest: 8 ETH
+BO_ 1609 UDS_dasRequest: 8 VEH
  SG_ UDS_dasRequestData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 1542 UDS_diRequest: 8 ETH
+BO_ 1542 UDS_diRequest: 8 VEH
  SG_ UDS_diRequestData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 1541 UDS_disRequest: 8 ETH
+BO_ 1541 UDS_disRequest: 8 VEH
  SG_ UDS_disRequestData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 1584 UDS_epas3pRequest: 8 ETH
+BO_ 1584 UDS_epas3pRequest: 8 VEH
  SG_ UDS_epas3pRequestData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 1840 UDS_epas3sRequest: 8 ETH
+BO_ 1840 UDS_epas3sRequest: 8 VEH
  SG_ UDS_epas3sRequestData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 1572 UDS_epblRequest: 8 ETH
+BO_ 1572 UDS_epblRequest: 8 VEH
  SG_ UDS_epblRequestData_H: 0|32@0+ (1,0) [0|0] "" X
  SG_ UDS_epblRequestData_L: 32|32@0+ (1,0) [0|0] "" X
 
-BO_ 1574 UDS_epbrRequest: 8 ETH
+BO_ 1574 UDS_epbrRequest: 8 VEH
  SG_ UDS_epbrRequestData_H: 0|32@0+ (1,0) [0|0] "" X
  SG_ UDS_epbrRequestData_L: 32|32@0+ (1,0) [0|0] "" X
 
-BO_ 1605 UDS_espRequest: 8 ETH
+BO_ 1605 UDS_espRequest: 8 VEH
  SG_ UDS_espRequestData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 2015 UDS_functionalRequest: 8 ETH
+BO_ 2015 UDS_functionalRequest: 8 VEH
  SG_ UDS_functionalRequestData_0: 0|8@1+ (1,0) [0|0] "" X
  SG_ UDS_functionalRequestData_1: 8|8@1+ (1,0) [0|0] "" X
  SG_ UDS_functionalRequestData_2: 16|8@1+ (1,0) [0|0] "" X
@@ -6836,64 +6836,64 @@ BO_ 2015 UDS_functionalRequest: 8 ETH
  SG_ UDS_functionalRequestData_6: 48|8@1+ (1,0) [0|0] "" X
  SG_ UDS_functionalRequestData_7: 56|8@1+ (1,0) [0|0] "" X
 
-BO_ 1552 UDS_hvpRequest: 8 ETH
+BO_ 1552 UDS_hvpRequest: 8 VEH
  SG_ UDS_hvpRequestData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 1613 UDS_ibstRequest: 8 ETH
+BO_ 1613 UDS_ibstRequest: 8 VEH
  SG_ UDS_ibstRequestData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 1603 UDS_ocs1pRequest: 8 ETH
+BO_ 1603 UDS_ocs1pRequest: 8 VEH
  SG_ UDS_ocs1pRequestData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 1614 UDS_parkRequest: 8 ETH
+BO_ 1614 UDS_parkRequest: 8 VEH
  SG_ UDS_parkRequestData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 1576 UDS_pcsRequest: 8 ETH
+BO_ 1576 UDS_pcsRequest: 8 VEH
  SG_ UDS_pcsRequestData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 1540 UDS_pmRequest: 8 ETH
+BO_ 1540 UDS_pmRequest: 8 VEH
  SG_ UDS_pmRequestData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 1604 UDS_pmsRequest: 8 ETH
+BO_ 1604 UDS_pmsRequest: 8 VEH
  SG_ UDS_pmsRequestData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 1734 UDS_ptcRequest: 8 ETH
+BO_ 1734 UDS_ptcRequest: 8 VEH
  SG_ UDS_ptcRequestData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 1649 UDS_radcRequest: 8 ETH
+BO_ 1649 UDS_radcRequest: 8 VEH
  SG_ UDS_radcRequestData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 1601 UDS_rcmRequest: 8 ETH
+BO_ 1601 UDS_rcmRequest: 8 VEH
  SG_ UDS_rcmRequestData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 1664 UDS_sccmRequest: 8 ETH
+BO_ 1664 UDS_sccmRequest: 8 VEH
  SG_ UDS_sccmRequestData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 1611 UDS_tasRequest: 8 ETH
+BO_ 1611 UDS_tasRequest: 8 VEH
  SG_ UDS_tasRequestData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 1551 UDS_thcRequest: 8 ETH
+BO_ 1551 UDS_thcRequest: 8 VEH
  SG_ UDS_thcRequestData_H: 0|32@0+ (1,0) [0|0] "" X
  SG_ UDS_thcRequestData_L: 32|32@0+ (1,0) [0|0] "" X
 
-BO_ 1615 UDS_tpmsRequest: 8 ETH
+BO_ 1615 UDS_tpmsRequest: 8 VEH
  SG_ UDS_tpmsRequestData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 1536 UDS_vcfrontRequest: 8 ETH
+BO_ 1536 UDS_vcfrontRequest: 8 VEH
  SG_ UDS_vcfrontRequestData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 1570 UDS_vcleftRequest: 8 ETH
+BO_ 1570 UDS_vcleftRequest: 8 VEH
  SG_ UDS_vcleftRequestData_H: 0|32@0+ (1,0) [0|0] "" X
  SG_ UDS_vcleftRequestData_L: 32|32@0+ (1,0) [0|0] "" X
 
-BO_ 1544 UDS_vcrightRequest: 8 ETH
+BO_ 1544 UDS_vcrightRequest: 8 VEH
  SG_ UDS_vcrightRequestData_H: 0|32@0+ (1,0) [0|0] "" X
  SG_ UDS_vcrightRequestData_L: 32|32@0+ (1,0) [0|0] "" X
 
-BO_ 1546 UDS_vcsecRequest: 8 ETH
+BO_ 1546 UDS_vcsecRequest: 8 VEH
  SG_ UDS_vcsecRequestData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 1153 UI_IsoTpUDPPipeVCSEC: 8 ETH
+BO_ 1153 UI_IsoTpUDPPipeVCSEC: 8 VEH
  SG_ UI_IsoTpUDPPipeVCSEC0: 0|8@1+ (1,0) [0|0] "" X
  SG_ UI_IsoTpUDPPipeVCSEC1: 8|8@1+ (1,0) [0|0] "" X
  SG_ UI_IsoTpUDPPipeVCSEC2: 16|8@1+ (1,0) [0|0] "" X
@@ -6903,11 +6903,11 @@ BO_ 1153 UI_IsoTpUDPPipeVCSEC: 8 ETH
  SG_ UI_IsoTpUDPPipeVCSEC6: 48|8@1+ (1,0) [0|0] "" X
  SG_ UI_IsoTpUDPPipeVCSEC7: 56|8@1+ (1,0) [0|0] "" X
 
-BO_ 979 UI_airbagCutoffStatus: 1 ETH
+BO_ 979 UI_airbagCutoffStatus: 1 VEH
  SG_ UI_airbagCutoffSwState: 0|2@1+ (1,0) [0|0] "" X
  SG_ UI_warningIndicatorStatus: 2|2@1+ (1,0) [0|0] "" X
 
-BO_ 1523 UI_alertLog: 8 ETH
+BO_ 1523 UI_alertLog: 8 VEH
  SG_ UI_alertID M: 0|6@1+ (1,0) [0|0] "" X
  SG_ UI_alertState: 15|1@1+ (1,0) [0|0] "" X
  SG_ UI_a034_BackupCamera m34: 16|1@1+ (1,0) [0|0] "" X
@@ -6922,7 +6922,7 @@ BO_ 1523 UI_alertLog: 8 ETH
  SG_ UI_a034_UnknownWakeupError m34: 25|1@1+ (1,0) [0|0] "" X
  SG_ UI_a006_remoteServiceAlertCode m6: 16|32@1+ (1,0) [0|0] "" X
 
-BO_ 291 UI_alertMatrix1: 8 ETH
+BO_ 291 UI_alertMatrix1: 8 VEH
  SG_ UI_a001_DriverDoorOpen: 0|1@1+ (1,0) [0|0] "" X
  SG_ UI_a002_DoorOpen: 1|1@1+ (1,0) [0|0] "" X
  SG_ UI_a003_TrunkOpen: 2|1@1+ (1,0) [0|0] "" X
@@ -6969,7 +6969,7 @@ BO_ 291 UI_alertMatrix1: 8 ETH
  SG_ UI_a044_AudioDmesgDspException: 43|1@1+ (1,0) [0|0] "" X
 
 CM_ "UI_autopilotControl was 1019, now 1021";
-BO_ 1021 UI_autopilotControl: 8 ChassisBus
+BO_ 1021 UI_autopilotControl: 8 CH
  SG_ UI_autopilotControlIndex M : 0|3@1+ (1,0) [0|7] "" X
  SG_ UI_apmv3Branch m1 : 40|3@1+ (1,0) [0|5] "" X
  SG_ UI_applyEceR79 m1 : 19|1@1+ (1,0) [0|1] "" X
@@ -7009,14 +7009,14 @@ BO_ 1021 UI_autopilotControl: 8 ChassisBus
  SG_ UI_showTrackLabels m1 : 46|1@1+ (1,0) [0|1] "" X
  SG_ UI_ulcSnooze m1 : 36|1@1+ (1,0) [0|1] "" X
 
-BO_ 819 UI_chargeRequest: 4 ETH
+BO_ 819 UI_chargeRequest: 4 VEH
  SG_ UI_acChargeCurrentLimit: 8|7@1+ (1,0) [0|0] "A" X
  SG_ UI_chargeEnableRequest: 2|1@1+ (1,0) [0|0] "" X
  SG_ UI_chargeTerminationPct: 16|10@1+ (0.1,0) [0|0] "%" X
  SG_ UI_closeChargePortDoorRequest: 1|1@1+ (1,0) [0|0] "" X
  SG_ UI_openChargePortDoorRequest: 0|1@1+ (1,0) [0|0] "" X
 
-BO_ 659 UI_chassisControl: 8 ETH
+BO_ 659 UI_chassisControl: 8 VEH
  SG_ UI_accOvertakeEnable: 18|2@1+ (1,0) [0|0] "" X
  SG_ UI_aebEnable: 20|2@1+ (1,0) [0|0] "" X
  SG_ UI_aesEnable: 22|2@1+ (1,0) [0|0] "" X
@@ -7045,13 +7045,13 @@ BO_ 659 UI_chassisControl: 8 ETH
  SG_ UI_winchModeRequest: 8|2@1+ (1,0) [0|0] "" X
  SG_ UI_zeroSpeedConfirmed: 10|2@1+ (1,0) [0|0] "" X
 
-BO_ 531 UI_cruiseControl: 3 ETH
+BO_ 531 UI_cruiseControl: 3 VEH
  SG_ UI_cruiseControlChecksum: 16|8@1+ (1,0) [0|0] "" X
  SG_ UI_cruiseControlCounter: 11|4@1+ (1,0) [0|0] "" X
  SG_ UI_cruiseSpeedCommand: 8|3@1+ (1,0) [0|0] "" X
  SG_ UI_speedLimitTick: 0|8@1+ (1,0) [0|0] "speed" X
 
-BO_ 664 UI_csaOfframpCurvature: 8 ETH
+BO_ 664 UI_csaOfframpCurvature: 8 VEH
  SG_ UI_csaOfframpCurvC2: 0|16@1- (1e-06,0) [0|0] "1/m" X
  SG_ UI_csaOfframpCurvC3: 16|16@1- (4e-09,0) [0|0] "1/m2" X
  SG_ UI_csaOfframpCurvChecksum: 56|8@1+ (1,0) [0|0] "" X
@@ -7060,7 +7060,7 @@ BO_ 664 UI_csaOfframpCurvature: 8 ETH
  SG_ UI_csaOfframpCurvReserved: 49|7@1+ (1,0) [0|0] "" X
  SG_ UI_csaOfframpCurvUsingTspline: 48|1@1+ (1,0) [0|0] "" X
 
-BO_ 679 UI_csaRoadCurvature: 8 ETH
+BO_ 679 UI_csaRoadCurvature: 8 VEH
  SG_ UI_csaRoadCurvC2: 0|16@1- (1e-06,0) [0|0] "1/m" X
  SG_ UI_csaRoadCurvC3: 16|16@1- (4e-09,0) [0|0] "1/m2" X
  SG_ UI_csaRoadCurvChecksum: 56|8@1+ (1,0) [0|0] "" X
@@ -7069,7 +7069,7 @@ BO_ 679 UI_csaRoadCurvature: 8 ETH
  SG_ UI_csaRoadCurvReserved: 49|7@1+ (1,0) [0|0] "" X
  SG_ UI_csaRoadCurvUsingTspline: 48|1@1+ (1,0) [0|0] "" X
 
-BO_ 1280 UI_debugECU: 2 ETH
+BO_ 1280 UI_debugECU: 2 VEH
  SG_ UI_debugEcuTarget M: 0|3@1+ (1,0) [0|0] "" X
  SG_ UI_DI_debugEnable m1: 8|1@1+ (1,0) [0|0] "" X
  SG_ UI_DIS_debugEnable m2: 8|1@1+ (1,0) [0|0] "" X
@@ -7082,7 +7082,7 @@ BO_ 1280 UI_debugECU: 2 ETH
  SG_ UI_VCRIGHT_debugEnable m6: 8|1@1+ (1,0) [0|0] "" X
  SG_ UI_VCFRONT_debugEnable m7: 3|1@1+ (1,0) [0|0] "" X
 
-BO_ 1096 UI_driverAssistAnonDebugParams: 8 ETH
+BO_ 1096 UI_driverAssistAnonDebugParams: 8 VEH
  SG_ UI_anonDebugFlag1: 7|1@1+ (1,0) [0|0] "" X
  SG_ UI_anonDebugFlag2: 15|1@1+ (1,0) [0|0] "" X
  SG_ UI_anonDebugFlag3: 23|1@1+ (1,0) [0|0] "" X
@@ -7096,7 +7096,7 @@ BO_ 1096 UI_driverAssistAnonDebugParams: 8 ETH
  SG_ UI_anonDebugParam7: 48|7@1+ (1,0) [0|0] "" X
  SG_ UI_visionSpeedSlider: 56|7@1+ (1,0) [0|0] "" X
 
-BO_ 1016 UI_driverAssistControl: 8 ChassisBus
+BO_ 1016 UI_driverAssistControl: 8 CH
  SG_ UI_accFollowDistanceSetting: 45|3@1+ (1,0) [0|0] "" X
  SG_ UI_accFromZero: 55|1@1+ (1,0) [0|0] "" X
  SG_ UI_adaptiveSetSpeedEnable: 39|1@1+ (1,0) [0|0] "" X
@@ -7142,7 +7142,7 @@ BO_ 1016 UI_driverAssistControl: 8 ChassisBus
  SG_ UI_validationLoop: 57|1@1+ (1,0) [0|0] "" X
  SG_ UI_visionSpeedType: 20|2@1+ (1,0) [0|0] "" X
 
-BO_ 568 UI_driverAssistMapData: 8 ChassisBus
+BO_ 568 UI_driverAssistMapData: 8 CH
  SG_ UI_acceptBottsDots: 48|1@1+ (1,0) [0|0] "" X
  SG_ UI_autosteerRestricted: 49|1@1+ (1,0) [0|0] "" X
  SG_ UI_controlledAccess: 37|1@1+ (1,0) [0|0] "" X
@@ -7174,7 +7174,7 @@ BO_ 568 UI_driverAssistMapData: 8 ChassisBus
  SG_ UI_scaEnabled: 51|1@1+ (1,0) [0|0] "" X
  SG_ UI_streetCount: 26|2@1+ (1,0) [0|0] "" X
 
-BO_ 536 UI_driverAssistRoadSign: 8 ETH
+BO_ 536 UI_driverAssistRoadSign: 8 VEH
  SG_ UI_roadSign M: 0|8@1+ (1,0) [0|0] "" X
  SG_ UI_roadSignChecksum: 56|8@1+ (1,0) [0|0] "" X
  SG_ UI_roadSignCounter: 52|4@1+ (1,0) [0|0] "" X
@@ -7194,7 +7194,7 @@ BO_ 536 UI_driverAssistRoadSign: 8 ETH
  SG_ UI_rampType m4: 32|3@1+ (1,0) [0|0] "" X
  SG_ UI_currSplineIdFull m5: 8|32@1+ (1,0) [0|0] "1" X
 
-BO_ 645 UI_driverProfileRecall: 8 ETH
+BO_ 645 UI_driverProfileRecall: 8 VEH
  SG_ UI_driverProfileRecallIndex M: 0|3@1+ (1,0) [0|0] "" X
  SG_ UI_driverProfileRecallStop: 3|1@1+ (1,0) [0|0] "" X
  SG_ UI_frontSeatRecallActive m1: 4|1@1+ (1,0) [0|0] "" X
@@ -7225,15 +7225,15 @@ BO_ 645 UI_driverProfileRecall: 8 ETH
  SG_ UI_rightLiftSwitchUp m5: 16|2@1+ (1,0) [0|0] "" X
  SG_ UI_rightLiftSwitchDown m5: 18|2@1+ (1,0) [0|0] "" X
 
-BO_ 984 UI_elevationStatus: 2 ETH
+BO_ 984 UI_elevationStatus: 2 VEH
  SG_ UI_elevation: 0|14@1+ (1,0) [0|0] "m" X
 
-BO_ 1139 UI_ethNm: 8 ETH
+BO_ 1139 UI_VEHNm: 8 VEH
  SG_ UI_nmGoingToSleep: 0|1@1+ (1,0) [0|0] "" X
  SG_ UI_nmKeepAwakeReason: 4|4@1+ (1,0) [0|0] "" X
  SG_ UI_wakeupTime: 32|32@1+ (1,0) [0|0] "" X
 
-BO_ 985 UI_gpsVehicleSpeed: 7 VehicleBus
+BO_ 985 UI_gpsVehicleSpeed: 7 VEH
  SG_ UI_gpsHDOP: 0|8@1+ (0.1,0) [0|0] "1" X
  SG_ UI_gpsVehicleHeading: 8|16@1+ (0.0078125,0) [0|0] "deg" X
  SG_ UI_gpsVehicleSpeed: 24|16@1+ (0.00390625,0) [0|0] "km/hr" X
@@ -7246,7 +7246,7 @@ BO_ 985 UI_gpsVehicleSpeed: 7 VehicleBus
  SG_ UI_conditionalSpeedLimit : 56|5@1+ (5,0) [0|155] "kph/mph" X
  SG_ UI_gpsAntennaDisconnected : 54|1@1+ (1,0) [0|1] "" X
 
-BO_ 755 UI_hvacRequest: 5 ETH
+BO_ 755 UI_hvacRequest: 5 VEH
  SG_ UI_hvacReqACDisable: 22|2@1+ (1,0) [0|0] "" X
  SG_ UI_hvacReqAirDistributionMode: 13|3@1+ (1,0) [0|0] "" X
  SG_ UI_hvacReqBlowerSegment: 16|4@1+ (1,0) [0|0] "" X
@@ -7259,15 +7259,15 @@ BO_ 755 UI_hvacRequest: 5 ETH
  SG_ UI_hvacUseModeledDuctTemp: 32|1@1+ (1,0) [0|0] "" X
  SG_ UI_hvacReqKeepClimateOn : 33|2@1+ (1,0) [0|3] "" X
 
-BO_ 79 UI_locationStatus: 8 ChassisBus
+BO_ 79 UI_locationStatus: 8 CH
  SG_ UI_gpsAccuracy: 57|7@1+ (0.2,0) [0|0] "m" X
  SG_ UI_latitude: 0|28@1- (1e-06,0) [0|0] "deg" X
  SG_ UI_longitude: 28|29@1- (1e-06,0) [0|0] "deg" X
 
-BO_ 1011 UI_odo: 3 ChassisBus
+BO_ 1011 UI_odo: 3 CH
  SG_ UI_odometer: 0|24@1+ (0.1,0) [0|0] "km" X
 
-BO_ 787 UI_powertrainControl: 8 ETH
+BO_ 787 UI_powertrainControl: 8 VEH
  SG_ UI_creepTorque: 34|1@1+ (1,0) [0|0] "" X
  SG_ UI_limitMode: 32|2@1+ (1,0) [0|0] "" X
  SG_ UI_motorOnMode: 35|2@1+ (1,0) [0|0] "" X
@@ -7282,21 +7282,21 @@ BO_ 787 UI_powertrainControl: 8 ETH
  SG_ UI_wasteMode: 37|2@1+ (1,0) [0|0] "" X
  SG_ UI_wasteModeRegenLimit: 40|2@1+ (1,0) [0|0] "" X
 
-BO_ 499 UI_presentPhoneKey1Info: 8 ETH
+BO_ 499 UI_presentPhoneKey1Info: 8 VEH
  SG_ UI_presentPhoneKey1SHA1: 10|54@1+ (1024,0) [0|0] "" X
 
-BO_ 435 UI_presentPhoneKey2Info: 8 ETH
+BO_ 435 UI_presentPhoneKey2Info: 8 VEH
  SG_ UI_presentPhoneKey2SHA1: 10|54@1+ (1024,0) [0|0] "" X
 
-BO_ 371 UI_presentPhoneKey3Info: 8 ETH
+BO_ 371 UI_presentPhoneKey3Info: 8 VEH
  SG_ UI_presentPhoneKey3SHA1: 10|54@1+ (1024,0) [0|0] "" X
 
-BO_ 307 UI_presentPhoneKeysOSInfo: 1 ETH
+BO_ 307 UI_presentPhoneKeysOSInfo: 1 VEH
  SG_ UI_presentPhoneKey1RunsiOS: 0|1@1+ (1,0) [0|0] "" X
  SG_ UI_presentPhoneKey2RunsiOS: 1|1@1+ (1,0) [0|0] "" X
  SG_ UI_presentPhoneKey3RunsiOS: 2|1@1+ (1,0) [0|0] "" X
 
-BO_ 698 UI_radarMapData: 8 ETH
+BO_ 698 UI_radarMapData: 8 VEH
  SG_ UI_radarEnableBraking: 17|1@1+ (1,0) [0|0] "" X
  SG_ UI_radarMapDataChecksum: 56|8@1+ (1,0) [0|0] "" X
  SG_ UI_radarMapDataCounter: 52|4@1+ (1,0) [0|0] "" X
@@ -7304,7 +7304,7 @@ BO_ 698 UI_radarMapData: 8 ETH
  SG_ UI_radarTargetDxEnd: 8|8@1+ (1,0) [0|0] "m" X
  SG_ UI_radarTargetTrustMap: 16|1@1+ (1,0) [0|0] "" X
 
-BO_ 632 UI_roadCurvature: 8 ETH
+BO_ 632 UI_roadCurvature: 8 VEH
  SG_ UI_roadCurvC0: 0|11@1- (0.02,0) [0|0] "m" X
  SG_ UI_roadCurvC1: 11|10@1- (0.00075,0) [0|0] "1" X
  SG_ UI_roadCurvC2: 21|14@1- (7.5e-06,0) [0|0] "1/m" X
@@ -7313,7 +7313,7 @@ BO_ 632 UI_roadCurvature: 8 ETH
  SG_ UI_roadCurvHealth: 54|2@1+ (1,0) [0|0] "" X
  SG_ UI_roadCurvRange: 48|6@1+ (4,0) [0|0] "m" X
 
-BO_ 723 UI_solarData: 8 ETH
+BO_ 723 UI_solarData: 8 VEH
  SG_ UI_isSunUp: 25|2@1+ (1,0) [0|0] "" X
  SG_ UI_minsToSunrise: 56|8@1+ (10,0) [0|0] "min" X
  SG_ UI_minsToSunset: 48|8@1+ (10,0) [0|0] "min" X
@@ -7322,7 +7322,7 @@ BO_ 723 UI_solarData: 8 ETH
  SG_ UI_solarAzimuthAngleCarRef: 16|9@1- (1,0) [0|0] "degrees" X
  SG_ UI_solarElevationAngle: 32|8@1- (1,0) [0|0] "degrees" X
 
-BO_ 12 UI_status: 7 ETH
+BO_ 12 UI_status: 7 VEH
  SG_ UI_audioActive: 1|1@1+ (1,0) [0|0] "" X
  SG_ UI_autopilotTrial: 12|2@1+ (1,0) [0|0] "" X
  SG_ UI_bluetoothActive: 2|1@1+ (1,0) [0|0] "" X
@@ -7347,7 +7347,7 @@ BO_ 12 UI_status: 7 ETH
  SG_ UI_wifiActive: 6|1@1+ (1,0) [0|0] "" X
  SG_ UI_wifiConnected: 7|1@1+ (1,0) [0|0] "" X
 
-BO_ 1064 UI_telemetryControl: 8 ChassisBus
+BO_ 1064 UI_telemetryControl: 8 CH
  SG_ UI_TCR_classConstElem: 5|1@1+ (1,0) [0|0] "" X
  SG_ UI_TCR_classMovingFourWheel: 8|1@1+ (1,0) [0|0] "" X
  SG_ UI_TCR_classMovingPed: 6|1@1+ (1,0) [0|0] "" X
@@ -7366,17 +7366,17 @@ BO_ 1064 UI_telemetryControl: 8 ChassisBus
  SG_ UI_TCR_vehSpeed: 32|8@1+ (1,0) [0|0] "" X
  SG_ UI_TCR_wExist: 24|5@1+ (1,0) [0|0] "" X
 
-BO_ 856 UI_tpmsMode: 4 ETH
+BO_ 856 UI_tpmsMode: 4 VEH
  SG_ UI_TPMSLearnIDMode: 8|3@1+ (1,0) [0|0] "" X
  SG_ UI_TPMSMode: 0|2@1+ (1,0) [0|0] "" X
  SG_ UI_sizeOfReqCANAutoLearn: 24|1@1+ (1,0) [0|0] "" X
  SG_ UI_sizeOfWheelSelect: 16|2@1+ (1,0) [0|0] "" X
 
-BO_ 952 UI_tpmsRCPsetting: 8 ChassisBus
+BO_ 952 UI_tpmsRCPsetting: 8 CH
  SG_ UI_setRCPFront: 16|8@1+ (0.025,0) [0|0] "bar" X
  SG_ UI_setRCPRear: 24|8@1+ (0.025,0) [0|0] "bar" X
 
-BO_ 627 UI_vehicleControl: 8 ETH
+BO_ 627 UI_vehicleControl: 8 VEH
  SG_ UI_accessoryPowerRequest: 0|1@1+ (1,0) [0|0] "" X
  SG_ UI_alarmEnabled: 20|1@1+ (1,0) [0|0] "" X
  SG_ UI_ambientLightingEnabled: 40|1@1+ (1,0) [0|0] "" X
@@ -7417,7 +7417,7 @@ BO_ 627 UI_vehicleControl: 8 ETH
  SG_ UI_wiperMode: 6|2@1+ (1,0) [0|0] "" X
  SG_ UI_wiperRequest: 56|3@1+ (1,0) [0|0] "" X
 
-BO_ 947 UI_vehicleControl2: 2 ETH
+BO_ 947 UI_vehicleControl2: 2 VEH
  SG_ UI_PINToDriveEnabled : 6|1@1+ (1,0) [0|1] "" X
  SG_ UI_PINToDrivePassed : 7|1@1+ (1,0) [0|1] "" X
  SG_ UI_UMCUpdateInhibit : 2|1@1+ (1,0) [0|1] "" X
@@ -7442,7 +7442,7 @@ BO_ 947 UI_vehicleControl2: 2 ETH
  SG_ UI_userPresent : 18|1@1+ (1,0) [0|1] "" X
  SG_ UI_windowRequest : 20|3@1+ (1,0) [0|4] "" X
 
-BO_ 644 UI_vehicleModes: 4 ETH
+BO_ 644 UI_vehicleModes: 4 VEH
  SG_ UI_factoryMode: 0|1@1+ (1,0) [0|0] "" X
  SG_ UI_homelinkV2Command0: 8|8@1+ (1,0) [0|0] "" X
  SG_ UI_homelinkV2Command1: 16|8@1+ (1,0) [0|0] "" X
@@ -7451,7 +7451,7 @@ BO_ 644 UI_vehicleModes: 4 ETH
  SG_ UI_showroomMode: 2|1@1+ (1,0) [0|0] "" X
  SG_ UI_transportMode: 1|1@1+ (1,0) [0|0] "" X
 
-BO_ 595 UI_ventPanelControlRequest: 7 ETH
+BO_ 595 UI_ventPanelControlRequest: 7 VEH
  SG_ UI_ventPanelLeftLateralMode: 48|1@1+ (1,0) [0|0] "" X
  SG_ UI_ventPanelLeftLateralSplit: 16|8@1+ (0.5,0) [0|0] "%" X
  SG_ UI_ventPanelLeftPositionX: 0|8@1+ (0.5,0) [0|0] "%" X
@@ -7461,7 +7461,7 @@ BO_ 595 UI_ventPanelControlRequest: 7 ETH
  SG_ UI_ventPanelRightPositionX: 24|8@1+ (0.5,0) [0|0] "%" X
  SG_ UI_ventPanelRightPositionY: 32|8@1+ (0.5,0) [0|0] "%" X
 
-BO_ 824 UMC_alertMatrix1: 8 ETH
+BO_ 824 UMC_alertMatrix1: 8 VEH
  SG_ UMC_a001_gndMonIntrptLineSide: 0|1@1+ (1,0) [0|0] "" X
  SG_ UMC_a002_GFCITripped: 1|1@1+ (1,0) [0|0] "" X
  SG_ UMC_a003_GFCISelfTestFault: 2|1@1+ (1,0) [0|0] "" X
@@ -7486,7 +7486,7 @@ BO_ 824 UMC_alertMatrix1: 8 ETH
  SG_ UMC_a022_criticalRAM: 21|1@1+ (1,0) [0|0] "" X
  SG_ UMC_a023_adcSelfTest: 22|1@1+ (1,0) [0|0] "" X
 
-BO_ 609 VCFRONT_12VBatteryStatus: 8 ETH
+BO_ 609 VCFRONT_12VBatteryStatus: 8 VEH
  SG_ VCFRONT_IBSAmpHours: 32|14@1- (0.01,0) [0|0] "Ah" X
  SG_ VCFRONT_IBSCurrent: 48|16@1- (0.005,0) [0|0] "A" X
  SG_ VCFRONT_IBSLogRequest: 47|1@1+ (1,0) [0|0] "" X
@@ -7494,7 +7494,7 @@ BO_ 609 VCFRONT_12VBatteryStatus: 8 ETH
  SG_ VCFRONT_IBSVoltage: 0|12@1+ (0.00544368,0) [0|22.2919] "V" X
  SG_ VCFRONT_good12VforUpdate: 46|1@1+ (1,0) [0|0] "" X
 
-BO_ 545 VCFRONT_LVPowerState: 8 ETH
+BO_ 545 VCFRONT_LVPowerState: 8 VEH
  SG_ VCFRONT_LVPowerStateChecksum: 56|8@1+ (1,0) [0|0] "" X
  SG_ VCFRONT_LVPowerStateCounter: 52|4@1+ (1,0) [0|0] "" X
  SG_ VCFRONT_LVPowerStateIndex M: 0|5@1+ (1,0) [0|0] "" X
@@ -7527,7 +7527,7 @@ BO_ 545 VCFRONT_LVPowerState: 8 ETH
  SG_ VCFRONT_tasLVState m1: 14|2@1+ (1,0) [0|0] "" X
  SG_ VCFRONT_pcsLVState m1: 16|2@1+ (1,0) [0|0] "" X
 
-BO_ 832 VCFRONT_alertMatrix: 8 ETH
+BO_ 832 VCFRONT_alertMatrix: 8 VEH
  SG_ VCFRONT_matrixIndex M: 0|4@1+ (1,0) [0|0] "" X
  SG_ VCFRONT_a001_WatchdogReset m0: 4|1@1+ (1,0) [0|0] "" X
  SG_ VCFRONT_a002_PowerLossReset m0: 5|1@1+ (1,0) [0|0] "" X
@@ -7698,7 +7698,7 @@ BO_ 832 VCFRONT_alertMatrix: 8 ETH
  SG_ VCFRONT_a258_resistanceEstimationRun m4: 21|1@1+ (1,0) [0|0] "" X
  SG_ VCFRONT_a259_12vVoltageDropOnHighLoadCurrent m4: 22|1@1+ (1,0) [0|0] "" X
 
-BO_ 577 VCFRONT_coolant: 7 ETH
+BO_ 577 VCFRONT_coolant: 7 VEH
  SG_ VCFRONT_coolantAirPurgeBatState: 48|3@1+ (1,0) [0|0] "" X
  SG_ VCFRONT_coolantFlowBatActual: 0|9@1+ (0.1,0) [0|0] "LPM" X
  SG_ VCFRONT_coolantFlowBatReason: 18|4@1+ (1,0) [0|0] "" X
@@ -7710,7 +7710,7 @@ BO_ 577 VCFRONT_coolant: 7 ETH
  SG_ VCFRONT_radiatorIneffective: 47|1@1+ (1,0) [0|0] "" X
  SG_ VCFRONT_wasteHeatRequestType: 44|2@1+ (1,0) [0|0] "" X
 
-BO_ 753 VCFRONT_eFuseDebugStatus: 8 ETH
+BO_ 753 VCFRONT_eFuseDebugStatus: 8 VEH
  SG_ VCFRONT_eFuseDebugStatusIndex M: 0|5@1+ (1,0) [0|0] "" X
  SG_ VCFRONT_rightControllerState m0: 8|2@1+ (1,0) [0|0] "" X
  SG_ VCFRONT_rightControllerFault m0: 10|1@1+ (1,0) [0|0] "" X
@@ -7809,7 +7809,7 @@ BO_ 753 VCFRONT_eFuseDebugStatus: 8 ETH
  SG_ VCFRONT_ChargePumpVoltage m16: 24|16@1+ (0.00544368,0) [0|0] "V" X
  SG_ VCFRONT_vbatProt m16: 40|12@1+ (0.00544368,0) [0|0] "V" X
 
-BO_ 769 VCFRONT_info: 8 ETH
+BO_ 769 VCFRONT_info: 8 VEH
  SG_ VCFRONT_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
  SG_ VCFRONT_infoBuildType m10: 8|3@1+ (1,0) [0|0] "" X
  SG_ VCFRONT_infoBuildConfigId m10: 16|16@1+ (1,0) [0|0] "" X
@@ -7830,7 +7830,7 @@ BO_ 769 VCFRONT_info: 8 ETH
  SG_ VCFRONT_infoSubcomponent3 m24: 32|32@1+ (1,0) [0|0] "" X
  SG_ VCFRONT_infoSubcomponent4 m31: 32|32@1+ (1,0) [0|0] "" X
 
-BO_ 1009 VCFRONT_lighting: 8 ETH
+BO_ 1009 VCFRONT_lighting: 8 VEH
  SG_ VCFRONT_DRLLeftStatus: 36|2@1+ (1,0) [0|0] "" X
  SG_ VCFRONT_DRLRightStatus: 38|2@1+ (1,0) [0|0] "" X
  SG_ VCFRONT_ambientLightingBrightnes: 8|8@1+ (0.5,0) [0|0] "%" X
@@ -7860,7 +7860,7 @@ BO_ 1009 VCFRONT_lighting: 8 ETH
  SG_ VCFRONT_turnSignalLeftStatus: 50|2@1+ (1,0) [0|0] "" X
  SG_ VCFRONT_turnSignalRightStatus: 52|2@1+ (1,0) [0|0] "" X
 
-BO_ 705 VCFRONT_logging10Hz: 8 ETH
+BO_ 705 VCFRONT_logging10Hz: 8 VEH
  SG_ VCFRONT_logging10HzIndex M : 0|3@1+ (1,0) [0|7] "" X
  SG_ VCFRONT_activeLouverAbnormalKT m4 : 3|1@1+ (1,0) [0|1] "" X
  SG_ VCFRONT_activeLouverCalibRange m4 : 53|8@1+ (1,630) [630|880] "ticks" X
@@ -7948,7 +7948,7 @@ BO_ 705 VCFRONT_logging10Hz: 8 ETH
  SG_ VCFRONT_usingSimulatedDischTemp m3 : 56|1@1+ (1,0) [0|1] "" X
  SG_ VCFRONT_usingSimulatedSuctTemp m3 : 55|1@1+ (1,0) [0|1] "" X
 
-BO_ 897 ID381VCFRONT_logging1Hz: 8 VehicleBus
+BO_ 897 ID381VCFRONT_logging1Hz: 8 VEH
  SG_ VCFRONT_logging1HzIndex M : 0|5@1+ (1,0) [0|19] ""  Receiver
  SG_ VCFRONT_CCQdotActual m9 : 21|7@1+ (80,0) [0|10100] "W"  Receiver
  SG_ VCFRONT_CCQdotFdFrwrdTarget m9 : 7|7@1+ (80,0) [0|10100] "W"  Receiver
@@ -8105,7 +8105,7 @@ BO_ 897 ID381VCFRONT_logging1Hz: 8 VehicleBus
  SG_ VCFRONT_totalLoadCoolingDominant m9 : 58|1@1+ (1,0) [0|1] ""  Receiver
  SG_ VCFRONT_wiperCycles m18 : 48|16@1+ (100,0) [0|6553500] "Cycles"  Receiver
 
-BO_ 721 VCFRONT_okToUseHighPower: 1 ETH
+BO_ 721 VCFRONT_okToUseHighPower: 1 VEH
  SG_ VCFRONT_cpOkToUseHighPower: 6|1@1+ (1,0) [0|0] "" X
  SG_ VCFRONT_das1OkToUseHighPower: 2|1@1+ (1,0) [0|0] "" X
  SG_ VCFRONT_das2OkToUseHighPower: 3|1@1+ (1,0) [0|0] "" X
@@ -8115,7 +8115,7 @@ BO_ 721 VCFRONT_okToUseHighPower: 1 ETH
  SG_ VCFRONT_vcleftOkToUseHighPower: 0|1@1+ (1,0) [0|0] "" X
  SG_ VCFRONT_vcrightOkToUseHighPower: 1|1@1+ (1,0) [0|0] "" X
 
-BO_ 801 VCFRONT_sensors: 8 ETH
+BO_ 801 VCFRONT_sensors: 8 VEH
  SG_ VCFRONT_battSensorIrrational: 48|1@1+ (1,0) [0|0] "" X
  SG_ VCFRONT_brakeFluidLevel: 22|2@1+ (1,0) [0|0] "" X
  SG_ VCFRONT_coolantLevel: 21|1@1+ (1,0) [0|0] "" X
@@ -8126,7 +8126,7 @@ BO_ 801 VCFRONT_sensors: 8 ETH
  SG_ VCFRONT_tempCoolantPTInlet: 10|11@1+ (0.125,-40) [0|0] "degC" X
  SG_ VCFRONT_washerFluidLevel: 32|2@1+ (1,0) [0|0] "" X
 
-BO_ 737 VCFRONT_status: 8 ETH
+BO_ 737 VCFRONT_status: 8 VEH
  SG_ VCFRONT_statusIndex M : 0|3@1+ (1,0) [0|6] "" X
  SG_ VCFRONT_12VARailStable m5 : 5|1@1+ (1,0) [0|1] "" X
  SG_ VCFRONT_12VBRailStable m5 : 6|1@1+ (1,0) [0|1] "" X
@@ -8200,10 +8200,10 @@ BO_ 737 VCFRONT_status: 8 ETH
  SG_ VCFRONT_wiperSpeed m0 : 8|4@1+ (1,0) [0|8] "" X
  SG_ VCFRONT_wiperState m0 : 16|4@1+ (1,0) [0|12] "" X
 
-BO_ 1537 VCFRONT_udsResponse: 8 ETH
+BO_ 1537 VCFRONT_udsResponse: 8 VEH
  SG_ VCFRONT_udsResponseData: 0|54@0+ (1024,0) [0|0] "" X
 
-BO_ 929 VCFRONT_vehicleStatus: 8 ETH
+BO_ 929 VCFRONT_vehicleStatus: 8 VEH
  SG_ VCFRONT_12vStatusForDrive: 14|2@1+ (1,0) [0|0] "" X
  SG_ VCFRONT_2RowCenterUnbuckled: 38|2@1+ (1,0) [0|0] "" X
  SG_ VCFRONT_2RowLeftUnbuckled: 36|2@1+ (1,0) [0|0] "" X
@@ -8229,7 +8229,7 @@ BO_ 929 VCFRONT_vehicleStatus: 8 ETH
  SG_ VCFRONT_vehicleStatusChecksum: 56|8@1+ (1,0) [0|0] "" X
  SG_ VCFRONT_vehicleStatusCounter: 52|4@1+ (1,0) [0|0] "" X
 
-BO_ 864 VCLEFT_alertMatrix: 8 ETH
+BO_ 864 VCLEFT_alertMatrix: 8 VEH
  SG_ VCLEFT_matrixIndex M: 0|4@1+ (1,0) [0|0] "" X
  SG_ VCLEFT_a001_WatchdogReset m0: 4|1@1+ (1,0) [0|0] "" X
  SG_ VCLEFT_a002_PowerLossReset m0: 5|1@1+ (1,0) [0|0] "" X
@@ -8415,7 +8415,7 @@ BO_ 864 VCLEFT_alertMatrix: 8 ETH
  SG_ VCLEFT_a306_handleDisconnectedF m5: 9|1@1+ (1,0) [0|0] "" X
  SG_ VCLEFT_a307_handleDisconnectedR m5: 10|1@1+ (1,0) [0|0] "" X
 
-BO_ 258 VCLEFT_doorStatus: 8 ETH
+BO_ 258 VCLEFT_doorStatus: 8 VEH
  SG_ VCLEFT_frontHandlePWM: 16|7@1+ (1,0) [0|0] "%" X
  SG_ VCLEFT_frontHandlePulled: 10|1@1+ (1,0) [0|0] "" X
  SG_ VCLEFT_frontHandlePulledPersist: 62|1@1+ (1,0) [0|0] "" X
@@ -8437,7 +8437,7 @@ BO_ 258 VCLEFT_doorStatus: 8 ETH
  SG_ VCLEFT_rearLatchSwitch: 9|1@1+ (1,0) [0|0] "" X
  SG_ VCLEFT_rearRelActuatorSwitch: 13|1@1+ (1,0) [0|0] "" X
 
-BO_ 626 VCLEFT_epbmDebug: 8 ETH
+BO_ 626 VCLEFT_epbmDebug: 8 VEH
  SG_ VCLEFT_epbmDebugIndex M: 0|1@1+ (1,0) [0|0] "" X
  SG_ VCLEFT_epbmCaliperState m0: 1|3@1+ (1,0) [0|0] "" X
  SG_ VCLEFT_epbmMotorEnabled m0: 4|1@1+ (1,0) [0|0] "" X
@@ -8475,7 +8475,7 @@ BO_ 626 VCLEFT_epbmDebug: 8 ETH
  SG_ VCLEFT_summonUnavailableAllowed m1: 22|1@1+ (1,0) [0|0] "" X
  SG_ VCLEFT_cdpEnumDummy m1: 24|2@1+ (1,0) [0|0] "" X
 
-BO_ 642 VCLEFT_hvacBlowerFeedback: 8 ETH
+BO_ 642 VCLEFT_hvacBlowerFeedback: 8 VEH
  SG_ VCLEFT_blowerIndex M: 0|2@1+ (1,0) [0|0] "" X
  SG_ VCLEFT_hvacBlowerEnabled m0: 2|1@1+ (1,0) [0|0] "" X
  SG_ VCLEFT_hvacBlowerOutputDuty m0: 3|7@1+ (1,0) [0|0] "%" X
@@ -8494,7 +8494,7 @@ BO_ 642 VCLEFT_hvacBlowerFeedback: 8 ETH
  SG_ VCLEFT_hvacBlowerIPhase1 m1: 18|8@1+ (0.2,0) [0|0] "A" X
  SG_ VCLEFT_hvacBlowerIPhase2 m1: 26|8@1+ (0.2,0) [0|0] "A" X
 
-BO_ 770 VCLEFT_info: 8 ETH
+BO_ 770 VCLEFT_info: 8 VEH
  SG_ VCLEFT_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
  SG_ VCLEFT_infoBuildType m10: 8|3@1+ (1,0) [0|0] "" X
  SG_ VCLEFT_infoBuildConfigId m10: 16|16@1+ (1,0) [0|0] "" X
@@ -8515,13 +8515,13 @@ BO_ 770 VCLEFT_info: 8 ETH
  SG_ VCLEFT_infoSubcomponent3 m24: 32|32@1+ (1,0) [0|0] "" X
  SG_ VCLEFT_infoCBCAppCRC m31: 32|32@1+ (1,0) [0|0] "" X
 
-BO_ 1860 VCLEFT_recallStatus: 1 ETH
+BO_ 1860 VCLEFT_recallStatus: 1 VEH
  SG_ VCLEFT_columnRecallStatus: 4|2@1+ (1,0) [0|0] "" X
  SG_ VCLEFT_mirrorRecallStatus: 6|2@1+ (1,0) [0|0] "" X
  SG_ VCLEFT_seatRecallStatus: 2|2@1+ (1,0) [0|0] "" X
  SG_ VCLEFT_systemRecallStatus: 0|2@1+ (1,0) [0|0] "" X
 
-BO_ 778 VCLEFT_restraintStatus: 4 ETH
+BO_ 778 VCLEFT_restraintStatus: 4 VEH
  SG_ VCLEFT_frontBuckleStatus: 3|2@1+ (1,0) [0|0] "" X
  SG_ VCLEFT_frontOccupancyStatus: 0|3@1+ (1,0) [0|0] "" X
  SG_ VCLEFT_rearCenterOccupancyStatus: 8|2@1+ (1,0) [0|0] "" X
@@ -8531,7 +8531,7 @@ BO_ 778 VCLEFT_restraintStatus: 4 ETH
  SG_ VCLEFT_restraintStatusChecksum: 24|8@1+ (1,0) [0|0] "" X
  SG_ VCLEFT_restraintStatusCounter: 20|4@1+ (1,0) [0|0] "" X
 
-BO_ 1250 VCLEFT_seatStatus: 8 ETH
+BO_ 1250 VCLEFT_seatStatus: 8 VEH
  SG_ VCLEFT_seatStatusIndex M: 0|3@1+ (1,0) [0|0] "" X
  SG_ VCLEFT_frontSeatTrackPos m0: 8|16@1- (1,0) [0|0] "" X
  SG_ VCLEFT_frontSeatTrackCurrent m0: 24|12@1- (0.01,0) [0|0] "A" X
@@ -8574,7 +8574,7 @@ BO_ 1250 VCLEFT_seatStatus: 8 ETH
  SG_ VCLEFT_frontSeatLiftPosReal m5: 28|12@1- (1,0) [0|0] "mm" X
  SG_ VCLEFT_frontSeatTiltPosReal m5: 40|12@1- (0.1,0) [0|0] "deg" X
 
-BO_ 930 VCLEFT_status: 8 ETH
+BO_ 930 VCLEFT_status: 8 VEH
  SG_ VCLEFT_statusIndex M: 0|1@1+ (1,0) [0|0] "" X
  SG_ VCLEFT_loadShedPriority m0: 1|8@1+ (1,0) [0|0] "" X
  SG_ VCLEFT_vehiclePowerStateDBG m0: 9|2@1+ (1,0) [0|0] "" X
@@ -8590,7 +8590,7 @@ BO_ 930 VCLEFT_status: 8 ETH
  SG_ VCLEFT_DIeFuseFault m1: 24|1@1+ (1,0) [0|0] "" X
  SG_ VCLEFT_tlcPCBATemperature m1: 32|8@1- (1,-40) [0|0] "degC" X
 
-BO_ 610 VCLEFT_steeringColumnStatus: 6 ETH
+BO_ 610 VCLEFT_steeringColumnStatus: 6 VEH
  SG_ VCLEFT_steeringColumnInOutAmps: 38|6@1- (0.63,0) [0|0] "A" X
  SG_ VCLEFT_steeringColumnInOutCalib: 45|1@1+ (1,0) [0|0] "" X
  SG_ VCLEFT_steeringColumnInOutDuty: 11|5@1- (7,0) [0|0] "%" X
@@ -8602,7 +8602,7 @@ BO_ 610 VCLEFT_steeringColumnStatus: 6 ETH
  SG_ VCLEFT_steeringColumnUpDownDuty: 6|5@1- (7,0) [0|0] "%" X
  SG_ VCLEFT_steeringColumnUpDownPos: 16|8@1- (12,1284) [0|0] "ticks" X
 
-BO_ 962 VCLEFT_switchStatus: 8 ETH
+BO_ 962 VCLEFT_switchStatus: 8 VEH
  SG_ VCLEFT_switchStatusIndex M : 0|2@1+ (1,0) [0|2] "" X
  SG_ VCLEFT_2RowSeatBothFoldFlatSwitc m1 : 40|1@1+ (1,0) [0|1] "" X
  SG_ VCLEFT_2RowSeatCenterSwitch m1 : 37|1@1+ (1,0) [0|1] "" X
@@ -8665,11 +8665,11 @@ BO_ 962 VCLEFT_switchStatus: 8 ETH
  SG_ VCLEFT_swcRightTiltLeft m1 : 8|2@1+ (1,0) [0|3] "" X
  SG_ VCLEFT_swcRightTiltRight m1 : 10|2@1+ (1,0) [0|3] "" X
 
-BO_ 1571 VCLEFT_udsResponse: 8 ETH
+BO_ 1571 VCLEFT_udsResponse: 8 VEH
  SG_ VCLEFT_udsResponseData_H: 0|32@0+ (1,0) [0|0] "" X
  SG_ VCLEFT_udsResponseData_L: 32|32@0+ (1,0) [0|0] "" X
 
-BO_ 960 VCRIGHT_alertMatrix: 8 ETH
+BO_ 960 VCRIGHT_alertMatrix: 8 VEH
  SG_ VCRIGHT_matrixIndex M: 0|4@1+ (1,0) [0|0] "" X
  SG_ VCRIGHT_a001_WatchdogReset m0: 4|1@1+ (1,0) [0|0] "" X
  SG_ VCRIGHT_a002_PowerLossReset m0: 5|1@1+ (1,0) [0|0] "" X
@@ -8872,7 +8872,7 @@ BO_ 960 VCRIGHT_alertMatrix: 8 ETH
  SG_ VCRIGHT_a306_handleDisconnectedF m5: 9|1@1+ (1,0) [0|0] "" X
  SG_ VCRIGHT_a307_handleDisconnectedR m5: 10|1@1+ (1,0) [0|0] "" X
 
-BO_ 1795 VCRIGHT_debugThermal10Hz: 8 ETH
+BO_ 1795 VCRIGHT_debugThermal10Hz: 8 VEH
  SG_ VCRIGHT_debugThermal10HzIndex M: 0|3@1+ (1,0) [0|0] "" X
  SG_ VCRIGHT_wattsDemandEvapFeedback m0: 3|9@1- (20,0) [0|0] "W" X
  SG_ VCRIGHT_wattsDemandEvapFeedfwd m0: 12|9@1+ (20,0) [0|0] "W" X
@@ -8900,7 +8900,7 @@ BO_ 1795 VCRIGHT_debugThermal10Hz: 8 ETH
  SG_ VCRIGHT_hvacLowerModeCalibrated m4: 23|1@1+ (1,0) [0|0] "" X
  SG_ VCRIGHT_hvacIntakeCalibrated m4: 27|1@1+ (1,0) [0|0] "" X
 
-BO_ 259 VCRIGHT_doorStatus: 8 ETH
+BO_ 259 VCRIGHT_doorStatus: 8 VEH
  SG_ VCRIGHT_frontHandlePWM: 14|7@1+ (1,0) [0|0] "%" X
  SG_ VCRIGHT_frontHandlePulled: 10|1@1+ (1,0) [0|0] "" X
  SG_ VCRIGHT_frontHandlePulledPersist: 30|1@1+ (1,0) [0|0] "" X
@@ -8923,7 +8923,7 @@ BO_ 259 VCRIGHT_doorStatus: 8 ETH
  SG_ VCRIGHT_reservedForBackCompat: 28|2@1+ (1,0) [0|0] "" X
  SG_ VCRIGHT_trunkLatchStatus: 56|4@1+ (1,0) [0|0] "" X
 
-BO_ 915 ID393VCRIGHT_epbmDebug: 8 VehicleBus
+BO_ 915 ID393VCRIGHT_epbmDebug: 8 VEH
  SG_ VCRIGHT_epbmDebugIndex M : 0|1@1+ (1,0) [0|1] ""  Receiver
  SG_ VCRIGHT_cdpEnumDummy m1 : 24|2@1+ (1,0) [0|2] ""  Receiver
  SG_ VCRIGHT_epbFaultStatus m0 : 58|2@1+ (1,0) [0|3] ""  Receiver
@@ -8961,7 +8961,7 @@ BO_ 915 ID393VCRIGHT_epbmDebug: 8 VehicleBus
  SG_ VCRIGHT_summonInitAllowed m1 : 15|1@1+ (1,0) [0|1] ""  Receiver
  SG_ VCRIGHT_summonUnavailableAllowed m1 : 22|1@1+ (1,0) [0|1] ""  Receiver
 
-BO_ 579 ID243VCRIGHT_hvacStatus: 8 VehicleBus
+BO_ 579 ID243VCRIGHT_hvacStatus: 8 VEH
  SG_ VCRIGHT_hvacStatusIndex M : 0|2@1+ (1,0) [0|3] ""  Receiver
  SG_ VCRIGHT_hvacACRunning m0 : 50|1@1+ (1,0) [0|1] ""  Receiver
  SG_ VCRIGHT_hvacAirDistributionMode m0 : 41|3@1+ (1,0) [0|7] ""  Receiver
@@ -8987,7 +8987,7 @@ BO_ 579 ID243VCRIGHT_hvacStatus: 8 VehicleBus
  SG_ VCRIGHT_tempDuctRightLower m1 : 40|8@1+ (0.5,-22) [-22|105] "C"  Receiver
  SG_ VCRIGHT_tempDuctRightUpper m2 : 10|8@1+ (0.5,-22) [-22|105] "C"  Receiver
 
-BO_ 524 VCRIGHT_hvacRequest: 7 ETH
+BO_ 524 VCRIGHT_hvacRequest: 7 VEH
  SG_ VCRIGHT_conditioningRequest : 12|1@1+ (1,0) [0|1] "" X
  SG_ VCRIGHT_evapPerformanceLow : 43|1@1+ (1,0) [0|1] "" X
  SG_ VCRIGHT_hvacBlowerSpeedRPMReq : 32|10@1+ (5,0) [0|5115] "RPM" X
@@ -9001,7 +9001,7 @@ BO_ 524 VCRIGHT_hvacRequest: 7 ETH
  SG_ VCRIGHT_tempEvaporatorTarget : 24|8@1+ (0.2,0) [0|50] "C" X
  SG_ VCRIGHT_wattsDemandEvap : 0|11@1+ (5,0) [0|10000] "W" X
 
-BO_ 774 VCRIGHT_info: 8 ETH
+BO_ 774 VCRIGHT_info: 8 VEH
  SG_ VCRIGHT_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
  SG_ VCRIGHT_infoBuildType m10: 8|3@1+ (1,0) [0|0] "" X
  SG_ VCRIGHT_infoBuildConfigId m10: 16|16@1+ (1,0) [0|0] "" X
@@ -9018,14 +9018,14 @@ BO_ 774 VCRIGHT_info: 8 ETH
  SG_ VCRIGHT_infoBootUdsProtoVersion m20: 8|16@1+ (1,0) [0|0] "" X
  SG_ VCRIGHT_infoBootCrc m20: 24|32@1+ (1,0) [0|0] "" X
 
-BO_ 995 VCRIGHT_lightStatus: 2 ETH
+BO_ 995 VCRIGHT_lightStatus: 2 VEH
  SG_ VCRIGHT_brakeLightStatus: 0|2@1+ (1,0) [0|0] "" X
  SG_ VCRIGHT_rearFogLightStatus: 8|2@1+ (1,0) [0|0] "" X
  SG_ VCRIGHT_reverseLightStatus: 6|2@1+ (1,0) [0|0] "" X
  SG_ VCRIGHT_tailLightStatus: 2|2@1+ (1,0) [0|0] "" X
  SG_ VCRIGHT_turnSignalStatus: 4|2@1+ (1,0) [0|0] "" X
 
-BO_ 611 VCRIGHT_logging10Hz: 8 ETH
+BO_ 611 VCRIGHT_logging10Hz: 8 VEH
  SG_ VCRIGHT_logging10HzIndex M : 0|3@1+ (1,0) [0|4] ""  Receiver
  SG_ VCRIGHT_evapPulldownBias m3 : 8|8@1+ (0.4,0) [0|100] "%"  Receiver
  SG_ VCRIGHT_evapPulldownBiasActive m3 : 16|1@1+ (1,0) [0|1] ""  Receiver
@@ -9065,7 +9065,7 @@ BO_ 611 VCRIGHT_logging10Hz: 8 ETH
  SG_ VCRIGHT_timeLeftToCabinModelInit m2 : 32|7@1+ (1,0) [0|127] ""  Receiver
 
 
-BO_ 691 VCRIGHT_logging1Hz: 8 ETH
+BO_ 691 VCRIGHT_logging1Hz: 8 VEH
  SG_ VCRIGHT_logging1HzIndex M : 0|4@1+ (1,0) [0|11] "" X
  SG_ VCRIGHT_LHPanelAirflowBlocked m3 : 54|1@1+ (1,0) [0|1] "" X
  SG_ VCRIGHT_RHPanelAirflowBlocked m3 : 55|1@1+ (1,0) [0|1] "" X
@@ -9159,12 +9159,12 @@ BO_ 691 VCRIGHT_logging1Hz: 8 ETH
  SG_ VCRIGHT_wattsHeaterLeftTotal m2 : 16|10@1+ (5,0) [0|4000] "W" X
  SG_ VCRIGHT_wattsHeaterRightTotal m2 : 26|10@1+ (5,0) [0|4000] "W" X
 
-BO_ 1859 VCRIGHT_recallStatus: 1 ETH
+BO_ 1859 VCRIGHT_recallStatus: 1 VEH
  SG_ VCRIGHT_mirrorRecallStatus: 4|2@1+ (1,0) [0|0] "" X
  SG_ VCRIGHT_seatRecallStatus: 2|2@1+ (1,0) [0|0] "" X
  SG_ VCRIGHT_systemRecallStatus: 0|2@1+ (1,0) [0|0] "" X
 
-BO_ 794 VCRIGHT_restraintStatus: 4 ETH
+BO_ 794 VCRIGHT_restraintStatus: 4 VEH
  SG_ VCRIGHT_frontBuckleStatus: 3|2@1+ (1,0) [0|0] "" X
  SG_ VCRIGHT_frontOccupancyStatus: 0|3@1+ (1,0) [0|0] "" X
  SG_ VCRIGHT_rearCenterBuckleStatus: 5|2@1+ (1,0) [0|0] "" X
@@ -9172,7 +9172,7 @@ BO_ 794 VCRIGHT_restraintStatus: 4 ETH
  SG_ VCRIGHT_restraintStatusChecksum: 24|8@1+ (1,0) [0|0] "" X
  SG_ VCRIGHT_restraintStatusCounter: 20|4@1+ (1,0) [0|0] "" X
 
-BO_ 1251 VCRIGHT_seatStatus: 8 ETH
+BO_ 1251 VCRIGHT_seatStatus: 8 VEH
  SG_ VCRIGHT_seatStatusIndex M: 0|3@1+ (1,0) [0|0] "" X
  SG_ VCRIGHT_frontSeatTrackPos m0: 8|16@1- (1,0) [0|0] "" X
  SG_ VCRIGHT_frontSeatTrackCurrent m0: 24|12@1- (0.01,0) [0|0] "A" X
@@ -9215,7 +9215,7 @@ BO_ 1251 VCRIGHT_seatStatus: 8 ETH
  SG_ VCRIGHT_frontSeatLiftPosReal m5: 28|12@1- (1,0) [0|0] "mm" X
  SG_ VCRIGHT_frontSeatTiltPosReal m5: 40|12@1- (0.1,0) [0|0] "deg" X
 
-BO_ 899 VCRIGHT_thsStatus: 8 ETH
+BO_ 899 VCRIGHT_thsStatus: 8 VEH
  SG_ VCRIGHT_estimatedThsSolarLoad: 53|10@1+ (1,0) [0|0] "W/m2" X
  SG_ VCRIGHT_thsActive: 0|1@1+ (1,0) [0|0] "" X
  SG_ VCRIGHT_thsHumidity: 17|8@1+ (1,0) [0|0] "%" X
@@ -9223,11 +9223,11 @@ BO_ 899 VCRIGHT_thsStatus: 8 ETH
  SG_ VCRIGHT_thsSolarLoadVisible: 43|10@1+ (1,0) [0|0] "W/m2" X
  SG_ VCRIGHT_thsTemperature: 1|8@1- (1,-40) [0|0] "degC" X
 
-BO_ 1545 VCRIGHT_udsResponse: 8 ETH
+BO_ 1545 VCRIGHT_udsResponse: 8 VEH
  SG_ VCRIGHT_udsResponseData_H: 0|32@0+ (1,0) [0|0] "" X
  SG_ VCRIGHT_udsResponseData_L: 32|32@0+ (1,0) [0|0] "" X
 
-BO_ 857 VCSEC_BLEDeviceStatus: 7 ETH
+BO_ 857 VCSEC_BLEDeviceStatus: 7 VEH
  SG_ VCSEC_BLEConnectionCounter: 16|16@1+ (1,0) [0|0] "" X
  SG_ VCSEC_BLEConnectionStatus: 34|3@1+ (1,0) [0|0] "" X
  SG_ VCSEC_BLEDeviceBatteryLevel: 50|3@1+ (1,0) [0|0] "" X
@@ -9237,7 +9237,7 @@ BO_ 857 VCSEC_BLEDeviceStatus: 7 ETH
  SG_ VCSEC_BLEDeviceVersion: 0|16@1+ (1,0) [0|0] "" X
  SG_ VCSEC_mobileAppVersion: 40|8@1+ (1,0) [0|0] "" X
 
-BO_ 969 VCSEC_BLEEndpointInfo: 8 ETH
+BO_ 969 VCSEC_BLEEndpointInfo: 8 VEH
  SG_ VCSEC_BLEEndpointInfoIndex M: 0|3@1+ (1,0) [0|0] "" X
  SG_ VCSEC_BLELEFTCrc m0: 8|32@1+ (1,0) [0|0] "" X
  SG_ VCSEC_BLELEFTComponentID m0: 40|16@1+ (1,0) [0|0] "" X
@@ -9256,7 +9256,7 @@ BO_ 969 VCSEC_BLEEndpointInfo: 8 ETH
  SG_ VCSEC_BLEREARAppGitHashByte m6: 10|54@1+ (4,0) [0|0] "" X
  SG_ VCSEC_BLECENTERAppGitHashByte m7: 10|54@1+ (4,0) [0|0] "" X
 
-BO_ 953 VCSEC_IsoTpPipeODIN: 8 ETH
+BO_ 953 VCSEC_IsoTpPipeODIN: 8 VEH
  SG_ VCSEC_IsoTpPipeODIN0: 0|8@1+ (1,0) [0|0] "" X
  SG_ VCSEC_IsoTpPipeODIN1: 8|8@1+ (1,0) [0|0] "" X
  SG_ VCSEC_IsoTpPipeODIN2: 16|8@1+ (1,0) [0|0] "" X
@@ -9266,7 +9266,7 @@ BO_ 953 VCSEC_IsoTpPipeODIN: 8 ETH
  SG_ VCSEC_IsoTpPipeODIN6: 48|8@1+ (1,0) [0|0] "" X
  SG_ VCSEC_IsoTpPipeODIN7: 56|8@1+ (1,0) [0|0] "" X
 
-BO_ 473 VCSEC_IsoTpUDPPipeUI: 8 ETH
+BO_ 473 VCSEC_IsoTpUDPPipeUI: 8 VEH
  SG_ VCSEC_IsoTpUDPPipeUI0: 0|8@1+ (1,0) [0|0] "" X
  SG_ VCSEC_IsoTpUDPPipeUI1: 8|8@1+ (1,0) [0|0] "" X
  SG_ VCSEC_IsoTpUDPPipeUI2: 16|8@1+ (1,0) [0|0] "" X
@@ -9276,7 +9276,7 @@ BO_ 473 VCSEC_IsoTpUDPPipeUI: 8 ETH
  SG_ VCSEC_IsoTpUDPPipeUI6: 48|8@1+ (1,0) [0|0] "" X
  SG_ VCSEC_IsoTpUDPPipeUI7: 56|8@1+ (1,0) [0|0] "" X
 
-BO_ 1017 VCSEC_alertMatrix: 8 ETH
+BO_ 1017 VCSEC_alertMatrix: 8 VEH
  SG_ VCSEC_matrixIndex M: 0|4@1+ (1,0) [0|0] "" X
  SG_ VCSEC_a001_WatchdogReset m0: 4|1@1+ (1,0) [0|0] "" X
  SG_ VCSEC_a002_PowerLossReset m0: 5|1@1+ (1,0) [0|0] "" X
@@ -9394,7 +9394,7 @@ BO_ 1017 VCSEC_alertMatrix: 8 ETH
  SG_ VCSEC_a208_BLERearAssertFailure m3: 31|1@1+ (1,0) [0|0] "" X
  SG_ VCSEC_a209_BLECenterAssertFailure m3: 32|1@1+ (1,0) [0|0] "" X
 
-BO_ 825 VCSEC_authentication: 8 ETH
+BO_ 825 VCSEC_authentication: 8 VEH
  SG_ VCSEC_MCUCommandType: 36|3@1+ (1,0) [0|0] "" X
  SG_ VCSEC_alarmStatus: 43|4@1+ (1,0) [0|0] "" X
  SG_ VCSEC_authRequested: 60|1@1+ (1,0) [0|0] "" X
@@ -9424,7 +9424,7 @@ BO_ 825 VCSEC_authentication: 8 ETH
  SG_ VCSEC_usingModifiedMACAddress: 40|1@1+ (1,0) [0|0] "" X
  SG_ VCSEC_vehicleLockStatus: 12|4@1+ (1,0) [0|0] "" X
 
-BO_ 793 VCSEC_info: 8 ETH
+BO_ 793 VCSEC_info: 8 VEH
  SG_ VCSEC_infoIndex M: 0|8@1+ (1,0) [0|0] "" X
  SG_ VCSEC_infoBuildType m10: 8|3@1+ (1,0) [0|0] "" X
  SG_ VCSEC_infoBuildConfigId m10: 16|16@1+ (1,0) [0|0] "" X
@@ -9445,11 +9445,11 @@ BO_ 793 VCSEC_info: 8 ETH
  SG_ VCSEC_infoSubcomponent3 m24: 32|32@1+ (1,0) [0|0] "" X
  SG_ VCSEC_infoSubcomponent4 m31: 32|32@1+ (1,0) [0|0] "" X
 
-BO_ 505 VCSEC_requests: 1 ETH
+BO_ 505 VCSEC_requests: 1 VEH
  SG_ VCSEC_chargePortRequest: 0|2@1+ (1,0) [0|0] "" X
  SG_ VCSEC_driveAttemptedWithoutAuth: 2|1@1+ (1,0) [0|0] "" X
 
-BO_ 1547 VCSEC_udsResponse: 8 ETH
+BO_ 1547 VCSEC_udsResponse: 8 VEH
  SG_ VCSEC_udsResponseData: 0|54@0+ (1024,0) [0|0] "" X
 
 CM_ "Generated by Tesla Firmware Decode @ version 923e442d6230241a259eeb3f415525373d40325c";
@@ -10837,9 +10837,9 @@ CM_ VAL_ 273 GTW_12V0_FILT 16383 "SNA";
 CM_ VAL_ 273 GTW_WLAN_ANT_DET0 4095 "SNA";
 CM_ VAL_ 273 GTW_WLAN_ANT_DET1 4095 "SNA";
 
-VAL_ 274 GTW_1V1_ETH 4095 "SNA";
-VAL_ 274 GTW_1V5_ETH 4095 "SNA";
-VAL_ 274 GTW_3V3_ETH 4095 "SNA";
+VAL_ 274 GTW_1V1_VEH 4095 "SNA";
+VAL_ 274 GTW_1V5_VEH 4095 "SNA";
+VAL_ 274 GTW_3V3_VEH 4095 "SNA";
 VAL_ 274 GTW_3V3_SW 4095 "SNA";
 VAL_ 274 GTW_5V0_SW 4095 "SNA";
 
@@ -10909,12 +10909,12 @@ VAL_ 2047 GTW_m3FrontOverheadConsoleType 1 "BITRON" 0 "VALEO" ;
 VAL_ 2047 GTW_eCallEnabled 0 "DISABLED" 1 "ENABLED_OHC_SOS" 2 "ENABLED_UI_SOS" ;
 VAL_ 2047 GTW_brakeLineSwitchType 0 "DI_VC_SHARED" 1 "VC_ONLY" ;
 
-VAL_ 1080 GTW_ethWakeUpReason 0 "NONE" 1 "RESET" 2 "GSM_RI" 3 "CH_CAN" 4 "ETH_CAN" 5 "VEH_CAN" 6 "VCFRONT" 7 "RTC_ALARM" 8 "UI_SCHEDULED";
+VAL_ 1080 GTW_VEHWakeUpReason 0 "NONE" 1 "RESET" 2 "GSM_RI" 3 "CH_CAN" 4 "VEH_CAN" 5 "VEH_CAN" 6 "VCFRONT" 7 "RTC_ALARM" 8 "UI_SCHEDULED";
 
 VAL_ 2033 GTW_hrlIndex 1 "Mux1" 2 "Mux2";
 VAL_ 2033 GTW_hrlState 0 "DISABLED" 1 "ENABLED";
 VAL_ 2033 GTW_hrlTriggerType 0 "UDPAPI" 1 "EVENT" 15 "NONE";
-VAL_ 2033 GTW_hrlTriggerBus 0 "VEH" 1 "PARTY" 2 "CH" 3 "ETH" 4 "VIRT";
+VAL_ 2033 GTW_hrlTriggerBus 0 "VEH" 1 "PARTY" 2 "CH" 3 "VEH" 4 "VIRT";
 
 VAL_ 60 GTW_infoIndex 0 "DEPRECATED_0" 1 "DEPRECATED_1" 2 "DEPRECATED_2" 3 "DEPRECATED_3" 4 "DEPRECATED_4" 5 "DEPRECATED_5" 6 "DEPRECATED_6" 7 "DEPRECATED_7" 8 "DEPRECATED_8" 9 "DEPRECATED_9" 10 "BUILD_HWID_COMPONENTID" 11 "PCBAID_ASSYID_USAGEID" 13 "APP_CRC" 14 "BOOTLOADER_SVN" 15 "BOOTLOADER_CRC" 16 "SUBCOMPONENT" 17 "APP_GITHASH" 18 "BOOTLOADER_GITHASH" 19 "VERSION_DEPRECATED" 20 "UDS_PROTOCOL_BOOTCRC" 22 "VARIANTCRC" 25 "PACKAGE_PN_1_7" 26 "PACKAGE_PN_8_14" 27 "PACKAGE_PN_15_20" 29 "PACKAGE_SN_1_7" 30 "PACKAGE_SN_8_14" 31 "SUBCOMPONENT_GITHASH" 255 "END";
 VAL_ 60 GTW_buildType 0 "UNKNOWN_BUILD" 1 "PLATFORM_BUILD" 2 "LOCAL_BUILD" 3 "TRACEABLE_CI_BUILD" 4 "MFG_BUILD";
@@ -10926,7 +10926,7 @@ VAL_ 872 GTW_offboardUpdateState 0 "WAITING_FOR_CONNECTION" 1 "WAIT_UPDATE_TRIGG
 VAL_ 872 GTW_offboardUpdateStatus 0 "OK" 1 "FILE_OPEN_ERROR" 2 "UNPLUGGED" 3 "UDS_FAILED" 4 "SUCCESS" 5 "LOST_DIGITAL_COMMS" 6 "NOT_NEEDED" 7 "APPTRIPLE_MISMATCH";
 
 VAL_ 1112 GTW_nmKeepAwakeReason 0 "NONE_SNA" 15 "TBD";
-VAL_ 1112 GTW_nmWakeUpReason 0 "NONE" 1 "RESET" 2 "GSM_RI" 3 "CH_CAN" 4 "ETH_CAN" 5 "VEH_CAN" 6 "VCFRONT" 7 "RTC_ALARM" 8 "UI_SCHEDULED";
+VAL_ 1112 GTW_nmWakeUpReason 0 "NONE" 1 "RESET" 2 "GSM_RI" 3 "CH_CAN" 4 "VEH_CAN" 5 "VEH_CAN" 6 "VCFRONT" 7 "RTC_ALARM" 8 "UI_SCHEDULED";
 
 VAL_ 522 HVP_fcContNegativeState 0 "SNA" 1 "OPEN" 2 "PRECHARGE" 3 "BLOCKED" 4 "PULLED_IN" 5 "OPENING" 6 "ECONOMIZED" 7 "WELDED";
 VAL_ 522 HVP_fcContPositiveState 0 "SNA" 1 "OPEN" 2 "PRECHARGE" 3 "BLOCKED" 4 "PULLED_IN" 5 "OPENING" 6 "ECONOMIZED" 7 "WELDED";
