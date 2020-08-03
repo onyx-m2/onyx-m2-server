@@ -301,6 +301,7 @@ async function processMessage(ws, msg) {
   if (data.length < 8) {
     return log.warn(`Invalid message format, length is ${data.length}, message is ${data.toString()}`)
   }
+  const recvts = Date.now()
   const ts = data[0] | (data[1] << 8) | (data[2] << 16) | (data[3] << 24)
   const bus = data[4]
   const id = data[5] | (data[6] << 8)
@@ -316,28 +317,28 @@ async function processMessage(ws, msg) {
   }
 
   // if this isn't the first message in the segment, just fire and forget
-  // if (ws.segmentId) {
-  //   pg.query(sql`
-  //     INSERT INTO canbus_msgs (ts, id, data)
-  //     VALUES (${ts}, ${id}, ${sql.binary(value.buffer)})
-  //   `)
-  // }
+  if (ws.segmentId) {
+    pg.query(sql`
+      INSERT INTO canbus_msgs (recvts, ts, id, data)
+      VALUES (${recvts}, ${ts}, ${id}, ${sql.binary(value.buffer)})
+    `)
+  }
   // if it's the first one, insert a first message, returning its id to be able
   // to create a new segment
-  // else {
-  //   const { tid: msgId } = await pg.one(sql`
-  //     INSERT INTO canbus_msgs (ts, id, data)
-  //     VALUES (${ts}, ${id}, ${sql.binary(value.buffer)})
-  //     RETURNING tid
-  //   `)
+  else {
+    const { tid: msgId } = await pg.one(sql`
+      INSERT INTO canbus_msgs (recvts, ts, id, data)
+      VALUES (${recvts}, ${ts}, ${id}, ${sql.binary(value.buffer)})
+      RETURNING tid
+    `)
 
-  //   const { tid: segmentId } = await pg.one(sql`
-  //     INSERT INTO canbus_segments (start_id)
-  //     VALUES (${msgId})
-  //     RETURNING tid
-  //   `)
-  //   ws.segmentId = segmentId
-  // }
+    const { tid: segmentId } = await pg.one(sql`
+      INSERT INTO canbus_segments (start_id)
+      VALUES (${msgId})
+      RETURNING tid
+    `)
+    ws.segmentId = segmentId
+  }
 
   wss.clients.forEach(ws => {
     if (!ws.isM2 && ws.readyState === 1 && (ws.monitor || ws.sniffer)) {
