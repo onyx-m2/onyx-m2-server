@@ -13,6 +13,9 @@ function set(name, value) {
   }
 }
 
+// Milliseconds since Jan 1st, 2020, to allow recvts to be stored as an int in db
+const MILLIS_SINCE_2020 = 1577836800000
+
 // Interval at which to ping connections
 const PING_INTERVAL = 1000
 
@@ -301,7 +304,7 @@ async function processMessage(ws, msg) {
   if (data.length < 8) {
     return log.warn(`Invalid message format, length is ${data.length}, message is ${data.toString()}`)
   }
-  const recvts = Date.now()
+  const recvts = Date.now() - MILLIS_SINCE_2020
   const ts = data[0] | (data[1] << 8) | (data[2] << 16) | (data[3] << 24)
   const bus = data[4]
   const id = data[5] | (data[6] << 8)
