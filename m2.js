@@ -304,14 +304,18 @@ async function processMessage(ws, msg) {
   if (data.length < 8) {
     return log.warn(`Invalid message format, length is ${data.length}, message is ${data.toString()}`)
   }
-  const recvts = Date.now() - STARTUP_TS
+  if (!ws.segmentId) {
+    ws.segmentTs = Date.now()
+  }
+  const recvts = Date.now() - ws.segmentTs
   const ts = data[0] | (data[1] << 8) | (data[2] << 16) | (data[3] << 24)
   const bus = data[4]
   const id = data[5] | (data[6] << 8)
   const len = data[7]
-  let value
+  let buffer, bits
   try {
-    value = new BitView(data.buffer, 8, len)
+    buffer = Buffer.from(data.buffer, 8, len)
+    bits = new BitView(buffer)
   }
   catch (e) {
     log.error(`Error parsing data, length: ${data.length}, ts: ${ts}, bus: ${bus}, id: ${id}, len: ${len}`)
@@ -323,7 +327,7 @@ async function processMessage(ws, msg) {
   if (ws.segmentId) {
     pg.query(sql`
       INSERT INTO canbus_msgs (recvts, ts, id, data)
-      VALUES (${recvts}, ${ts}, ${id}, ${sql.binary(value.buffer)})
+      VALUES (${recvts}, ${ts}, ${id}, ${sql.binary(buffer)})
     `)
   }
   // if it's the first one, insert a first message, returning its id to be able
@@ -331,7 +335,7 @@ async function processMessage(ws, msg) {
   else {
     const { tid: msgId } = await pg.one(sql`
       INSERT INTO canbus_msgs (recvts, ts, id, data)
-      VALUES (${recvts}, ${ts}, ${id}, ${sql.binary(value.buffer)})
+      VALUES (${recvts}, ${ts}, ${id}, ${sql.binary(buffer)})
       RETURNING tid
     `)
 
@@ -345,7 +349,7 @@ async function processMessage(ws, msg) {
 
   wss.clients.forEach(ws => {
     if (!ws.isM2 && ws.readyState === 1 && (ws.monitor || ws.sniffer)) {
-      sendJSON(ws, 'message', [ bus, id, ts, Array.from(data.slice(8)) ])
+      sendJSON(ws, 'message', [ bus, id, ts, Array.from(buffer) ])
     }
   })
 
@@ -357,15 +361,15 @@ async function processMessage(ws, msg) {
   const ingress = {}
   if (def.signals) {
     def.signals.forEach(s => {
-      ingress[s.mnemonic] = decodeSignal(value, s)
+      ingress[s.mnemonic] = decodeSignal(bits, s)
     })
   }
   if (def.multiplexor) {
-    const multiplexId = ingress[def.multiplexor.mnemonic] = decodeSignal(value, def.multiplexor)
+    const multiplexId = ingress[def.multiplexor.mnemonic] = decodeSignal(bits, def.multiplexor)
     const multiplexed = def.multiplexed[multiplexId]
     if (multiplexed) {
       multiplexed.forEach(s => {
-        ingress[s.mnemonic] = decodeSignal(value, s)
+        ingress[s.mnemonic] = decodeSignal(bits, s)
       })
     } else {
       log.warn(`Message ${def.mnemonic} doesn't have a multiplexed signal for ${multiplexId}`)
