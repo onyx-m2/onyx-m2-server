@@ -178,6 +178,7 @@ function addSignalMessageRef(signal) {
     log.warn(`Attempting to subscribe to nonexistent signal ${signal}`)
    return
   }
+  getLastMessageValue(message.bus, message.id)
   let refs = signalEnabledMessageRefs[message.mnemonic] || 0
   if (refs === 0) {
     enableMessage(message.bus, message.id)
@@ -210,6 +211,7 @@ function enableAllSubscribedMessages() {
   Object.keys(signalEnabledMessageRefs).forEach(mnemonic => {
     log.debug(`Enabling message ${mnemonic}, has ${signalEnabledMessageRefs[mnemonic]} signals`)
     const message = dbc.getMessage(mnemonic)
+    getLastMessageValue(message.bus, message.id)
     enableMessage(message.bus, message.id)
   })
 }
@@ -236,6 +238,7 @@ function releaseSnifferRef() {
 
 const CAN_MSG_FLAG_RESET = 0x00
 const CAN_MSG_FLAG_TRANSMIT = 0x01
+const CAN_MSG_FLAG_TRANSMIT_UNMODIFIED = 0x02
 const CMDID_SET_ALL_MSG_FLAGS = 0x01
 const CMDID_SET_MSG_FLAGS = 0x02
 const CMDID_GET_MSG_LAST_VALUE = 0x03
@@ -282,21 +285,11 @@ function disableAllMessages() {
 }
 
 function enableMessage(bus, id) {
-  getLastMessageValue(bus, id)
   setMessageFlags(bus, id, CAN_MSG_FLAG_TRANSMIT)
 }
 
 function disableMessage(bus, id) {
   setMessageFlags(bus, id, CAN_MSG_FLAG_RESET)
-}
-
-function decodeSignal(buf, def) {
-  try {
-    const val = buf.getBits(def.start, def.length, def.signed)
-    return def.offset + def.scale * val
-  } catch {
-    return NaN
-  }
 }
 
 async function processMessage(ws, msg) {
@@ -361,15 +354,15 @@ async function processMessage(ws, msg) {
   const ingress = {}
   if (def.signals) {
     def.signals.forEach(s => {
-      ingress[s.mnemonic] = decodeSignal(bits, s)
+      ingress[s.mnemonic] = dbc.decodeSignal(bits, s)
     })
   }
   if (def.multiplexor) {
-    const multiplexId = ingress[def.multiplexor.mnemonic] = decodeSignal(bits, def.multiplexor)
+    const multiplexId = ingress[def.multiplexor.mnemonic] = dbc.decodeSignal(bits, def.multiplexor)
     const multiplexed = def.multiplexed[multiplexId]
     if (multiplexed) {
       multiplexed.forEach(s => {
-        ingress[s.mnemonic] = decodeSignal(bits, s)
+        ingress[s.mnemonic] = dbc.decodeSignal(bits, s)
       })
     } else {
       log.warn(`Message ${def.mnemonic} doesn't have a multiplexed signal for ${multiplexId}`)

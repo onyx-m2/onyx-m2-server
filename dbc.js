@@ -1,4 +1,5 @@
 // DBC Access
+const { BitView } = require('bit-buffer')
 
 class DBC {
 
@@ -86,6 +87,15 @@ class DBC {
       }
     }
     return signals
+  }
+
+  decodeSignal(bitView, signal) {
+    try {
+      const val = bitView.getBits(signal.start, signal.length, signal.signed)
+      return signal.offset + signal.scale * val
+    } catch {
+      return NaN
+    }
   }
 
   getSignalMessage(mnemonic) {
