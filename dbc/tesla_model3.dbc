@@ -8,6 +8,7 @@ CM_ "Oct 2019: Added unix and system time signals";
 CM_ "May 2020: Added many definitions adapted from joshwardell's file";
 CM_ "Jul 2020: Energy buffers update for 2020.20.X";
 CM_ "Jul 2020: Updates for 2020.24.X";
+CM_ "Nov 2020: Updates for 2020.40.X"; UI_status moved to 851
 
 CM_ "New messages from https://github.com/joshwardell/model3dbc/commit/4fc040286b1f64adcf826dd82a322ec88df64402"
 
@@ -7324,7 +7325,7 @@ BO_ 723 UI_solarData: 8 VEH
  SG_ UI_solarAzimuthAngleCarRef: 16|9@1- (1,0) [0|0] "degrees" X
  SG_ UI_solarElevationAngle: 32|8@1- (1,0) [0|0] "degrees" X
 
-BO_ 12 UI_status: 7 VEH
+BO_ 851 UI_status: 7 VEH
  SG_ UI_audioActive: 1|1@1+ (1,0) [0|0] "" X
  SG_ UI_autopilotTrial: 12|2@1+ (1,0) [0|0] "" X
  SG_ UI_bluetoothActive: 2|1@1+ (1,0) [0|0] "" X
