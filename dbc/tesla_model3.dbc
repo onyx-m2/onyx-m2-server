@@ -1044,11 +1044,11 @@ BO_ 658 BMS_socStatus: 8 VEH
  SG_ BMS_initialFullPackEnergy: 40|10@1+ (0.1,0) [0|102.3] "kWh" X
 
 BO_ 826 UI_rangeSOC: 8 VEH
- SG_ UI_idealRange : 16|10@1+ (1,0) [0|1023] "mi" X
- SG_ UI_expectedRange : 0|10@1+ (1,0) [0|1023] "mi" X
- SG_ UI_soc : 48|7@1+ (1,0) [0|127] "%" X
- SG_ UI_uSOE : 56|7@1+ (1,0) [0|127] "%" X
- SG_ UI_ratedWHpM : 32|10@1+ (1,0) [0|1023] "WHpM" X
+ SG_ UI_expectedRange : 0|10@1+ (1.6,0) [0|1023] "km" X
+ SG_ UI_idealRange : 16|10@1+ (1.6,0) [0|1023] "km" X
+ SG_ UI_ratedConsumption : 32|10@1+ (0.625,0) [0|1023] "Wh/km" X
+ SG_ UI_actualSOC : 48|7@1+ (1,0) [0|127] "%" X
+ SG_ UI_usableSOC : 56|7@1+ (1,0) [0|127] "%" X
 
 BO_ 530 BMS_status: 8 VEH
  SG_ BMS_activeHeatingWorthwhile: 5|1@1+ (1,0) [0|0] "" X
