@@ -178,7 +178,6 @@ function addSignalMessageRef(signal) {
     log.warn(`Attempting to subscribe to nonexistent signal ${signal}`)
    return
   }
-  getLastMessageValue(message.bus, message.id)
   let refs = signalEnabledMessageRefs[message.mnemonic] || 0
   if (refs === 0) {
     enableMessage(message.bus, message.id)
@@ -412,6 +411,7 @@ function handleClient(ws) {
           ws.subscriptions.push(signal)
           addSignalMessageRef(signal)
         })
+        getLastSignalValues(data)
         break
       }
 
