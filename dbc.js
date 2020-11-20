@@ -1,6 +1,4 @@
 // DBC Access
-const { BitView } = require('bit-buffer')
-
 class DBC {
 
   constructor(definitions) {

@@ -14,17 +14,19 @@ const ws = new WebSocket(`ws://${hostname}/monitor?pin=${pin}`)
 ws.on('open', () => {
   console.log(`Monitoring active`)
   send('monitor', true)
+  const start = Date.now()
   ws.on('message', (msg) => {
+    const now = Date.now() - start
     const { event, data } = JSON.parse(msg)
     if (event === 'message') {
-      const [ bus, id, ts, value ] = data
-      messageLog.write(`${bus} | ${id} | 0x${id.toString(16)} @ ${ts} len ${value.length} | ${Buffer.from(value).toString('hex')}\n`)
-      console.log(`bus: ${bus} id:${id} ts:${ts} value:${value}`)
+      const [ ts, bus, id, value ] = data
+      messageLog.write(`[${now}][${ts}] ${bus} | ${id} | len ${value.length} | ${Buffer.from(value).toString('hex')}\n`)
+      console.log(`[${now}] ts: ${ts} bus: ${bus} id:${id} value:${value}`)
     }
     else if (event === 'status') {
       const [ online, latency, rate ] = data
-      statusLog.write(`${online} | ${latency} @ ${rate}\n`)
-      console.log(`online:${online} latency:${latency} rate:${rate}`)
+      statusLog.write(`[${now}] ${online} | ${latency} @ ${rate}\n`)
+      console.log(`[${now}] online:${online} latency:${latency} rate:${rate}`)
     }
   })
 })
