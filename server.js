@@ -1,46 +1,41 @@
 #!/usr/bin/env node
-if (require('dotenv').config().error) {
-  console.error('Unable to configure application, did you create a .env file?')
-  return
-}
+import fs from 'fs'
+import http from 'http'
+import https from 'https'
+import { exit } from 'process'
 
-const fs = require('fs')
-const http = require('http')
-const https = require('https')
-const db = require('../db')
-const log = require('../logger')
-const app = require('../app')
-const m2 = require('../m2')
-const loadDbc = require('../dbc-loader')
+import config from './src/config.js'
+import log from './src/logger.js'
+import { init as initDb } from './src/db.js'
+import { handleUpgrade } from './src/m2.js'
 
 async function init() {
 
-  // Initialize the database connection
-  await db.init()
+  // Check that authorization was configured
+  if (!config.authorization) {
+    console.error('Authorization not configured, secure your server!')
+    exit(1)
+  }
 
-  // Initialize the DBC
-  const dbcFile = process.env.DBC_FILE || './dbc/tesla_model3.dbc'
-  log.info(`Loading dbc from ${dbcFile}`)
-  const dbc = await loadDbc(dbcFile)
-  m2.set('dbc', dbc)
-  app.set('dbc', dbc)
+  // Initialize the database connection
+  await initDb()
 
   // Create both a http server (for the m2), and a https server for the browser clients
   // that will likely be required to run https
-  standUpServer(http, normalizePort(process.env.HTTP_PORT || 80))
-  if (process.env.SSL_KEY) {
-    standUpServer(https, normalizePort(process.env.HTTPS_PORT || 443), {
-      key: fs.readFileSync(process.env.SSL_KEY),
-      cert: fs.readFileSync(process.env.SSL_CERT)
+  standUpServer(http, normalizePort(config.port.http))
+  if (config.ssl.key) {
+    standUpServer(https, normalizePort(config.port.https), {
+      key: fs.readFileSync(config.ssl.key),
+      cert: fs.readFileSync(config.ssl.cert)
     })
   }
 }
 
 // Stand up a server using the module and port, and optionally the options
 function standUpServer(module, port, options) {
-  const server = module.createServer(options || {}, app)
-  server.listen(port)
-  server.on('upgrade', m2.handleUpgrade)
+  const server = module.createServer(options || {})
+  server.listen(port, 'localhost')
+  server.on('upgrade', handleUpgrade)
   server.on('error', (error) => handleError(error, port))
   server.on('listening', () => handleListening(server))
   return server
@@ -71,10 +66,10 @@ function handleError(error, port) {
   switch (error.code) {
     case 'EACCES':
       console.error(bind + ' requires elevated privileges')
-      process.exit(1)
+      exit(1)
     case 'EADDRINUSE':
       console.error(bind + ' is already in use')
-      process.exit(1)
+      exit(1)
     default:
       throw error
   }

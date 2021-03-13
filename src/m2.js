@@ -1,20 +1,32 @@
-const { Server } = require('ws')
-const { BitView } = require('bit-buffer')
-const log = require('./logger')
-const { pg, sql } = require('./db')
+import ws from 'ws'
+import { BitView } from 'bit-buffer'
+import { sql } from 'slonik'
+import request from 'request-promise-native'
+import { promises as fs } from 'fs'
 
-let dbc = null
+import { DBC } from 'onyx-m2-common'
+import config from './config.js'
+import log from './logger.js'
+import { pg } from './db.js'
 
-function set(name, value) {
-  switch (name) {
-    case 'dbc':
-      dbc = value
-      break
+// Load the dbc file we'll be using
+var dbc = null;
+(async () => {
+
+  log.info(`Loading dbc from ${config.dbc.file}`)
+  var file = null
+  try {
+    if (config.dbc.file.startsWith('http')) {
+      file = await request(config.dbc.file)
+    } else {
+      file = await fs.readFile(config.dbc.file, 'utf8')
+    }
   }
-}
-
-// Store time of startup to store short ints to db
-const STARTUP_TS = Date.now()
+  catch (e) {
+    log.error(`Error loading dbc file.\n${e}`)
+  }
+  dbc = new DBC(file)
+})()
 
 // Interval at which to ping connections
 const PING_INTERVAL = 1000
@@ -28,7 +40,7 @@ let recentRate = 0
 
 // Create a standalone socket server so that we can route data from both http and
 // https servers to it
-const wss = new Server({ noServer: true })
+const wss = new ws.Server({ noServer: true })
 
 // Get the M2 to use for all commands and connection metrics.
 // The first directly connected m2 will be chosen if possible,
@@ -499,12 +511,12 @@ function broadcast(event, data) {
 
 // Authorization verification
 function authorize(url) {
-  return url.searchParams.get('pin') === process.env.AUTHORIZATION
+  return url.searchParams.get('pin') === config.authorization
 }
 
 // Handle upgrade requests from the server(s) and verify authorization
 let nextId = 1
-function handleUpgrade(req, socket, head) {
+export function handleUpgrade(req, socket, head) {
   const url = new URL(req.url, `ws://${req.headers.host}`)
   const id = nextId++
   log.info(`Upgrading connection ${id} with url ${req.url} from ${req.socket.remoteAddress}`)
@@ -523,5 +535,3 @@ function handleUpgrade(req, socket, head) {
     wss.emit('connection', ws)
   })
 }
-
-module.exports = { set, handleUpgrade }

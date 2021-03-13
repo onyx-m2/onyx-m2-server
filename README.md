@@ -1,21 +1,24 @@
 # Onyx M2 Server
 
-This project is a Node socket server that works in conjunction with [onyx-m2-firmware](https://github.com/johnmccalla/tesla-onyx-m2-firmware), which allows a Macchina M2 to use this server to relay CANBUS messages to the Model 3's main screen.
+This project is a Node socket server that works in conjunction with [onyx-m2-firmware](https://github.com/onyx-m2/onyx-m2-firmware), which allows a Macchina M2 to use this server to relay CANBUS messages to the Model 3's main screen.
 
 *NOTE: This documentation is a work in progress!!! Please open issues to ask questions as needed.*
 
 # Installation
 
-This is currently a pretty straight forward Node/Express server.
+This is currently a pretty straight forward Node server.
 
-Start by setting up your environment in a .env file. It should have at least an `AUTHORIZATION` entry, which corresponds
-to the `pin` query string you need to provide to be able to access the relay.
+Start by setting up your environment in a `.env` file. It should have at least an
+`AUTHORIZATION` entry, which corresponds to the `pin` query string you need to provide
+to be able to access the relay.
 
-If you want to deploy a secure version of the server, you should additionally have `SSL_KEY` and `SSL_CERT` that point
-to your SSL files. You almost certainly want this to use with any web app running on the car's main screen (as most
-hosting services require it now, for example, AWS Amplify).
+If you want to deploy a secure version of the server, you should additionally have
+`SSL_KEY` and `SSL_CERT` that point to your SSL files. You almost certainly want this
+to use with any web app running on the car's main screen (as most hosting services
+require it now, for example, AWS Amplify).
 
-You may also specify a `M2_HOSTNAME` value, which will be used by the tools to access your deployment.
+You may also specify a `M2_HOSTNAME` value, which will be used by the tools to access
+your deployment.
 
 ```
   # .env
@@ -30,47 +33,45 @@ You should then be able to run.
   npm start
 ```
 
-# M2 Message Protocol
+The DBC file is now in its own repo,
+[onyx-m2-dbc](https://github.com/onyx-m2/onyx-m2-dbc). By default, the server will pull
+a live copy of this file at startup. This may be overridden using the `DBC_FILE` config
+variable.
 
-The M2 must be configured to open a web socket connection using the `/m2device` endpoint,
-passing a `pin` query string corresponding to the agreed upon `AUTHORIZATION` value.
+All of the configuration options are now centralized in `./src/config.js`, and the
+server no longer accesses the above variables directly.
+
+*NOTE: this used to be a hybrid Express/Socket server. All of the non socket routes
+have now been removed (and it's no even longer an Express server). This simplifies
+the code, and give the server a single purpose.*
+
+# Message Protocol
+
+The M2 must be configured to open a web socket connection using the `/m2device`
+endpoint, passing a `pin` query string corresponding to the agreed upon `AUTHORIZATION`
+value.
 
 Clients may connect to any other endpoint, using the same `pin`.
 
 ## Ping Pong Messages
 
 Clients may implement a user level ping/pong mechanism. This is implemented to allow
-web browser based applications detect stale connection. Anytime a client sends the
-text message `ping`, the server will respond with a text message `pong`.
+web browser based applications detect stale connection. See the section on housekeeping
+in the client interface below for details.
 
 The server also implements protocol level ping pong for all connections, including the
 M2.
 
-## M2 Notification Messages
-
-The server will send regular notifications to clients about the state of the M2. These
-notifications will be sent as text messages starting with the `m2:` prefix. The full
-schema is `m2:{conn}:{lat}`
-
-  - `conn` is the connection state, `1` means the M2 is online, and `0` means it's
-    offline
-  - `lat` is the current latency in milliseconds of `pong` messages initiated by
-    the server's `ping` requests to the M2, and therefore represents a full round
-    trip between the M2 and the server
-
-The latency can be combined with a client's own latency information (gleaned from
-the message level ping pong messages) to get an idea of the delay between a CAN
-message being read off the car's bus and its display on the in car screen. The formula
-would be `(client_latency / 2) + (m2_latency / 2)`.
-
 ## Data Messages
 
 Any message that is binary is assumed to be a CAN message from the M2, or a control
-message from a client. The server does not unpack any of these binary messages, but
-rather acts like a relay.
-
-See [onyx-m2-firmware](https://github.com/johnmccalla/tesla-onyx-m2-firmware) for
+message destined for the M2. See
+[onyx-m2-firmware](https://github.com/onyx-m2/onyx-m2-firmware) for
 up to date information on the format of the CAN messages and the commands.
+
+*NOTE: This low-level interface is meant to be used between the M2 and the server
+(and any other relays), not between clients and the server. There is now a high-level
+interface documented below for this purpose.*
 
 # Deployment
 
@@ -84,47 +85,67 @@ sudo setcap 'cap_net_bind_service=+ep' /usr/bin/node
 
 # Apps
 
-There are no longer any apps provided as part of the server. The server is now purely a data relay,
-augmented with some json data access services.
+There are no longer any apps provided as part of the server. The server is now purely
+a data relay and an arbitrator for web socket clients.
 
 # Tools
 
 There are a number of tools included that will help with development.
 
 - `bin/onyx-m2-monitor` monitors the canbus messages and saves them to a log file.
-- `bin/m2-serial-replay` replays a log file to the serial port. This is useful for debugging the superb communication from the workbench.
-- `bin/m2-ws-replay` replays a log file to the websocket. This is useful to debug application without having to be in the car and/or driving.
-- `bin/parse-dbc` parses a dbc file and outputs a json file that may be consumed by applications.
+- `bin/m2-serial-replay` replays a log file to the serial port. This is useful for
+  debugging the superb communication from the workbench.
+- `bin/m2-ws-replay` replays a log file to the websocket. This is useful to debug
+  applications without having to be in the car and/or driving.
 
-# Higher Level Client Protocol
+# Client Interface
 
-What if did all the signal wrangling on the server, and presented clients with a
-nice high level interface to messages?
+Clients use a high-level interface to talk to the M2. No clients should use the binary
+data protocol (only the M2 and any M2 relays).
 
-Possible flow:
+## Sessions
+
+A client begins by opening a new connection, and the server will acknowledge this by
+saying hello and informing the client of its session id.
 
 ```js
-  // Server sends hello, you are session X
   {
     event: 'hello',
     data: {
       session: id,
     }
   }
+```
+## Subscriptions
 
-  // Client then responds by setting up its subscriptions
+The client should then responds by setting up its signal subscriptions. These must
+match the DBC's nomenclature, and multiple signals can be requested in a single
+event. The server will figure out what messages need to be pulled off the CAN bus
+to obtain all of the requested signals.
+
+```js
   {
     event: 'subscribe',
     data: ['DI_elecPower']
   }
+```
 
-  // Client can also later unsubscribe to a signal
+At any time afterwards, the client may also unsubscribe to any of these signals.
+
+```js
   {
     event: 'unsubscribe',
     data: ['DI_elecPower']
   }
+```
 
-  // When a subscribed signal is received from the M2, the server sends
+## Signal Events
+
+Anytime there is an updated value in a message containing a subscribed signal, the
+server notifies the client using the `signal` event. The payload is an array of
+signal mnemonic and current value tuples (many may be present in any given event).
+
+```js
   {
     event: 'signal',
     data: [
@@ -132,14 +153,59 @@ Possible flow:
       ...
     ]
   }
+```
 
-  // Clients can also request the last value of a number of signals (the server will emit
-  // the same signal event as a response to this, but not subscribe)
+A client may also explicitly request the last value of any number of signals (that are
+or are not subscribed to). This could also be useful for signals that don't change
+frequently.  The server will emit the same signal event as a response to this.
+
+```js
   {
     event: 'get',
     data: ['DI_isSunUp']
   }
+```
 
+## Connection Status
+
+As mentioned above, a user-level ping-pong mechanism is implemented to allow browser
+based applications to monitor the state of the connection. The events are simply:
+
+```js
+  // Client sends
+  {
+    event: 'ping'
+  }
+
+  // Server responds
+  {
+    event: 'pong'
+  }
+```
+
+The server also sends periodic status updates to the client that indicate whether
+the M2 is online, the latency between the M2 and the server (in ms), and the message
+rate currently being received from the M2 (in messages/sec).
+
+This latency can be combined with a client's own latency information (gleaned from
+the message level ping pong messages) to get an idea of the delay between a CAN
+message being read off the car's bus and its display on the in car screen. The formula
+would be `(client_latency / 2) + (m2_latency / 2)`.
+
+```js
+  {
+    event: 'status',
+    data: [online, latency, rate]
+  }
+```
+
+## Advanced
+
+There are some additional events supported by the server that aren't really meant
+for clients, and warning, are barely tested! None of these should be necessary for
+typical applications.
+
+```js
   // Clients can ask to be sniffers, which enables all messages on the M2 and forwards
   // them to the client
   {
@@ -172,26 +238,10 @@ Possible flow:
     event: 'get-all-messages'
   }
 
-  // Server sends all messages to monitors and sniffers
+  // Server sends all messages to monitors and sniffers in non-decoded form
   {
     event: 'message'
     data: [id, ts, [0x12, 0x12, 0x12, ...]]
   }
 
-  // Ping pong is implemented by having the client send
-  {
-    event: 'ping'
-  }
-
-  // and the responds with
-  {
-    event: 'pong'
-  }
-
-  // Server will also send client periodic updates on the M2's status (including rate of
-  // messages emitted)
-  {
-    event: 'status',
-    data: [online, latency, rate]
-  }
 ```
