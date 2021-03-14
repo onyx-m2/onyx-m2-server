@@ -19,7 +19,7 @@
       "name": "M2 Serial Replay",
       "program": "${workspaceFolder}\\bin\\m2-serial-replay",
       "args": [
-        "COM4",
+        "COM6",
         "${workspaceFolder}/logs/m2-1572225274187.log"
       ]
     },
