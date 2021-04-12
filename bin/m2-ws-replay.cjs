@@ -36,12 +36,13 @@ ws.on('open', () => {
   console.log(`Server connected, starting replay of ${filename} to ${hostname}`)
 
   lineReader.eachLine(filename, async (line, last, cb) => {
-    // <id> | <hexId> @ <ts> len <len> | <len data bytes>
-    // 258 | 0x102 @ 313168976 len 8 | 77 00 00 00 01 00 20 0c
-    var parts = /\d+ \| 0x(\w+) @ (\d+) len (\d+)/.exec(line)
-    const id = parseInt(parts[1], 16)
-    const ts = parseInt(parts[2])
-    const len = parseInt(parts[3])
+    // [<now>][<ts>] <bus> | <id> | len <bytes>| <len data bytes>
+    // [59045][5810] 0 | 826 | len 8 | bf00bf00db005756
+    var parts = /\[\d+\]\[(\d+)\] (\d+) \| (\d+) \| len (\d+)/.exec(line)
+    const ts = parseInt(parts[1])
+    const bus = parseInt(parts[2])
+    const id = parseInt(parts[3])
+    const len = parseInt(parts[4])
     const data = line.substr(line.lastIndexOf('|') + 2)
 
     if (lastTs) {
@@ -49,12 +50,13 @@ ws.on('open', () => {
     }
     lastTs = ts
 
-    // [timestamp | id | length | data]
+    // [timestamp | bus | id | length | data]
     var msg = [
       ts & 0xff,
       (ts >> 8) & 0xff,
       (ts >> 16) & 0xff,
       (ts >> 24) & 0xff,
+      bus,
       id & 0xff,
       (id >> 8) & 0xff,
       len & 0xff
