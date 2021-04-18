@@ -1,8 +1,9 @@
-export default {
+const config = {
   env: process.env.NODE_ENV || 'development',
-  port: {
-    http: process.env.HTTP_PORT || '80',
-    https: process.env.HTTPS_PORT || '443',
+  listen: {
+    port: process.env.PORT || '80',
+    securePort: process.env.SECURE_PORT || '443',
+    address: process.env.LISTEN_ADDRESS || 'localhost',
   },
   ssl: {
     key: process.env.SSL_KEY,
@@ -19,3 +20,6 @@ export default {
     file: process.env.DBC_FILE || 'https://raw.githubusercontent.com/onyx-m2/dbc/master/tesla_model3.dbc'
   }
 }
+
+console.log(`Running in node ${config.env} environment`)
+export default config

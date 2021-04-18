@@ -22,9 +22,9 @@ async function init() {
 
   // Create both a http server (for the m2), and a https server for the browser clients
   // that will likely be required to run https
-  standUpServer(http, normalizePort(config.port.http))
+  standUpServer(http, normalizePort(config.listen.port))
   if (config.ssl.key) {
-    standUpServer(https, normalizePort(config.port.https), {
+    standUpServer(https, normalizePort(config.listen.securePort), {
       key: fs.readFileSync(config.ssl.key),
       cert: fs.readFileSync(config.ssl.cert)
     })
@@ -34,7 +34,7 @@ async function init() {
 // Stand up a server using the module and port, and optionally the options
 function standUpServer(module, port, options) {
   const server = module.createServer(options || {})
-  server.listen(port, 'localhost')
+  server.listen(port, config.listen.address)
   server.on('upgrade', handleUpgrade)
   server.on('error', (error) => handleError(error, port))
   server.on('listening', () => handleListening(server))
@@ -78,10 +78,11 @@ function handleError(error, port) {
 // Event listener for HTTP server "listening" event
 function handleListening(server) {
   var addr = server.address()
+  var host = addr.address;
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port
-  log.info('Listening on ' + bind)
+  log.info(`Listening at ${host} on ${bind}`)
 }
 
 init()
