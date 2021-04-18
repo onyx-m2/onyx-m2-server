@@ -1,5 +1,4 @@
 import logger from 'simple-node-logger'
-
 import config from './config.js'
 
 const log = logger.createSimpleLogger({

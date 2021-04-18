@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "type": "module",
   "scripts": {
-    "start": "node ./server"
+    "start": "node -r dotenv/config ./server"
   },
   "dependencies": {
     "bit-buffer": "^0.2.4",

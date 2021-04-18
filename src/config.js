@@ -1,10 +1,3 @@
-import { exit } from 'process'
-import dotenv from 'dotenv'
-if (dotenv.config().error) {
-  console.error('Unable to configure application, did you create a .env file?')
-  exit(1)
-}
-
 export default {
   env: process.env.NODE_ENV || 'development',
   port: {
