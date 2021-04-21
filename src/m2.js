@@ -228,7 +228,7 @@ function enableAllSubscribedMessages() {
 }
 
 function getLastSignalValues(signals) {
-  const messages = [...new Set(signals.map(s => dbc.getSignalMessage(s)))]
+  const messages = [...new Set(signals.map(s => dbc.getSignalMessage(s)).filter(m => m))]
   messages.forEach(m => getLastMessageValue(m.bus, m.id))
 }
 
