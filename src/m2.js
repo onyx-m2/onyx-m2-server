@@ -58,14 +58,14 @@ function activeM2() {
 }
 
 // Connection handler for incoming socket requests
-wss.on('connection', (ws) => {
+wss.on('connection', ({ws, url}) => {
 
   // use array buffers, mostly because BitView is buggy when using
   // node buffers
   ws.binaryType = 'arraybuffer'
 
   // name the web socket to make logging a bit easier to follow
-  ws.name = ws.url.pathname.slice(1)
+  ws.name = url.pathname.slice(1)
 
   // route incoming connections to either the M2 handle or the client handler
   if (ws.name === 'm2') {
@@ -531,7 +531,6 @@ export function handleUpgrade(req, socket, head) {
 
   wss.handleUpgrade(req, socket, head, (ws) => {
     ws.id = id
-    ws.url = url
-    wss.emit('connection', ws)
+    wss.emit('connection', {ws, url})
   })
 }
