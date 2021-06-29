@@ -6,19 +6,19 @@
     "start": "node -r dotenv/config ./server"
   },
   "dependencies": {
-    "bit-buffer": "^0.2.4",
+    "bit-buffer": "^0.2.5",
     "cobs": "^0.2.1",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
-    "pg": "^8.3.0",
+    "dotenv": "^10.0.0",
+    "onyx-m2-common": "^0.0.5",
+    "pg": "^8.6.0",
     "request": "^2.88.2",
     "request-promise-native": "^1.0.9",
-    "serialport": "^7.1.5",
+    "serialport": "^9.2.0",
     "simple-node-logger": "^18.12.24",
-    "slonik": "^22.4.11",
-    "ws": "^7.4.6",
-    "onyx-m2-common": "^0.0.1"
+    "slonik": "^23.8.3",
+    "ws": "^7.5.0"
   },
   "devDependencies": {
     "line-reader": "^0.4.0"
