@@ -211,9 +211,6 @@ a {
 
 .tesla.screen {
   background-color: #fafafa; /* found empirically */
-  width: 1260px;
-  height: 924px;
-  padding: 20px;
   font-size: 28px;
 }
 
@@ -231,11 +228,15 @@ a {
 } */
 
 .tesla.panel {
-  grid-gap: 20px;
-  width: 1220px;
-  height: 884px;
+  grid-gap: 10px;
+  position: relative;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  padding: 10px;
+  padding-bottom: 16px;
+  padding-right: 26px;  /* Obnoxious display bug since the infamous "christmas update" of 2020 */
   display: grid;
-  /* overflow: auto; */
 }
 
 .tesla.message {
@@ -285,7 +286,7 @@ a {
   font-variant: all-small-caps;
   grid-template-rows: 1fr;
   grid-template-columns: repeat(3, 1fr);
-  column-gap: 20px;
+  grid-gap: 10px;
 }
 
 .signals .item,
@@ -324,12 +325,10 @@ a {
 }
 
 .ui.vertical.menu {
-  width: 400px;
-  /* font-size: 24px; */
+  width: auto;
   margin: 0;
   overflow-y: scroll;
   will-change: scroll-position;
-  /* max-height: 884px; */
 }
 
 /* #canmenu {
@@ -379,17 +378,6 @@ a {
   box-shadow: 0 2px 4px 0 rgba(34,36,38,.12), 0 2px 10px 0 rgba(34,36,38,.15)
 }
 
-/* This is for inset box shadow, doesn't work yet
-.ui.tesla.menu::after {
-  position: absolute;
-  background-image: linear-gradient(to bottom, transparent 0%, white 100%);
-  top: 0px;
-  left: 0px;
-  height: 40px;
-  z-index: 1;
-  content: '';
-} */
-
 .ui.tile.segment {
   font-family: 'teslaregular';
   border-radius: 10px;
@@ -432,7 +420,6 @@ a {
 
 .bttf.panel {
   grid-gap: 0;
-  height: unset;
   user-select: none;
 }
 
@@ -443,7 +430,7 @@ a {
   padding: 16px;
   display: grid;
   grid-template-rows: 140px 40px;
-  grid-template-columns: 200px 270px 270px 240px 200px;
+  grid-template-columns: repeat(5, 20%);
 }
 
 .hidden {
